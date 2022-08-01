@@ -22,13 +22,13 @@
             </div>
             
             <div class="input">
-                <input type="search" placeholder="  검색어를 입력하세요" >
+                <input type="search" placeholder=" 검색어를 입력하세요" >
             </div>
             
             <div class="right">
                    <div><a href="${cpath }/member/login"><img src="${cpath }/resources/img/login.png" width="40px" height="40px"></a></div>
                    <div class="member_img">
-                        <a href="#"><img src="${cpath }/resources/img/member.png" width="40px" height="40px"></a>  
+                        <a href="${cpath }/mypage/mypageMain"><img src="${cpath }/resources/img/member.png" width="40px" height="40px"></a>  
                         <ul> 
                             <li><a href="#">주문/배송조회</a></li>
                             <li><a href="#">고객센터</a></li>
@@ -117,7 +117,7 @@
                 <div class="productImg"><img src="${cpath }/resources/img/체리.jpeg"></div>
                 <div class="productInfo">
                     <div class="productTitle">
-                        항공 직속 체리(미국산) 300G(팩) ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ
+						항공 직속 체리(미국산) 300G(팩)
                     </div>
                     <div class="priceWrap">
                         <div class="productOrgPrice">

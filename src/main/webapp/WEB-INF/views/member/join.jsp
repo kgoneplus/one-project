@@ -17,5 +17,6 @@
 		<div><a href="${cpath }/member/simplejoin">간편 회원 가입</a></div>
 		<div><a href="${cpath }/member/naverjoin">NAVER로 간편가입</a></div>
 	</div>
+	<div>This is push test code</div>
 </body>
 </html>
