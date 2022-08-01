@@ -27,8 +27,8 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
+	
+	<context:component-scan base-package="com.itbank.service" />	
 	<mybatis-spring:scan base-package="com.itbank.integration_member"/>
-	
-	
 		
 </beans>
