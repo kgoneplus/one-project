@@ -28,3 +28,8 @@
         wrap.style.transitionDuration = '0.4s'
     }
 }
+ 
+ function scrollToTop() {
+	 let target = document.documentElement
+		target.scrollTop = 0
+ }
