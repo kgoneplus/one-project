@@ -210,6 +210,42 @@
             </div>
 
         </div>
+        
+        <div id="remocon">
+        <div class="remocon_frame">
+                <div class="remocon_miniItem">
+                    <figure>
+                        <img src="img/icon_147.png">
+                        <figcaption>로그인</figcaption>
+                    </figure>
+                </div>
+                <div class="remocon_miniItem">
+                    <figure>
+                        <img src="img/icon_139.png">
+                        <figcaption>배송</figcaption>
+                    </figure>
+                </div>
+                <div class="remocon_miniItem">
+                    <figure>
+                        <img src="img/icon_152.png">
+                        <figcaption>장바구니</figcaption>
+                    </figure>
+                </div>
+                <div class="remocon_miniItem">
+                    <figure>
+                        <img src="">
+                        <figcaption>최근 본 상품</figcaption>
+                    </figure>
+                </div>
+                <div class="remocon_miniItem">
+                    <figure>
+                        <button id="toTop">Top</button>
+                    </figure>
+                </div>
+        </div>
+    </div>
+        
+        
     </main>
 
 
