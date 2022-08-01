@@ -242,10 +242,9 @@
                 </div>
         </div>
     </div>
-        
     </main>
 
-
+	<!-- 쥬석  -->
     <footer>
         <div class="footer_line">
             <div class="footer_line_left">
