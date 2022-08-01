@@ -117,7 +117,7 @@
                 <div class="productImg"><img src="${cpath }/resources/img/체리.jpeg"></div>
                 <div class="productInfo">
                     <div class="productTitle">
-                        항공 직속 체리(미국산) 300G(팩) ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ
+                        항공 직속 체리(미국산) 300G(팩) zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
                     </div>
                     <div class="priceWrap">
                         <div class="productOrgPrice">
