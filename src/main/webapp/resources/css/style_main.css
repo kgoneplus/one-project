@@ -431,3 +431,49 @@ footer {
 .footer_content_right_item > ul > li {
     margin-top: 5px;
 }
+#remocon {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    height: 330px;
+    margin-top: -206px;
+    z-index: 4500;
+}
+.remocon_frame {
+    /* position: relative; */
+    align-self: center;
+    padding-top: 30px;
+    width: 60x;
+    height: 330px;
+    border-right: none;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 20px;
+    background-color: rgb(244, 246, 249);
+}
+figure {
+    margin: 0 0 20px;
+    box-sizing: border-box;
+}
+figure > img {
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: 0 auto 6px;
+}
+figcaption {
+    width: 100%;
+    text-align: center;
+    color: rgb(102, 102, 102);
+    font-size: 11px;
+    overflow: hidden;
+}
+#toTop {
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    background-color: rgb(102, 102, 102);
+    border-bottom-left-radius: 16px;
+    width: 62px;
+    height: 46px;
+    border: 0;
+    cursor: pointer;
+}
