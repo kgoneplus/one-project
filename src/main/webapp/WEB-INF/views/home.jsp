@@ -244,7 +244,7 @@
     </div>
     </main>
 
-	<!-- 쥬석  -->
+	<!-- 쥬석[l  -->
     <footer>
         <div class="footer_line">
             <div class="footer_line_left">
