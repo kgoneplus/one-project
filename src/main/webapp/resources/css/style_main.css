@@ -435,7 +435,7 @@ footer {
     position: fixed;
     top: 50%;
     right: 0;
-    height: 412px;
+    height: 330px;
     margin-top: -206px;
     z-index: 4500;
 }
@@ -444,7 +444,7 @@ footer {
     align-self: center;
     padding-top: 30px;
     width: 60x;
-    height: 412px;
+    height: 330px;
     border-right: none;
     border-top-left-radius: 16px;
     border-bottom-left-radius: 20px;
@@ -466,4 +466,14 @@ figcaption {
     color: rgb(102, 102, 102);
     font-size: 11px;
     overflow: hidden;
+}
+#toTop {
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    background-color: rgb(102, 102, 102);
+    border-bottom-left-radius: 16px;
+    width: 62px;
+    height: 46px;
+    border: 0;
+    cursor: pointer;
 }

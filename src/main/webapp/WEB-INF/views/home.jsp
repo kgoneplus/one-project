@@ -211,23 +211,23 @@
 
         </div>
         
-        <div id="remocon">
+<div id="remocon">
         <div class="remocon_frame">
                 <div class="remocon_miniItem">
                     <figure>
-                        <img src="img/icon_147.png">
+                        <img src="${cpath }/resources/img/icon_147.png">
                         <figcaption>로그인</figcaption>
                     </figure>
                 </div>
                 <div class="remocon_miniItem">
                     <figure>
-                        <img src="img/icon_139.png">
+                        <img src="${cpath }/resources/img/icon_139.png">
                         <figcaption>배송</figcaption>
                     </figure>
                 </div>
                 <div class="remocon_miniItem">
                     <figure>
-                        <img src="img/icon_152.png">
+                        <img src="${cpath }/resources/img/icon_152.png">
                         <figcaption>장바구니</figcaption>
                     </figure>
                 </div>
@@ -238,17 +238,13 @@
                     </figure>
                 </div>
                 <div class="remocon_miniItem">
-                    <figure>
-                        <button id="toTop">Top</button>
-                    </figure>
+                    <button id="toTop">TOP</button>
                 </div>
         </div>
     </div>
-        
-        
     </main>
 
-
+	<!-- 쥬석[l  -->
     <footer>
         <div class="footer_line">
             <div class="footer_line_left">
@@ -322,6 +318,9 @@
             document.querySelector('.next').onclick = slide
             document.querySelector('.prev').onclick = slide
             // setInterval(slide, 1500); //2.5초
+            
+            const toTop = document.getElementById('toTop')
+            toTop.addEventListener('click', scrollToTop)
         </script>
 
 </body>
