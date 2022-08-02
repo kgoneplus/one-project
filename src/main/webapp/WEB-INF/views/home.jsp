@@ -196,9 +196,10 @@
 <script>
 	let unit = 0
 	let cnt = 0
-
+	
 	document.querySelector('.next').onclick = slide
 	document.querySelector('.prev').onclick = slide
+	
 	// setInterval(slide, 1500); //2.5초
 	window.addEventListener('load', MainloadHandler)
 	const toTop = document.getElementById('toTop')

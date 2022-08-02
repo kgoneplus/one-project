@@ -1,6 +1,6 @@
 'use strict'
 // var, let, const 가 없으면 분수 선언 안됨
-// 슬라이더 이벤트 
+// 슬라이더 이벤트
  function slide(event) {
 	 
     let dir = -1
@@ -47,29 +47,37 @@
  function Mainproduct(ob) {
 	 
 	 const product = document.querySelector(".product")
-	 
-	 product.innerHTML += `<div class="productImg></div>`
-     product.innerHTML += `<div class="productInfo">
-								<div class="productTitle">
-									항공 직속 체리(미국산) 300G(팩)
+	 product.innerHTML = ''
+		 
+	 for(let key in ob){
+		 product.innerHTML += `<div class="productImg">
+									<img src=" + 'cpath' + "/resources/img/체리.jpeg">
 								</div>
 								
-								<div class="priceWrap">
-									<div class="productOrgPrice">
-										<strong>12,990</strong>원
+								<div class="productInfo">
+								
+									<div class="productTitle">
+										 ${ob[productName]}
 									</div>
-									<div class="productPrice">
-										<span class="countDC">38%</span> <strong>7,990</strong>원
+									
+									<div class="priceWrap">
+										<div class="productOrgPrice">
+											<strong>${ob[productPrice]}</strong>원
+										</div>
+										<div class="productPrice">
+											<span class="countDC">${ob[deliveryfee]}</span> <strong>7,990</strong>원
+										</div>
+										<span class="priceQty">${ob[productSize]}</span>
 									</div>
-									<span class="priceQty">(100G당 2,663.3원)</span>
-								</div>
-								
-								<div class="productScore">
-									<span><img src="${cpath }/resources/img/star3.png"></span> <span>4.3(9건)</span>
-									| <span>월 1,180개 구매</span>
-								</div>
-								
-							</div>`
+									
+									<div class="productScore">
+										<span><img src="+ '${cpath }' + /resources/img/star3.png"></span> <span>4.3(9건)</span>
+										| <span>월 ${ob[maxbuyCnt]}개 구매</span>
+									</div>
+								</div>`
+									
+	 }
+	
 	 
 	 
  }
