@@ -11,6 +11,7 @@
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 </head>
 <body>
+<section>
 <header>      
 	<div class="top">   
 	    <div class="left">
