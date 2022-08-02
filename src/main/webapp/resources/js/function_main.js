@@ -1,5 +1,6 @@
 'use strict'
 // var, let, const 가 없으면 분수 선언 안됨
+// 슬라이더 이벤트 
  function slide(event) {
 	 
     let dir = -1
@@ -28,8 +29,21 @@
         wrap.style.transitionDuration = '0.4s'
     }
 }
- 
+ // 리모컨 스크롤 탑이벤트
  function scrollToTop() {
 	 let target = document.documentElement
 		target.scrollTop = 0
+ }
+ // 메인화면 아이템 로드 핸들러
+ function MainloadHandler () {
+	 const list = document.querySelector(".list")
+	 const url = cpath + "/mainload"
+	 fetch(url) 
+	 .then(resp => resp.json())
+	 .then(json => {
+		forEach(product => list.appendChild(convert(product)))
+	 })
+ }
+ function Mainproduct(product) {
+	 
  }
