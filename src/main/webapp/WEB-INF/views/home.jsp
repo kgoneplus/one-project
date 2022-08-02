@@ -38,6 +38,38 @@
 
 
 <div class="list">
+
+	<div class="product">
+	
+		<div class="productImg">
+			<img src="${cpath }/resources/img/체리.jpeg">
+		</div>
+		
+		<div class="productInfo">
+		
+			<div class="productTitle">
+				항공 직속 체리(미국산) 300G(팩)
+			</div>
+			
+			<div class="priceWrap">
+				<div class="productOrgPrice">
+					<strong>12,990</strong>원
+				</div>
+				<div class="productPrice">
+					<span class="countDC">38%</span> <strong>7,990</strong>원
+				</div>
+				<span class="priceQty">(100G당 2,663.3원)</span>
+			</div>
+			
+			<div class="productScore">
+				<span><img src="${cpath }/resources/img/star3.png"></span> <span>4.3(9건)</span>
+				| <span>월 1,180개 구매</span>
+			</div>
+			
+		</div>
+		
+	</div>
+	
 	<div class="product">
 		<div class="productImg">
 			<img src="${cpath }/resources/img/체리.jpeg">
@@ -168,7 +200,7 @@
 	document.querySelector('.next').onclick = slide
 	document.querySelector('.prev').onclick = slide
 	// setInterval(slide, 1500); //2.5초
-	//window.addEventListener('load', MainloadHandler)
+	window.addEventListener('load', MainloadHandler)
 	const toTop = document.getElementById('toTop')
 	toTop.addEventListener('click', scrollToTop)
 </script>
