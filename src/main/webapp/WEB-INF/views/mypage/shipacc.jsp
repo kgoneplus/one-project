@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>배송 정보 관리 | MY 홈플러스 | 홈플러스</title>
+<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 </head>
 <body>
@@ -120,7 +121,28 @@
 	</aside>
 	
 	<section>
-		<h1>배송 정보 관리</h1>
+		<div>배송 정보 관리</div>
+		<div>
+			<h3>배송지 목록</h3>
+			<button>배송지 추가</button>
+		</div>
+		<div>
+			<div>기본 배송지</div>
+			<div>
+				<div>배송지역 | 수령인(회원 전화번호 )</div>
+				<div>회원정보에 등록된 주소</div>
+			</div>			
+		</div>
+		<table>
+			<tr>
+				<th>선택</th>
+				<th>배송지명</th>
+				<th>받는 분</th>
+				<th>주소</th>
+				<th>수정/삭제</th>
+			</tr>
+		</table>
+		<button>기본 배송지 설정</button>
 	</section>
 </main>
 

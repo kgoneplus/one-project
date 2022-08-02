@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
+<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 </head>
 <body>
 <header>      
@@ -20,18 +21,18 @@
 	       <input type="search" placeholder=" 검색어를 입력하세요" >
 	   </div>
 	   
-	   <div class="right">
-	          <div><a href="${cpath }/member/login"><img src="${cpath }/resources/img/login.png" width="40px" height="40px"></a></div>
-	          <div class="member_img">
-	               <a href="${cpath }/mypage/mypageMain"><img src="${cpath }/resources/img/member.png" width="40px" height="40px"></a>  
-	               <ul> 
-	                   <li><a href="#">주문/배송조회</a></li>
-	                   <li><a href="#">고객센터</a></li>
-	                   <li><a href="#">회원정보</a></li>
-	               </ul> 
-	       </div>   
-	       <div><a href="#"><img src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a></div>
-	    </div>
+		<div class="right">
+			<div><a href="${cpath }/member/login"><img src="${cpath }/resources/img/login.png" width="40px" height="40px"></a></div>
+			<div class="member_img">
+			     <a href="${cpath }/mypage/mypageMain"><img src="${cpath }/resources/img/member.png" width="40px" height="40px"></a>  
+			       <ul> 
+			           <li><a href="#">주문/배송조회</a></li>
+			           <li><a href="#">고객센터</a></li>
+			           <li><a href="#">회원정보</a></li>
+			       </ul> 
+			</div>
+			<div><a href="#"><img src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a></div>
+		</div>
 	</div>
 	
 	<nav>

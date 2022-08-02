@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>주문/배송 조회 | 홈플러스</title>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
+<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 </head>
 <body>
 <header>      

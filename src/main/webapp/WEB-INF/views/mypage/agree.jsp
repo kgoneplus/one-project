@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>개인정보 이용내역 | MY 홈플러스 | 홈플러스</title>
+<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 </head>
 <body>
@@ -120,7 +121,19 @@
 	</aside>
 	
 	<section>
-		<h1>개인정보 이용내역</h1>
+		<div>개인정보 이용내역</div>
+		<h4>홈플러스 고객님의 개인정보 수집 및 이용 제공한 내역을 안내 드립니다.</h4>
+		<div>
+			<div>조회기간</div>
+			<form>
+				<p><input type="date"></p> ~ 
+				<p><input type="date"></p>
+				<div>1개원</div>
+				<div>3개월</div>
+				<div>6개월</div>
+				<p><input type="submit" value="조회"></p>
+			</form>
+		</div>
 	</section>
 </main>
 

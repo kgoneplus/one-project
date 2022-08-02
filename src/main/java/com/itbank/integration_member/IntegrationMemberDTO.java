@@ -2,12 +2,13 @@ package com.itbank.integration_member;
 
 import java.sql.Date;
 
-//idx 		number 		    default member_seq.nextval primary key,
-//name		varchar(200)	not null,
-//birth		date		    not null,
-//ponenum		number		    not null,	
-//adress      varchar(500)    ,
-//email       varchar(200)   
+//	idx 		number 		    default member_seq.nextval primary key,
+//	name		varchar(200)	not null,
+//	birth		date		    not null,
+//	ponenum		number		    not null,	
+//	adress      varchar(500)    ,
+//	email       varchar(200)
+
 public class IntegrationMemberDTO {
 	
 	private int idx;
@@ -16,7 +17,6 @@ public class IntegrationMemberDTO {
 	private int ponenum;
 	private String adress;
 	private String email ;
-	
 	
 	int getIdx() {
 		return idx;
