@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
-
+<title>원플러스 홈</title>
+<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
+<script>
+	const cpath = '${cpath}'
+</script>
+<script src="${cpath}/resources/js/function_main.js"></script>
+</head>
+<body>
+	
 <main>
 <div class="slider">
 	<div class="mainImg_wrap">
@@ -27,15 +35,8 @@
 </div>
 
 
-<nav>
-	<ul class="main_list">
-		<li><a href="#">전체</a></li>
-		<li><a href="#">신선식품</a></li>
-		<li><a href="#">가공품</a></li>
-		<li><a href="#">생활용품</a></li>
-		<li><a href="#">냉동식품</a></li>
-	</ul>
-</nav>
+
+
 <div class="list">
 	<div class="product">
 		<div class="productImg">

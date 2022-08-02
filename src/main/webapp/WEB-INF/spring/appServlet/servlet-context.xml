@@ -35,6 +35,12 @@
 	
 	<view-controller path="/" view-name="home" />
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/mypage" />			
+			<beans:bean class="com.itbank.interceptor.MypageInterceptor" />
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>
 
