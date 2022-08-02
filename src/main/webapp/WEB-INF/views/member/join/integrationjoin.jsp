@@ -46,8 +46,8 @@ function insertHandler (event) {
 		<p><input type="text" name="name" placeholder="이름" required ></p>
 		<p><input type="date" name="birth" placeholder="생일" required ></p>
 		<p><input type="number" name="ponenum" placeholder="핸드폰번호" required ></p>
-		<p><input type="text" name="adress" placeholder="주소" required ></p>
-		<p><input type="email" name="email" placeholder="이메일" required ></p>
+		<p><input type="text" name="adress" placeholder="주소"  ></p>
+		<p><input type="email" name="email" placeholder="이메일" ></p>
 		<p><input type="submit" value="회원가입"></p>
 	</form>
 	

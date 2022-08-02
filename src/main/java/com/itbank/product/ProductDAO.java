@@ -10,5 +10,5 @@ public interface ProductDAO {
 	
 	@Select("select * from product order by idx")
 	List<ProductDTO> mainloadList();
-
+	
 }
