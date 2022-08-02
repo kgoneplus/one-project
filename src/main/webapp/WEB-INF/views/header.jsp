@@ -7,7 +7,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>원플러스 홈</title>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <script>
 	const cpath = '${cpath}'

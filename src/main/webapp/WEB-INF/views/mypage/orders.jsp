@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="mypageMain.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+<%@ include file="../header.jsp"%>
 <title>주문/배송 조회 | 홈플러스</title>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
@@ -51,6 +47,4 @@
 	
 	</section>
 </main>
-
-</body>
-</html>
+<%@ include file="../footer.jsp" %>

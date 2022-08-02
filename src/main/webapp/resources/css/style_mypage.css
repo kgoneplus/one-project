@@ -10,3 +10,7 @@ main {
 aside {
 	width: 270px;
 }
+aside > div > ul {
+	margin: 10px;
+	padding: 0;
+}
