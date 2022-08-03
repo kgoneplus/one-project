@@ -86,10 +86,7 @@
                     </div>
                 </div>
             </div>
-=======
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
 
-<<<<<<< HEAD
             <div class="product">
                 <div class="productImg"><img src="${cpath }/resources/img/골드키위.jpeg"></div>
                 <div class="productInfo">
@@ -113,9 +110,8 @@
                     </div>
                 </div>
             </div>
-=======
 <div class="list">
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
+
 
 	<div class="product">
 	
@@ -192,7 +188,6 @@
 		</div>
 	</div>
 
-<<<<<<< HEAD
         </div>
         
 		<div id="remocon">
@@ -227,7 +222,7 @@
 	        </div>
 	    </div>
     </main>
-=======
+
 	<div class="product">
 		<div class="productImg">
 			<img src="${cpath }/resources/img/호주청정우.jpeg">
@@ -319,9 +314,7 @@
 	const toTop = document.getElementById('toTop')
 	toTop.addEventListener('click', scrollToTop)
 </script>
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
 
-<<<<<<< HEAD
     <footer>
         <div class="footer_line">
             <div class="footer_line_left">
@@ -403,6 +396,6 @@
 
 </body>
 </html>
-=======
+
 <%@ include file="footer.jsp"%>
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
+
