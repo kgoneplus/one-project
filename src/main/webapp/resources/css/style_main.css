@@ -201,12 +201,21 @@ nav > ul > #cate > .allmenu{
     overflow: hidden;
     position: relative;
 }
-main > .main_list_nav {
+.main_list_nav {
 	width: 1200px;
 	position: sticky;
 	background-color: white;
 	margin: auto;
 	z-index: 3;
+}
+.main_list_nav > ul > li {
+	padding: 10px;
+	cursor: pointer;
+}
+.main_list_liselected {
+	font-weight: bold;
+	color: red;
+	border-bottom: 2px solid red;
 }
 .mainImg_wrap {
     display: flex;

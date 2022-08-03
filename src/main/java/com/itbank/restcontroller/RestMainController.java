@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.itbank.product.ProductDAO;
 import com.itbank.product.ProductDTO;
+import com.itbank.service.MainService;
 
 @RestController
 public class RestMainController {
 	
-	@Autowired private ProductDAO dao;
+	@Autowired private MainService mainService;
 	
 	@GetMapping("/mainload")
-	public List<ProductDTO> mainloadList(){
-		return dao.mainloadList();
+	public List<ProductDTO> mainloadList(String mainList_cate){
+		return mainService.mainloadList(mainList_cate);
 	}
 }
