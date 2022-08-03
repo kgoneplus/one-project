@@ -12,8 +12,8 @@
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.1.100:1521:xe" />
-		<property name="username" value="c##itbank" />
-		<property name="password" value="it" />
+		<property name="username" value="c##oneplus" />
+		<property name="password" value="1234" />
 	</bean>	
 	
 	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
@@ -29,7 +29,7 @@
 	</bean>
 	
 	<context:component-scan base-package="com.itbank.service" />	
-	<mybatis-spring:scan base-package="com.itbank.integration_member"/>
-	<mybatis-spring:scan base-package="com.itbank.product"/>
+	<mybatis-spring:scan base-package="com.itbank.integration_member" />
+	<mybatis-spring:scan base-package="com.itbank.product" />
 		
 </beans>
