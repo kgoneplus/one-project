@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+main {
+	display: flex;
+	width: 1280px;
+	height: auto;
+	margin: auto;
+	margin-top: 40px;
+}
+aside {
+	width: 270px;
+}
+aside > div > ul {
+	margin: 10px;
+	padding: 0;
+}
