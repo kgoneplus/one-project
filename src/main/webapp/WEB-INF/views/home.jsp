@@ -101,10 +101,9 @@
                 <div><img src="${cpath }/resources/img/imgRight.png" class="next"></div>
             </div>
         </div>
-      
-       
-        <nav>
-            <ul class="main_list">
+         
+        <nav class="main_list_nav">
+            <ul>
                 <li><a href="#">전체</a></li>
                 <li><a href="#">신선식품</a></li>
                 <li><a href="#">가공품</a></li>
@@ -112,6 +111,7 @@
                 <li><a href="#">냉동식품</a></li>
             </ul>
         </nav>
+        
         <div class="list">
             <div class="product">
                 <div class="productImg"><img src="${cpath }/resources/img/체리.jpeg"></div>
@@ -141,7 +141,7 @@
                 <div class="productImg"><img src="${cpath }/resources/img/골드키위.jpeg"></div>
                 <div class="productInfo">
                     <div class="productTitle">
-                        제스프리 썬 골드키위 8-10입(팩)
+                       	 제스프리 썬 골드키위 8-10입(팩)
                     </div>
                     <div class="priceWrap">
                         <div class="productOrgPrice">
@@ -211,40 +211,39 @@
 
         </div>
         
-<div id="remocon">
-        <div class="remocon_frame">
-                <div class="remocon_miniItem">
-                    <figure>
-                        <img src="${cpath }/resources/img/icon_147.png">
-                        <figcaption>로그인</figcaption>
-                    </figure>
-                </div>
-                <div class="remocon_miniItem">
-                    <figure>
-                        <img src="${cpath }/resources/img/icon_139.png">
-                        <figcaption>배송</figcaption>
-                    </figure>
-                </div>
-                <div class="remocon_miniItem">
-                    <figure>
-                        <img src="${cpath }/resources/img/icon_152.png">
-                        <figcaption>장바구니</figcaption>
-                    </figure>
-                </div>
-                <div class="remocon_miniItem">
-                    <figure>
-                        <img src="">
-                        <figcaption>최근 본 상품</figcaption>
-                    </figure>
-                </div>
-                <div class="remocon_miniItem">
-                    <button id="toTop">TOP</button>
-                </div>
-        </div>
-    </div>
+		<div id="remocon">
+	        <div class="remocon_frame">
+	                <div class="remocon_miniItem">
+	                    <figure>
+	                        <img src="${cpath }/resources/img/icon_147.png">
+	                        <figcaption>로그인</figcaption>
+	                    </figure>
+	                </div>
+	                <div class="remocon_miniItem">
+	                    <figure>
+	                        <img src="${cpath }/resources/img/icon_139.png">
+	                        <figcaption>배송</figcaption>
+	                    </figure>
+	                </div>
+	                <div class="remocon_miniItem">
+	                    <figure>
+	                        <img src="${cpath }/resources/img/icon_152.png">
+	                        <figcaption>장바구니</figcaption>
+	                    </figure>
+	                </div>
+	                <div class="remocon_miniItem">
+	                    <figure>
+	                        <img src="">
+	                        <figcaption>최근 본 상품</figcaption>
+	                    </figure>
+	                </div>
+	                <div class="remocon_miniItem">
+	                    <button id="toTop">TOP</button>
+	                </div>
+	        </div>
+	    </div>
     </main>
 
-	<!-- 쥬석[l  -->
     <footer>
         <div class="footer_line">
             <div class="footer_line_left">
@@ -311,17 +310,18 @@
         </div>
         
     </footer>
-     <script>
-    		let unit = 0
-    		let cnt = 0    
-           
-            document.querySelector('.next').onclick = slide
-            document.querySelector('.prev').onclick = slide
-            // setInterval(slide, 1500); //2.5초
-            
-            const toTop = document.getElementById('toTop')
-            toTop.addEventListener('click', scrollToTop)
-        </script>
+    
+<script>
+	let unit = 0
+	let cnt = 0    
+     
+     document.querySelector('.next').onclick = slide
+     document.querySelector('.prev').onclick = slide
+     // setInterval(slide, 1500); //2.5초
+     
+     const toTop = document.getElementById('toTop')
+     toTop.addEventListener('click', scrollToTop)
+ </script>
 
 </body>
 </html>
