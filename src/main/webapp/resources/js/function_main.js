@@ -55,7 +55,7 @@
 										<strong>${ob.productPrice}</strong>원
 									</div>
 									<div class="productPrice">
-										<span class="countDC">${ob.productDiscount}</span> <strong>${ob.productPrice}</strong>원
+										<span class="countDC">${ob.deliveryfee}</span> <strong>${ob.productPrice}</strong>원
 									</div>
 									<span class="priceQty">${ob.productSize}</span>
 								</div>
