@@ -1,0 +1,383 @@
+@charset "utf-8";
+
+
+        button, li {
+            cursor: pointer;
+        }
+        #search_top {
+            width: 1200px;
+            text-align: center;
+            margin: 0px auto 70px;
+        }
+        .inputResult > p:nth-child(1) {
+            font-size: 36px;
+        }
+        .inputResult > p:nth-child(2) {
+            font-size: 15px;
+        }
+        strong {
+            color: rgb(223, 0, 17);
+        }
+        #search_main{
+            display: flex;
+            width: 1200px;
+            margin: 0px auto 70px;
+        }
+        #right_category_list{
+            width: 940px;
+        }
+        #left_category_bar {
+            margin-top: 10px;
+        }
+        #left_category_bar > div > ul {
+            list-style: none;
+            text-align: left;
+            padding: 0 0 15px 10px;
+            margin: 0;
+            font-size: 14px;
+        }
+        #left_category_bar > div > h4 {
+            text-align: left;
+            font-size: 18px;
+            margin-top: 15px;
+        }
+        #left_category_bar > div > ul > li {
+           padding: 5px;
+           line-height: 18px;
+        }
+        #left_category_bar > div  {
+            border-top: 1px solid #dadada;  
+            width: 240px;
+            margin-right: 20px;
+        }
+        #left_category_bar > div:nth-last-child() {
+            border-bottom: 1px solid #dadada;
+        }
+        input[type="checkbox" i] { 
+            margin-right: 7px;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+		/* 별점 띄어쓰기 */
+        #left_category_bar > div> ul > li > label > span { 
+            border: 17px solid white;          
+        }
+        
+        input[type="radio" i] { 
+            margin: 2px 7px 3px 3px;
+            width: 15px;
+            height: 15px;
+        }
+        #left_category_bar  input[type="text"] {
+            width: 66px;
+            height: 25px;
+            border-radius: 3px;
+            border: 1px solid rgb(221, 221, 221);
+            padding: 0px 3px 0px 9px;
+            text-align: right;
+            cursor: pointer;
+        }
+        #left_category_bar button {
+            background-image: url(../img/homeplusicon.png);
+            background-position: -4147px;
+            background-repeat: no-repeat;
+            background-position-y: top;
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgb(221, 221, 221);
+            background-color: rgb(249, 250, 251);
+            border-radius: 3px;
+            padding-left: 5px;
+            margin: -2px 0px 3px 6px;
+            position: absolute;
+        }
+        .category_topbar{
+            display: flex;
+            height: 50px;
+        }
+        .category_input {
+            position: absolute;
+            padding: 15px 0 5px 680px;
+            width: 350px;      
+        }
+        .input_button1 {
+            background-image: url(../img/homeplusicon.png);
+            background-position: -2791px;
+            background-repeat: no-repeat;
+            background-position-y: top;
+            width: 32px;
+            height: 37px;
+            border: 1px solid white;
+            border-radius: 3px;
+            padding-left: 5px;
+            position: absolute;
+            margin: -7px 2px 2px 25px;
+            background-color: white;
+        }
+        .input_button2 {
+            background-image: url(../img/homeplusicon.png);
+            background-position: -2871px;
+            background-repeat: no-repeat;
+            background-position-y: top;
+            width: 32px;
+            height: 37px;
+            border: 1px solid white;
+            border-radius: 3px;
+            position: absolute;
+            margin: -7px 0px 0px 60px;
+            background-color: white;
+        }
+        .dicount_icon {
+            background-image: url(../img/discount_icon.png);
+            background-position: 5px;
+            position: absolute;
+            background-repeat: no-repeat;
+            background-size: 38px 38px;
+            width: 49px;
+            height: 36px;
+            padding-top: 6px;
+            color: rgb(236, 68, 68);
+            font-weight: bold;
+            text-align: center;
+            font-size: 11px;
+            margin: -206px 0px 190px 3px;
+        }
+
+        
+        .category_input > input[type="text"] {
+            width: 100px;
+            padding: 9px 50px 2px 15px;
+            margin-right: 3px;
+            border-radius: 2px;
+            border: 1px solid #dadada;
+            cursor: pointer;
+            position: relative;   
+        }
+
+        .input_icon {
+            background-image: url(../img/homeplusicon.png);
+            background-position: -4149px -3px;
+            background-repeat: no-repeat;
+            display: inline-block;
+            width: 28px;
+            height: 21px;
+            border: 0;
+            background-color: white;
+            position: absolute;
+            right: 184px;
+            top: 18px;
+        }
+
+        .category_suggest {
+            padding: 3px;
+        }
+        .category_suggest > ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+        }
+        .category_suggest > ul > li{
+            padding: 0px 15px;
+            border-right: 1px solid #dadada;
+            font-size: 15px;
+        }
+        .category_suggest > ul > li:last-child {
+            border-right: hidden;
+        }
+        .category_input {
+            padding-right: 0;
+        }
+        .search_word > table{
+            border-collapse: collapse;
+            border: 1px solid #dadada;
+            width: 1200px;
+            height: 62px;
+            margin-top: 40px;
+        }
+        .search_word  a {
+            color: rgb(153, 153, 153);
+            padding-right: 13px;
+        }
+        
+        .search_word > table  th {
+            border: 1px solid #dadada;
+            background-color: rgb(249, 250, 251);
+            width: 110px;
+        }
+        .search_word > table  td {
+            width: 1100px;
+            text-align: left;
+            padding: 10px 20px;
+        }
+        hr {
+            height: 1px;
+            background-color: black; 
+        }
+        .category_ltem {
+            width: 213px;
+            height: 360px;
+            padding: 25px 10px 10px;
+        }
+        .category_ltemimg > img {
+            width: 208px;
+            height: 208px;
+        }
+        .category_ltemimg:nth-child(1){
+            overflow: hidden;
+        }
+        .category_ltemimg:hover > .category_ltemimg_hover {
+            display: flex;
+        }
+        .category_ltemimg:hover > .dicount_icon {
+            display: none;
+        }
+        .category_ltemimg:hover > img  {
+            transition-duration: 0.3s;
+            transform: scale(1.1);
+        }
+        .category_ltemimg_hover {
+            display: none;
+            width: 213px;
+            height: 45px;
+            background: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            margin-top: -46px;
+        }
+        .category_ltemimg_hover > .button1 {
+            background: transparent;
+            margin-left: 51px;
+            width: 40px;
+            height: 45px;
+            border: 0;
+        }
+        .category_ltemimg_hover > .button2 {
+            background: transparent;
+            width: 40px;
+            height: 45px;
+            border: 0;
+            margin-left: 30px;
+        }
+        .category_ltem > p {
+            font-size: 14px;
+            color: #333333;
+        }
+        .category_ltem > .buyAvg {
+            font-size: 12px;
+            color: rgb(153, 153, 153);
+            line-height: 21px;
+            margin-top: 10px;
+        }
+        .category_ltem > .buyprice {
+            width: 100%;
+            font-size: 12px;
+            color: rgb(51, 51, 51);
+        }
+        .category_ltem > .lastprice > span:nth-child(1) {
+            text-align: left;
+            font-size: 12px;
+            color: rgb(153, 153, 153);
+            text-decoration: line-through;
+            padding-left: 10px;
+            margin-bottom: 3px;
+            display: inline-block;
+        }
+        .category_ltem > .lastprice > p:last-child {
+            text-align: left;
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+            padding-left: 13px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .lastprice_icon{
+            background-image: url(../img/homeplusicon.png);
+            background-position: -730px -1px;
+            background-repeat: no-repeat;
+            width: 28px;
+            height: 70px;
+            margin: -23px 0px -44px 70px;
+            
+        }
+        .lastprice_icon:hover {
+            cursor: pointer;
+        }
+        .lastprice_icon:hover .price_hidden{
+            display: block;
+            cursor: pointer;
+        }
+        .price_hidden {
+            display: none;
+            background-color: white;
+            position: absolute;
+            width: 200px;
+            margin-left: -150px;
+            margin-top: 25px;
+            border: 1px solid rgb(51, 51, 51);
+            box-shadow: rgb(0 0 0 / 15%) 0px 1px 12.5px 0px;
+            border-radius: 1px;
+            font-size: 12px;
+        }
+        .price_hidden > dl {
+            display: flex;
+            justify-content: space-between;          
+            width: 165px;
+            padding-left: 7px;
+            margin: 11px;
+            font-weight: bold;
+        }
+        .price_hidden > dl > dt {
+            color: #333333; 
+        }
+        .price_hidden > dl:nth-child(2) > dt {
+            color: #666666;
+        }
+        .price_hidden > dl:nth-child(3) > dt {
+            color: rgb(223, 0, 17);
+        }
+        .price_hidden > dl > dd {
+            color: #999999; 
+        }
+        .price_hidden > dl:nth-child(3) > dd {
+            color: rgb(223, 0, 17);
+        }
+        .category_bottombar {
+            display: flex;
+            flex-flow: wrap;
+            width: 940px;
+        }
+        .category_topbar {
+            justify-content: space-between;
+        }
+               .category_select {
+            display: flex;
+            width: 895px;
+            height: 40px;
+            border: 1px solid rgb(238, 238, 238);
+            background-color: rgb(249, 250, 251);
+            margin: 0px 0 40px;
+            padding: 15px 28px 15px 15px;
+       }
+       .category_select_list {
+            border-right: 1px solid rgb(238, 238, 238);
+            width: 802px;
+       }
+        .category_select p {
+            background-image: url(../img/homeplusicon.png);
+            background-repeat: no-repeat;
+            width: 14px;
+            height: 14px;
+            background-position: -4128px -5px;
+            margin: -14px 0px 0px 60px;
+        }
+       .category_select  > div > button {
+            margin: 0px 0px 0px 10px;
+            padding: 12px 0px 0px 18px;
+            width: 100px;
+            font-size: 12px;
+            text-align: left;
+            color: rgb(102, 102, 102);
+            border: 0px;
+            background: none;
+        }
