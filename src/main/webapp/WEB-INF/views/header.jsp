@@ -17,7 +17,7 @@
 	 <header>      
         <div class="top">   
             <div class="left">
-                <a href="#"><img src="${cpath }/resources/img/oneplus.png" width="160px" height="40px"></a>
+                <a href="${cpath }"><img src="${cpath }/resources/img/oneplus.png" width="160px" height="40px"></a>
             </div>
             
             <div class="input">
