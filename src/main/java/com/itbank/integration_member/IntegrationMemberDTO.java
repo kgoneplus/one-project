@@ -14,7 +14,7 @@ public class IntegrationMemberDTO {
 	private int idx;
 	private String name;
 	private Date birth;
-	private int ponenum;
+	private int phonenum;
 	private String adress;
 	private String email ;
 	
@@ -36,11 +36,12 @@ public class IntegrationMemberDTO {
 	void setBirth(Date birth) {
 		this.birth = birth;
 	}
-	int getPonenum() {
-		return ponenum;
+	
+	int getPhonenum() {
+		return phonenum;
 	}
-	void setPonenum(int ponenum) {
-		this.ponenum = ponenum;
+	void setPhonenum(int phonenum) {
+		this.phonenum = phonenum;
 	}
 	String getAdress() {
 		return adress;
