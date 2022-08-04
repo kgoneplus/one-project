@@ -1,16 +1,160 @@
 @charset "utf-8";
 
-main {
-	display: flex;
-	width: 1280px;
-	height: auto;
-	margin: auto;
-	margin-top: 40px;
+.mypagewrapper {
+    width: 1200px;
+    margin: auto;
+    display: flex;
+    color: rgb(51, 51, 51);
+}
+.mypagewrapper > aside > h2 {
+    font-size: 24px;
+    margin-bottom: 60px;
+}
+.mypageLeftWrapper > h3 {
+    font-size: 18px;
+    margin: 0;
+}
+.mypageLeftWrapper > ul {
+    margin: 0;
+}
+.mypageLeftWrapper > ul > li {
+    margin-top: 20px;
+    padding-left: 10px;
+    font-size: 14px;
 }
 aside {
-	width: 270px;
+    float: left;
+    width: 220px;
+    margin-left: 38px;
+    margin-right: 40px;
 }
-aside > div > ul {
-	margin: 10px;
-	padding: 0;
+aside  ul {
+    margin: 10px;
+    padding: 0;
 }
+section {
+    width: calc(100% - 260px);
+    border: 1px dashed blue;
+}
+.mypageLeftWrapper {
+    padding-bottom: 40px;
+    margin-bottom: 13px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+.userBaseInfo_name {
+    width: 50%;
+    padding: 15px 20px 0 60px;
+}
+.userBaseInfo_name > p:first-child {
+    display: inline-block;
+    margin: 10px auto 0;
+    font-size: 18px;
+    color: rgb(51, 51, 51);
+    font-weight: bold;
+}
+.userBaseInfo {
+    display: flex;
+}
+.userBaseInfo_coupon > ul, .orderSummaryBox > ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+.userBaseInfo_coupon > ul > li {
+    width: 207px;
+    height: 100%;
+    padding: 7px 0px 0px 30px;
+    border-left: 1px solid rgb(238, 238, 238);
+    margin-top: 15px;
+}
+.userBaseInfo_coupon em {
+    font-size: 15px;
+    color: rgb(153, 153, 153);
+    font-style: normal;
+}
+.userBaseInfo_coupon .couponCnt {
+    margin-top: 17px;
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+}
+.userBaseInfo_coupon .couponCnt > a {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(51, 51, 51);
+}
+.userTimelineBox {
+    margin-top: 30px;
+    padding: 40px 30px;
+    background: rgb(249, 250, 251);
+    width: 880px;
+ }
+ .mypageTitleBox {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 0 18px 0;
+ }
+ .mypageTitleBox > .titleArea > h2 {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    font-weight: 600;
+ }
+ .mypageTitleBox > .titleArea > p {
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 15px;
+    color: rgb(153, 153, 153);
+ }
+ .mypageTitleBox > .rightArea {
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+    font-size: 12px;
+ }
+ .orderSummaryBox {
+    height: 112px;
+    background: rgb(255, 255, 255);
+    text-align: center;
+    border-radius: 3px;
+    box-shadow: rgb(0 0 0 / 3%) 0px 2px 13px 0px;
+ }
+ .orderSummaryBox > ul > li {
+    width: 20%;
+    height: 87px;
+    padding: 25px 0px 0px;
+ }
+ .orderSummaryBox > ul > li:last-child {
+    border-left: 1px solid rgb(238, 238, 238);
+ }
+ .orderSummaryBox em {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: rgb(153, 153, 153);
+    font-style: normal;
+ }
+ .orderSummaryBox .orderStatus {
+    display: inline-block;
+    font-size: 28px;
+    font-weight: 600;
+ }
+ .blue > a {
+    color: rgb(0, 145, 255);
+ }
+ .red > a {
+    color: rgb(223, 0, 17);
+ }
+ .grey > a {
+    color: rgb(153, 153, 153);
+ }
+ .wishListBox {
+    width: 880px;
+    margin: 40px auto;
+    border-bottom: 2px solid rgb(51, 51, 51);
+ }
+ .wishListProd {
+    width: 880px;
+    margin: auto;
+ }
