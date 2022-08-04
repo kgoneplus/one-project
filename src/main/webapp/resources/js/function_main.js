@@ -48,7 +48,7 @@
 	 
 	 const product = document.querySelector(".product")
 	 
-	 product.innerHTML += `<div class="productImg></div>`
+	 product.innerHTML += `<div class="productImg"></div>`
      product.innerHTML += `<div class="productInfo">
 								<div class="productTitle">
 									항공 직속 체리(미국산) 300G(팩)
