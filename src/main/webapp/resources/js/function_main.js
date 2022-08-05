@@ -42,9 +42,14 @@
 	 const product = document.createElement('div')
 	 product.className = 'product'
 	 product.innerHTML = ''
+		 
+	 const price = ob.productPrice
+	 const korPrice = price.toLocaleString()
+	 let discountPrice = price - ob.productDiscount
+	 discountPrice = discountPrice.toLocaleString()
 	 // productImg 이미지 파일이름 수정하기
 	 product.innerHTML += `<div class="productImg">
-								<img src="${cpath}/resources/img/체리.jpeg">
+								<img src="${cpath}/resources/getImage1/${ob.productImg}">
 							</div>
 							<div class="productInfo">
 								<div class="productTitle">
@@ -52,10 +57,14 @@
 								</div>
 								<div class="priceWrap">
 									<div class="productOrgPrice">
-										<strong>${ob.productPrice}</strong>원
+										<strong>${korPrice}</strong>원
 									</div>
 									<div class="productPrice">
+<<<<<<< HEAD
+										<span class="countDC">30%</span> <strong>${discountPrice}</strong>원
+=======
 										<span class="countDC">${ob.deliveryfee}</span> <strong>${ob.productPrice}</strong>원
+>>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
 									</div>
 									<span class="priceQty">${ob.productSize}</span>
 								</div>
@@ -63,8 +72,7 @@
 									<span><img src="${cpath }/resources/img/star3.png"></span> <span>4.3(9건)</span>
 									| <span>월 ${ob.buyCnt}개 구매</span>
 								</div>
-							</div>`
-									
+							</div>`				
 		 return product
  }
 

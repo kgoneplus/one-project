@@ -16,6 +16,10 @@ public class MypageController {
 	@GetMapping("/orders")
 	public void orders() {}
 	
+	// 주문상세보기
+	@GetMapping("/orderdetail")
+	public void orderdetail() {}
+	
 	// 취소/반품/교환 조회
 	@GetMapping("/claim")
 	public void claim() {}
