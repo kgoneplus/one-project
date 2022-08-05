@@ -7,7 +7,6 @@
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 </head>
 <body>
-
 <main>
 	<aside>
 		<div class=""><a href="${cpath }/mypage/mypageMain">MY 홈플러스</a></div>
@@ -49,4 +48,5 @@
 	
 	</section>
 </main>
+
 <%@ include file="../footer.jsp" %>

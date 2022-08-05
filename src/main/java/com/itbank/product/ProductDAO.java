@@ -25,5 +25,4 @@ public interface ProductDAO {
 
 	@Select("select * from productMain where categorycode between '184' and '239' order by idx")
 	List<ProductDTO> lifeList();
-	
 }

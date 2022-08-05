@@ -10,7 +10,6 @@ package com.itbank.product;
 //productdiscount	number
 //productsize	number
 
-
 public class ProductDTO {
 	private int idx;
 	private String productName;

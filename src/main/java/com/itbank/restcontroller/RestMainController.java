@@ -18,4 +18,5 @@ public class RestMainController {
 	public List<ProductDTO> mainloadList(String mainList_cate){
 		return mainService.mainloadList(mainList_cate);
 	}
+	
 }

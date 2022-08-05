@@ -44,12 +44,10 @@
 	 product.innerHTML = ''
 	 // productImg 이미지 파일이름 수정하기
 	 product.innerHTML += `<div class="productImg">
-								<img src="${cpath}/resources/img/체리.jpeg">
+								<img src="${cpath}/resources/pImg/${ob.productImg}">
 							</div>
 							<div class="productInfo">
-								<div class="productTitle">
-									 ${ob.productName}
-								</div>
+								<div class="productTitle">${ob.productName}</div>
 								<div class="priceWrap">
 									<div class="productOrgPrice">
 										<strong>${ob.productPrice}</strong>원
@@ -65,8 +63,8 @@
 								</div>
 							</div>`
 									
-		 return product
- }
+	return product
+}
 
  
  // 메인화면 아이템 로드 핸들러
@@ -90,6 +88,4 @@
 	li.classList.add('main_list_liselected')
 	const mainList_cate = li.getAttribute('mainlist_cate')
 	li.addEventListener('click', mainLoadHandler(mainList_cate))
-	
-
  }
