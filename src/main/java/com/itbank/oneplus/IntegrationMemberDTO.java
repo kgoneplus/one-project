@@ -1,4 +1,4 @@
-package com.itbank.integration_member;
+package com.itbank.oneplus;
 
 import java.sql.Date;
 

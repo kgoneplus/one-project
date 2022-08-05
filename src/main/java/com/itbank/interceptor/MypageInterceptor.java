@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.itbank.integration_member.IntegrationMemberDTO;
+import com.itbank.oneplus.IntegrationMemberDTO;
 
 public class MypageInterceptor extends HandlerInterceptorAdapter {
 
