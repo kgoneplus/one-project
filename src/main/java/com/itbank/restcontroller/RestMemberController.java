@@ -19,11 +19,9 @@ public class RestMemberController {
 	//https://sso.homeplus.co.kr/refit/register/registerPage 네이버 로그인폼
 	@Autowired private IntegrationJoinDAO dao;
 	
-	
-	
 	@PostMapping("/integrationjoining")
 	public int insert(@RequestBody IntegrationMemberDTO dto) {
 		return dao.insert(dto);
-		
 	}
+	
 }
