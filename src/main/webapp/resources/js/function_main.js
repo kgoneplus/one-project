@@ -84,9 +84,16 @@
 		json.forEach(product => list.appendChild(convert(product)))
 	 })
  }
+<<<<<<< HEAD
  
 	 
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
  
+ 
+>>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
  
  // 메인화면 아이템 카테고리 선택
  function mainSelectLiClick(event) {

@@ -1,4 +1,4 @@
-package com.itbank.product;
+package com.itbank.oneplus;
 //idx	number
 //productname	varchar2(100 byte)
 //madeln	varchar2(100 byte)

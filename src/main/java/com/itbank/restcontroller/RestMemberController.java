@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.itbank.integration_member.IntegrationJoinDAO;
-import com.itbank.integration_member.IntegrationMemberDTO;
+import com.itbank.oneplus.IntegrationJoinDAO;
+import com.itbank.oneplus.IntegrationMemberDTO;
 
 
 
