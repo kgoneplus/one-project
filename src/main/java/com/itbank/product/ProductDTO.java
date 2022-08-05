@@ -21,7 +21,6 @@ public class ProductDTO {
 	private int buyCnt;
 	private int maxbuyCnt;
 	private int productSize;
-	private int productDiscount;
 	
 	public int getMaxbuyCnt() {
 		return maxbuyCnt;
@@ -35,6 +34,7 @@ public class ProductDTO {
 	public void setProductSize(int productSize) {
 		this.productSize = productSize;
 	}
+	private int productDiscount;
 	
 	public int getIdx() {
 		return idx;
