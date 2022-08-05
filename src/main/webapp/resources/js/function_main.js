@@ -37,6 +37,15 @@
 		target.scrollTop = 0
  }
  
+ // 스크롤 이벤트
+ function scrollHandler(evnet){
+	 let target = document.documentElement
+	 const flag = target.scrollTop + target.clientHeight >= target.scrollHeight
+	 if(flag) {
+		 mainLoadHandler()
+	 }
+ }
+ 
  // convert함수
  function convert(ob) {
 	 const product = document.createElement('div')
@@ -76,27 +85,28 @@
  // 메인화면 아이템 로드 핸들러
  function mainLoadHandler(mainList_cate) {
 	 const list = document.querySelector('.list')
+	 const offset = list.getAttribute('offset')
+	 console.log(offset)
 	 list.innerHTML = ''
-	 const url = cpath + '/mainload?mainList_cate=' + mainList_cate
+     
+	 const url = cpath + '/mainload/' + offset + '?mainList_cate=' + mainList_cate 
 	 fetch(url) 
 	 .then(resp => resp.json())
 	 .then(json => {
 		json.forEach(product => list.appendChild(convert(product)))
 	 })
+	 list.setAttribute('offset', +offset + 10)
+	 
  }
-<<<<<<< HEAD
  
 	 
-=======
-<<<<<<< HEAD
-=======
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
- 
- 
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
  
  // 메인화면 아이템 카테고리 선택
  function mainSelectLiClick(event) {
+	const list = document.querySelector('.list')
+	list.setAttribute('offset', 0)
+	
+	
 	const listLiArray = Array.from(document.querySelectorAll('.main_list_nav > ul > li'))
 	listLiArray.forEach(li => li.classList.remove('main_list_liselected'))
 	const li = event.target
@@ -106,3 +116,4 @@
 	
 
  }
+ 
