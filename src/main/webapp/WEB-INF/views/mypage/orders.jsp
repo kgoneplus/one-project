@@ -50,7 +50,12 @@
         
 	
 		<section>
-		
+			<div class="mypageTitleBox mypageSubtitle">
+	            <div class="titleArea">
+	                <h2>주문/배송 조회</h2>
+	            </div>
+	            <div class="rightArea"></div>
+            </div>
 		</section>
 	</div>
 </main>
