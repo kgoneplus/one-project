@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itbank.product.ProductDAO;
-import com.itbank.product.ProductDTO;
+import com.itbank.oneplus.ProductDAO;
+import com.itbank.oneplus.ProductDTO;
 
 @Service
 public class MainService {

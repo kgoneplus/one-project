@@ -1,4 +1,4 @@
-package com.itbank.product;
+package com.itbank.oneplus;
 
 import java.util.List;
 
