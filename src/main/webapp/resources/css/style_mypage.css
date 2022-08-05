@@ -34,7 +34,7 @@ aside  ul {
 }
 section {
     width: calc(100% - 260px);
-    border: 1px dashed blue;
+/*     border: 1px dashed blue; */
 }
 .mypageLeftWrapper {
     padding-bottom: 40px;
@@ -164,7 +164,7 @@ section {
     margin-top: 15px;
 }
 .dateFilter {
-    width: 850px;
+    width: 880px;
     padding: 30px;
     border-radius: 3px;
     background-color: rgb(249, 250, 251);
@@ -172,10 +172,10 @@ section {
     position: relative;
 }
 .filterlist, .filterItem {
-	width: 840px;
     display: flex;
     justify-content: space-around;
     position: relative;
+    align-items: center;
 }
 .filterItem > ul {
     display: flex;
