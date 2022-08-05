@@ -42,17 +42,24 @@
 	 const product = document.createElement('div')
 	 product.className = 'product'
 	 product.innerHTML = ''
+		 
+	 const price = ob.productPrice
+	 const korPrice = price.toLocaleString()
+	 let discountPrice = price - ob.productDiscount
+	 discountPrice = discountPrice.toLocaleString()
 	 // productImg 이미지 파일이름 수정하기
 	 product.innerHTML += `<div class="productImg">
 								<img src="${cpath}/resources/pImg/${ob.productImg}">
+								<img src="${cpath}/resources/getImage1/${ob.productImg}">
 							</div>
 							<div class="productInfo">
 								<div class="productTitle">${ob.productName}</div>
 								<div class="priceWrap">
 									<div class="productOrgPrice">
-										<strong>${ob.productPrice}</strong>원
+										<strong>${korPrice}</strong>원
 									</div>
 									<div class="productPrice">
+										<span class="countDC">30%</span> <strong>${discountPrice}</strong>원
 										<span class="countDC">${ob.deliveryfee}</span> <strong>${ob.productPrice}</strong>원
 									</div>
 									<span class="priceQty">${ob.productSize}</span>
@@ -63,10 +70,6 @@
 								</div>
 							</div>`
 									
-	return product
-}
-
- 
  // 메인화면 아이템 로드 핸들러
  function mainLoadHandler(mainList_cate) {
 	 const list = document.querySelector('.list')
@@ -78,8 +81,7 @@
 		json.forEach(product => list.appendChild(convert(product)))
 	 })
  }
- 
- 
+	 
  // 메인화면 아이템 카테고리 선택
  function mainSelectLiClick(event) {
 	const listLiArray = Array.from(document.querySelectorAll('.main_list_nav > ul > li'))
