@@ -29,7 +29,11 @@
 	</bean>
 	
 	<context:component-scan base-package="com.itbank.service" />	
+<<<<<<< HEAD
 	<mybatis-spring:scan base-package="com.itbank.integration_member" />
 	<mybatis-spring:scan base-package="com.itbank.product" />
+=======
+	<mybatis-spring:scan base-package="com.itbank.oneplus"/>
+>>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
 		
 </beans>

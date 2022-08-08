@@ -17,14 +17,14 @@
 }
 .review_content {
 	position: absolute;
-	top: 0;
-	left: 0;
+	left: 680px;
 	z-index: 6;
 	width: 25%;
 	height: 100%;
 	justify-content: center;
 	align-items: center;
 	background-color: white;
+	overflow: auto;
 }
 .review_hidden {
 	display: none;
@@ -39,7 +39,9 @@
 	justify-content: space-between;
 	border-bottom: 2px solid gray;	
 }
-
+.review_close {
+	cursor: pointer;
+}
 .review_content > div:nth-child(2) {
 	margin: 30px 25px;
 	display: flex;
@@ -49,6 +51,7 @@
 	text-align: center;
 	background-color: #f3f3f3;
 	height: 100px;
+	padding-top: 30px;
 }
 .review_content > div:nth-child(3) > div:first-child {
 	margin: 10px 0;
@@ -81,17 +84,29 @@
 	cursor: pointer;
 	color : black;
 }
+.review_item {
+	margin: 35px 25px;
+}
+.review_item > div:nth-child(1) {
+	font-weight: bold;
+	font-size: 15px;
+	margin: 10px 0;
+}
 </style>
+</head>
+<body>
 <script>
-	const div = document.querySelector('.review_item_click > div')
-	function clickColor() {
+	const div = document.querySelector('div.review_item_click > div')
+	function clickColor(event) {
 		div.style.color = "red"
 		div.style.border = "1px solid red"
 	}
-	div.addEventListener("click", clickColor)
+	div.onclick("click", clickColor)
+	
+	function reviewCloesModal() {
+	document.getElementById('review_modal').classList.add('review_hidden')
+}
 </script>
-</head>
-<body>
 <main>
 	<aside>
 		<div class=""><a href="${cpath }/mypage/mypageMain">MY 홈플러스</a></div>
@@ -135,13 +150,12 @@
 			<div>작성가능한 리뷰</div>
 			<div>내가 쓴 리뷰</div>
 		</div>
-	</section>
-	
+	</section>	
 	<div class="review_modal" class="review_hidden">
 		<div class="review_content">
 			<div>
 				<div>리뷰작성</div>
-				<div>X</div>
+				<div class="review_close">X</div>
 			</div>
 			
 			<div>
@@ -183,10 +197,10 @@
 			
 			<div class="review_item">
 				<div>어떤 점이 좋았나요?</div>
-				<div>
+				<div class="review_textarea">
 					<textarea name="memo"	
 							  rows="10"
-							  cols="50"
+							  cols="55"
 							  placeholder="자세한 리뷰는 다른 고객님들의 구매에 큰 도움이 됩니다"></textarea>
 				</div>
 			</div>
@@ -198,10 +212,18 @@
 						<p><input type="file" name="img"></p>
 					</form>
 				</div>
+				<p><input type="submit" value="등록하기"></p>
 			</div>
 			
 		</div>
 		<div class="review_overlay"></div>
 	</div>
 </main>
+<script>
+	const review_overlay = document.querySelector('.review_overlay')
+	const review_close = document.querySelector('.review_close')
+	
+	review_overlay.addEventListener('click', reviewCloesModal)
+	review_close.addEventListener('click', reviewCloesModal)
+</script>
 <%@ include file="../footer.jsp" %>
