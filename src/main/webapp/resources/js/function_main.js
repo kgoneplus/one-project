@@ -38,7 +38,7 @@
  }
  
  // 스크롤 이벤트
- function scrollHandler(evnet){
+ function scrollHandler(){
 	 let target = document.documentElement
 	 const flag = target.scrollTop + target.clientHeight >= target.scrollHeight
 	 if(flag) {

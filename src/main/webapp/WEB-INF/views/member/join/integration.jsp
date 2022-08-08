@@ -43,12 +43,13 @@ function insertHandler (event) {
 
 <!-- 안보였다가보이게 해야함 -->
 	<form>
-		<p><input type="text" name="name" placeholder="이름" required ></p>
-		<p><input type="date" name="birth" placeholder="생일" required ></p>
-		<p><input type="number" name="ponenum" placeholder="핸드폰번호" required ></p>
-		<p><input type="text" name="adress" placeholder="주소"  ></p>
-		<p><input type="email" name="email" placeholder="이메일" ></p>
-		<p><input type="submit" value="회원가입"></p>
+		<div>아이디</div>
+		<p><input type="text" name="userid" placeholder="영문,소문자,숫자 6~12자" required ><button type="button">중복확인</button></p>
+		<div>비밀번호</div>
+		<p><input type="text" name="userpw" placeholder="영문,숫자,특수문자 조합으로 8~20자"  ></p>
+		<div>비밀번호 재확인</div>
+		<p><input type="text" name="userpw" placeholder="비밀번호재확인" ></p>
+		<p><input type="submit" value="확인"></p>
 	</form>
 	
 	<script>
