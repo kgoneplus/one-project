@@ -60,12 +60,11 @@
 										<strong>${korPrice}</strong>원
 									</div>
 									<div class="productPrice">
-<<<<<<< HEAD
+
 										<span class="countDC">30%</span> <strong>${discountPrice}</strong>원
-=======
+
 										<span class="countDC">${ob.deliveryfee}</span> <strong>${ob.productPrice}</strong>원
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
-									</div>
+ 									</div>
 									<span class="priceQty">${ob.productSize}</span>
 								</div>
 								<div class="productScore">
