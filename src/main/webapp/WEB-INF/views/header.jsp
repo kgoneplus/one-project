@@ -12,6 +12,7 @@
 	const cpath = '${cpath}'
 </script>
 <script src="${cpath}/resources/js/function_main.js"></script>
+<script src="${cpath}/resources/js/function_header.js"></script>
 </head>
 <body>
 	 <header>      
@@ -82,12 +83,12 @@
                 <li><a href="#">자주구매</a></li>
                 <li><a href="#">택배배송</a></li>
             </ul>
-
+			
         </nav>
     </header>
     <script>
     const category = document.querySelector('#cate > a')
-    
+
     category.addEventListener('click', categoryModal)
-    
+
     </script>

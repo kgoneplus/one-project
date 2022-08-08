@@ -60,10 +60,7 @@
 										<strong>${korPrice}</strong>원
 									</div>
 									<div class="productPrice">
-
 										<span class="countDC">30%</span> <strong>${discountPrice}</strong>원
-
-										<span class="countDC">${ob.deliveryfee}</span> <strong>${ob.productPrice}</strong>원
 									</div>
 									<span class="priceQty">${ob.productSize}</span>
 								</div>
@@ -87,7 +84,6 @@
 		json.forEach(product => list.appendChild(convert(product)))
 	 })
  }
- 
  
  // 메인화면 아이템 카테고리 선택
  function mainSelectLiClick(event) {

@@ -1,18 +1,22 @@
 'use strict'
 
 // 카테고리 클릭하면 모달창
-async function categoryModal(event) {
-	
-	const idx = event.target
-	const url = cpath + '/'
-	
-	await fetch(url)
-	.then(resp => resp.json())
-	.then(json => {
-	
-	})
-	
+function categoryModal(event) {
 	
 	const headermodal = document.querySelector('.allmenu')
-	headermodal.classList.remove('css부분작성')
+	headermodal.style.display = 'block'
+		
+	const mainoverlay = document.getElementById('overlay')
+	mainoverlay.style.display = 'block'
+		
+	
+}
+
+function closeModal() {
+	const headermodal = document.querySelector('.allmenu')
+	headermodal.style.display = 'none'
+		
+	const mainoverlay = document.getElementById('overlay')
+	mainoverlay.style.display = 'none'
+	
 }
