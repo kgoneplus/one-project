@@ -4,6 +4,7 @@
 <title>리뷰 | MY 홈플러스 | 홈플러스</</title>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
+<script src="${cpath }/resources/js/function_mypage.js"></script>
 <style>
 .review_modal {
 	display: none;
@@ -21,8 +22,8 @@
 .review_content {
 	position: absolute;
 	z-index: 6;
-	width: 25%;
-	height: 70%;
+	width: 534px;
+	height: 600px;
 	justify-content: center;
 	align-items: center;
 	background-color: white;
@@ -88,16 +89,42 @@
 }
 .review_item {
 	margin: 35px 25px;
+	text-align: center;
 }
 .review_item > div:nth-child(1) {
 	font-weight: bold;
 	font-size: 15px;
 	margin: 10px 0;
 }
-.clicked {
-    color: red;
+.review_submit {
+	text-align: center;
+	padding: 20px 0;
+	margin: 0;
 }
-
+.review_writed {
+	cursor: pointer;
+}
+.star {
+    position: relative;
+    font-size: 2rem;
+    color: #ddd;
+}
+.star input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.star span {
+    width: 0;
+    position: absolute; 
+    left: 0;
+    color: red;
+    overflow: hidden;
+    pointer-events: none;
+}
 </style>
 </head>
 <body>
@@ -105,79 +132,87 @@
 	function reviewOpenModal() {
 		const review_modal = document.querySelector('.review_modal')
 		review_modal.style.display = 'flex'
-	}
-	
+	}	
 	function reviewCloesModal() {
 		const review_modal = document.querySelector('.review_modal')
 		review_modal.style.display = 'none'
-	}
-	
-	const div2 = document.getElementsByClassName('.div2')
-
-	function handleClick(event) {
-		if (event.target.classList[1] === 'clicked') {
-			event.target.classList.remove('clicked')
-		} 
-		else {
-		for (var i = 0; i < div2.length; i++) {
-			div2[i].classList.remove('clicked')
-		}
-			event.target.classList.add('clicked')
-		}
-	}
-	
-	function init() {
-		for (var i = 0; i < div2.length; i++) {
-			div2[i].addEventListener('click', handleClick)
-		}
-	}
-	init();
+	}	
 </script>
 <main>
-	<aside>
-		<div class=""><a href="${cpath }/mypage/mypageMain">MY 홈플러스</a></div>
-		
-		<div class="">MY 주문정보
-			<ul>
-				<li><a href="${cpath }/mypage/orders">주문/배송/조회</a></li>
-				<li><a href="${cpath }/mypage/claim">취소/반품/교환 조회</a></li>
-			</ul>
-		</div>
-		
-		<div class="">MY 쇼핑혜택
-			<ul>
-				<li><a href="${cpath }/mypage/coupon">쿠폰</a></li>
-				<li><a href="${cpath }/mypage/point">마일리지</a></li>
-			</ul>
-		</div>
-		
-		<div class="">MY 쇼핑활동
-			<ul>
-				<li><a href="${cpath }/mypage/wishlist">나의 찜</a></li>
-				<li><a href="${cpath }/mypage/review">상품리뷰</a></li>
-				<li><a href="${cpath }/mypage/counsel">1:1 문의 내역</a></li>
-				<li><a href="${cpath }/mypage/qna">상품문의</a></li>
-			</ul>
-		</div>
-		
-		<div class="">MY 회원정보
-			<ul>
-				<li><a href="${cpath }/mypage/myinfo">회원 정보 관리</a></li>
-				<li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
-				<li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
-				<li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
-			</ul>
-		</div>
-	</aside>
-	
-	<section>
-		<h1>상품리뷰</h1>
-		<div>
-			<div>작성가능한 리뷰</div>
-			<div>내가 쓴 리뷰</div>
-			<div class="review_write"><button>리뷰작성</button></div>
-		</div>
-	</section>
+	<div class="mypagewrapper">
+        <aside>
+            <h2><a href="${cpath }/mypage/mypageMain">MY 홈플러스</a></h2>
+            
+            <div class="mypageLeftWrapper">
+                <h3>MY 주문정보</h3>
+                <ul>
+                    <li><a href="${cpath }/mypage/orders">주문/배송/조회</a></li>
+                    <li><a href="${cpath }/mypage/claim">취소/반품/교환 조회</a></li>
+                </ul>
+            </div>
+            
+            <div class="mypageLeftWrapper">
+                <h3>MY 쇼핑혜택</h3>
+                <ul>
+                    <li><a href="${cpath }/mypage/coupon">쿠폰</a></li>
+                    <li><a href="${cpath }/mypage/point">마일리지</a></li>
+                </ul>
+            </div>
+            
+            <div class="mypageLeftWrapper">
+                <h3>MY 쇼핑활동</h3>
+                <ul>
+                    <li><a href="${cpath }/mypage/wishlist">나의 찜</a></li>
+                    <li><a href="${cpath }/mypage/review">상품리뷰</a></li>
+                    <li><a href="${cpath }/mypage/counsel">1:1 문의 내역</a></li>
+                    <li><a href="${cpath }/mypage/qna">상품문의</a></li>
+                </ul>
+            </div>
+            
+            <div class="mypageLeftWrapper">
+                <h3>MY 회원정보</h3>
+                <ul>
+                    <li><a href="${cpath }/mypage/myinfo">회원 정보 관리</a></li>
+                    <li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
+                    <li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
+                    <li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
+                </ul>
+            </div>
+        </aside>
+              
+        <section>
+            <div class="mypageTitleBox mypageSubtitle">
+                <div class="titleArea">
+                    <h2>상품 리뷰</h2>
+                </div>
+                <div class="rightArea"></div>
+                <div class="review_write"><button>리뷰작성</button></div>
+            </div>
+
+			<div class="">작성 가능한 리뷰</div>            
+            <div class="review_writed">내가 쓴 리뷰</div>
+            <div class="dateFilter">
+                <form>
+                    <div class="filterlist">
+                        <div class="filterItem">
+                            <p>조회기간</p>
+                            <input type="date" name="sthStartDate">
+                            <p>~</p>
+                            <input type="date" name="sthEndDate">
+                        </div>
+                        <div class="filterItem">
+                            <ul>
+                                <li>1개월</li>
+                                <li>3개월</li>
+                                <li>6개월</li>
+                            </ul>
+                        </div>
+                        <div class="filterItem"><button class="inquiry">조회</button></div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
 		
 	<div class="review_modal" class="review_hidden">
 		<div class="review_content">
@@ -191,57 +226,67 @@
 				<div>상품명</div>
 			</div>
 			
-			<div class="review_item">
-				<div>상품에 만족하셨나요?</div>
-				<div>☆☆☆☆☆</div>
-			</div>
-			
-			<div class="review_item_check">
-				<div>[상품상태] 상품의 상태는 어떤가요?</div>
-				<div class="review_item_click">
-					<div class="div2">아주 좋아요</div>
-					<div class="div2">보통이에요</div>
-					<div class="div2">별로에요</div>
+			<form id="review_form">
+				<div class="review_item">
+					<div>상품에 만족하셨나요?</div>
+					<div>
+						<span class="star">
+							★★★★★
+						<span>★★★★★</span>
+						    <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+						</span>
+					</div>
 				</div>
-			</div>
-			
-			<div class="review_item_check">
-				<div>[상품일치여부] 구매한 상품과 받은 상품이 똑같은가요?</div>
-				<div class="review_item_click">
-					<div class="div2">똑같아요</div>
-					<div class="div2">비슷해요</div>
-					<div class="div2">달라요</div>
+				
+				<!-- 선택된 값이 submit 돼야함 -->
+				<!-- pState -->
+				<div class="review_item_check">
+					<div>[상품상태] 상품의 상태는 어떤가요?</div>
+					<div class="review_item_click">
+						<div class="">아주 좋아요</div>
+						<div class="">보통이에요</div>
+						<div class="">별로에요</div>
+					</div>
 				</div>
-			</div>
-			
-			<div class="review_item_check">
-				<div>[가격] 상품의 가격은 어떤가요?</div>
-				<div class="review_item_click">
-					<div class="div2">만족해요</div>
-					<div class="div2">보통이에요</div>
-					<div class="div2">별로에요</div>
+				
+				<!-- pSame -->
+				<div class="review_item_check">
+					<div>[상품일치여부] 구매한 상품과 받은 상품이 똑같은가요?</div>
+					<div class="review_item_click">
+						<div class="">똑같아요</div>
+						<div class="">비슷해요</div>
+						<div class="">달라요</div>
+					</div>
 				</div>
-			</div>
 			
-			<div class="review_item">
-				<div>어떤 점이 좋았나요?</div>
-				<div class="review_textarea">
-					<textarea name="memo"	
-							  rows="10"
-							  cols="55"
-							  placeholder="자세한 리뷰는 다른 고객님들의 구매에 큰 도움이 됩니다"></textarea>
+				<!-- price -->
+				<div class="review_item_check">
+					<div>[가격] 상품의 가격은 어떤가요?</div>
+					<div class="review_item_click">
+						<div class="">만족해요</div>
+						<div class="">보통이에요</div>
+						<div class="">별로에요</div>
+					</div>
 				</div>
-			</div>
 			
-			<div class="review_item">
-				<div>사진을 등록해주세요(선택)</div>
-				<div id="review_upload">
-					<form>
-						<p><input type="file" name="img"></p>
-					</form>
+				<div class="review_item">
+					<div>어떤 점이 좋았나요?</div>
+					<div class="review_textarea">
+						<textarea name="content"	
+								  rows="10"
+								  cols="66"
+								  placeholder="자세한 리뷰는 다른 고객님들의 구매에 큰 도움이 됩니다&#13;&#10;(10자 이상 500자 이내로 입력해주세요.)"></textarea>
+					</div>
 				</div>
-				<p><input type="submit" value="등록하기"></p>
-			</div>
+			
+				<div class="review_item">
+					<div>사진을 등록해주세요(선택)</div>
+					<div id="review_upload">
+						<p><input type="file" name="uploadFile"></p>
+					</div>
+				</div>
+				<p class="review_submit"><input type="submit" value="등록하기"></p>
+			</form>	
 		</div>
 		<div class="review_overlay"></div>
 	</div>

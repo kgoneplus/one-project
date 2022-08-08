@@ -6,7 +6,7 @@
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 <style>
 .counsel_modal {
-/* 	display: none; */
+	display: none;
 }
 .counsel_overlay {
 	position: fixed;
@@ -21,7 +21,7 @@
 .counsel_content {
 	position: absolute;
 	z-index: 6;
-	width: 25%;
+	width: 50%;
 	height: 70%;
 	justify-content: center;
 	align-items: center;
@@ -34,6 +34,23 @@
 .counsel_hidden {
 	display: none;
 }
+.counsel_content > div:nth-child(1) {
+	font-weight: bold;
+	padding: 25px;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 2px solid gray;	
+}
+.counsel_table {
+	margin: auto;
+	width: 1000px;
+	height: 500px;
+	border: 1px solid black;
+	padding: 10px 0;
+}
+.counsel_close {
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -42,53 +59,83 @@
 		const counsel_modal = document.querySelector('.counsel_modal')
 		counsel_modal.style.display = 'flex'
 	}
-	
 	function counselCloesModal() {
 		const counsel_modal = document.querySelector('.counsel_modal')
 		counsel_modal.style.display = 'none'
 	}
 </script>
 <main>
-	<aside>
-		<div class=""><a href="${cpath }/mypage/mypageMain">MY 홈플러스</a></div>
-		
-		<div class="">MY 주문정보
-			<ul>
-				<li><a href="${cpath }/mypage/orders">주문/배송/조회</a></li>
-				<li><a href="${cpath }/mypage/claim">취소/반품/교환 조회</a></li>
-			</ul>
-		</div>
-		
-		<div class="">MY 쇼핑혜택
-			<ul>
-				<li><a href="${cpath }/mypage/coupon">쿠폰</a></li>
-				<li><a href="${cpath }/mypage/point">마일리지</a></li>
-			</ul>
-		</div>
-		
-		<div class="">MY 쇼핑활동
-			<ul>
-				<li><a href="${cpath }/mypage/wishlist">나의 찜</a></li>
-				<li><a href="${cpath }/mypage/review">상품리뷰</a></li>
-				<li><a href="${cpath }/mypage/counsel">1:1 문의 내역</a></li>
-				<li><a href="${cpath }/mypage/qna">상품문의</a></li>
-			</ul>
-		</div>
-		
-		<div class="">MY 회원정보
-			<ul>
-				<li><a href="${cpath }/mypage/myinfo">회원 정보 관리</a></li>
-				<li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
-				<li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
-				<li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
-			</ul>
-		</div>
-	</aside>
-	
-	<section>
-		<h1>1:1 문의 내역</h1>
-		<div class="counsel"><button>1:1 문의하기</button></div>
-	</section>
+    <div class="mypagewrapper">
+        <aside>
+            <h2><a href="${cpath }/mypage/mypageMain">MY 홈플러스</a></h2>
+            
+            <div class="mypageLeftWrapper">
+                <h3>MY 주문정보</h3>
+                <ul>
+                    <li><a href="${cpath }/mypage/orders">주문/배송/조회</a></li>
+                    <li><a href="${cpath }/mypage/claim">취소/반품/교환 조회</a></li>
+                </ul>
+            </div>
+            
+            <div class="mypageLeftWrapper">
+                <h3>MY 쇼핑혜택</h3>
+                <ul>
+                    <li><a href="${cpath }/mypage/coupon">쿠폰</a></li>
+                    <li><a href="${cpath }/mypage/point">마일리지</a></li>
+                </ul>
+            </div>
+            
+            <div class="mypageLeftWrapper">
+                <h3>MY 쇼핑활동</h3>
+                <ul>
+                    <li><a href="${cpath }/mypage/wishlist">나의 찜</a></li>
+                    <li><a href="${cpath }/mypage/review">상품리뷰</a></li>
+                    <li><a href="${cpath }/mypage/counsel">1:1 문의 내역</a></li>
+                    <li><a href="${cpath }/mypage/qna">상품문의</a></li>
+                </ul>
+            </div>
+            
+            <div class="mypageLeftWrapper">
+                <h3>MY 회원정보</h3>
+                <ul>
+                    <li><a href="${cpath }/mypage/myinfo">회원 정보 관리</a></li>
+                    <li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
+                    <li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
+                    <li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
+                </ul>
+            </div>
+        </aside>
+              
+        <section>
+            <div class="mypageTitleBox mypageSubtitle">
+                <div class="titleArea">
+                    <h2>상품문의</h2>
+                </div>
+                <div class="rightArea"><button>1:1 문의하기</button></div>
+            </div>
+            
+ 			<div class="dateFilter">
+                <form>
+                    <div class="filterlist">
+                        <div class="filterItem">
+                            <p>조회기간</p>
+                            <input type="date" name="sthStartDate">
+                            <p>~</p>
+                            <input type="date" name="sthEndDate">
+                        </div>
+                        <div class="filterItem">
+                            <ul>
+                                <li>1개월</li>
+                                <li>3개월</li>
+                                <li>6개월</li>
+                            </ul>
+                        </div>
+                        <div class="filterItem"><button class="inquiry">조회</button></div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
 		
 		<div class="counsel_modal" class="counsel_hidden">
 			<div class="counsel_content">
@@ -97,7 +144,7 @@
 					<div class="counsel_close">X</div>
 				</div>
 				
-				<table>
+				<table class="counsel_table">
 					<tr>
 						<th>문의 유형</th>
 						<td>
@@ -166,7 +213,7 @@
 <script>
 	const counselModal_overlay = document.querySelector('.counsel_overlay')
 	const counselModal_close = document.querySelector('.counsel_close')
-	const counselModal_open = document.querySelector('.counsel_write')
+	const counselModal_open = document.querySelector('.rightArea')
 	
 	counselModal_open.addEventListener('click', counselOpenModal)
 	counselModal_overlay.addEventListener('click', counselCloesModal)

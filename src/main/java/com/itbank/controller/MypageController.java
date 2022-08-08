@@ -1,12 +1,20 @@
 package com.itbank.controller;
 
-import org.springframework.stereotype.Controller;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import com.itbank.oneplus.ReviewDTO;
+import com.itbank.service.ReviewService;
+
+@RestController
 @RequestMapping("/mypage")
 public class MypageController {
+	
+	@Autowired private ReviewService reviewService;
 	
 	// 마이페이지 메인
 	@GetMapping("/mypageMain")
@@ -38,7 +46,9 @@ public class MypageController {
 	
 	// 상품리뷰
 	@GetMapping("/review")
-	public void review() {}
+	public List<ReviewDTO> reviewList() {
+		return reviewService.reviewList();
+	}
 	
 	// 1:1 문의 내역
 	@GetMapping("/counsel")

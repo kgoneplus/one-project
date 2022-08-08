@@ -4,8 +4,6 @@
 <title>MY 홈플러스 | 홈플러스</title>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
-</head>
-<body>
 <main>
     <div class="mypagewrapper">
         <aside>
