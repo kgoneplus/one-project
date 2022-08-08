@@ -42,7 +42,7 @@
 		</ul>
 	</nav>
 
-	<div class="list">
+	<div class="list" offset="0">
 
 	</div>
 
@@ -94,6 +94,9 @@
 		window.addEventListener('load', mainLoadHandler(''))
 		toTop.addEventListener('click', scrollToTop)
 		listLiArray.forEach(li => li.addEventListener('click', mainSelectLiClick))
+		
+		window.addEventListener('scroll', scrollHandler)
+		
 	</script>
 
 

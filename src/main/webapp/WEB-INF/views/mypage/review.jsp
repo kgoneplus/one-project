@@ -5,6 +5,9 @@
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 <style>
+.review_modal {
+	display: none;
+}
 .review_overlay {
 	position: fixed;
 	top: 0;
@@ -17,20 +20,19 @@
 }
 .review_content {
 	position: absolute;
-	left: 680px;
 	z-index: 6;
 	width: 25%;
-	height: 100%;
+	height: 70%;
 	justify-content: center;
 	align-items: center;
 	background-color: white;
 	overflow: auto;
+	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
 }
 .review_hidden {
 	display: none;
-}
-.review_content > div {
-	
 }
 .review_content > div:nth-child(1) {
 	font-weight: bold;
@@ -75,7 +77,7 @@
 	font-size: 15px;
 }
 .review_item_click > div {
-	border: 1px solid black;
+	border: 1px solid;
 	width: 125px;
 	height: 30px;
 	text-align: center;
@@ -92,20 +94,44 @@
 	font-size: 15px;
 	margin: 10px 0;
 }
+.clicked {
+    color: red;
+}
+
 </style>
 </head>
 <body>
 <script>
-	const div = document.querySelector('div.review_item_click > div')
-	function clickColor(event) {
-		div.style.color = "red"
-		div.style.border = "1px solid red"
+	function reviewOpenModal() {
+		const review_modal = document.querySelector('.review_modal')
+		review_modal.style.display = 'flex'
 	}
-	div.onclick("click", clickColor)
 	
 	function reviewCloesModal() {
-	document.getElementById('review_modal').classList.add('review_hidden')
-}
+		const review_modal = document.querySelector('.review_modal')
+		review_modal.style.display = 'none'
+	}
+	
+	const div2 = document.getElementsByClassName('.div2')
+
+	function handleClick(event) {
+		if (event.target.classList[1] === 'clicked') {
+			event.target.classList.remove('clicked')
+		} 
+		else {
+		for (var i = 0; i < div2.length; i++) {
+			div2[i].classList.remove('clicked')
+		}
+			event.target.classList.add('clicked')
+		}
+	}
+	
+	function init() {
+		for (var i = 0; i < div2.length; i++) {
+			div2[i].addEventListener('click', handleClick)
+		}
+	}
+	init();
 </script>
 <main>
 	<aside>
@@ -149,8 +175,10 @@
 		<div>
 			<div>작성가능한 리뷰</div>
 			<div>내가 쓴 리뷰</div>
+			<div class="review_write"><button>리뷰작성</button></div>
 		</div>
-	</section>	
+	</section>
+		
 	<div class="review_modal" class="review_hidden">
 		<div class="review_content">
 			<div>
@@ -171,27 +199,27 @@
 			<div class="review_item_check">
 				<div>[상품상태] 상품의 상태는 어떤가요?</div>
 				<div class="review_item_click">
-					<div>아주 좋아요</div>
-					<div>보통이에요</div>
-					<div>별로에요</div>
+					<div class="div2">아주 좋아요</div>
+					<div class="div2">보통이에요</div>
+					<div class="div2">별로에요</div>
 				</div>
 			</div>
 			
 			<div class="review_item_check">
 				<div>[상품일치여부] 구매한 상품과 받은 상품이 똑같은가요?</div>
 				<div class="review_item_click">
-					<div>똑같아요</div>
-					<div>비슷해요</div>
-					<div>달라요</div>
+					<div class="div2">똑같아요</div>
+					<div class="div2">비슷해요</div>
+					<div class="div2">달라요</div>
 				</div>
 			</div>
 			
 			<div class="review_item_check">
 				<div>[가격] 상품의 가격은 어떤가요?</div>
 				<div class="review_item_click">
-					<div>만족해요</div>
-					<div>보통이에요</div>
-					<div>별로에요</div>
+					<div class="div2">만족해요</div>
+					<div class="div2">보통이에요</div>
+					<div class="div2">별로에요</div>
 				</div>
 			</div>
 			
@@ -214,16 +242,18 @@
 				</div>
 				<p><input type="submit" value="등록하기"></p>
 			</div>
-			
 		</div>
 		<div class="review_overlay"></div>
 	</div>
 </main>
+
 <script>
-	const review_overlay = document.querySelector('.review_overlay')
-	const review_close = document.querySelector('.review_close')
+	const reviewModal_overlay = document.querySelector('.review_overlay')
+	const reviewModal_close = document.querySelector('.review_close')
+	const reviewModal_open = document.querySelector('.review_write')
 	
-	review_overlay.addEventListener('click', reviewCloesModal)
-	review_close.addEventListener('click', reviewCloesModal)
+	reviewModal_open.addEventListener('click', reviewOpenModal)
+	reviewModal_overlay.addEventListener('click', reviewCloesModal)
+    reviewModal_close.addEventListener('click', reviewCloesModal)
 </script>
 <%@ include file="../footer.jsp" %>
