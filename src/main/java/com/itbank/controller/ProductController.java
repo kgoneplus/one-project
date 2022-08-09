@@ -13,5 +13,15 @@ public class ProductController {
 	@GetMapping("/search")
 	public void search() {}
 	
+	// 상품상세페이지를 보여주는 페이지
+	@GetMapping("/view")
+	public void view() {}
+
+	// 카테고리 클릭시 보여주는 리스트 페이지 
+	@GetMapping("/list")
+	public void clickcategory( /*해시맵사용*/) {
+		
+	}
 	
 }
+

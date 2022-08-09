@@ -5,10 +5,12 @@
 <link type="text/css" rel="stylesheet"
 	href="${cpath }/resources/css/style_main.css">
 <script src="${cpath}/resources/js/function_main.js"></script>
+<script src="${cpath}/resources/js/function_header.js"></script>
 </head>
 <body>
 
-	<main>
+	<main id="main">
+	<div id="overlay"></div>
 	<div class="slider">
 		<div class="mainImg_wrap">
 			<div class="mainImg"
@@ -90,13 +92,20 @@
 		
 		const toTop = document.getElementById('toTop')
 		const listLiArray = Array.from(document.querySelectorAll('.main_list_nav > ul > li'))		
-		
+		const mainoverlay = document.getElementById('main')
+
+  		
 		window.addEventListener('load', mainLoadHandler(''))
 		toTop.addEventListener('click', scrollToTop)
 		listLiArray.forEach(li => li.addEventListener('click', mainSelectLiClick))
+
+		
+		mainoverlay.addEventListener('click', closeModal)
+
 		
 		window.addEventListener('scroll', scrollHandler)
 		
+
 	</script>
 
 
