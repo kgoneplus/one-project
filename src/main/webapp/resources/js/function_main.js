@@ -39,11 +39,19 @@
  
  // 스크롤 이벤트
  function scrollHandler(event){
+<<<<<<< HEAD
     let target = document.documentElement
     const flag = target.scrollTop + target.clientHeight >= target.scrollHeight
     if(flag) {
        mainLoadHandler()
     }
+=======
+	 let target = document.documentElement
+	 const flag = target.scrollTop + target.clientHeight >= target.scrollHeight
+	 if(flag) {
+		 mainLoadHandler()
+	 }
+>>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
  }
  
  

@@ -232,7 +232,7 @@ section {
     right: 3px;
 }
 ::-webkit-calendar-picker-indicator { /* 달력 아이콘 부분 */
-    background-image: url(img/icon_084.png);
+    background-image: url(../img/icon_084.png);
     background-repeat: no-repeat;
     width: 17px;
     height: 17px;
@@ -270,7 +270,7 @@ section {
 }
 .claimstatus_icon {
     display: inline-block;
-    background-image: url(img/spritesheet.png);
+    background-image: url(../img/spritesheet.png);
     background-repeat: no-repeat;
     width: 16px;
     height: 16px;
@@ -377,4 +377,104 @@ section {
     width: 100px;
     height: 30px;
     font-size: 12px;
+}
+.orders_tablist > ul {
+    display: flex;
+    width: 880px;
+    margin: 50px auto 0;
+    padding: 0;
+}
+.orders_tablist > ul > li {
+    width: 170px;
+    padding: 0 5px;
+    margin-left: -1px;
+    font-size: 11.5px;
+    color: rgb(102, 102, 102);
+    text-align: center;
+    background-color: rgb(249, 250, 251);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-width: 1px 1px 0px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(221, 221, 221);
+    border-right-color: rgb(221, 221, 221);
+    border-left-color: rgb(221, 221, 221);
+    height: 60px;
+    line-height: 60px;
+    cursor: pointer;
+}
+.orders_tablist .tablistSelected {
+    border-top-color: rgb(51, 51, 51);
+    border-right-color: rgb(51, 51, 51);
+    border-left-color: rgb(51, 51, 51);
+    margin-right: 1px;
+    color: rgb(51, 51, 51);
+    font-weight: bold;
+}
+.orders_tablist_content {
+    width: 880px;
+    margin: 10px auto 20px;
+    border: 1px solid rgb(238, 238, 238);
+    border-radius: 3px;
+    text-align: center;
+    font-size: 12px;
+    color: rgb(51, 51, 51);
+}
+.orders_tablist_content > div {
+    display: none;
+}
+.orders_tablist_content .tablistContentSelected {
+    display: block;
+}
+.deliverystep > ul {
+    display: flex;
+    width: 880px;
+    padding: 0;
+    margin: 0;
+}
+.deliverystep > ul > li {
+    width: 220px;
+    border: 1px solid rgb(238, 238, 238);
+    padding: 30px 10px;
+}
+.deliverystep .iconBox > img {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 19px;
+}
+.deliverystep .iconBox > strong {
+    display: block;
+    font-size: 16px;
+}
+.deliverystep .iconBox > p {
+    margin-top: 9px;
+    line-height: 1.35;
+}
+.addProduct {
+	width: 880px;
+    align-items: center;
+}
+.infoItem {
+	display: flex;
+}
+.infoItem > .addProduct_content > ul {
+	display: block;
+	width: calc(100% - 160px);
+    padding: 22px 20px 18px;
+    text-align: left;
+}
+.infoItem > .addProduct_title {
+	width: 160px;
+/*     background: rgb(249, 250, 251); */
+    font-size: 13px;
+    font-weight: bold;
+    padding: 20px;
+    margin: auto 0;
+}
+.orders_tablist_content > .exchangestep,
+.orders_tablist_content > .receiptInfo  {
+	width: 880px;
+	align-items: center;
 }
