@@ -1,20 +1,21 @@
 package com.itbank.controller;
 
-import java.util.List;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.itbank.oneplus.ReviewDTO;
-import com.itbank.service.ReviewService;
+import com.itbank.oneplus.AskDTO;
+import com.itbank.service.MypageService;
 
-@RestController
+@Controller
 @RequestMapping("/mypage")
 public class MypageController {
 	
-	@Autowired private ReviewService reviewService;
+	@Autowired private MypageService mypageService;
 	
 	// 마이페이지 메인
 	@GetMapping("/mypageMain")
@@ -46,13 +47,19 @@ public class MypageController {
 	
 	// 상품리뷰
 	@GetMapping("/review")
-	public List<ReviewDTO> reviewList() {
-		return reviewService.reviewList();
-	}
+	public void reviewList() {}
 	
 	// 1:1 문의 내역
 	@GetMapping("/counsel")
 	public void counsel() {}
+	
+	// 문의하기 2022 08 09 ~ 작업중입니다
+	@PostMapping("/counsel")
+	public String write(AskDTO dto) throws IllegalStateException, IOException {
+		int row = mypageService.write(dto);
+		System.out.println(row != 0 ? "작성 성공" : "작성 실패");
+		return "redirect:/mypage/counsel";
+	}
 	
 	// 상품 문의
 	@GetMapping("/qna")
@@ -72,5 +79,5 @@ public class MypageController {
 	
 	// 회원 탈퇴
 	@GetMapping("/withdraw")
-	public void withdraw() {}
+	public void withdraw() {}	
 }

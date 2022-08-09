@@ -21,8 +21,8 @@
 .counsel_content {
 	position: absolute;
 	z-index: 6;
-	width: 50%;
-	height: 70%;
+	width: 700px;
+	height: 660px;
 	justify-content: center;
 	align-items: center;
 	background-color: white;
@@ -43,13 +43,16 @@
 }
 .counsel_table {
 	margin: auto;
-	width: 1000px;
+	width: 600px;
 	height: 500px;
 	border: 1px solid black;
-	padding: 10px 0;
+	margin-top: 30px;
 }
 .counsel_close {
 	cursor: pointer;
+}
+.counsel_submit {
+	text-align: center;
 }
 </style>
 </head>
@@ -137,26 +140,28 @@
         </section>
     </div>
 		
+		<!-- 문의하기 2022 08 09 ~ 작업중입니다 -->
 		<div class="counsel_modal" class="counsel_hidden">
 			<div class="counsel_content">
 				<div>
 					<div>1:1 문의하기</div>
 					<div class="counsel_close">X</div>
 				</div>
-				
+								
+				<form method="post" enctype="multipart/form-data">
 				<table class="counsel_table">
 					<tr>
 						<th>문의 유형</th>
 						<td>
-							<select id="category">
-								<option value="" ${param.category == '전체' ? 'selected' : '' }>문의유형 선택</option>
-								<option value="배송" ${param.category == '배송' ? 'seleted' : '' }>배송</option>
-								<option value="상품" ${param.category == '상품' ? 'seleted' : '' }>상품</option>
-								<option value="주문" ${param.category == '주문' ? 'seleted' : '' }>주문</option>
-								<option value="결제" ${param.category == '결제' ? 'seleted' : '' }>결제</option>
-								<option value="교환/반품/환불" ${param.category == '교환/반품/환불' ? 'seleted' : '' }>교환/반품/환불</option>
-								<option value="행사/쿠폰/포인트" ${param.category == '행사/쿠폰/포인트' ? 'seleted' : '' }>행사/쿠폰/포인트</option>
-								<option value="홈페이지/시스템" ${param.category == '홈페이지/시스템' ? 'seleted' : '' }>홈페이지/시스템</option>
+							<select name="askType">
+								<option>기타</option>
+								<option>배송</option>
+								<option>상품</option>
+								<option>주문</option>
+								<option>결제</option>
+								<option>교환/반품/환불</option>
+								<option>행사/쿠폰/포인트</option>
+								<option>홈페이지/시스템</option>
 							</select>
 						</td>
 					</tr>
@@ -171,16 +176,16 @@
 					
 					<tr>
 						<th>제목</th>
-						<td><input type="text" name="title" placeholder="최소 2자 이상 입력해주세요 (최대 25자)"></td>
+						<td><input type="text" name="title" placeholder="최소 2자 이상 입력해주세요 (최대 25자)" required></td>
 					</tr>
 					
 					<tr>
-						<th>내용</th>
+						<th class="">내용</th>
 						<td>
-							<textarea name="memo"	
+							<textarea name="content"
 								  rows="10"
 								  cols="55"
-								  placeholder="문의 내용을 입력해 주세요 (최대 700자 이내)&#13;&#10;고객님의 개인정보가 기입되지 않도록 주의해주세요"></textarea>
+								  placeholder="문의 내용을 입력해 주세요 (최대 700자 이내)&#13;&#10;고객님의 개인정보가 기입되지 않도록 주의해주세요" required></textarea>
 						</td>
 					</tr>
 					
@@ -198,13 +203,9 @@
 							<span><input type="text" name="content" placeholder="babo@naver.com"></span>
 						</td>
 					</tr>
-					
-					<tr>
-						<th></th>
-						<td></td>
-					</tr>
 				</table>
-				<p><input type="submit" value="등록"></p>
+				<p class="counsel_submit"><input type="submit" value="등록"></p>
+				</form>
 			</div>	
 		<div class="counsel_overlay"></div>
 	</div>

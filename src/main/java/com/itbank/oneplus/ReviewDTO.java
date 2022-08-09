@@ -12,10 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 //	price               varchar2(100)   check(price in('만족해요', '보통이에요', '별로에요')),
 //	content             varchar2(1000)  not null,
 //	makeDate            date            default sysdate,
-//	Grade               number          not null,
+//	Grade               number          not null check(Grade in(1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5)),
 //	img                 varchar2(255)
 
 public class ReviewDTO {
+	
 	private int member_idx;
 	private int productMain_idx;
 	private int idx;

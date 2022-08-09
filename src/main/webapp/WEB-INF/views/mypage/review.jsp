@@ -285,8 +285,8 @@
 						<p><input type="file" name="uploadFile"></p>
 					</div>
 				</div>
-				<p class="review_submit"><input type="submit" value="등록하기"></p>
-			</form>	
+			</form>
+			<p class="review_submit"><input type="submit" value="등록하기"></p>	
 		</div>
 		<div class="review_overlay"></div>
 	</div>
