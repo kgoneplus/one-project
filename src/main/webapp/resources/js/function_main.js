@@ -3,7 +3,6 @@
 
 // 슬라이더 이벤트
  function slide(event) {
-    
     let dir = -1
     if(event != undefined && event.target.classList.contains('prev')) {
         dir = 1
@@ -39,19 +38,11 @@
  
  // 스크롤 이벤트
  function scrollHandler(event){
-<<<<<<< HEAD
-    let target = document.documentElement
-    const flag = target.scrollTop + target.clientHeight >= target.scrollHeight
-    if(flag) {
-       mainLoadHandler()
-    }
-=======
 	 let target = document.documentElement
 	 const flag = target.scrollTop + target.clientHeight >= target.scrollHeight
 	 if(flag) {
 		 mainLoadHandler()
 	 }
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
  }
  
  
