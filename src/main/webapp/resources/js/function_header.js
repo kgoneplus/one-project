@@ -8,7 +8,6 @@ function categoryModal(event) {
 		
 	const mainoverlay = document.getElementById('overlay')
 	mainoverlay.style.display = 'block'
-		
 	
 }
 

@@ -16,6 +16,6 @@ public class MemberController {
 	
 	@GetMapping("/join/integrationjoin")
 	public void integrationjoin() {
-		
 	}
+	
 }
