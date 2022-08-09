@@ -283,3 +283,136 @@ ul, li {
     text-align: center;
     margin-top: 8px;
 }
+.orderProducts > .cartProducts {
+	width: 100%;
+	cellspacing: 0;
+	cellpadding: 10px;
+	border-collapse: collapse;
+}
+.orderProducts > .cartProducts > thead > tr > td {
+	height: 50px;
+    padding: 0 20px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 400;
+    background: #f9fafb;
+    text-align: center;
+}
+.orderProducts > .cartProducts td {
+	border: 1px solid #eee;
+}
+.cartProducts > tbody td button {
+	width: 72px;
+	height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+	margin-top: 5px;
+    background: transparent;
+}
+.cartProducts tr > td:nth-child(4),
+.cartProducts tr > td:nth-child(5) {
+	text-align: center;
+}
+.cartProducts > tbody td button div {
+	width: 17px;
+	height: 18px;
+    background-image: url(../img/btn_delete.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+    margin-left: 20px;
+}
+.cartProdName {
+	display: flex;
+}
+.cartProdName > img {
+	width: 90px;
+    height: 90px;
+    border-radius: 3px;
+}
+.cartProdName > div {
+	margin: 15px 5px;
+	font-size: 14px;
+    color: #333;
+    overflow: hidden;
+}
+.cartProducts tbody > tr > td > p {
+	margin-top: 10px;
+    font-size: 12px;
+    color: #999;
+}
+.inpCounter {
+	display: block;
+}
+.lastprice {
+	padding-left: 40px;
+}
+.lastprice > span:nth-child(1) {
+    text-align: left;
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+    text-decoration: line-through;
+    padding-left: 10px;
+    margin-bottom: 3px;
+    display: inline-block;
+}
+.lastprice > p:last-child {
+    text-align: left;
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+    padding-left: 13px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.lastprice_icon{
+    background-image: url(../img/homeplusicon.png);
+    background-position: -730px -1px;
+    background-repeat: no-repeat;
+    width: 28px;
+    height: 70px;
+    margin: -23px 0px -44px 70px;
+    
+}
+.lastprice_icon:hover {
+    cursor: pointer;
+}
+.lastprice_icon:hover .price_hidden{
+    display: block;
+    cursor: pointer;
+}
+.price_hidden {
+    display: none;
+    background-color: white;
+    position: absolute;
+    width: 200px;
+    margin-left: -150px;
+    margin-top: 25px;
+    border: 1px solid rgb(51, 51, 51);
+    box-shadow: rgb(0 0 0 / 15%) 0px 1px 12.5px 0px;
+    border-radius: 1px;
+    font-size: 12px;
+}
+.price_hidden > dl {
+    display: flex;
+    justify-content: space-between;          
+    width: 165px;
+    padding-left: 7px;
+    margin: 11px;
+    font-weight: bold;
+}
+.price_hidden > dl > dt {
+    color: #333333; 
+}
+.price_hidden > dl:nth-child(1) > dt {
+    color: #666666;
+}
+.price_hidden > dl:nth-child(2) > dt {
+    color: rgb(223, 0, 17);
+}
+.price_hidden > dl > dd {
+    color: #999999; 
+}
+.price_hidden > dl:nth-child(2) > dd {
+    color: rgb(223, 0, 17);
+}

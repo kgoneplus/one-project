@@ -52,26 +52,55 @@
         <div class="orderCheck">
             <div class="orderProducts">
                 <h3>일반배송</h3>
-				<table>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>상품/옵션정보</td>
-						<td>구매예정금액</td>
-						<td>행사/할인</td>
-						<td>선택</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>
-							<div>
-								<img>
-								<div>올리브파래&들기름재래전장김 20G*6봉</div>
-							</div>
-							<div>최대 10개 구매가능</div>
-						</td>
-						<td></td>
-						<td></td>
-					</tr>
+				<table class="cartProducts">
+					<thead>
+						<tr>
+							<td><input type="checkbox"></td>
+							<td>상품/옵션정보</td>
+							<td>구매예정금액</td>
+							<td>행사/할인</td>
+							<td>선택</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="checkbox"></td>
+							<td>
+								<div class="cartProdName">
+									<img src="">
+									<div>
+										올리브파래&들기름재래전장김 20G*6봉
+										<div class="inpCounter">
+											<input type="text" value="1" name="cnt">
+											<button>+</button>
+											<button>-</button>
+										</div>
+									</div>
+								</div>
+								<p>최대 10개 구매가능</p>
+							</td>
+							<td>
+								<div class="lastprice">
+					                <span>17,990 원</span>
+					                <div class="lastprice_icon">
+					                    <div class="price_hidden">
+					                        <dl>
+					                            <dt>상품할인</dt>
+					                            <dd>6000원</dd>
+					                        </dl>
+					                        <dl>
+					                            <dt>총 할인금액</dt>
+					                            <dd>11,990원</dd>
+					                        </dl>
+					                    </div>
+					                </div>
+					                <p>11,990원</p>
+					            </div>
+					        </td>
+							<td>-</td>
+							<td><button><div></div></button></td>
+						</tr>
+					</tbody>
 				</table>
             </div>
             <div class="payTab">
