@@ -12,3 +12,8 @@ function ordersTablistHandler(event) {
 	ordersTablistContent.forEach(div => div.classList.remove('tablistContentSelected'))
 	ordersTablistContent[idx].classList.add('tablistContentSelected')
 }
+
+// 리뷰창에서 별점 색 바꾸기
+const drawStar = (target) => {
+    document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+}

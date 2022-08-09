@@ -48,6 +48,7 @@
  
  // convert함수
  function convert(ob) {
+									
     const product = document.createElement('div')
     product.className = 'product'
     product.innerHTML = ''
@@ -80,7 +81,6 @@
                      </div>`            
        return product
  }
-
  
  // 메인화면 아이템 로드 핸들러
  function mainLoadHandler(mainList_cate) {
@@ -98,22 +98,18 @@
     list.setAttribute('offset', +offset + 10)
     
  }
- 
-    
- 
+
  // 메인화면 아이템 카테고리 선택
  function mainSelectLiClick(event) {
-   const list = document.querySelector('.list')
-   list.setAttribute('offset', 0)
-   
-   
-   const listLiArray = Array.from(document.querySelectorAll('.main_list_nav > ul > li'))
-   listLiArray.forEach(li => li.classList.remove('main_list_liselected'))
-   const li = event.target
-   li.classList.add('main_list_liselected')
-   const mainList_cate = li.getAttribute('mainlist_cate')
-   li.addEventListener('click', mainLoadHandler(mainList_cate))
-   
-
+	const list = document.querySelector('.list')
+	list.setAttribute('offset', 0)
+	
+	
+	const listLiArray = Array.from(document.querySelectorAll('.main_list_nav > ul > li'))
+	listLiArray.forEach(li => li.classList.remove('main_list_liselected'))
+	const li = event.target
+	li.classList.add('main_list_liselected')
+	const mainList_cate = li.getAttribute('mainlist_cate')
+	li.addEventListener('click', mainLoadHandler(mainList_cate))
  }
- 
+
