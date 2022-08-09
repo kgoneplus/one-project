@@ -7,12 +7,8 @@ body{
     margin: auto;
     padding: 10px;
     overflow: auto;
-    /* border-width: 2px;
-    border-color: red;
-    border-style: solid; */
 }
 .top{
-    /* border: solid 1px red; */
     width: 1200px;
     height: 79px;
     margin: auto;
@@ -47,10 +43,9 @@ a{
     margin: auto;
     justify-content: space-around;
     font-size: 15px;
-    background-image: url(img/search.png);
+    background-image: url(../img/search.png);
     background-position: 95% ;
     background-repeat: no-repeat;
-    /* box-sizing: border-box; */
     background-size: 5%;
 }
 ul{
@@ -61,7 +56,7 @@ nav > ul{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* border-bottom: 2px solid red; */        
+     
 }
 nav > ul > li{
     display: block;
@@ -79,37 +74,86 @@ nav > ul > li{
     line-height: 52px;
     position: relative;    
     background-color: red;
-    /* color: white; */
     border-width: 1px;
     border-color: red;
     border-style: solid;
-    /* padding: 2px 0px 0px 25px; */  
+
     border-radius: 177px 532px 0px 8px;         
 }
-nav > ul >#cate:hover > .allmenu {
-    display: flex;
+
+#overlay {
+	display: none;
+    position: absolute; 
+    width: 100%;
+    height: 650%; 
+    inset: 157px 0px;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
 }
 .allmenu{
-    position: absolute;     
-    top: 50px;
+    position: relative;     
     width: 1200px;
-    height: 530px;
     background-color: white;
     box-sizing: border-box;
     display: none;
     border-width: 1px;
-    border-color: red;
+    border-top: 1px solid rgb(223, 0, 17);
+    border-radius: 5px;
     border-style: solid;
+    z-index: 4;
+     height: 600px;
 }
 .allmenu > .left{
-    position: absolute;
-    top: 10px;
-    width: 300px;
-    border: 1px dashed red;
+    position: relative;
+    height: 700px;
     display: flex;
     flex-flow: wrap;  
     color: black;
+    padding-left: 20px;
+/*     overflow-y: scroll; */
 }
+
+.left::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: skyblue;
+}
+.left > ul {
+	padding: 0;
+}
+.left > ul > li {
+	height: 45px;
+	padding-right: 65px;
+	font-size: 15px;
+	text-align: left;
+}
+
+.left > ul > li:hover > a {
+	color: rgb(223, 0, 17);
+	display: block;
+}
+.left {
+	position: relative;
+}
+.left > ul > li:hover > a > .allmenu2 > ul{
+	position: absolute;
+	top: 0;
+}
+.left > ul > li:hover > a > .arrow {
+	display: block;
+}
+.allmenu2  li:hover > a {
+	color: rgb(223, 0, 17);
+}
+.allmenu2  li:hover > a > .arrow {
+	display: block;
+}
+.allmenu3> ul > li > a:hover {
+	color: rgb(223, 0, 17);
+}	
+.left > ul > li > a{
+	color: #666666;
+}
+
 #cate > a{
     color: white;
 }
@@ -123,26 +167,59 @@ nav > ul > #cate > .allmenu{
     display: none;
 }
 .allmenu2{
-    position: absolute;
-    /* top: 50px; */
+	position: absolute;
+	top: 0;
     width: 300px;
-    margin-left: 260px;
-    margin-top: -53px;
-    border: 1px dashed red;
-    display: flex;
+    left: 321px;
+    margin-top: 0px;
     flex-flow: wrap;  
     color: black;
 }
+.allmenu2 > ul {
+    padding: 0px 20px;
+    display: none;
+}
+.left > ul > li:hover  .allmenu2 > ul{
+	display: block;
+}
+.allmenu2 > ul > li{
+    height: 37px;
+	text-align: left;
+}
+.allmenu2 > ul > li> a {
+	color: #666666;
+	font-size: 15px;
+	
+}
+.allmenu2 > ul > li:hover .allmenu3 > ul{
+	display: block;
+}
+
 .allmenu3{
-    position: absolute;
-    /* top: 50px; */
     width: 300px;
-    margin-left: 300px;
-    margin-top: -469px;
-    border: 1px dashed red;
-    display: flex;
-    flex-flow: wrap;  
-    color: black;
+	position: absolute;
+	top: 0;
+	left: 280px;
+    flex-flow: wrap;
+}
+.left > ul > li:hover > .allmenu2,
+.allmenu2 > ul > li:hover > .allmenu3 {
+	height: 600px;
+}
+.allmenu3 > ul {
+	position: absolute;
+	top: 0;
+	width: 100%;
+    padding: 0px 20px;	
+    display: none;
+}
+.allmenu3 > ul > li{
+    height: 37px;
+	text-align: left;
+}
+.allmenu3 > ul > li > a{
+	color: #666666;
+	font-size: 15px;
 }
 .right {
     display: flex;
@@ -196,8 +273,6 @@ nav > ul > #cate > .allmenu{
     text-align: center;
     width: 1200px;
     margin-left: 1200px;
-    /* border: 1px dashed green; */
-    z-index: 1;
     margin: 10px auto;
     overflow: hidden;
     position: relative;
@@ -207,7 +282,7 @@ nav > ul > #cate > .allmenu{
 	position: sticky;
 	background-color: white;
 	margin: auto;
-	z-index: 3;
+	z-index: 0;
 }
 .main_list_nav > ul > li {
 	padding: 10px;
@@ -221,12 +296,8 @@ nav > ul > #cate > .allmenu{
 .mainImg_wrap {
     display: flex;
     width: 6000px;
-    /* margin-left: -1200px;  */
-    /* transition-duration: 0.2s;  */
 }
 .mainImg {
-    /* border: 1px solid black; */
-    /* display: inline-block; */
     width: 1200px;
     height: 500px;
     background-size: auto 100%;
@@ -261,7 +332,6 @@ nav > ul > #cate > .allmenu{
 }
 .product {
     margin: 30px 24px 30px 0;
-    /* border: 1px dashed green; */
 }
 .productImg {
     overflow: hidden;
@@ -269,7 +339,6 @@ nav > ul > #cate > .allmenu{
 .productImg > img {
     width: 374px;
     height: 374px;
-    /* border: 1px dashed green; */
     transition-duration: 0.3s;
 }
 .productImg > img:hover {
@@ -289,7 +358,6 @@ nav > ul > #cate > .allmenu{
 }
 .priceWrap {
     width: 374px;
-    /* color: rgb(51, 51, 51); */
     box-sizing: border-box;
     font-size: 12px;
 }
@@ -452,8 +520,7 @@ footer {
     z-index: 4500;
 }
 .remocon_frame {
-    /* position: relative; */
-    align-self: center;
+	    align-self: center;
     padding-top: 30px;
     width: 60x;
     height: 330px;
@@ -488,4 +555,15 @@ figcaption {
     height: 46px;
     border: 0;
     cursor: pointer;
+}
+.arrow {
+	display: none;
+    background-image: url(../img/homeplusicon.png);
+    background-repeat: no-repeat;
+    background-position: -3419px;
+    margin-top: -41px;
+    margin-left: 245px;
+    width: 25px;
+    height: 180px;
+    overflow: hidden;
 }
