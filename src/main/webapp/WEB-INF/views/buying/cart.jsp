@@ -64,16 +64,16 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="checkbox"></td>
+							<td><input type="checkbox" name="idx" value="${productCart_idx}"></td>
 							<td>
 								<div class="cartProdName">
 									<img src="">
 									<div>
 										올리브파래&들기름재래전장김 20G*6봉
-										<div class="inpCounter">
+										<div class="counter">
+											<button class="mabtn">-</button>
 											<input type="text" value="1" name="cnt">
-											<button>+</button>
-											<button>-</button>
+											<button class="plbtn">+</button>
 										</div>
 									</div>
 								</div>

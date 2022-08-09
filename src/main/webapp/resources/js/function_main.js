@@ -48,38 +48,38 @@
  
  // convert함수
  function convert(ob) {
-									
-    const product = document.createElement('div')
-    product.className = 'product'
-    product.innerHTML = ''
-       
-    const price = ob.productPrice
-    const korPrice = price.toLocaleString()
-    let discountPrice = price - ob.productDiscount
-    discountPrice = discountPrice.toLocaleString()
-    // productImg 이미지 파일이름 수정하기
-    product.innerHTML += `<div class="productImg">
-                        <img src="${cpath}/resources/getImage1/${ob.productImg}">
-                     </div>
-                     <div class="productInfo">
-                        <div class="productTitle">
-                            ${ob.productName}
-                        </div>
-                        <div class="priceWrap">
-                           <div class="productOrgPrice">
-                              <strong>${korPrice}</strong>원
-                           </div>
-                           <div class="productPrice">
-                              <span class="countDC">30%</span> <strong>${discountPrice}</strong>원
-                           </div>
-                           <span class="priceQty">${ob.productSize}</span>
-                        </div>
-                        <div class="productScore">
-                           <span><img src="${cpath }/resources/img/star3.png"></span> <span>4.3(9건)</span>
-                           | <span>월 ${ob.buyCnt}개 구매</span>
-                        </div>
-                     </div>`            
-       return product
+	 const product = document.createElement('div')
+	 product.className = 'product'
+	 product.innerHTML = ''
+		 
+	 const price = ob.productPrice
+	 const korPrice = price.toLocaleString()
+	 let discountPrice = price - ob.productDiscount
+	 discountPrice = discountPrice.toLocaleString()
+	 // productImg 이미지 파일이름 수정하기
+	 product.innerHTML += `<div class="productImg">
+								<img src="${cpath}/resources/getImage1/${ob.productImg}">
+							</div>
+							<div class="productInfo">
+								<div class="productTitle">
+									 ${ob.productName}
+								</div>
+								<div class="priceWrap">
+									<div class="productOrgPrice">
+										<strong>${korPrice}</strong>원
+									</div>
+									<div class="productPrice">
+										<span class="countDC">30%</span> <strong>${discountPrice}</strong>원
+ 									</div>
+									</div>
+									<span class="priceQty">${ob.productSize}</span>
+								</div>
+								<div class="productScore">
+									<span><img src="${cpath }/resources/img/star3.png"></span> <span>4.3(9건)</span>
+									| <span>월 ${ob.buyCnt}개 구매</span>
+								</div>
+							</div>`				
+		 return product
  }
  
  // 메인화면 아이템 로드 핸들러
