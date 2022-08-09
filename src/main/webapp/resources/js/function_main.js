@@ -3,7 +3,6 @@
 
 // 슬라이더 이벤트
  function slide(event) {
-	 
     let dir = -1
     if(event != undefined && event.target.classList.contains('prev')) {
         dir = 1
@@ -33,8 +32,8 @@
  
  // 리모컨 스크롤 탑이벤트
  function scrollToTop() {
-	 let target = document.documentElement
-		target.scrollTop = 0
+    let target = document.documentElement
+      target.scrollTop = 0
  }
  
  // 스크롤 이벤트
@@ -45,6 +44,7 @@
 		 mainLoadHandler()
 	 }
  }
+ 
  
  // convert함수
  function convert(ob) {
@@ -69,10 +69,7 @@
 										<strong>${korPrice}</strong>원
 									</div>
 									<div class="productPrice">
-
-
 										<span class="countDC">30%</span> <strong>${discountPrice}</strong>원
-
  									</div>
 									</div>
 									<span class="priceQty">${ob.productSize}</span>
@@ -84,27 +81,24 @@
 							</div>`				
 		 return product
  }
-
  
  // 메인화면 아이템 로드 핸들러
  function mainLoadHandler(mainList_cate) {
-	 const list = document.querySelector('.list')
-	 const offset = list.getAttribute('offset')
-	 console.log(offset)
-	 list.innerHTML = ''
+    const list = document.querySelector('.list')
+    const offset = list.getAttribute('offset')
+    console.log(offset)
+    list.innerHTML = ''
      
-	 const url = cpath + '/mainload/' + offset + '?mainList_cate=' + mainList_cate 
-	 fetch(url) 
-	 .then(resp => resp.json())
-	 .then(json => {
-		json.forEach(product => list.appendChild(convert(product)))
-	 })
-	 list.setAttribute('offset', +offset + 10)
-	 
+    const url = cpath + '/mainload/' + offset + '?mainList_cate=' + mainList_cate 
+    fetch(url) 
+    .then(resp => resp.json())
+    .then(json => {
+      json.forEach(product => list.appendChild(convert(product)))
+    })
+    list.setAttribute('offset', +offset + 10)
+    
  }
- 
-	 
- 
+
  // 메인화면 아이템 카테고리 선택
  function mainSelectLiClick(event) {
 	const list = document.querySelector('.list')
@@ -117,7 +111,5 @@
 	li.classList.add('main_list_liselected')
 	const mainList_cate = li.getAttribute('mainlist_cate')
 	li.addEventListener('click', mainLoadHandler(mainList_cate))
-	
-
  }
- 
+
