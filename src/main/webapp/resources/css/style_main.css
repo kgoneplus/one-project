@@ -5,8 +5,8 @@ html {
 }
 body{
     margin: auto;
-    padding: 10px;
-    overflow: auto;
+    padding: 10px;+
+	/*     overflow: hidden; */
     /* border-width: 2px;
     border-color: red;
     border-style: solid; */
@@ -47,7 +47,7 @@ a{
     margin: auto;
     justify-content: space-around;
     font-size: 15px;
-    background-image: url(img/search.png);
+    background-image: url(../img/search.png);
     background-position: 95% ;
     background-repeat: no-repeat;
     /* box-sizing: border-box; */

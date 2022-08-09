@@ -13,5 +13,8 @@ public class ProductController {
 	@GetMapping("/search")
 	public void search() {}
 	
+	// 상품상세페이지를 보여주는 페이지
+	@GetMapping("/view")
+	public void view() {}
 	
 }
