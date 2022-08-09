@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.itbank.oneplus.IntegrationMemberDTO;
+import com.itbank.oneplus.MemberDTO;
 
 public class MypageInterceptor extends HandlerInterceptorAdapter {
 
@@ -16,7 +16,7 @@ public class MypageInterceptor extends HandlerInterceptorAdapter {
 							 HttpServletResponse response, 
 							 Object handler) throws Exception {
 		
-		IntegrationMemberDTO login = (IntegrationMemberDTO)request.getSession().getAttribute("login");
+		MemberDTO login = (MemberDTO)request.getSession().getAttribute("login");
 		String url = request.getRequestURL().toString();
 		
 		if(login == null) {

@@ -14,7 +14,8 @@
 <script src="${cpath}/resources/js/function_main.js"></script>
 </head>
 <body>
-	 <header>      
+	 <header>  
+	 	<div align="left">${login.userid } ${login.name }</div>    
         <div class="top">   
             <div class="left">
                 <a href="${cpath }"><img src="${cpath }/resources/img/oneplus.png" width="160px" height="40px"></a>
