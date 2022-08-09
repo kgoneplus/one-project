@@ -1,0 +1,500 @@
+@charset "utf-8";
+view {
+	overflow: hidden;
+}
+viewmain {
+	display: flex;
+	justify-content: space-around;
+	border: solid 1px #df0011;
+	width: 1200px;
+	margin: auto;
+}
+
+#viewmain1 {
+	border: solid 1px #df0011;
+	width: 1200px;
+	margin: auto;
+}
+
+.viewmain_header {
+	background-color: #f9fafe;
+}
+
+#viewleft {
+	display: block;
+	justify-content: center;
+	border: solid 1px blue;
+	width: 560px;
+}
+
+.product_mainimg {
+	width: 558px;
+	height: 558px;
+	border: solid 1px #df0011;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: auto 100%;
+}
+
+.product_slide {
+	border: 1px solid #df0011;
+	height: 100px;
+	overflow: hidden;
+	padding-top: 20px;
+}
+.prodImg_wrap{
+	display: flex;
+	width: 670px;
+    padding-left: 25px;
+}
+.prodslideImg{
+	width: 90px;
+	height: 90px;
+    margin: 5px 20px;
+    display: block;
+    align-items: center;
+    background-size: 90px 90px;
+    background-position: center;
+    background-repeat: no-repeat;
+	cursor: pointer;
+}
+.prodslideBtn{
+	display: flex;
+	justify-content: space-between;
+	margin-top: -63px;
+	
+}
+.prodslideBtn > div .prevBtn,
+.prodslideBtn > div .nextBtn{
+	background-image: url(../img/homeplusicon.png);
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    border: none;
+    cursor: pointer;
+}
+.prodslideBtn > div .prevBtn{
+    background-position: -2040px -5px;
+}
+.prodslideBtn > div .nextBtn{
+    background-position: -2074px -5px;
+}
+
+.product_reviewSummary {
+	border: 1px solid #df0011;
+	height: 100px;
+}
+
+#viewright {
+	display: block;
+	justify-content: center;
+	border: solid 1px blue;
+	width: 500px;
+}
+
+.font20 {
+	font-size: 20px;
+}
+
+.madeln {
+	font-size: 15px;
+	margin: 10px 0 40px;
+	color: #999999;
+}
+
+.productOrgprice>p, .productCardDC>p {
+	width: 76px;
+	display: inline-block;
+	font-size: 12px;
+	color: #999999;
+}
+
+.OrgPrice>em {
+	font-size: 36px;
+	font-style: normal;
+	font-weight: 600;
+}
+
+.nanoPrice {
+	font-size: 12px;
+	color: #999999;
+	margin-left: 10px;
+}
+
+#prodtable {
+	border-collapse: collapse;
+}
+
+#prodtable tr {
+	border-bottom: 1px solid #dadada;
+	height: 70px;
+}
+
+#prodtable .btn {
+	right: 0px;
+	top: 1px;
+	width: 17px;
+	height: 17px;
+	background-image: url(../img/homeplusicon.png);
+	background-repeat: no-repeat;
+	background-position: -4845px -5px;
+	border: none;
+	background-color: white;
+	margin: 0 10px 0 5px;
+	padding-top: 0;
+	cursor: pointer;
+}
+
+.buycount {
+	border: 1px solid #dadada;
+	margin-top: 20px;
+	padding: 10px;
+	height: 80px;
+	background-color: #f9fafe;
+}
+
+.txtMaxbuy {
+	font-size: 12px;
+	color: #999999;
+	margin: 8px 0;
+}
+
+.qtyCounter {
+	display: flex;
+	justify-content: space-between;
+}
+
+.qtyPrice {
+	font-size: 18px;
+	line-height: 50px;
+}
+
+#prodtable tr {
+	font-size: 15px;
+}
+
+#prodtable th {
+	width: 90px;
+	text-align: left;
+	padding-right: 10px;
+}
+
+#prodtable td {
+	padding-right: 25px;
+}
+
+.product_buytotal {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 20px;
+	line-height: 50px;
+}
+
+.product_buytotal1 {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.prodremocon>.product_buytotal>.product_buysum>strong {
+	font-size: 26px;
+}
+
+.product_buysum>strong {
+	font-size: 36px;
+	font-weight: 600;
+	color: #df0011;
+}
+
+.counter {
+	width: 123px;
+	height: 40px;
+	border-radius: 3px;
+	border: 1px solid rgb(224, 224, 224);
+	background: rgb(255, 255, 255);
+}
+
+.counter>.mabtn {
+	float: left;
+	position: relative;
+	width: 31px;
+	height: 100%;
+	border-radius: 0px;
+	background-color: white;
+	border: none;
+	font-size: 25px;
+	cursor: pointer;
+}
+
+.counter>.plbtn {
+	float: right;
+	position: relative;
+	width: 31px;
+	height: 100%;
+	border-radius: 0px;
+	background-color: white;
+	border: none;
+	font-size: 25px;
+	cursor: pointer;
+}
+
+.counter>input {
+	float: left;
+	width: calc(100% - 64px);
+	height: 100%;
+	text-align: center;
+	border-width: 0px 1px;
+	border-style: none solid;
+	border-right-color: rgb(221, 221, 221);
+	border-left-color: rgb(221, 221, 221);
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 40px;
+	min-height: 0px;
+	border-radius: 0px;
+	padding: 0px;
+}
+
+.prodremocon>.buycount>.productTitle {
+	text-align: left;
+}
+
+.prodremocon>.product_buybtn {
+	margin: 0 15px 10px 15px;
+}
+
+.prodremocon>.product_buybtn>.product_heartbtn {
+	width: 50px;
+	height: 50px;
+}
+
+.prodremocon>.product_buybtn>.product_nowbtn {
+	height: 50px;
+	font-size: 18px;
+}
+
+.prodremocon>.product_cartbtn {
+	width: 270px;
+	height: 50px;
+	margin-left: 15px;
+	font-size: 18px;
+}
+
+.prodremocon>.product_buytotal {
+	margin: 0 15px 0 15px;
+}
+
+.product_buybtn {
+	display: flex;
+}
+
+.product_heartbtn, .product_nowbtn, .product_cartbtn {
+	border-radius: 3px;
+	cursor: pointer;
+	height: 70px;
+}
+
+.product_heartbtn {
+	width: 77.76px;
+	border: 1px solid rgb(221, 221, 221);
+	background-color: white;
+}
+
+.product_heartbtn>.heart {
+	width: 30px;
+	height: 30px;
+	background-image: url(../img/homeplusicon.png);
+	background-repeat: no-repeat;
+	background-position: -1265px -5px;
+	display: inline-block;
+}
+
+.product_nowbtn {
+	width: 236px;
+	margin-left: 10px;
+	background-color: black;
+	color: white;
+	font-size: 24px;
+}
+
+.product_cartbtn {
+	width: 236px;
+	margin-left: 2px;
+	background-color: #df0011;
+	color: white;
+	font-size: 24px;
+	border: 0;
+}
+
+.hotslide {
+	border: 1px solid #df0011;
+	height: 100px;
+}
+
+.prodDetailTab {
+	display: flex;
+	margin: auto;
+	border: 5px solid #blue;
+	
+}
+
+.prodDetailbutton {
+	width: 280px;
+	height: 70px;
+	background-color: #f9fafe;
+	border: 0;
+	cursor: pointer;
+}
+
+.prodInner {
+	text-align: center;
+	display: flex;
+	position: relative;
+}
+
+.prodremocon {
+	border: 1px solid #df0011;
+	height: 610px;
+	width: 300px;
+	background-color: #f9fafe;
+	position: sticky;
+	z-index: 5;
+	top: 200px;
+	display: flex;
+	flex-direction: column;
+}
+
+.remo {
+	margin: 10px 0 300px;
+	border: none;
+}
+.detailsubTitle {
+	text-align: left;
+}
+
+#prodDetailstable {
+	border-collapse: collapse;
+	text-align: left;
+}
+
+#prodDetailstable tr {
+	border-bottom: 1px solid #dadada;
+	height: 55px;
+}
+
+#prodDetailstable td {
+	padding: 0 20px 0 30px;
+	color: #666666;
+}
+
+.prodInner2 > div{
+	display: none;
+}
+.prodInner2 > div.selected{
+	display: block;
+}
+
+.prodDetailArea{
+	width: 849px;
+    padding: 0 50px 100px 0;
+}
+.detailsubTitle_delivery{
+	width: 849px;
+	height: 48px;
+	display: flex;
+	border-bottom: 3px solid rgb(51, 51, 51);
+	padding: 40px 0 16px;
+}
+.prodDeliveryType{
+	padding: 20px 0 10px;
+	font-size: 18px;
+}
+.prodDeliveryTypeTxt{
+	display: grid;
+}
+.prodDeliveryTypeBox{
+	padding: 20px 0 59px;
+}
+.prodDeliveryTypeBox > .express > li{
+	display: inline-block;
+}
+.prodDeliveryTypeBox > .express > li > .ico{
+	width: 110px;
+	height: 110px;
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+.ico01{
+	background-image: url(../img/ico1.png);
+}
+.ico02{
+	background-image: url(../img/ico2.png);
+}
+.express{
+	display: flex;
+	justify-content: space-around;
+}
+.prodDeliveryTypeTxt > em{
+	font-size: 12px;
+	font-style: normal;
+}
+.prodDeliveryTypeTxt > p{
+	font-size: 12px;
+	color: #666666;
+	margin-top: 10px;
+}
+.prodDeliveryTable1{
+	border-top: 3px solid rgb(51, 51, 51);
+}
+.tbbd2{
+	border-top: none;
+}
+.prodDetailArea .tbbd1 table{
+	border: 1px solid black;
+	cellpadding:0;
+	cellspacing:0;
+	border-collapse: collapse;
+}
+.prodDetailArea .tbbd1 table:nth-child(1) tr:nth-child(1) th{
+	text-align: center;
+}
+.prodDetailArea .tbbd1 table tr th,
+.prodDetailArea .tbbd1 table tr td{
+	border: 1px solid rgb(238, 238, 238);
+}
+.prodDeliveryTable1  table{
+	border-bottom: 1px solid rgb(238, 238, 238);
+	margin-bottom: 30px;
+}
+.prodDeliveryTable1 table tr th{
+	width: 290px;
+	text-align: left;
+	padding-left: 10px;
+	background-color: #f9fafe;
+	height: 61px;
+	font-size: 15px;
+}
+.prodDeliveryTable1 table tr td{
+	width: 578px;
+	text-align: left;
+	padding: 10px 20px 10px 25px;
+	font-size: 15px;
+}
+.tableList3{
+	padding: 0;
+}
+
+.tableList3 li{
+	padding-bottom: 8px;
+	list-style: outside;
+    padding-left: 6px;
+}
+.txtCaution{
+	text-align: left;
+	font-size: 12px;
+}
+.txtCaution > ul{
+	padding: 0 10px 0 26px;
+}
+.txtCaution > ul > li{
+	list-style: outside;
+}
