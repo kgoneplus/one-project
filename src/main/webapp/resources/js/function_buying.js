@@ -14,3 +14,14 @@ function orderProductsExpMouseout(event) {
 	imgExps[idx].style.display = 'none'
 }
 
+// 장바구니 -> 전체상품 주문하기, 선택상품 주문하기 클릭 시 배송정보로 이동
+function cartToDeliveryInfo() {
+
+	const checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']:checked")).map(item => item.value)
+	
+	const url = cpath + '/buying/deliveryInfo'
+	const opt = {
+			method: 'POST'
+	}
+}
+
