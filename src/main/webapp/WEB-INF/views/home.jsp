@@ -37,10 +37,10 @@
 	<nav class="main_list_nav">
 		<ul>
 			<li class="main_list_liselected">전체</li>
-			<li mainlist_cate="신선식품">신선식품</li>
-			<li mainlist_cate="가공품">가공품</li>
-			<li mainlist_cate="생활용품">생활용품</li>
-			<li mainlist_cate="냉동식품">냉동식품</li>
+			<li mainlist_productMain_categoryCode="신선식품">신선식품</li>
+			<li mainlist_productMain_categoryCode="가공품">가공품</li>
+			<li mainlist_productMain_categoryCode="생활용품">생활용품</li>
+			<li mainlist_productMain_categoryCode="냉동식품">냉동식품</li>
 		</ul>
 	</nav>
 

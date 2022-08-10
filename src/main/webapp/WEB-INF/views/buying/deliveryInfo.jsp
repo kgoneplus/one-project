@@ -9,7 +9,9 @@
 <title>주문/결제 | 홈플러스 온라인, 맛있는 마트</title>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_buying.css">
-<script>const cpath = '${cpath}'</script>
+<script>
+	const cpath = '${cpath}'
+</script>
 <script src="${cpath}/resources/js/function_buying.js"></script>
 </head>
 <body>

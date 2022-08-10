@@ -34,9 +34,6 @@ public class ProductController {
 		ModelAndView mav = new ModelAndView();
 		List<ProductDTO> catelist = productService.categoryList(idx);
 		mav.addObject("catelist", catelist);
-		
-		System.out.println(idx);
-		System.out.println(catelist);
 		return mav;
 	}
 	

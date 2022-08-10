@@ -45,12 +45,6 @@ public interface ProductDAO {
 	List<ProductDTO> lifeList(int offset);
 
 	// 카테고리에서 클릭한 상품 리스트 보여주기
-	@Select("select * from productMain P "
-			+ "join category C "
-			+ "on P.categoryCode = C.productMain_categoryCode "
-			+ "where "
-			+ "<if test = 'category2' != null> C.category2 = #{category2}</if> " 
-			+ "<if test = 'category2' == null> P.productMain_categoryCode = #{productMain_categoryCode}</if>")
 	List<ProductDTO> categoryList(HashMap<String, String> idx);
 
 	

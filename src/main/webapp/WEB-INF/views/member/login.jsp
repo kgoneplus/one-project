@@ -36,8 +36,7 @@
                     </div>
                 </div>    
                 <div class="login_button1">
-                 <a href="#"><button type="submit">로그인</button></a> 
-					<input type="submit">
+                 	<a href="#"><button type="submit">로그인</button></a> 
                 </div>
                 <div class="login_button2">
                     <div class="login_button2_naver">

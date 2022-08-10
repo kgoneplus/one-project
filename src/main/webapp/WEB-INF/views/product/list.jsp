@@ -100,7 +100,7 @@
 <c:forEach var="dto" items="${catelist }"> 
 	        <div class="category_ltem">
 	            <div class="category_ltemimg">
-	                <img src="${dto.productImg }" >
+	                <a href="${cpath }/product/view"><img src="${cpath }/resources/pImg/${dto.productImg }" ></a>
 	                <div class="category_ltemimg_hover">
 	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
 	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>
@@ -109,12 +109,12 @@
 	            </div>
 	            <p>${dto.productName }</p>
 	            <div class="lastprice">
-	                <span>17,990 원</span>
+	                <span><fmt:formatNumber value="${dto.productPrice }" />원</span>
 	                <div class="lastprice_icon">
 	                    <div class="price_hidden">
 	                        <dl>
 	                            <dt>판매가</dt>
-	                            <dd>17,990원</dd>
+	                            <dd><fmt:formatNumber value="${dto.productPrice }" />원</dd>
 	                        </dl>
 	                        <dl>
 	                            <dt>상품할인</dt>
