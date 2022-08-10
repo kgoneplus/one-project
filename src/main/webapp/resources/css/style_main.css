@@ -8,9 +8,9 @@ body{
 /* 	    overflow: hidden; */
     /* border-width: 2px;
     border-color: red;
-    border-style: solid; */
+/*     border-style: solid; */ */
     padding: 10px;
-    overflow: auto;
+/*     overflow: auto; */
 }
 .top{
     width: 1200px;

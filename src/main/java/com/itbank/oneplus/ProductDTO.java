@@ -16,6 +16,8 @@ public class ProductDTO {
 	private String productName;
 	private String madeln;
 	private String productImg;
+	private String productImgdetail;
+	private String productImgdetailview;
 	private int productPrice;
 	private int deliveryfee;
 	private int buyCnt;
@@ -90,6 +92,18 @@ public class ProductDTO {
 	}
 	public void setProductDiscount(int productDiscount) {
 		this.productDiscount = productDiscount;
+	}
+	public String getProductImgdetail() {
+		return productImgdetail;
+	}
+	public void setProductImgdetail(String productImgdetail) {
+		this.productImgdetail = productImgdetail;
+	}
+	public String getProductImgdetailview() {
+		return productImgdetailview;
+	}
+	public void setProductImgdetailview(String productImgdetailview) {
+		this.productImgdetailview = productImgdetailview;
 	}
 	private int productsize;
 }
