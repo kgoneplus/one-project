@@ -17,7 +17,7 @@
 <!-- 	</update> -->
 	
 	<select id="selectList" parameterType="int" resultType="cart">
-		select M.idx AS member_idx, P.idx AS productMain_idx, P.productPrice, P.productName, P.productImg, P.maxbuyCnt, C.cnt from productCart C
+		select M.idx AS member_idx, P.idx AS productMain_idx, P.productPrice, P.productName, P.productImg, P.maxbuyCnt, P.productDiscount, C.cnt from productCart C
 		    join parent_member M
 		        on C.member_idx = M.idx
 		    join productMain P
