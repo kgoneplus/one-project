@@ -1,5 +1,6 @@
 package com.itbank.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,13 @@ public class MemberController {
 		MemberDTO login = ms.login(dto);
 		session.setAttribute("login", login);
 		return "redirect:/";
+	}
+	
+	//로그아웃
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return "redirect:" + request.getHeader("referer");
 	}
 	
 	@GetMapping("/join")
