@@ -17,7 +17,7 @@
 <body>
 	 <div class="login_menu">
         <div class="login_center">
-            <form>
+            <form method="POST">
                 <div class="login_logo">
                     <a href="#"><img src="${cpath }/resources/img/oneplus.png" width="195px" height="50px"></a>
                 </div>
@@ -36,7 +36,7 @@
                     </div>
                 </div>    
                 <div class="login_button1">
-                    <a href="#"><button type="button">로그인</button></a>
+                 	<a href="#"><button type="submit">로그인</button></a> 
                 </div>
                 <div class="login_button2">
                     <div class="login_button2_naver">
