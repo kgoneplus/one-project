@@ -9,7 +9,9 @@
 <title>주문/결제 | 홈플러스 온라인, 맛있는 마트</title>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_buying.css">
-<script>const cpath = '${cpath}'</script>
+<script>
+	const cpath = '${cpath}'
+</script>
 <script src="${cpath}/resources/js/function_buying.js"></script>
 </head>
 <body>
@@ -56,52 +58,14 @@
 					<table class="cartProducts">
 						<thead>
 							<tr>
-								<td><input type="checkbox" value="1"></td>
+								<td><input type="checkbox" id="allChecked"></td>
 								<td>상품/옵션정보</td>
 								<td>구매예정금액</td>
 								<td>행사/할인</td>
 								<td>선택</td>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td><input type="checkbox" name="idx" value="3"></td>
-								<td>
-									<div class="cartProdName">
-										<img src="">
-										<div>
-											올리브파래&들기름재래전장김 20G*6봉
-											<div class="counter">
-												<button class="mabtn">-</button>
-												<input type="text" value="1" name="cnt">
-												<button class="plbtn">+</button>
-											</div>
-										</div>
-									</div>
-									<p>최대 10개 구매가능</p>
-								</td>
-								<td>
-									<div class="lastprice">
-						                <span>17,990 원</span>
-						                <div class="lastprice_icon">
-						                    <div class="price_hidden">
-						                        <dl>
-						                            <dt>상품할인</dt>
-						                            <dd>6000원</dd>
-						                        </dl>
-						                        <dl>
-						                            <dt>총 할인금액</dt>
-						                            <dd>11,990원</dd>
-						                        </dl>
-						                    </div>
-						                </div>
-						                <p>11,990원</p>
-						            </div>
-						        </td>
-								<td>-</td>
-								<td><button><div></div></button></td>
-							</tr>
-						</tbody>
+						<tbody></tbody>
 					</table>
 				</form>
             </div>
@@ -123,7 +87,7 @@
                     <span><p>75000</p>원</span>
                 </div>
                 <div class="keepgoingBtn">
-                    <button type="submit">전체상품 주문하기</button>
+                    <button class="orderAll" type="submit">전체상품 주문하기</button>
                     <button type="submit">선택상품 주문하기</button>
                 </div>
             </div>
@@ -132,8 +96,14 @@
 </main>
 
 <script>
+	window.addEventListener('load', cartLoadHandler)
+	
+	const allcheck = document.getElementById('allChecked')
+	allcheck.addEventListener('change', cartAllItemClick)
+	
 	const btns = Array.from(document.querySelectorAll('.keepgoingBtn > button'))
 	btns.forEach(btn => btn.addEventListener('click', cartToDeliveryInfo))
+	
 </script>
 
 <%@ include file="../footer.jsp" %>
