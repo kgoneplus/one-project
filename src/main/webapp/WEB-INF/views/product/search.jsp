@@ -4,6 +4,7 @@
 <title>Insert title here</title>
 
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_search.css">
+
 </head>
 
 <body>

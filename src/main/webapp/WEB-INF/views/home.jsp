@@ -4,8 +4,8 @@
 <title>원플러스 홈</title>
 <link type="text/css" rel="stylesheet"
 	href="${cpath }/resources/css/style_main.css">
-<script src="${cpath}/resources/js/function_main.js"></script>
 <script src="${cpath}/resources/js/function_header.js"></script>
+<script src="${cpath}/resources/js/function_main.js"></script>
 </head>
 <body>
 
@@ -86,9 +86,11 @@
 		let unit = 0
 		let cnt = 0
 
-		document.querySelector('.next').onclick = slide
-		document.querySelector('.prev').onclick = slide
+		//document.querySelector('.next').onclick = slide
+		//document.querySelector('.prev').onclick = slide
 		// setInterval(slide, 1500); //2.5초
+		document.querySelector('.next').addEventListener('click', slide)
+		document.querySelector('.prev').addEventListener('click', slide)
 		
 		const toTop = document.getElementById('toTop')
 		const listLiArray = Array.from(document.querySelectorAll('.main_list_nav > ul > li'))		
