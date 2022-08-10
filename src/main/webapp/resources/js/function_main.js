@@ -38,11 +38,11 @@
  
  // 스크롤 이벤트
  function scrollHandler(event){
-	 let target = document.documentElement
-	 const flag = target.scrollTop + target.clientHeight >= target.scrollHeight
-	 if(flag) {
-		 mainLoadHandler()
-	 }
+    let target = document.documentElement
+    const flag = target.scrollTop + target.clientHeight >= target.scrollHeight
+    if(flag) {
+       mainLoadHandler()
+    }
  }
  
  
