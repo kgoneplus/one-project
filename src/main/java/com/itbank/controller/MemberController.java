@@ -1,21 +1,33 @@
 package com.itbank.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.itbank.oneplus.NaverDTO;
+import com.itbank.oneplus.MemberDTO;
+import com.itbank.service.MemberService;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 	
+	@Autowired private MemberService ms;
+	
 	//창 페이지
 	@GetMapping("/login")
 	public void login() {}
+	
+	//로그인
+	@PostMapping("/login")
+	public String login(MemberDTO dto, HttpSession session) {
+		
+		MemberDTO login = ms.login(dto);
+		session.setAttribute("login", login);
+		return "redirect:/";
+	}
 	
 	@GetMapping("/join")
 	public void join() {}
@@ -34,12 +46,8 @@ public class MemberController {
 	@GetMapping("/login/naver")
 	public void naverlogin() {}
 	
-	@GetMapping("/login/integration")
-	public void integrationlogin() {}
-	
 	@GetMapping("/login/kakao")
 	public void kakaologin() {}
-	
 	
 	
 	

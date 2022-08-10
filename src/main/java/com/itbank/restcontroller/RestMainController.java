@@ -19,4 +19,5 @@ public class RestMainController {
 	public List<ProductDTO> mainloadList(String mainList_cate,@PathVariable int offset){
 		return mainService.mainloadList(mainList_cate, offset);
 	}
+	
 }

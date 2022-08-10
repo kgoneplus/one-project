@@ -15,7 +15,8 @@
 <script src="${cpath}/resources/js/function_header.js"></script>
 </head>
 <body>
-	 <header>      
+	 <header>  
+	 	<div align="left">${login.userid } ${login.name }</div>    
         <div class="top">   
             <div class="left">
                 <a href="${cpath }"><img src="${cpath }/resources/img/oneplus.png" width="160px" height="40px"></a>
@@ -30,12 +31,12 @@
                    <div class="member_img">
                         <a href="${cpath }/mypage/mypageMain"><img src="${cpath }/resources/img/member.png" width="40px" height="40px"></a>  
                         <ul> 
-                            <li><a href="#">주문/배송조회</a></li>
+                            <li><a href="${cpath}/mypage/orders">주문/배송조회</a></li>
                             <li><a href="#">고객센터</a></li>
                             <li><a href="#">회원정보</a></li>
                         </ul> 
                 </div>   
-                <div><a href="#"><img src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a></div>
+                <div><a href="${cpath}/buying/cart"><img src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a></div>
             </div>
         </div>
         <nav>

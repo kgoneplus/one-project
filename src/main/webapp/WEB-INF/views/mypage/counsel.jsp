@@ -4,8 +4,69 @@
 <title>1:1 문의 내역 | MY 홈플러스 | 홈플러스</</title>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
+<style>
+.counsel_modal {
+	display: none;
+}
+.counsel_overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 70%;
+	z-index: 5;
+}
+.counsel_content {
+	position: absolute;
+	z-index: 6;
+	width: 700px;
+	height: 660px;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	overflow: auto;
+	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+}
+.counsel_hidden {
+	display: none;
+}
+.counsel_content > div:nth-child(1) {
+	font-weight: bold;
+	padding: 25px;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 2px solid gray;	
+}
+.counsel_table {
+	margin: auto;
+	width: 600px;
+	height: 500px;
+	border: 1px solid black;
+	margin-top: 30px;
+}
+.counsel_close {
+	cursor: pointer;
+}
+.counsel_submit {
+	text-align: center;
+}
+</style>
 </head>
 <body>
+<script>
+	function counselOpenModal() {
+		const counsel_modal = document.querySelector('.counsel_modal')
+		counsel_modal.style.display = 'flex'
+	}
+	function counselCloesModal() {
+		const counsel_modal = document.querySelector('.counsel_modal')
+		counsel_modal.style.display = 'none'
+	}
+</script>
 <main>
     <div class="mypagewrapper">
         <aside>
@@ -53,7 +114,7 @@
                 <div class="titleArea">
                     <h2>상품문의</h2>
                 </div>
-                <div class="rightArea"></div>
+                <div class="rightArea"><button>1:1 문의하기</button></div>
             </div>
             
  			<div class="dateFilter">
@@ -78,5 +139,85 @@
             </div>
         </section>
     </div>
+		
+		<!-- 문의하기 2022 08 09 ~ 작업중입니다 -->
+		<div class="counsel_modal" class="counsel_hidden">
+			<div class="counsel_content">
+				<div>
+					<div>1:1 문의하기</div>
+					<div class="counsel_close">X</div>
+				</div>
+								
+				<form method="post" enctype="multipart/form-data">
+				<table class="counsel_table">
+					<tr>
+						<th>문의 유형</th>
+						<td>
+							<select name="askType">
+								<option>기타</option>
+								<option>배송</option>
+								<option>상품</option>
+								<option>주문</option>
+								<option>결제</option>
+								<option>교환/반품/환불</option>
+								<option>행사/쿠폰/포인트</option>
+								<option>홈페이지/시스템</option>
+							</select>
+						</td>
+					</tr>
+					
+					<tr>
+						<th>주문/상품</th>
+						<td>
+							<span>주문/상품과 관련없는 문의사항 입니다</span>
+							<span><button>주문/상품 선택</button></span>
+						</td>
+					</tr>
+					
+					<tr>
+						<th>제목</th>
+						<td><input type="text" name="title" placeholder="최소 2자 이상 입력해주세요 (최대 25자)" required></td>
+					</tr>
+					
+					<tr>
+						<th class="">내용</th>
+						<td>
+							<textarea name="content"
+								  rows="10"
+								  cols="55"
+								  placeholder="문의 내용을 입력해 주세요 (최대 700자 이내)&#13;&#10;고객님의 개인정보가 기입되지 않도록 주의해주세요" required></textarea>
+						</td>
+					</tr>
+					
+					<tr>
+						<th>이미지 등록(선택)</th>
+						<td>
+							<p><input type="file" name="img"></p>
+						</td>
+					</tr>
+					
+					<tr>
+						<th>답변알림(선택)</th>
+						<td>
+							<span><input type="checkbox">이메일 알림</span>
+							<span><input type="text" name="content" placeholder="babo@naver.com"></span>
+						</td>
+					</tr>
+				</table>
+				<p class="counsel_submit"><input type="submit" value="등록"></p>
+				</form>
+			</div>	
+		<div class="counsel_overlay"></div>
+	</div>
 </main>
+
+<script>
+	const counselModal_overlay = document.querySelector('.counsel_overlay')
+	const counselModal_close = document.querySelector('.counsel_close')
+	const counselModal_open = document.querySelector('.rightArea')
+	
+	counselModal_open.addEventListener('click', counselOpenModal)
+	counselModal_overlay.addEventListener('click', counselCloesModal)
+	counselModal_close.addEventListener('click', counselCloesModal)
+</script>
 <%@ include file="../footer.jsp" %>

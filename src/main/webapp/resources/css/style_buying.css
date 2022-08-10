@@ -1,0 +1,479 @@
+@charset "utf-8";
+
+html {
+	overflow-y: scroll;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+ul, li {
+	list-style: none;
+}
+
+.buying_header {
+	background-color: #faf9fb;
+	border-bottom: 1px solid #eee;
+}
+
+.inner {
+	width: 1200px;
+	height: 42px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.inner_left, .inner_right {
+	padding: 12px 0;
+}
+
+.black_logo {
+	background-image: url(../img/blacklogo_homeplus.png);
+	background-repeat: no-repeat;
+	width: 89px;
+	height: 20px;
+}
+
+.inner_right > a {
+	display: inline-block;
+	margin: 0 10px;
+	font-size: 12px;
+	color: #666;
+	vertical-align: baseline;
+	text-decoration: none;
+	cursor: pointer;
+}
+.mainDiv {
+	width: 1200px;
+	margin: auto;
+	margin-bottom: 100px;
+}
+.homeTitleWrap {
+	display: flex;
+	justify-content: space-between;
+}
+
+.homeStep {
+	display: flex;
+	line-height: 86px;
+}
+
+.homeStep > div {
+	display: inline-block;
+	background-image: url(../img/bg_step_line.png);
+	background-repeat: no-repeat;
+	width: 7px;
+	height: 14px;
+	margin-top: 36px;
+	margin-left: 10px;
+}
+
+.homeStep > span {
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 15px;
+	color: #999;
+}
+
+.homeStep > .homeStepselected {
+	color: black;
+	font-weight: bold;
+}
+
+.homeDeliveryTab {
+	width: 1200px;
+	height: 130px;
+	background: #fff;
+	color: #333;
+	border: 1px solid #df0011;
+	border-radius: 5px;
+}
+
+.homeDeliveryTab strong {
+	background: #df0011;
+	width: 68px;
+	height: 40px;
+	line-height: 40px;
+	padding: 5px 20px;
+	border-radius: 20px;
+	font-size: 15px;
+	color: #fff;
+	text-align: center;
+	margin: 10px;
+	display: inline-block;
+}
+
+.homeDeliveryTab p {
+	color: #666;
+	margin-left: 20px;
+	margin-top: 20px;
+	font-size: 15px;
+}
+
+#notice {
+	font-size: 12px;
+	color: #333;
+	line-height: 1.25;
+	margin-left: 10spx;
+}
+
+.deliveryTimeChoice > table {
+	width: 100%;
+	text-align: center;
+	border-top: 1px solid black;
+	border: 1px solid #ddd;
+	border-left: none;
+	border-right: none;
+	border-collapse: collapse;
+}
+
+.deliveryTimeChoice > table th {
+	height: 60px;
+	background: #f9fafb;
+	border: 1px solid #ddd;
+	font-size: 15px;
+	color: #333;
+}
+
+.deliveryTimeChoice > table td {
+	height: 100%;
+	padding: 0 10px;
+	font-size: 14px;
+	border: 1px solid #ddd;
+}
+
+.orderCheck {
+	display: flex;
+	margin-top: 40px;
+}
+
+.orderCheck > .orderProducts {
+	width: 830px;
+	border: 1px solid #ddd;
+	padding: 10px;
+}
+
+.orderCheck > .orderProducts > ul {
+	padding: 0;
+	margin: 10px;
+	display: flex;
+	flex-flow: wrap;
+	position: relative;
+}
+
+.orderCheck > .orderProducts > ul > li > img {
+	width: 90px;
+	height: 90px;
+	border-radius: 3px;
+	margin-right: 20px;
+}
+
+.orderCheck > .orderProducts > ul > li > .imgExp {
+	position: absolute;
+	top: 0;
+	display: block;
+	width: 90px;
+	height: 90px;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 12px;
+	color: #fff;
+	text-align: right;
+	background: rgba(51, 51, 51, 0.9);
+	border-radius: 3px;
+}
+
+.orderCheck > .orderProducts > ul > li .hidden {
+	display: none;
+}
+
+.orderCheck > .payTab {
+	width: 310px;
+	padding: 30px 20px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	background: #fff;
+	color: #999;
+	margin-left: 50px;
+}
+
+.payTab > div {
+	margin-bottom: 20px;
+}
+
+.payTab > div:last-child {
+	margin-bottom: 0;
+}
+
+.payTab > .payTabTotalprice {
+	display: flex;
+	justify-content: space-between;
+}
+
+.payTab > .payTabTotalprice > span:first-child {
+	display: inline-block;
+	font-size: 15px;
+	color: #333;
+	font-weight: 600;
+}
+
+.payTab > .payTabTotalprice > span > p {
+	display: inline-block;
+	margin: 0 5px;
+	font-size: 15px;
+	color: #333;
+	font-weight: 600;
+}
+
+.payTab > .resultPrice {
+	border-top: 1px solid #ddd;
+	padding-top: 20px;
+}
+
+.payTab > .resultPrice > span:first-child {
+	line-height: 36px;
+}
+
+.payTab > .resultPrice > span > p {
+	font-size: 24px;
+	color: #df0011;
+}
+
+.keepgoingBtn > button:first-child {
+	color: #fff;
+	border: 0;
+	background-color: #df0011;
+	width: 100%;
+	height: 60px;
+	font-size: 18px;
+	font-weight: 500;
+	cursor: pointer;
+}
+.keepgoingBtn > button:last-child {
+	color: #fff;
+	border: 0;
+	background-color: black;
+	width: 100%;
+	height: 60px;
+	font-size: 18px;
+	font-weight: 500;
+	margin-top: 5px;
+	cursor: pointer;
+}
+.homeDeliveryBox {
+	margin-top: 30px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 10px;
+}
+.homeDeliveryBox > .manageDelivery {
+	display: flex;
+	justify-content: space-between;
+}
+.homeDeliveryBox > .manageDelivery > button {
+	height: 30px;
+    line-height: 28px;
+    font-size: 12px;
+    color: #333;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    background: #fff;
+    text-align: center;
+    margin-top: 8px;
+}
+.orderProducts .cartProducts {
+	width: 100%;
+	cellspacing: 0;
+	cellpadding: 10px;
+	border-collapse: collapse;
+}
+.orderProducts .cartProducts > thead > tr > td {
+	height: 50px;
+    padding: 0 20px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 400;
+    background: #f9fafb;
+    text-align: center;
+}
+.orderProducts .cartProducts td {
+	border: 1px solid #eee;
+}
+.cartProducts > tbody td button {
+	width: 72px;
+	height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+	margin-top: 5px;
+    background: transparent;
+    cursor: pointer;
+}
+.cartProducts tr > td:first-child,
+.cartProducts tr > td:nth-child(4),
+.cartProducts tr > td:nth-child(5) {
+	text-align: center;
+}
+.cartProducts > tbody td button div {
+	width: 17px;
+	height: 18px;
+    background-image: url(../img/btn_delete.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+    margin-left: 20px;
+}
+.cartProdName {
+	display: flex;
+	padding: 10px;
+}
+.cartProdName > img {
+	width: 90px;
+    height: 90px;
+    border-radius: 3px;
+}
+.cartProdName > div {
+	margin: 15px 5px;
+	font-size: 14px;
+    color: #333;
+    overflow: hidden;
+}
+.cartProducts tbody > tr > td > p {
+	margin-top: 10px;
+    font-size: 12px;
+    color: #999;
+}
+.inpCounter {
+	display: block;
+}
+.lastprice {
+	padding-left: 40px;
+}
+.lastprice > span:nth-child(1) {
+    text-align: left;
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+    text-decoration: line-through;
+    padding-left: 10px;
+    margin-bottom: 3px;
+    display: inline-block;
+}
+.lastprice > p:last-child {
+    text-align: left;
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+    padding-left: 13px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.lastprice_icon{
+    background-image: url(../img/homeplusicon.png);
+    background-position: -730px -1px;
+    background-repeat: no-repeat;
+    width: 28px;
+    height: 70px;
+    margin: -23px 0px -44px 70px;
+    
+}
+.lastprice_icon:hover {
+    cursor: pointer;
+}
+.lastprice_icon:hover .price_hidden{
+    display: block;
+    cursor: pointer;
+}
+.price_hidden {
+    display: none;
+    background-color: white;
+    position: absolute;
+    width: 200px;
+    margin-left: -150px;
+    margin-top: 25px;
+    border: 1px solid rgb(51, 51, 51);
+    box-shadow: rgb(0 0 0 / 15%) 0px 1px 12.5px 0px;
+    border-radius: 1px;
+    font-size: 12px;
+}
+.price_hidden > dl {
+    display: flex;
+    justify-content: space-between;          
+    width: 165px;
+    padding-left: 7px;
+    margin: 11px;
+    font-weight: bold;
+}
+.price_hidden > dl > dt {
+    color: #333333; 
+}
+.price_hidden > dl:nth-child(1) > dt {
+    color: #666666;
+}
+.price_hidden > dl:nth-child(2) > dt {
+    color: rgb(223, 0, 17);
+}
+.price_hidden > dl > dd {
+    color: #999999; 
+}
+.price_hidden > dl:nth-child(2) > dd {
+    color: rgb(223, 0, 17);
+}
+.counter {
+	width: 93px;
+	height: 30px;
+	border-radius: 3px;
+	border: 1px solid #ddd;
+	background: rgb(255, 255, 255);
+	position: relative;
+	color: #333;
+	margin-top: 30px;
+	float: right;
+}
+
+.counter > .mabtn {
+	float: left;
+	position: absolute;
+	width: 20px;
+	height: 100%;
+	border-radius: 0px;
+	background-color: white;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+	margin: 0;
+}
+
+.counter > .plbtn {
+	float: right;
+	position: absolute;
+	width: 20px;
+	height: 100%;
+	border-radius: 0px;
+	background-color: white;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+	margin: 0;
+	left: 72px;
+}
+
+.counter > input {
+	float: left;
+	width: 50px;
+	height: 100%;
+	text-align: center;
+	border-width: 0px 1px;
+	border-style: none solid;
+	border-right-color: #ddd;
+	border-left-color: #ddd;
+	font-size: 14px;
+	line-height: 40px;
+	min-height: 0px;
+	border-radius: 0px;
+	padding: 0px;
+	position: absolute;
+	left: 20px;
+}
