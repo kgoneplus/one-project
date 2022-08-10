@@ -16,7 +16,6 @@
 </head>
 <body>
 	 <header>  
-	 	<div align="left">${login.userid } ${login.name }</div>    
         <div class="top">   
             <div class="left">
                 <a href="${cpath }"><img src="${cpath }/resources/img/oneplus.png" width="160px" height="40px"></a>
@@ -27,7 +26,18 @@
             </div>
             
             <div class="right">
-                   <div><a href="${cpath }/member/login"><img src="${cpath }/resources/img/login.png" width="40px" height="40px"></a></div>
+                   <div>
+                   		<c:if test="${empty login }">
+                   			<a href="${cpath }/member/login">
+                   				<img src="${cpath }/resources/img/login.png" width="40px" height="40px">
+                   			</a>
+                   		</c:if>
+                   		<c:if test="${not empty login }">
+                   			<a href="${cpath }/member/logout">
+                   				<img src="${cpath }/resources/img/logout.png" width="40px" height="40px">
+                   			</a>
+                   		</c:if>
+                   </div>
                    <div class="member_img">
                         <a href="${cpath }/mypage/mypageMain"><img src="${cpath }/resources/img/member.png" width="40px" height="40px"></a>  
                         <ul> 
