@@ -124,9 +124,4 @@ public class ProductDTO {
 		this.category2 = category2;
 	}
 	
-	
-	
-
-
-	
 }
