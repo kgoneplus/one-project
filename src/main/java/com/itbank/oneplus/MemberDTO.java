@@ -12,20 +12,44 @@ package com.itbank.oneplus;
 import java.sql.Date;
 
 public class MemberDTO {
-	private int number;
+	private int idx;
 	private String name;
 	private String address;
 	private String gender;
 	private Date birth;
 	private String phonenum;
 	private String userid;
+	private String userpw;
 	private String email;
+	private String addr_number;
+	private String addr_juso;
+	private String addr_detail;
+	private String addr_Reference;
 	
-	public int getNumber() {
-		return number;
+	
+	public String getAddr_number() {
+		return addr_number;
 	}
-	public void setNumber(int number) {
-		this.number = number;
+	public void setAddr_number(String addr_number) {
+		this.addr_number = addr_number;
+	}
+	public String getAddr_juso() {
+		return addr_juso;
+	}
+	public void setAddr_juso(String addr_juso) {
+		this.addr_juso = addr_juso;
+	}
+	public String getAddr_detail() {
+		return addr_detail;
+	}
+	public void setAddr_detail(String addr_detail) {
+		this.addr_detail = addr_detail;
+	}
+	public String getAddr_Reference() {
+		return addr_Reference;
+	}
+	public void setAddr_Reference(String addr_Reference) {
+		this.addr_Reference = addr_Reference;
 	}
 	public String getName() {
 		return name;
@@ -68,6 +92,18 @@ public class MemberDTO {
 	}
 	public void setPhonenum(String phonenum) {
 		this.phonenum = phonenum;
+	}
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
+	public String getUserpw() {
+		return userpw;
+	}
+	public void setUserpw(String userpw) {
+		this.userpw = userpw;
 	}
 	
 	

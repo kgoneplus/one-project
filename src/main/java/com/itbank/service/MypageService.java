@@ -11,11 +11,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itbank.oneplus.AskDAO;
 import com.itbank.oneplus.AskDTO;
+import com.itbank.oneplus.MypageDAO;
 
 @Service
 public class MypageService {
 
 	@Autowired private AskDAO askDAO;
+	@Autowired private MypageDAO mypageDAO;
 	private String uploadPath = "D:\\ProjectForder";
 	
 	public MypageService() {
@@ -48,5 +50,4 @@ public class MypageService {
 		String fileName = today + "_" + dto.getIdx() + "_" + f.getOriginalFilename();
 		return fileName;
 	}
-
 }

@@ -77,7 +77,7 @@ public class MypageController {
 	@GetMapping("/agree")
 	public void agree() {}
 	
-	// 회원 탈퇴
+	// 회원 탈퇴페이지로 이동
 	@GetMapping("/withdraw")
-	public void withdraw() {}	
+	public void withdraw() {}
 }
