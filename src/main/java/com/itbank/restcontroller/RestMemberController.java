@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.itbank.integration_member.IntegrationJoinDAO;
-import com.itbank.integration_member.IntegrationMemberDTO;
+import com.itbank.oneplus.IntegrationJoinDAO;
+import com.itbank.oneplus.IntegrationMemberDTO;
 
 
 
@@ -19,11 +19,9 @@ public class RestMemberController {
 	//https://sso.homeplus.co.kr/refit/register/registerPage 네이버 로그인폼
 	@Autowired private IntegrationJoinDAO dao;
 	
-	
-	
 	@PostMapping("/integrationjoining")
 	public int insert(@RequestBody IntegrationMemberDTO dto) {
 		return dao.insert(dto);
-		
 	}
+	
 }

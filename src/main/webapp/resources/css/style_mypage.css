@@ -34,7 +34,7 @@ aside  ul {
 }
 section {
     width: calc(100% - 260px);
-    border: 1px dashed blue;
+/*     border: 1px dashed blue; */
 }
 .mypageLeftWrapper {
     padding-bottom: 40px;
@@ -87,74 +87,294 @@ section {
     padding: 40px 30px;
     background: rgb(249, 250, 251);
     width: 880px;
- }
- .mypageTitleBox {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    padding: 0 0 18px 0;
- }
- .mypageTitleBox > .titleArea > h2 {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    font-size: 24px;
+}
+.mypageTitleBox {
+   display: flex;
+   justify-content: space-between;
+   position: relative;
+   padding: 0 0 18px 0;
+}
+.mypageTitleBox > .titleArea > h2 {
+   display: inline-block;
+   margin: 0;
+   padding: 0;
+   font-size: 24px;
+   font-weight: 600;
+}
+.mypageTitleBox > .titleArea > p {
+   display: inline-block;
+   margin-left: 5px;
+   font-size: 15px;
+   color: rgb(153, 153, 153);
+}
+.mypageTitleBox > .rightArea {
+   position: absolute;
+   right: 0;
+   bottom: 20px;
+   font-size: 12px;
+}
+.orderSummaryBox {
+   height: 112px;
+   background: rgb(255, 255, 255);
+   text-align: center;
+   border-radius: 3px;
+   box-shadow: rgb(0 0 0 / 3%) 0px 2px 13px 0px;
+}
+.orderSummaryBox > ul > li {
+   width: 20%;
+   height: 87px;
+   padding: 25px 0px 0px;
+}
+.orderSummaryBox > ul > li:last-child {
+   border-left: 1px solid rgb(238, 238, 238);
+}
+.orderSummaryBox em {
+   display: block;
+   margin-bottom: 15px;
+   font-size: 14px;
+   color: rgb(153, 153, 153);
+   font-style: normal;
+}
+.orderSummaryBox .orderStatus {
+   display: inline-block;
+   font-size: 28px;
+   font-weight: 600;
+}
+.blue > a {
+   color: rgb(0, 145, 255);
+}
+.red > a {
+   color: rgb(223, 0, 17);
+}
+.grey > a {
+   color: rgb(153, 153, 153);
+}
+.wishListBox {
+   width: 880px;
+   margin: 40px auto;
+   border-bottom: 2px solid rgb(51, 51, 51);
+}
+.wishListProd {
+   width: 880px;
+   margin: auto;
+}
+.mypageSubtitle > .titleArea > h2 {
+    font-size: 30px;
     font-weight: 600;
- }
- .mypageTitleBox > .titleArea > p {
-    display: inline-block;
-    margin-left: 5px;
-    font-size: 15px;
-    color: rgb(153, 153, 153);
- }
- .mypageTitleBox > .rightArea {
-    position: absolute;
-    right: 0;
-    bottom: 20px;
-    font-size: 12px;
- }
- .orderSummaryBox {
-    height: 112px;
-    background: rgb(255, 255, 255);
-    text-align: center;
+    margin-top: 15px;
+}
+.dateFilter {
+    width: 880px;
+    padding: 30px;
     border-radius: 3px;
-    box-shadow: rgb(0 0 0 / 3%) 0px 2px 13px 0px;
- }
- .orderSummaryBox > ul > li {
-    width: 20%;
-    height: 87px;
-    padding: 25px 0px 0px;
- }
- .orderSummaryBox > ul > li:last-child {
-    border-left: 1px solid rgb(238, 238, 238);
- }
- .orderSummaryBox em {
-    display: block;
-    margin-bottom: 15px;
+    background-color: rgb(249, 250, 251);
+    margin: 10px;
+    position: relative;
+}
+.filterlist, .filterItem {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    align-items: center;
+}
+.filterItem > ul {
+    display: flex;
+}
+.filterItem > ul > li {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border: 1px solid rgb(221, 221, 221);
+    margin-left: -1px;
+    width: 85px;
+    height: 36px;
+    min-height: 36px;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+.filterItem > p {
+    margin: 0 10px;
     font-size: 14px;
-    color: rgb(153, 153, 153);
-    font-style: normal;
- }
- .orderSummaryBox .orderStatus {
-    display: inline-block;
-    font-size: 28px;
+    color: rgb(51, 51, 51);
     font-weight: 600;
- }
- .blue > a {
-    color: rgb(0, 145, 255);
- }
- .red > a {
-    color: rgb(223, 0, 17);
- }
- .grey > a {
+    line-height: 41px;
+}
+.filterItem > input {
+    width: 180px;
+    height: 36px;
+    border-radius: 2px;
+    border: 1px solid rgb(221, 221, 221);
+    background-color: rgb(255, 255, 255);
+}
+.filterItem > .inquiry {
+    width: 90px;
+    height: 36px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+.filterItem > .calendar1 {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    top: 9px;
+    right: 216px;
+}
+.filterItem > .calendar2 {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    top: 9px;
+    right: 3px;
+}
+::-webkit-calendar-picker-indicator { /* 달력 아이콘 부분 */
+    background-image: url(img/icon_084.png);
+    background-repeat: no-repeat;
+    width: 17px;
+    height: 17px;
+}
+.ordertitleArea {
+    display: flex;
+}
+.ordertitleArea > h2 {
+    margin: 0;
+}
+.ordertitleArea > span, .ordertitleArea > a {
+    display: inline-block;
+    margin: 14px 0px 0px 12px;
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    font-weight: normal;
+    vertical-align: top;
+}
+.erasebottom {
+    margin-bottom: 0;
+}
+.claimstatus {
+    height: 55px;
+    padding: 0px 30px;
+    background: rgb(227, 236, 245);
+    display: flex;
+    align-items: center;
+}
+.claimstatus > p {
+    display: inline-block;
+    font-size: 15px;
+    color: rgb(89, 120, 147);
+    font-weight: 600;
+    margin: 0;
+}
+.claimstatus_icon {
+    display: inline-block;
+    background-image: url(img/spritesheet.png);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    background-position: -4003px -5px;
+    margin: 1px 7px 0px 0px;
+}
+.orderProductlist {
+    display: flex;
+}
+.orderProductlist_overlay {
+    z-index: 2;
+    width: 850px;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    position: absolute;
+    margin-top: -203px;
+}
+.orderProduct {
+    width: 130px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+.orderProduct > a {
+    overflow: hidden;
+    font-size: 12px;
+    color: rgb(51, 51, 51);
+    display: block;
+}
+.orderProductlist img {
+    width: 130px;
+    height: 130px;
+}
+.orderProduct > span {
+    font-size: 14px;
+    font-weight: bold;
+}
+.stepBox {
+    height: 35px;
+    border-radius: 35px;
+    box-sizing: content-box;
+    background: rgb(221, 221, 221);
+    display: flex;
+    align-items: center;
+}
+.stepBox > ul {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+.stepBox > ul > li {
+    width: 212.5px;
+    height: 35px;
+    text-align: center;
+    line-height: 34px;
+    font-size: 14px;
+    border-radius: 36px;
+    background: rgb(221, 221, 221);
+    color: rgb(255, 255, 255);
+}
+.stepBox > ul > .stepBoxselected {
+    background-color: rgb(223, 0, 17);
+    color: rgb(255, 255, 255);
+}
+.couponlist_header {
+	display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(51, 51, 51);
+}
+.couponlist_sort {
+	display: flex;
+}
+.couponlist_header button {
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	font-size: 15px;
+    padding-right: 15px;
+    margin-right: 15px;
     color: rgb(153, 153, 153);
- }
- .wishListBox {
-    width: 880px;
-    margin: 40px auto;
-    border-bottom: 2px solid rgb(51, 51, 51);
- }
- .wishListProd {
-    width: 880px;
-    margin: auto;
- }
+}
+.coupon_reg > button {
+	text-align: center;
+    border-radius: 3px;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(51, 51, 51);
+    color: rgb(51, 51, 51);
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+}
+.mileage_reg > button {
+	text-align: center;
+    border-radius: 3px;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(51, 51, 51);
+    color: rgb(51, 51, 51);
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+}

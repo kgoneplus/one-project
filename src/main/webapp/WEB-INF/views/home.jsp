@@ -5,6 +5,11 @@
 <link type="text/css" rel="stylesheet"
 	href="${cpath }/resources/css/style_main.css">
 <script src="${cpath}/resources/js/function_main.js"></script>
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+	charset="utf-8"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 
@@ -42,42 +47,40 @@
 		</ul>
 	</nav>
 
-	<div class="list">
+	<div class="list" offset="0"></div>
 
-	</div>
 
-	
 	<div id="remocon">
-			<div class="remocon_frame">
-				<div class="remocon_miniItem">
-					<figure>
-						<img src="${cpath }/resources/img/icon_147.png">
-						<figcaption>로그인</figcaption>
-					</figure>
-				</div>
-				<div class="remocon_miniItem">
-					<figure>
-						<img src="${cpath }/resources/img/icon_139.png">
-						<figcaption>배송</figcaption>
-					</figure>
-				</div>
-				<div class="remocon_miniItem">
-					<figure>
-						<img src="${cpath }/resources/img/icon_152.png">
-						<figcaption>장바구니</figcaption>
-					</figure>
-				</div>
-				<div class="remocon_miniItem">
-					<figure>
-						<img src="">
-						<figcaption>최근 본 상품</figcaption>
-					</figure>
-				</div>
-				<div class="remocon_miniItem">
-					<button id="toTop">TOP</button>
-				</div>
+		<div class="remocon_frame">
+			<div class="remocon_miniItem">
+				<figure>
+					<img src="${cpath }/resources/img/icon_147.png">
+					<figcaption>로그인</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<img src="${cpath }/resources/img/icon_139.png">
+					<figcaption>배송</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<img src="${cpath }/resources/img/icon_152.png">
+					<figcaption>장바구니</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<img src="">
+					<figcaption>최근 본 상품</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<button id="toTop">TOP</button>
 			</div>
 		</div>
+	</div>
 	</main>
 
 	<script>
@@ -94,6 +97,21 @@
 		window.addEventListener('load', mainLoadHandler(''))
 		toTop.addEventListener('click', scrollToTop)
 		listLiArray.forEach(li => li.addEventListener('click', mainSelectLiClick))
+		
+		window.addEventListener('scroll', scrollHandler)
+		// 네이버 로그인 구현-----------------------------------------------------------------------
+	  	var naver_id_login = new naver_id_login("GNv8IH0Irsq3ZxTgn4bE", "http://localhost:8080/project/member/login/naverlogin");
+	  	// 접근 토큰 값 출력
+ 		alert(naver_id_login.oauthParams.access_token);
+	  	console.log(naver_id_login);
+	 	// 네이버 사용자 프로필 조회
+		naver_id_login.get_naver_userprofile("naverSignInCallback()");
+		// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+		function naverSignInCallback() {
+	    alert(naver_id_login.getProfileData('email'));
+	    alert(naver_id_login.getProfileData('nickname'));
+	    alert(naver_id_login.getProfileData('age'));
+		}
 	</script>
 
 
