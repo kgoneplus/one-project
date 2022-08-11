@@ -7,9 +7,10 @@ public class ProductcartDTO {
 	private String productName;
 	private int productPrice;
 	private String productImg;
+	private int productDiscount;
 	private int cnt;
 	private int maxbuyCnt;
-	
+
 	public int getMember_idx() {
 		return member_idx;
 	}
@@ -51,6 +52,12 @@ public class ProductcartDTO {
 	}
 	public void setMaxbuyCnt(int maxbuyCnt) {
 		this.maxbuyCnt = maxbuyCnt;
+	}
+	public int getProductDiscount() {
+		return productDiscount;
+	}
+	public void setProductDiscount(int productDiscount) {
+		this.productDiscount = productDiscount;
 	}
 	
 }

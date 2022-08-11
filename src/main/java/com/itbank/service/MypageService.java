@@ -4,9 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-
-import javax.mail.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,12 +57,13 @@ public class MypageService {
 		return mypageDAO.delete(dto);
 	}
 	
-	// 회원정보 수정
+	// 회원정보 수정	
 	public int modify(MemberDTO dto) {
 		return mypageDAO.update(dto);
 	}
-
-	
-
+	// 회원정보 불러오기
+	public MemberDTO selectOneMember(int idx) {
+		return mypageDAO.selectOneMember(idx);
+	}
 
 }

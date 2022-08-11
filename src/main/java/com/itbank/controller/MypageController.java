@@ -1,9 +1,9 @@
 package com.itbank.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 
-import javax.servlet.http.HttpSession;
+import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.oneplus.AskDTO;
@@ -73,8 +72,13 @@ public class MypageController {
 	public void qna() {}
 	
 	// 회원 정보 관리
-	@GetMapping("/myinfo")
-	public void myinfo() {}
+	@GetMapping("/myinfo/{idx}")
+	public ModelAndView myinfo(@PathVariable int idx) {
+		ModelAndView mav = new ModelAndView("mypage/myinfo");
+		MemberDTO dto = mypageService.selectOneMember(idx);
+		mav.addObject("dto", dto);
+		return mav;
+	}
 	
 	@PostMapping("/myinfo/{idx}")
 	public String modify(MemberDTO dto) {
@@ -94,11 +98,18 @@ public class MypageController {
 	@GetMapping("/withdraw")
 	public void withdraw() {}
 	
-	// 회원 탈퇴
+	// 회원 탈퇴, 비밀번호 유효성 검사 해야함
 	@PostMapping("/withdraw")
-	public String delete(MemberDTO dto, HttpSession session) {
-		session.invalidate();
-		int row = mypageService.delete(dto);
+	public String delete(MemberDTO dto, HttpServletRequest request) {
+		MemberDTO userpw = (MemberDTO) request.getSession().getAttribute("login");
+		
+		System.out.println("비밀번호 입력 : " + dto.getUserpw());	// 비밀번호 받아옴
+		System.out.println("세션의 비밀번호 : " + userpw);
+		
+		if(dto.getUserpw().equals(userpw.getUserpw())) {
+			int row = mypageService.delete(dto);
+			request.getSession().invalidate();
+		} 		
 		return "redirect:/";
 	}
 }

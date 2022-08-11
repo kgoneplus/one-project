@@ -1,7 +1,5 @@
 'use strict'
 
-
-
 // 회원가입 인설트
 function insertHandler (event) {
 	event.preventDefault()
@@ -67,7 +65,6 @@ function memberId(event) {
 		}
 		ConfirmMessage.innerText = message
 	})
-	
 	
 }
 // 주소 데이터

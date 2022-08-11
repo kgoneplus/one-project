@@ -72,7 +72,7 @@
 				
 				<div>
 					<!-- POST가 아니고 비밀번호 일치여부 확인해서 데이터 삭제해야함 -->
-					<form id="memberDeleteForm" method="post">
+					<form id="memberDeleteForm" method="post" onsubmit="return confirm('정말 탈퇴하시겠습니까')">
 						<p>아이디
 							<input type="text" name="userid" value="${login.userid }" readonly>
 						</p>
@@ -87,12 +87,6 @@
     </div>
 </main>
 <script>
-	const memberDeleteForm = document.getElementById('memberDeleteForm')
-	
-	function memberSecession() {
-		confirm('정말 탈퇴하시겠습니까?')
-	}
-	
-	memberDeleteForm.addEventListener('submit', memberSecession)
+
 </script>
 <%@ include file="../footer.jsp" %>

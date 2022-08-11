@@ -40,7 +40,7 @@
             <div class="mypageLeftWrapper">
                 <h3>MY 회원정보</h3>
                 <ul>
-                    <li><a href="${cpath }/mypage/myinfo">회원 정보 관리</a></li>
+                    <li><a href="${cpath }/mypage/myinfo/${login.idx}">회원 정보 관리</a></li>
                     <li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
                     <li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
                     <li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
@@ -51,7 +51,7 @@
         <section>
             <div class="userBaseInfo">
                 <div class="userBaseInfo_name">
-                    <p>홍길동</p> 님
+                    <p>${login.name }</p> 님
                     <p>안녕하세요</p>
                 </div>
                 <div class="userBaseInfo_coupon">
