@@ -4,6 +4,7 @@
 <title>원플러스 홈</title>
 <link type="text/css" rel="stylesheet"
 	href="${cpath }/resources/css/style_main.css">
+<script src="${cpath}/resources/js/function_header.js"></script>
 <script src="${cpath}/resources/js/function_main.js"></script>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
@@ -13,7 +14,8 @@
 </head>
 <body>
 
-	<main>
+	<main id="main">
+	<div id="overlay"></div>
 	<div class="slider">
 		<div class="mainImg_wrap">
 			<div class="mainImg"
@@ -40,10 +42,10 @@
 	<nav class="main_list_nav">
 		<ul>
 			<li class="main_list_liselected">전체</li>
-			<li mainlist_cate="신선식품">신선식품</li>
-			<li mainlist_cate="가공품">가공품</li>
-			<li mainlist_cate="생활용품">생활용품</li>
-			<li mainlist_cate="냉동식품">냉동식품</li>
+			<li mainlist_productMain_categoryCode="신선식품">신선식품</li>
+			<li mainlist_productMain_categoryCode="가공품">가공품</li>
+			<li mainlist_productMain_categoryCode="생활용품">생활용품</li>
+			<li mainlist_productMain_categoryCode="냉동식품">냉동식품</li>
 		</ul>
 	</nav>
 
@@ -87,18 +89,27 @@
 		let unit = 0
 		let cnt = 0
 
-		document.querySelector('.next').onclick = slide
-		document.querySelector('.prev').onclick = slide
+		//document.querySelector('.next').onclick = slide
+		//document.querySelector('.prev').onclick = slide
 		// setInterval(slide, 1500); //2.5초
+		document.querySelector('.next').addEventListener('click', slide)
+		document.querySelector('.prev').addEventListener('click', slide)
 		
 		const toTop = document.getElementById('toTop')
 		const listLiArray = Array.from(document.querySelectorAll('.main_list_nav > ul > li'))		
-		
+		const mainoverlay = document.getElementById('main')
+
+  		
 		window.addEventListener('load', mainLoadHandler(''))
 		toTop.addEventListener('click', scrollToTop)
 		listLiArray.forEach(li => li.addEventListener('click', mainSelectLiClick))
+
+		
+		mainoverlay.addEventListener('click', closeModal)
+
 		
 		window.addEventListener('scroll', scrollHandler)
+		
 		// 네이버 로그인 구현-----------------------------------------------------------------------
 	  	var naver_id_login = new naver_id_login("GNv8IH0Irsq3ZxTgn4bE", "http://localhost:8080/project/member/login/naverlogin");
 	  	// 접근 토큰 값 출력
@@ -112,6 +123,8 @@
 	    alert(naver_id_login.getProfileData('nickname'));
 	    alert(naver_id_login.getProfileData('age'));
 		}
+		
+
 	</script>
 
 

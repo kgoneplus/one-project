@@ -56,66 +56,22 @@
 			</div>
 			
 			<fieldset>
-				<div><input type="checkbox">안내 사항을 모두 확인하였으며, 탈퇴하는 사이트의 이용 데이터가 복구가 불가함에 동의합니다.</div>
+				<div><input type="checkbox" required>안내 사항을 모두 확인하였으며, 탈퇴하는 사이트의 이용 데이터가 복구가 불가함에 동의합니다.</div>
 				<div>또한 모든 홈플러스 패밀리사이트를 탈퇴하는 경우, 탈퇴 아이디(ID호출)의 재사용이 불가함에 동의합니다</div>
-			</fieldset>
-			
-			<div>
-				<div>탈퇴정보</div>
-				<div>* 필수 입력</div>
-			</div>
-			<fieldset>
-				<div>탈퇴할 서비스 선택</div>
-				<div><input type="checkbox">전체</div>
-				<div><input type="checkbox">홈플러스 온라인</div>
-			</fieldset>
+			</fieldset>		
 			
 			<div>
 				<form>
 				<table>
 					<tr>
-						<th>이름 *</th>
-						<td><input type="text" name="name" required></td>
+						<th>이름 ${login.name }</th>
 					</tr>
 					<tr>
-						<th>생년월일 *</th>
-						<td><input type="date" name="birth" required></td>
-					</tr>
-					<tr>
-						<th>휴대전화번호 *</th>
-						<td>
-							<select>
-								<option value="">선택</option>
-								<option value="">010</option>
-								<option value="">011</option>
-								<option value="">016</option>
-								<option value="">017</option>
-								<option value="">018</option>
-								<option value="">019</option>
-								<option value="">070</option>
-							</select>
-							- <input type="tel" name="phoneNum2" required size="3"> -
-							<input type="tel" name="phoneNum3" required size="3">
-						</td>
-					</tr>
-					<tr>
-						<th>회원탈퇴 사유</th>
-						<td>
-							<select>
-								<option value="">선택</option>
-								<option value="">상품 품질 불만</option>
-								<option value="">주문 취소반품,교환불만</option>
-								<option value="">쇼핑몰 속도불만</option>
-								<option value="">배송지연</option>
-								<option value="">이용빈도 낮음</option>
-								<option value="">기타</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<th>회원탈퇴 의견</th>
-						<td><textarea name="content" cols="50" rows="10"></textarea></td>
-					</tr>
+						<th>
+							비밀번호
+							<input type="password" name="userpw" required autofocus>
+						</th>
+					</tr>						
 				</table>
 				</form>
 				<p><input type="submit" value="회원 탈퇴"></p>
@@ -123,4 +79,7 @@
 		</div>
 	</section>
 </main>
+<script>
+
+</script>
 <%@ include file="../footer.jsp" %>

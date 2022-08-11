@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itbank.oneplus.ProductDAO">
+	
+	<select id="categoryList" parameterType="String" resultType="prod">
+
+		select * from productMain P
+		   join category C
+		      on P.categoryCode = C.productMain_categoryCode
+		   where C.category2 = #{category2} 
+		      <if test="productMain_categoryCode != null"> and P.categoryCode = #{productMain_categoryCode}</if>
+	</select>
+	
+	
+</mapper>
