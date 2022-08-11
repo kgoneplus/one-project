@@ -8,6 +8,9 @@ function categoryModal(event) {
 		
 	const mainoverlay = document.getElementById('overlay')
 	mainoverlay.style.display = 'block'
+		
+	const category = document.querySelector('#cate > a')
+	category.addEventListener('click', closeModal)
 	
 }
 

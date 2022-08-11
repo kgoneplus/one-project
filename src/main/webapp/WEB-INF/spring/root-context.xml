@@ -27,7 +27,9 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:config/cart.xml</value>
+				<value>classpath:config/product.xml</value>
 			</list>
+			
 		</property>
 	</bean>
 	

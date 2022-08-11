@@ -1,5 +1,63 @@
 'use strict'
 
+//// 찜하기 클릭이벤트
+//function heartClick(event){
+//	const 
+//}
+
+
+// 전체 인기상품 슬라이드
+function allhotSlide(event){
+	let dir = -1
+	let unit = 0
+	let cnt = 0
+	if(event != undefined && event.target.classList.contains('prevBtn')) {
+        dir = 1
+        cnt -= 1
+    }
+
+    const src = document.querySelectorAll('.allhot')[cnt++]
+    const wrap = document.querySelectorAll('.hotslide_wrap')[1]
+    
+    
+    if(cnt > 3) {
+        cnt = 0
+        wrap.style.marginLeft = 0
+        wrap.style.transitionDuration = 'unset'
+    }
+    else {
+        unit = 550 * cnt
+        wrap.style.marginLeft = -unit + 'px'
+        wrap.style.transitionDuration = '0.4s'
+    }
+}
+
+// 카테고리 내 인기상품 슬라이드
+function catehotSlide(event){
+	let dir = -1
+	let unit = 0
+	let cnt = 0
+	if(event != undefined && event.target.classList.contains('prevBtn')) {
+        dir = 1
+        cnt -= 1
+    }
+
+    const src = document.querySelectorAll('.hotslideImg')[cnt++]
+    const wrap = document.querySelector('.hotslide_wrap')
+    
+    
+    if(cnt > 3) {
+        cnt = 0
+        wrap.style.marginLeft = 0
+        wrap.style.transitionDuration = 'unset'
+    }
+    else {
+        unit = 550 * cnt
+        wrap.style.marginLeft = -unit + 'px'
+        wrap.style.transitionDuration = '0.4s'
+    }
+}
+
 // 상품메인 상세 사진 클릭이벤트
 function pdtviewSlide(event){
 	const pdtslideArray = event.target.style.backgroundImage
@@ -36,14 +94,13 @@ function prodslide(event){
     }
 }
 
-
 // 상품상세, 리뷰, 배송교환 클릭이벤트
 function pdtClickHandler(event){	
 	pdtArray.forEach(button => button.classList.remove('selected'))
     event.target.classList.add('selected')
 
     const index = pdtArray.indexOf(event.target)
-//    console.log(index)
+    
     divArray.forEach(div => div.classList.remove('selected'))
     divArray[index].classList.add('selected')
 }

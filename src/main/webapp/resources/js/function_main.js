@@ -38,11 +38,11 @@
  
  // 스크롤 이벤트
  function scrollHandler(event){
-	 let target = document.documentElement
-	 const flag = target.scrollTop + target.clientHeight >= target.scrollHeight
-	 if(flag) {
-		 mainLoadHandler()
-	 }
+    let target = document.documentElement
+    const flag = target.scrollTop + target.clientHeight >= target.scrollHeight
+    if(flag) {
+       mainLoadHandler()
+    }
  }
  
  
@@ -58,7 +58,7 @@
 	 discountPrice = discountPrice.toLocaleString()
 	 // productImg 이미지 파일이름 수정하기
 	 product.innerHTML += `<div class="productImg">
-								<img src="${cpath}/resources/getImage1/${ob.productImg}">
+								<img src="${cpath}/resources/pImg/${ob.productImg}">
 							</div>
 							<div class="productInfo">
 								<div class="productTitle">

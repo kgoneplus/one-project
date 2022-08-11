@@ -15,5 +15,7 @@
 	<!-- alias = 별칭 -->
 	<typeAliases>
 		<typeAlias type="com.itbank.oneplus.ProductcartDTO" alias="cart"/>
+		<typeAlias type="com.itbank.oneplus.ProductDTO" alias="prod"/>
 	</typeAliases>
+	
 </configuration>		

@@ -10,7 +10,6 @@
         <viewmain>
             <div id="viewleft">
                 <div class="product_mainimg" style="background-image: url(${cpath}/resources/img/prodslideImg1.jpeg);"></div>
-                <!-- 자바스크립트 슬라이드이미지넣어야함! -->
                 <div class="product_slide">
 					<div class="prodImg_wrap">
 						<div class="prodslideImg" 
@@ -85,7 +84,14 @@
         </viewmain>
         <viewmain>
             <div id="viewleft">
-                <div class="product_reviewSummary"></div>
+<!-- 				디비값으로구현해야됨 -->
+                <div class="product_reviewSummary">
+                	<div class="reviewScoreBox">
+                		<div class="scopeNum">별점몇?</div>
+                		<div class="scopeGrade">몇개니</div>
+                		<div class="scopeTotal">몇개구매함?</div>
+                	</div>
+                </div>
             </div>
             <div id="viewright">
                 <div class="product_buytotal">
@@ -102,14 +108,106 @@
         <viewmain>
             <div id="viewleft">
                 <div class="catehotProduct">
-                    <div class="hotItem">카테고리 내 인기상품</div>
-                    <div class="hotslide"></div>
+                    <div class="hotItem">
+                    	<div class="hotItemTitle">카테고리 내 인기상품</div>
+                    	<div class="hotItemBtn">
+                    		<button type="button" class="prevBtn"></button>
+                    		<button type="button" class="nextBtn"></button>
+                    	</div>
+                    	
+                    </div>
+                    <div class="hotslide">
+                    	<div class="hotslide_wrap">
+                    		<div class="hotslide_Swrap">
+                    			<div class="hotslideImg" 
+								style="background-image: url(${cpath}/resources/img/prodslideImg1.jpeg);"></div>
+								<span>상품가격</span>
+								<p>상품명</p>
+                    		</div>
+							<div class="hotslide_Swrap">
+                    			<div class="hotslideImg" 
+								style="background-image: url(${cpath}/resources/img/prodslideImg2.jpeg);"></div>
+								<span>상품가격</span>
+								<p>상품명</p>
+                    		</div>
+                    		<div class="hotslide_Swrap">
+                    			<div class="hotslideImg" 
+								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div>
+								<span>상품가격</span>
+								<p>상품명</p>
+                    		</div>
+                    		<div class="hotslide_Swrap">
+                    			<div class="hotslideImg" 
+								style="background-image: url(${cpath}/resources/img/prodslideImg4.jpeg);"></div>
+								<span>상품가격</span>
+								<p>상품명</p>
+                    		</div>
+                    		<div class="hotslide_Swrap">
+                    			<div class="hotslideImg" 
+								style="background-image: url(${cpath}/resources/img/prodslideImg5.jpeg);"></div>
+								<span>상품가격</span>
+								<p>상품명</p>
+                    		</div>
+                    		<div class="hotslide_Swrap">
+                    			<div class="hotslideImg" 
+								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div>
+								<span>상품가격</span>
+								<p>상품명</p>
+                    		</div>
+						</div>
+                    </div>
                 </div>
             </div>
             <div id="viewright">
                 <div class="allhotProduct">
-                    <div class="hotItem">실시간 인기상품</div>
-                    <div class="hotslide"></div>
+                    <div class="hotItem">
+                    	<div class="hotItemTitle">실시간 인기상품</div>
+                    	<div class="hotItemBtn">
+                    		<button type="button" class="prevBtn"></button>
+                    		<button type="button" class="nextBtn"></button>
+                    	</div>
+                    	
+                    </div>
+                    <div class="hotslide">
+                    	<div class="hotslide_wrap">
+                    		<div class="hotslide_Swrap">
+                    			<div class="hotslideImg allhot" 
+								style="background-image: url(${cpath}/resources/img/prodslideImg1.jpeg);"></div>
+								<span>상품가격</span>
+								<p>상품명</p>
+                    		</div>
+							<div class="hotslide_Swrap">
+                    			<div class="hotslideImg allhot" 
+								style="background-image: url(${cpath}/resources/img/prodslideImg2.jpeg);"></div>
+								<span>상품가격</span>
+								<p>상품명</p>
+                    		</div>
+                    		<div class="hotslide_Swrap">
+                    			<div class="hotslideImg allhot" 
+								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div>
+								<span>상품가격</span>
+								<p>상품명</p>
+                    		</div>
+                    		<div class="hotslide_Swrap">
+                    			<div class="hotslideImg allhot" 
+								style="background-image: url(${cpath}/resources/img/prodslideImg4.jpeg);"></div>
+								<span>상품가격</span>
+								<p>상품명</p>
+                    		</div>
+                    		<div class="hotslide_Swrap">
+                    			<div class="hotslideImg allhot" 
+								style="background-image: url(${cpath}/resources/img/prodslideImg5.jpeg);"></div>
+								<span>상품가격</span>
+								<p>상품명</p>
+                    		</div>
+                    		<div class="hotslide_Swrap">
+                    			<div class="hotslideImg allhot" 
+								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div>
+								<span>상품가격</span>
+								<p>상품명</p>
+                    		</div>
+						</div>
+                    </div>
                 </div>
             </div>
         </viewmain>
@@ -343,12 +441,17 @@
 	document.querySelector('.prevBtn').onclick = prodslide
 	document.querySelector('.nextBtn').onclick = prodslide
 	
-// 	const pdtslideArray = Array.from(document.querySelectorAll('.prodImg_wrap > .prodslideImg'))
-// 	const slidedivArray = Array.from(document.querySelectorAll('div.product_mainimg > div'))
-// 	pdtslideArray.forEach(button => button.addEventListener('click', pdtslideClickHandler))
+	document.querySelectorAll('.prevBtn')[1].onclick = catehotSlide
+	document.querySelectorAll('.nextBtn')[1].onclick = catehotSlide
+	
+	document.querySelectorAll('.prevBtn')[2].onclick = allhotSlide
+	document.querySelectorAll('.nextBtn')[2].onclick = allhotSlide
 	
 	const pdtslideArray = Array.from(document.querySelectorAll('.prodImg_wrap > .prodslideImg'))
 	pdtslideArray.forEach(img => img.addEventListener('click', pdtviewSlide))
+	
+	const heartbtn = Array.from(document.querySelectorAll('.product_heartbtn'))
+	heartbtn.forEach(heart => heart.addEventListener('click', heartClick))
 	
 </script>
 
