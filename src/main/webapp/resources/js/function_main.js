@@ -58,7 +58,7 @@
 	 discountPrice = discountPrice.toLocaleString()
 	 // productImg 이미지 파일이름 수정하기
 	 product.innerHTML += `<div class="productImg">
-								<img src="${cpath}/resources/pImg/${ob.productImg}">
+								<img src="${cpath}/resources/getImage1/${ob.productImg}">
 							</div>
 							<div class="productInfo">
 								<div class="productTitle">
