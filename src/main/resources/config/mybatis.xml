@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+			"-//mybatis.org//DTD Config 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="useGeneratedKeys" value="false"/>
+		<setting name="mapUnderscoreToCamelCase" value="false"/>
+		<!-- user_name -> userName으로 자동으로 바꾸지 않겠다 : CamelCase false -->
+	</settings>
+	
+	
+	<!-- alias = 별칭 -->
+	<typeAliases>
+		<typeAlias type="com.itbank.oneplus.ProductcartDTO" alias="cart"/>
+		<typeAlias type="com.itbank.oneplus.MemberDTO" alias="member"/>
+	</typeAliases>
+</configuration>		

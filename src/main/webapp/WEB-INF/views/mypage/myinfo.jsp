@@ -55,7 +55,40 @@
                 </div>
                 <div class="rightArea"></div>
             </div>
-
+            <div>
+            	<div>정보입력</div>
+            	<div>* 필수입력</div>
+            </div>
+            <div>
+            	<form method="POST">
+            	<input type="hidden" name="idx" value="${dto.idx }">
+            	<p>이름 ${login.name }</p>
+            	<p>아이디 ${login.userid }</p>
+            	<p>비밀번호
+            		<input type="password" name="userpw" value="${login.userpw }">
+            	</p>
+            	<p>법정 생년월일
+            		<input type="date" name="birth" value="${login.birth }">
+            	</p>
+            	<p>성별
+            		<select name="gender">
+            			<option>선택</option>
+            			<option value="남성" ${dto.category == '남성' ? 'selected' : ''}>남성</option>
+            			<option value="여성" ${dto.category == '여성' ? 'selected' : ''}>여성</option>
+            		</select>
+            	</p>
+            	<p>이메일
+            		<input type="email" name="email" value="${login.email }">
+            	</p>
+            	<p>전화번호
+            		<input type="text" name="phonenum" value="${login.phonenum }">
+            	</p>
+            	<p>주소
+            		<input type="text" name="address" value="${login.address }">
+            	</p>
+            	<p><input type="submit" value="저장"></p>
+            	</form>
+            </div>
         </section>
     </div>
 </main>

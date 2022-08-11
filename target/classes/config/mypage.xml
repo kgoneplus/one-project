@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- BoardDAO의 메서드에 맞춰 실행될 SQL문을 작성한다 -->
+<mapper namespace="com.itbank.oneplus.MypageDAO">
+	<update id="update" parameterType="com.itbank.oneplus.MemberDTO">
+		update parent_member
+			<set>
+				<if test="userpw != null">	userpw 		= #{userpw},	</if>
+				<if test="birth != null">	birth 		= #{birth},		</if>
+				<if test="gender != null">	gender 		= #{gender},	</if>
+				<if test="email != null">	email 		= #{email},		</if>
+				<if test="phonenum != null">phonenum 	= #{phonenum},	</if>
+				<if test="address != null">	address 	= #{address},	</if>
+			</set>
+			where idx = #{idx}
+	</update>
+</mapper>
+
+
+
+

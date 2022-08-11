@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+
+import javax.mail.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itbank.oneplus.AskDAO;
 import com.itbank.oneplus.AskDTO;
+import com.itbank.oneplus.MemberDTO;
 import com.itbank.oneplus.MypageDAO;
 
 @Service
@@ -50,4 +54,18 @@ public class MypageService {
 		String fileName = today + "_" + dto.getIdx() + "_" + f.getOriginalFilename();
 		return fileName;
 	}
+
+	// 회원탈퇴
+	public int delete(MemberDTO dto) {
+		return mypageDAO.delete(dto);
+	}
+	
+	// 회원정보 수정
+	public int modify(MemberDTO dto) {
+		return mypageDAO.update(dto);
+	}
+
+	
+
+
 }

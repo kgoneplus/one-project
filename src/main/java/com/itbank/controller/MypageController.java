@@ -1,14 +1,21 @@
 package com.itbank.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.oneplus.AskDTO;
+import com.itbank.oneplus.MemberDTO;
 import com.itbank.service.MypageService;
 
 @Controller
@@ -69,6 +76,12 @@ public class MypageController {
 	@GetMapping("/myinfo")
 	public void myinfo() {}
 	
+	@PostMapping("/myinfo/{idx}")
+	public String modify(MemberDTO dto) {
+		int row = mypageService.modify(dto);
+		return "redirect:/mypage/myinfo/" + dto.getIdx();
+	}
+
 	// 배송 정보 관리
 	@GetMapping("/shipacc")
 	public void shipacc() {}
@@ -80,4 +93,12 @@ public class MypageController {
 	// 회원 탈퇴페이지로 이동
 	@GetMapping("/withdraw")
 	public void withdraw() {}
+	
+	// 회원 탈퇴
+	@PostMapping("/withdraw")
+	public String delete(MemberDTO dto, HttpSession session) {
+		session.invalidate();
+		int row = mypageService.delete(dto);
+		return "redirect:/";
+	}
 }
