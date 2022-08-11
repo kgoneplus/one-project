@@ -64,8 +64,8 @@
 					                            	<a href="${cpath }/product/list?category2=200009 ">사과/배<div class="arrow"></div></a>
 						                            	<div class="allmenu3">
 							                            	<ul>
-									                            <li><a href="${cpath }/product/list?category2=200009&productMain_categoryCode='300032'">배</a></li>
-									                            <li><a href="${cpath }/product/list?category2=200009&productMain_categoryCode='300033'">사과</a></li>
+									                            <li><a href="${cpath }/product/list?category2=200009&productMain_categoryCode=300032">배</a></li>
+									                            <li><a href="${cpath }/product/list?category2=200009&productMain_categoryCode=300033">사과</a></li>
 															</ul>
 														</div>
 					                            </li>
