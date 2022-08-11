@@ -41,8 +41,6 @@ public class MemberController {
 	@GetMapping("/join")
 	public void join() {}
 	
-	@GetMapping("/login/naverlogin")
-	public void loginnaverlogin(HttpSession session) {}
 	// 회원가입
 	@GetMapping("/join/integration")
 	public void integrationjoin() {}
