@@ -15,7 +15,6 @@
 <script src="${cpath}/resources/js/function_buying.js"></script>
 </head>
 <body>
-
 <div class="buying_header">
     <div class="inner">
         <div class="inner_left">
@@ -97,6 +96,7 @@
 
 <script>
 	window.addEventListener('load', cartLoadHandler)
+	window.addEventListener('load', paymentBox)
 	
 	const allcheck = document.getElementById('allChecked')
 	allcheck.addEventListener('change', cartAllItemClick)
@@ -104,6 +104,8 @@
 	const btns = Array.from(document.querySelectorAll('.keepgoingBtn > button'))
 	btns.forEach(btn => btn.addEventListener('click', cartToDeliveryInfo))
 	
+	const deliveryBtn = document.querySelector('.manageDelivery > button')
+	deliveryBtn.addEventListener('click', deliveryManagement)
 </script>
 
 <%@ include file="../footer.jsp" %>
