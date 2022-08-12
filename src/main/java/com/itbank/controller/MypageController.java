@@ -98,18 +98,18 @@ public class MypageController {
 	@GetMapping("/withdraw")
 	public void withdraw() {}
 	
-	// 회원 탈퇴, 비밀번호 유효성 검사 해야함
+	// 회원 탈퇴
 	@PostMapping("/withdraw")
 	public String delete(MemberDTO dto, HttpServletRequest request) {
 		MemberDTO userpw = (MemberDTO) request.getSession().getAttribute("login");
 		
-		System.out.println("비밀번호 입력 : " + dto.getUserpw());	// 비밀번호 받아옴
-		System.out.println("세션의 비밀번호 : " + userpw);
-		
 		if(dto.getUserpw().equals(userpw.getUserpw())) {
 			int row = mypageService.delete(dto);
 			request.getSession().invalidate();
-		} 		
+		} 
+		else {
+			return "redirect:/mypage/withdraw";
+		}
 		return "redirect:/";
 	}
 }
