@@ -35,5 +35,30 @@ public class MemberService {
 
 		return login;
 	}
+	
+	public MemberDTO naverconfirm(MemberDTO naver) {
+		
+		// 테이블에 있는 값들을 불러옴
+		List<MemberDTO> members = dao.memberconfirm();
+		for(int i = 0; i < members.size(); i++) {
+			String email = members.get(i).getEmail();
+			String name = members.get(i).getName();
+			String phonenum = members.get(i).getPhonenum();
+			
+			if(naver.getEmail().equals(email)  && 
+			   naver.getName().equals(name) &&
+			   naver.getPhonenum().equals(phonenum)	) {
+				
+				// 테이블의 값과 같으면 다시 테이블에서 객체 모두를 가져와줌
+				return dao.naverconfirm(naver);
+			}
+		}
+		
+		
+		
+		return null;
+	}
+	
+	
 
 }
