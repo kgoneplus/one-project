@@ -5,6 +5,54 @@
 //	const 
 //}
 
+// convert
+function convert(dto) {
+	const hotslide_Swrap = document.createElement('div')
+	hotslide_Swrap.classNmae = 'hotslide_Swrap'
+	
+	const hotslideImg = document.createElement('div')
+	hotslideImg.className = 'hotslideImg'
+	hotslideImg.style.backgroundImage = `url('${cpath}/resources/getImage1/${dto.productImg}')`
+	hotslide_Swrap.appendChild(hotslideImg)
+	
+	const productPrice = document.createElement('span')
+	productPrice.innerText = dto.productPrice
+	hotslide_Swrap.appendChild(productPrice)
+	
+	const prodName = document.createElement('p')
+	prodName.innerText = dto.productName
+	hotslide_Swrap.appendChild(prodName)
+	
+	return hotslide_Swrap
+}
+
+// 전체 인기상품 핸들러
+function allcateloadHandler(){
+	console.log()
+	const url = cpath + '/product/view/allcateload'
+	fetch(url)
+	.then(resp => resp.json())
+	.then(json => {
+		const hotslide_wrap = document.querySelector('.allhotProduct .hotslide_wrap')
+		json.forEach(dto => {
+			hotslide_wrap.appendChild(convert(dto))
+		})
+	})
+}
+
+// 카테고리 내 인기상품 핸들러
+function cateloadHandler(categoryCode){
+	console.log(categoryCode)
+	const url = cpath + '/product/view/cateload/' + categoryCode
+	fetch(url)
+	.then(resp => resp.json())
+	.then(json => {
+		const hotslide_wrap = document.querySelector('.hotslide_wrap')
+		json.forEach(dto => {
+			hotslide_wrap.appendChild(convert(dto))
+		})
+	})
+}
 
 // 전체 인기상품 슬라이드
 function allhotSlide(event){
@@ -113,10 +161,10 @@ function plCounter(event){
 	
 	let qtyPrice = Array.from(document.querySelectorAll('.qtyPrice1'))
 	
-	// 디비에있는 고정값을 가져와야됨! 고쳐야된다@@@@!!!!!!!(innerText말고 value값으로)
-	const price = document.querySelector('.OrgPrice > em').innerText
-	
-	let chprice = +price * cnt
+	const price = document.querySelector('.OrgPrice > em').innerText.replace(',', '')
+
+	let chprice = price * +cnt
+	chprice = Intl.NumberFormat('ko-kr').format(chprice)
 	
 	counter1.forEach(count => count.value = cnt)
 	qtyPrice.forEach(pri => pri.innerText = chprice)
@@ -132,10 +180,10 @@ function maCounter(event){
 	
 	let qtyPrice = Array.from(document.querySelectorAll('.qtyPrice1'))
 	
-	// 디비에있는 고정값을 가져와야됨! 고쳐야된다@@@@!!!!!!!(innerText말고 value값으로)
-	let price = document.querySelector('.OrgPrice > em').innerText
+	let price = document.querySelector('.OrgPrice > em').innerText.replace(',', '')
 	
-	let chprice = document.querySelector('.qtyPrice1').innerText - +price
+	let chprice = document.querySelector('.qtyPrice1').innerText.replace(',', '') - price
+	chprice = Intl.NumberFormat('ko-kr').format(chprice)
 	
 	if(cnt < 1){
 		counter1.forEach(count => count.value = 1)

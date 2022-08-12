@@ -17,9 +17,11 @@ public class ProductService {
 
 	public List<ProductDTO> categoryList(@RequestParam HashMap<String, String> idx) {
 		List<ProductDTO> catelist = dao.categoryList(idx);
-		
-		System.out.println("서비스이거눙" + catelist);
 		return catelist;
+	}
+
+	public ProductDTO selectProductOne(int idx) {
+		return dao.selectProductOne(idx);
 	}
 
 }

@@ -47,6 +47,14 @@ public interface ProductDAO {
 	// 카테고리에서 클릭한 상품 리스트 보여주기
 	List<ProductDTO> categoryList(HashMap<String, String> idx);
 
+	@Select("select * from productMain where idx=#{idx}")
+	ProductDTO selectProductOne(int idx);
+
+	@Select("select * from productMain where categorycode=#{categorycode} order by buyCnt offset 0 rows fetch next 6 rows only")
+	List<ProductDTO> catehotList(int categorycode);
+
+	@Select("select * from productMain order by buyCnt offset 0 rows fetch next 6 rows only")
+	List<ProductDTO> allcatehotList();
 	
 	
 }
