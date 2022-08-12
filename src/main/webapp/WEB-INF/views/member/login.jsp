@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="cpath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_login.css">
+<link type="text/css" rel="stylesheet"
+	href="${cpath }/resources/css/style_login.css">
 </head>
 <script
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
@@ -15,6 +16,7 @@
 	<script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <body>
+	
 	 <div class="login_menu">
         <div class="login_center">
             <form method="POST">

@@ -33,11 +33,10 @@ function insertHandler (event) {
 				location.reload(true)
 			}
 		})
-		
 	}
-	
 }
-// 아이디 중복 채크
+
+// 아이디 중복 체크
 function memberId(event) {
 	const url = `${cpath}/joining/memberload`
 	const id = document.getElementById('idtext').value
@@ -115,4 +114,3 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
-

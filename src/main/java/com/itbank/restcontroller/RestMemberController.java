@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.service.MemberService;
 
-
-
 @RestController
 @RequestMapping("/joining")
 public class RestMemberController {
@@ -23,16 +21,14 @@ public class RestMemberController {
 
 	@Autowired private MemberService js;
 	
-	
 	@GetMapping("/memberload")
 	public List<MemberDTO> selectMemberList(){
 		return js.selectMemberList();
 	}
 	
+	// 회원가입 요청, ajax로 받아서 처리
 	@PostMapping("/integrationjoining")
 	public int insert(@RequestBody MemberDTO dto) {
 		return js.insert(dto);
 	}
-	
-	
 }

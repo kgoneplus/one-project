@@ -1,7 +1,8 @@
 package com.itbank.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,6 @@ public class MemberController {
 	//로그인
 	@PostMapping("/login")
 	public String login(MemberDTO dto, HttpSession session) {
-		
 		MemberDTO login = ms.login(dto);
 		session.setAttribute("login", login);
 		return "redirect:/";
@@ -40,7 +40,7 @@ public class MemberController {
 	@GetMapping("/join")
 	public void join() {}
 	
-	// 회원가입
+	// 회원가입 jsp로 이동
 	@GetMapping("/join/integration")
 	public void integrationjoin() {}
 	
@@ -52,7 +52,9 @@ public class MemberController {
 	
 	// 로그인
 	@GetMapping("/login/naver")
-	public void naverlogin() {}
+	public String naverlogin() {
+		return "member/login/naverln";
+	}
 	
 	@GetMapping("/login/kakao")
 	public void kakaologin() {}
