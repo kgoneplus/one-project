@@ -21,8 +21,7 @@ function insertHandler (event) {
 				method: 'POST',
 				body: JSON.stringify(ob),
 				headers: {
-					'Content-Type': 
-
+					'Content-Type' : 'application/json; charset=utf-8'
 				}
 		}
 		
