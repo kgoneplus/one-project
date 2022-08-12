@@ -52,7 +52,9 @@ public class MemberController {
 	
 	// 로그인
 	@GetMapping("/login/naver")
-	public void naverlogin() {}
+	public String naverlogin() {
+		return "member/login/naverln";
+	}
 	
 	@GetMapping("/login/kakao")
 	public void kakaologin() {}

@@ -16,13 +16,7 @@
 	<h1>네이버로그인창</h1>
 	<hr>
 	<script>
-		var naverLogin = new naver.LoginWithNaverId({
-			clientId : "GNv8IH0Irsq3ZxTgn4bE",
-			callbackUrl : "http://localhost:8080/project/member/login/naver",
-			isPopup : false,
-			callbackHandle : true
-		});
-		naverLogin.init();
+		
 
 		window.addEventListener('load', function() {
 			naverLogin.getLoginStatus(function(status) {
