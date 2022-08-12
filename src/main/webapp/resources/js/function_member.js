@@ -1,7 +1,5 @@
 'use strict'
 
-
-
 // 회원가입 인설트
 function insertHandler (event) {
 	event.preventDefault()
@@ -35,11 +33,10 @@ function insertHandler (event) {
 				location.reload(true)
 			}
 		})
-		
 	}
-	
 }
-// 아이디 중복 채크
+
+// 아이디 중복 체크
 function memberId(event) {
 	const url = `${cpath}/joining/memberload`
 	const id = document.getElementById('idtext').value
@@ -67,7 +64,6 @@ function memberId(event) {
 		}
 		ConfirmMessage.innerText = message
 	})
-	
 	
 }
 // 주소 데이터
@@ -118,4 +114,3 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
-
