@@ -13,8 +13,7 @@
 <script
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
 	charset="utf-8"></script>
-	<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	
 <body>
 	
 	 <div class="login_menu">
@@ -61,8 +60,9 @@
             </form>
         </div>
     </div>
-    <script>
-	var naverLogin = new naver.LoginWithNaverId(
+   <!--  네이버 로그인 스크립트 -->
+   <script>
+   var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "GNv8IH0Irsq3ZxTgn4bE",
 	  			// 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
