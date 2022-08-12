@@ -101,15 +101,15 @@
 
  // 메인화면 아이템 카테고리 선택
  function mainSelectLiClick(event) {
+	event.preventDefault()
 	const list = document.querySelector('.list')
 	list.setAttribute('offset', 0)
-	
 	
 	const listLiArray = Array.from(document.querySelectorAll('.main_list_nav > ul > li'))
 	listLiArray.forEach(li => li.classList.remove('main_list_liselected'))
 	const li = event.target
 	li.classList.add('main_list_liselected')
-	const mainList_cate = li.getAttribute('mainlist_cate')
+	const mainList_cate = li.getAttribute('mainlist_productMain_categoryCode')
 	li.addEventListener('click', mainLoadHandler(mainList_cate))
  }
 
