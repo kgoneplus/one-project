@@ -6,6 +6,11 @@
 	href="${cpath }/resources/css/style_main.css">
 <script src="${cpath}/resources/js/function_header.js"></script>
 <script src="${cpath}/resources/js/function_main.js"></script>
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+	charset="utf-8"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 
@@ -44,42 +49,40 @@
 		</ul>
 	</nav>
 
-	<div class="list" offset="0">
+	<div class="list" offset="0"></div>
 
-	</div>
 
-	
 	<div id="remocon">
-			<div class="remocon_frame">
-				<div class="remocon_miniItem">
-					<figure>
-						<img src="${cpath }/resources/img/icon_147.png">
-						<figcaption>로그인</figcaption>
-					</figure>
-				</div>
-				<div class="remocon_miniItem">
-					<figure>
-						<img src="${cpath }/resources/img/icon_139.png">
-						<figcaption>배송</figcaption>
-					</figure>
-				</div>
-				<div class="remocon_miniItem">
-					<figure>
-						<img src="${cpath }/resources/img/icon_152.png">
-						<figcaption>장바구니</figcaption>
-					</figure>
-				</div>
-				<div class="remocon_miniItem">
-					<figure>
-						<img src="">
-						<figcaption>최근 본 상품</figcaption>
-					</figure>
-				</div>
-				<div class="remocon_miniItem">
-					<button id="toTop">TOP</button>
-				</div>
+		<div class="remocon_frame">
+			<div class="remocon_miniItem">
+				<figure>
+					<img src="${cpath }/resources/img/icon_147.png">
+					<figcaption>로그인</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<img src="${cpath }/resources/img/icon_139.png">
+					<figcaption>배송</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<img src="${cpath }/resources/img/icon_152.png">
+					<figcaption>장바구니</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<img src="">
+					<figcaption>최근 본 상품</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<button id="toTop">TOP</button>
 			</div>
 		</div>
+	</div>
 	</main>
 
 	<script>
@@ -106,6 +109,8 @@
 
 		
 		window.addEventListener('scroll', scrollHandler)
+		
+		
 		
 
 	</script>

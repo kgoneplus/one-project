@@ -69,7 +69,7 @@ function cartLoadHandler() {
 			tr.innerHTML = `<td><input type="checkbox" value="${dto.productMain_idx}"></td>
 							<td>
 								<div class="cartProdName">
-									<img src="${cpath}/resources/pImg/${dto.productImg}">
+									<img src="${cpath}/resources/getImage1/${dto.productImg}">
 									<div>
 										${dto.productName}
 										<div class="counter">
