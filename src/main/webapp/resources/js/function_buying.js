@@ -92,6 +92,7 @@ function cartDeleteHandler(event) {
 	let checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']")).map(item => item.value)
 	checkedItemList = checkedItemList.filter(item => item != 'on')
 	idx = checkedItemList[idx]
+	console.log(idx)
 	
 	const ob = {
 		'member_idx' : 1,
@@ -128,6 +129,7 @@ function cartLoadHandler() {
 			tr.setAttribute('productPrice', dto.productPrice)
 			tr.setAttribute('productDiscount', dto.productDiscount)
 			tr.setAttribute('maxbuyCnt', dto.maxbuyCnt)
+//			tr.setAttribute('ProductcartDTO', dto)
 			tr.innerHTML = `<td><input type="checkbox" name="productMain_idx" value="${dto.productMain_idx}"></td>
 							<td>
 								<div class="cartProdName">
@@ -182,15 +184,16 @@ function cartAllItemClick(event) {
 function cartToDeliveryInfo(event) {
 	// 선택상품 주문하기
 	let checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']:checked")).map(item => item.value)
-
+	
 	// 전체 상품주문하기
 	if(event.target.classList.contains('orderAll')) {
 		checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']")).map(item => item.value)
 	}
 	checkedItemList = checkedItemList.filter(item => item != 'on')
-//	console.log(checkedItemList)
+	console.log(checkedItemList)
+	// checkedItemList가 상품번호들의 배열이다 -> DTO 리스트로 바꿔야 밑에 fetch의 매개변수와 타입이 맞다 -> 변경 필요
 
-	const url = cpath + '/buying/cart/deliveryInfo'
+	const url = cpath + '/buying/deliveryInfo/' + 1
 	const opt = {
 		method: 'GET',
 		body: JSON.stringify(checkedItemList),
@@ -198,7 +201,13 @@ function cartToDeliveryInfo(event) {
 			'Content-Type' : 'application/json; charset=utf-8'
 		}
 	}
-//	location.href = cpath + '/buying/deliveryInfo/'
+	fetch(url, opt)
+//	let checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']:checked"))
+//	checkedItemList = checkedItemList.filter(item => item.value != 'on')
+//	const trArray = Array.from(document.querySelectorAll('.cartProducts tbody > tr'))
+//	for(let i=0; checkedItemList)
+	
+	
 }
 
 // 장바구니 -> 결제예정 금액 변동

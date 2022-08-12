@@ -26,5 +26,14 @@
 		        M.idx = #{member_idx}
 	</select>
 	
+	<select id="deliveryInfoSelectList" parameterType="hashmap" resultType="cart">
+		select * from productMain P
+				<foreach collection="hashmap">
+			join productCart C
+					on #{productMain_idx} = P.idx
+				</foreach>
+			where
+				C.member_idx = #{member_idx}
+	</select>
 	
 </mapper>

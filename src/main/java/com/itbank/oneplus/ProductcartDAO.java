@@ -1,5 +1,6 @@
 package com.itbank.oneplus;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -12,5 +13,7 @@ public interface ProductcartDAO {
 
 	@Delete("delete productCart where productMain_idx=${productMain_idx} and member_idx=${member_idx}")
 	int cartDelete(ProductcartDTO dto);
+
+	List<ProductcartDTO> deliveryInfoSelectList(HashMap<String, Object> param);
 
 }
