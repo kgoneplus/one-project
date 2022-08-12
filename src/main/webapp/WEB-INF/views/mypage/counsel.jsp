@@ -41,13 +41,6 @@
 	justify-content: space-between;
 	border-bottom: 2px solid gray;	
 }
-.counsel_table {
-	margin: auto;
-	width: 600px;
-	height: 500px;
-	border: 1px solid black;
-	margin-top: 30px;
-}
 .counsel_close {
 	cursor: pointer;
 }
@@ -101,7 +94,7 @@
             <div class="mypageLeftWrapper">
                 <h3>MY 회원정보</h3>
                 <ul>
-                    <li><a href="${cpath }/mypage/myinfo">회원 정보 관리</a></li>
+                    <li><a href="${cpath }/mypage/myinfo/${login.idx}">회원 정보 관리</a></li>
                     <li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
                     <li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
                     <li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
@@ -148,63 +141,40 @@
 					<div class="counsel_close">X</div>
 				</div>
 								
-				<form method="post" enctype="multipart/form-data">
-				<table class="counsel_table">
-					<tr>
-						<th>문의 유형</th>
-						<td>
-							<select name="askType">
-								<option>기타</option>
-								<option>배송</option>
-								<option>상품</option>
-								<option>주문</option>
-								<option>결제</option>
-								<option>교환/반품/환불</option>
-								<option>행사/쿠폰/포인트</option>
-								<option>홈페이지/시스템</option>
-							</select>
-						</td>
-					</tr>
-					
-					<tr>
-						<th>주문/상품</th>
-						<td>
-							<span>주문/상품과 관련없는 문의사항 입니다</span>
-							<span><button>주문/상품 선택</button></span>
-						</td>
-					</tr>
-					
-					<tr>
-						<th>제목</th>
-						<td><input type="text" name="title" placeholder="최소 2자 이상 입력해주세요 (최대 25자)" required></td>
-					</tr>
-					
-					<tr>
-						<th class="">내용</th>
-						<td>
-							<textarea name="content"
-								  rows="10"
-								  cols="55"
-								  placeholder="문의 내용을 입력해 주세요 (최대 700자 이내)&#13;&#10;고객님의 개인정보가 기입되지 않도록 주의해주세요" required></textarea>
-						</td>
-					</tr>
-					
-					<tr>
-						<th>이미지 등록(선택)</th>
-						<td>
-							<p><input type="file" name="img"></p>
-						</td>
-					</tr>
-					
-					<tr>
-						<th>답변알림(선택)</th>
-						<td>
-							<span><input type="checkbox">이메일 알림</span>
-							<span><input type="text" name="content" placeholder="babo@naver.com"></span>
-						</td>
-					</tr>
-				</table>
-				<p class="counsel_submit"><input type="submit" value="등록"></p>
+				<form method="POST" enctype="multipart/form-data">
+					<p>문의 유형
+						<select name="askType">
+							<option>기타</option>
+							<option>배송</option>
+							<option>상품</option>
+							<option>주문</option>
+							<option>결제</option>
+							<option>교환/반품/환불</option>
+							<option>행사/쿠폰/포인트</option>
+							<option>홈페이지/시스템</option>
+						</select>
+					</p>					
+					<p>주문/상품
+						<span>주문/상품과 관련없는 문의사항 입니다</span>
+						<span><button>주문/상품 선택</button></span>
+					</p>				
+					<p>제목
+						<input type="text" name="title" placeholder="최소 2자 이상 입력해주세요 (최대 25자)" required>
+					</p>										
+					<p>내용
+						<textarea name="content"
+							  rows="10"
+							  cols="55"
+							  placeholder="문의 내용을 입력해 주세요 (최대 700자 이내)&#13;&#10;고객님의 개인정보가 기입되지 않도록 주의해주세요" required></textarea>
+					</p>
+					<p>이미지 등록(선택)
+						<input type="file" name="img">
+					</p>					
+					<p>답변알림(선택)
+						<span><input type="checkbox">이메일 알림</span>
+						<span><input type="text" name="content" placeholder="babo@naver.com"></span>
+					</p>
+					<p class="counsel_submit"><input type="submit" value="등록"></p>
 				</form>
 			</div>	
 		<div class="counsel_overlay"></div>

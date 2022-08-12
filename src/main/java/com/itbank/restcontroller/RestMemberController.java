@@ -39,6 +39,7 @@ public class RestMemberController {
 		return ms.selectMemberList();
 	}
 
+	// 회원가입 요청, ajax로 받아서 처리
 	@PostMapping("/joining/integrationjoining")
 	public int insert(@RequestBody MemberDTO dto) {
 		return ms.insert(dto);
