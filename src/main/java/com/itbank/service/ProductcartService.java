@@ -15,11 +15,12 @@ public class ProductcartService {
 	@Autowired ProductcartDAO dao;
 
 	public List<ProductcartDTO> deliveryInfoSelectList(int idx, List<String> itemList) {
-		HashMap<String, Object> param = null;
+		System.out.println("service idx : " + idx);
+		System.out.println("service itemList : " + itemList);
+		
+		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("member_idx", idx);
-		for(int i=0; i<itemList.size(); i++) {
-			param.put("productMain_idx", itemList.get(i));
-		}
+		param.put("itemList", itemList);
 		return dao.deliveryInfoSelectList(param);
 	}
 

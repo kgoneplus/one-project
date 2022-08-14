@@ -116,7 +116,7 @@ function cartDeleteHandler(event) {
 
 // 장바구니 로드 핸들러
 function cartLoadHandler() {
-	const url = cpath + '/buying/cart/home/' + 1
+	const url = cpath + '/buying/cart/home/' + 2
 	fetch(url).then(resp => resp.json())
 	.then(json => {
 		const tbody = document.querySelector('.cartProducts tbody')
@@ -193,9 +193,9 @@ function cartToDeliveryInfo(event) {
 	console.log(checkedItemList)
 	// checkedItemList가 상품번호들의 배열이다 -> DTO 리스트로 바꿔야 밑에 fetch의 매개변수와 타입이 맞다 -> 변경 필요
 
-	const url = cpath + '/buying/deliveryInfo/' + 1
+	const url = cpath + '/buying/deliveryInfo/home/' + 2
 	const opt = {
-		method: 'GET',
+		method: 'POST',
 		body: JSON.stringify(checkedItemList),
 		headers: {
 			'Content-Type' : 'application/json; charset=utf-8'
