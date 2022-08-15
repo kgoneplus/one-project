@@ -44,7 +44,7 @@ public interface ProductDAO {
 			+ "offset #{offset} rows "
 			+ "fetch next 20 rows only")
 	List<ProductDTO> lifeList(int offset);
-
+	
 	// 카테고리에서 클릭한 상품 리스트 보여주기
 	List<ProductDTO> categoryList(HashMap<String, String> idx);
 
