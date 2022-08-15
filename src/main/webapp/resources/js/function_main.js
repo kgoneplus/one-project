@@ -83,14 +83,14 @@
  }
  
  // 메인화면 아이템 로드 핸들러
- function mainLoadHandler(mainList_cate) {
+ async function mainLoadHandler(mainList_cate) {
     const list = document.querySelector('.list')
     const offset = list.getAttribute('offset')
     console.log(offset)
     list.innerHTML = ''
      
     const url = cpath + '/mainload/' + offset + '?mainList_cate=' + mainList_cate 
-    fetch(url) 
+    await fetch(url) 
     .then(resp => resp.json())
     .then(json => {
       json.forEach(product => list.appendChild(convert(product)))
