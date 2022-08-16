@@ -51,7 +51,7 @@ public class MemberService {
 		return login;
 	}
 	
-	// 네이버 로그인또는 회원가입시 회원인지 아닌지 판별해서 로그인시키거나 naver dto 내보네기
+	// 네이버 로그인또는 회원가입시 회원인지 아닌지 판별해서 로그인시키거나 naver dto 리턴하기
 	public MemberDTO naverconfirm(MemberDTO naver, HttpSession session) {
 		
 		// 테이블에 있는 값들을 불러옴
@@ -72,6 +72,29 @@ public class MemberService {
 			
 		}
 		return naver;
+	}
+	// 카카오 로그인 또는 회원 가입시 회원인지 아닌지 판별해서 로그인 시키거나 kakao dto 리턴하기
+	public MemberDTO kakaoconfirm(MemberDTO kakao, HttpSession session) {
+		List<MemberDTO> members = dao.memberconfirm();
+		for(int i = 0; i < members.size(); i++) {
+			String email = members.get(i).getEmail();
+			String name = members.get(i).getName();
+			
+			if(kakao.getEmail().equals(email) &&
+				kakao.getName().equals(name)) {
+				session.setAttribute("login", dao.kakaoconfirm(kakao));
+				return null;
+			}
+		}
+		return kakao;
+	}
+	public int kakaoinsert(MemberDTO dto) {
+		String address = dto.getAddr_number() +"/"+  dto.getAddr_juso() +"/"+ dto.getAddr_detail() +"/"+  dto.getAddr_Reference();
+		dto.setAddress(address);							// 주소API로 전달한 각각의 주소를 address로 합친다
+		String hashpw = hash.getHash(dto.getUserpw());		// 비밀번호를 해시처리하고
+		dto.setUserpw(hashpw);								// 해시값을 다시 dto에 넣어준다
+		int row = dao.kakaoinsert(dto);							// 해시값을 포함한 dto를 insert 한다
+		return row;
 	}
 	
 	

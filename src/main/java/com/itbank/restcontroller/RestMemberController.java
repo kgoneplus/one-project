@@ -52,7 +52,26 @@ public class RestMemberController {
 	public int naverinsert(@RequestBody MemberDTO dto) {
 		return ms.naverinsert(dto);
 	}
+	// 카카오 회원가입
+	@PostMapping("/joining/kakaojoining")
+	public int kakaoinsert(@RequestBody MemberDTO dto) {
+		return ms.kakaoinsert(dto);
+	}
 	
+	// 카카오 로그인 확인
+	@PostMapping("/kakaoconfirm")
+	public int kakaoconfirm(@RequestBody MemberDTO dto,HttpSession session) {
+		int row = 0;
+		MemberDTO result = ms.kakaoconfirm(dto,session);
+		if(result == null) {
+			row = 1;
+		}else {
+			session.setAttribute("kakaologin", result);
+		}
+		
+		
+		return row;
+	}
 	
 	// 네이버 로그인
 	@PostMapping("/member/login/naverSave")

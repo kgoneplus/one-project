@@ -70,6 +70,42 @@ function naverinsertHandler (event) {
 		})
 	}
 }
+//카카오 회원가입 인설트
+
+function kakaoinsertHandler (event) {
+	event.preventDefault()
+	const ConfirmID = document.getElementById('ConfirmID-Message')
+	let confirm = ConfirmID.getAttribute('confirm')
+	const idfocus = document.querySelector('input[name="userid"]')
+	
+	if(confirm == 'false'){
+		idfocus.focus()
+	}
+	else{
+		const ob = {}
+		const formData = new FormData(event.target)
+		for(let key of formData.keys()) {
+			ob[key] = formData.get(key)
+		}
+		const url = `${cpath}/joining/kakaojoining`
+			const opt = {
+				method: 'POST',
+				body: JSON.stringify(ob),
+				headers: {
+					'Content-Type' : 'application/json; charset=utf-8'
+				}
+		}
+		
+		fetch(url, opt)
+		.then(resp => resp.text())
+		.then(text => {
+			if(text == 1) {
+				alert('작성성공')
+				location.reload(true)
+			}
+		})
+	}
+}
 
 // 아이디 중복 체크
 function memberId(event) {
