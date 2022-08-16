@@ -10,10 +10,10 @@
 <link type="text/css" rel="stylesheet"
 	href="${cpath }/resources/css/style_login.css">
 </head>
-<script
-	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
-	charset="utf-8"></script>
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<!-- <script -->
+<!-- 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" -->
+<!-- 	charset="utf-8"></script> -->
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	
 <body>
 	
@@ -42,11 +42,11 @@
                 </div>
                 <div class="login_button2">
                     <div class="login_button2_naver">
-                        <div id="naverIdLogin" style="display:none;"></div>
- 						<a href="#"><button id="naverlogin" type="button">네이버로그인</button></a>
+<!--                         <div id="naverIdLogin" style="display:none;"></div> -->
+<!--  						<a href="#"><button id="naverlogin" type="button">네이버로그인</button></a> -->
                     </div>
                     <div class="login_button2_kakao">
-                        <a href="#"><button type="button">카카오로그인</button></a>
+                        <a href="javascript:kakaoLogin();"><button type="button">카카오로그인</button></a>
                     </div>
                 </div>
                 <br>
@@ -64,37 +64,44 @@
     </div>
    <!--  네이버 로그인 스크립트 -->
    <script>
-   var naverLogin = new naver.LoginWithNaverId(
-			{
-				clientId: "GNv8IH0Irsq3ZxTgn4bE",
-	  			// 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
-				callbackUrl: "http://localhost:8080/project/member/login/naver",
-	  			// 본인의 callBack url로 수정하세요.
-				isPopup: false,
-				loginButton: {color: "white", type: 3, height: 60}
-	  			// 네이버 로그인버튼 디자인 설정. 한번 바꿔보세요:D
-			}
-		);
-	naverLogin.init();
+//    var naverLogin = new naver.LoginWithNaverId(
+// 			{
+// 				clientId: "GNv8IH0Irsq3ZxTgn4bE",
+// 	  			// 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
+// 				callbackUrl: "http://localhost:8080/project/member/login/naver",
+// 	  			// 본인의 callBack url로 수정하세요.
+// 				isPopup: false,
+// 				loginButton: {color: "white", type: 3, height: 60}
+// 	  			// 네이버 로그인버튼 디자인 설정. 한번 바꿔보세요:D
+// 			}
+// 		);
+// 	naverLogin.init();
 	
-	const naverbtn = document.getElementById('naverlogin')
-	naverbtn.addEventListener('click',function(){
-		const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
-		btnNaverLogin.click();
-	})	
-  </script>
-  <!--  카카오 로그인 스크립트 -->
-  <script>
-  	window.kakao.init("ae343ff22b21f4712440f6fdd8a76ab6")
+// 	const naverbtn = document.getElementById('naverlogin')
+// 	naverbtn.addEventListener('click',function(){
+// 	const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
+// 	btnNaverLogin.click();
+// 	})	
+	 <!--  카카오 로그인 스크립트 -->
+	window.kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
   	function kakaoLogin(){
   		window.KaKao.Auth.login({
-  			scope:''
-  			success: function(){
-  				
+  			scope:'account_email, profile_nickname',
+  			success: function(authObj){
+  				console.log(authObj)
+  				window.KaKao.API.request({
+  					url: '/v2/user/me',
+  					success: res =>{
+  						const kakao_account = res.kakao_account
+  						console.log(kakao_account)
+  					}
+  				})
   			}
   		})
   	}
   </script>
+
+  
   
 		 
 </body>

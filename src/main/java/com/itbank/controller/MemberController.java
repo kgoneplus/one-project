@@ -55,6 +55,7 @@ public class MemberController {
 	@GetMapping("/join/kakao")
 	public void kakaojoin() {}
 	
+	
 	// 로그인
 	@GetMapping("/login/naver")
 	public void naverlogin() {}

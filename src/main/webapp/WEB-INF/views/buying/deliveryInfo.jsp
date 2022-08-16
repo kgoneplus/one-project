@@ -98,20 +98,22 @@
             <div class="orderProducts">
                 <h3>주문상품</h3>
                 <ul>
-                    <li>
-                        <img src="">
-                        <div class="imgExp hidden">
-                            <p>상품이름아아아아아</p>
-                            <span>수량 : 1개</span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="">
-                        <div class="imgExp hidden">
-                            <p>상품이름아아아아아</p>
-                            <span>수량 : 1개</span>
-                        </div>
-                    </li>
+<!--                     <li> -->
+<!--                         <img src=""> -->
+<!--                         <div class="imgExp hidden"> -->
+<!--                             <p>상품이름아아아아아</p> -->
+<!--                             <span>수량 : 1개</span> -->
+<!--                         </div> -->
+<!--                     </li> -->
+					<c:forEach var="item" items="${orderList }">
+	                    <li>
+	                        <img src="${cpath}/resources/getImage1/${item.productImg}">
+	                        <div class="imgExp hidden">
+	                            <p>${item.productName}</p>
+	                            <span>수량 : ${item.cnt}</span>
+	                        </div>
+	                    </li>
+                    </c:forEach>
                 </ul>
             </div>
             <div class="payTab">

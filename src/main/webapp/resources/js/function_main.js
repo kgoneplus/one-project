@@ -56,7 +56,7 @@
 	 const korPrice = price.toLocaleString()
 	 let discountPrice = price - ob.productDiscount
 	 discountPrice = discountPrice.toLocaleString()
-	 // productImg 이미지 파일이름 수정하기
+	 // productSize & review & countDC 값 수정 필요
 	 product.innerHTML += `<div class="productImg">
 								<img src="${cpath}/resources/getImage1/${ob.productImg}">
 							</div>
