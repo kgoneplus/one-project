@@ -105,7 +105,7 @@
 <!--                             <span>수량 : 1개</span> -->
 <!--                         </div> -->
 <!--                     </li> -->
-					<c:forEach var="item" items="${list }">
+					<c:forEach var="item" items="${orderList }">
 	                    <li>
 	                        <img src="${cpath}/resources/getImage1/${item.productImg}">
 	                        <div class="imgExp hidden">

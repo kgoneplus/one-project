@@ -1,5 +1,6 @@
 package com.itbank.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,13 +16,15 @@ public class ProductcartService {
 	@Autowired ProductcartDAO dao;
 
 	public List<ProductcartDTO> deliveryInfoSelectList(int idx, List<String> itemList) {
-		System.out.println("service idx : " + idx);
-		System.out.println("service itemList : " + itemList);
-		
+		List<ProductcartDTO> list = new ArrayList<ProductcartDTO>();
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("member_idx", idx);
-		param.put("itemList", itemList);
-		return dao.deliveryInfoSelectList(param);
+		for(int i=0; i<itemList.size(); i++) {
+			param.put("productMain_idx", itemList.get(i));
+			list.add(dao.deliveryInfoSelectList(param));
+		}
+//		System.out.println("(service)list : " + list);
+		return list;
 	}
 
 }
