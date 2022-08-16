@@ -136,16 +136,25 @@
 	 .then(text =>{
 		 if(text == 1){
 			 console.log('로그인 성공')
+			  kakaoLogout()
 			 location.replace("http://localhost:8080/project")
+			
 		 }else{
 			 console.log('실패')
 			 location.replace("http://localhost:8080/project/member/login/kakao")
 		 }
 	 })
   }
-  // 로그아웃
-  function kakaoLogout() {
-	    if (Kakao.Auth.getAccessToken()) {
+	// kakao로그아웃
+	
+// 	const logout = document.getElementById('logout')
+// 	console.log(logout)
+// 	logout.addEventListener('click', kakaoLogout)
+
+
+// 로그아웃
+function kakaoLogout() {
+  if (Kakao.Auth.getAccessToken()) {
 	      Kakao.API.request({
 	        url: '/v1/user/unlink',
 	        success: function (response) {
@@ -157,7 +166,8 @@
 	      })
 	      Kakao.Auth.setAccessToken(undefined)
 	    }
-	  }  
+	 }
+ 
   </script>
 
   
