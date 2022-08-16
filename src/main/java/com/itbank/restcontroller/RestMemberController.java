@@ -7,7 +7,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
+import javax.mail.Session;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,12 @@ public class RestMemberController {
 	public int insert(@RequestBody MemberDTO dto) {
 		return ms.insert(dto);
 	}
+	// 네이버로 회원가입
+	@PostMapping("/joining/naverjoining")
+	public int naverinsert(@RequestBody MemberDTO dto) {
+		return ms.naverinsert(dto);
+	}
+	
 	
 	// 네이버 로그인
 	@PostMapping("/member/login/naverSave")
@@ -58,31 +67,41 @@ public class RestMemberController {
 		naver.setEmail(email);
 		naver.setName(name);
 		//서비스로 회원인지 아닌지 판별하러감
-		MemberDTO naverconfirm = ms.naverconfirm(naver);
-		
+		MemberDTO naverconfirm = ms.naverconfirm(naver,session);
 		// 회원이 맞다면 login 객체 새션에 저장
-		if(naverconfirm != null) {
-			session.setAttribute("login", naverconfirm);
+		if(naverconfirm == null) {
 			row = 1;
+		}else {
+			session.setAttribute("naverlogin", naverconfirm);
 		}
 		
 		
 		return row;
 	}
-	@PostMapping("/remove") //token = access_token임
+	
+	// 토큰삭제
+	@GetMapping("/remove") 
 	@CrossOrigin
-	public int remove(@RequestParam("token") String token, Model model)  {
+	public @ResponseBody int remove(@RequestParam("token") String token, HttpSession session, HttpServletResponse resp)  {
 		
-		String CLIENT_SECRET = "GNv8IH0Irsq3ZxTgn4bE";
-		String CLIENT_ID = "NzQgA5iBxk";
+		
+        
+		System.out.println(token);
+		String CLIENT_SECRET = "NzQgA5iBxk";
+		String CLIENT_ID = "GNv8IH0Irsq3ZxTgn4bE";
 		String apiUrl = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+CLIENT_ID+
 		"&client_secret="+CLIENT_SECRET+"&access_token="+token.replaceAll("'", "")+"&service_provider=NAVER";
-		System.out.println(apiUrl);
+		String api2url = "http://nid.naver.com/nidlogin.logout"; // 팝업창 i프래임으로 띄워서 로그아웃 구현하는 방법
+        String refreshurl = "https://nid.naver.com/oauth2.0/token?grant_type=refresh_token&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&refresh_token="+token.replaceAll("'", "")+"";
+        System.out.println(refreshurl);
+        
+		
 		try {
-			String res = requestToServer(apiUrl);
-			model.addAttribute("res", res); //결과값 찍어주는용
+			requestToServer(apiUrl);
+			System.out.println("refresh : " +requestToServer(refreshurl));
+			requestToServer(api2url);
+			session.invalidate();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 1;
@@ -98,14 +117,11 @@ public class RestMemberController {
 	    URL url = new URL(apiURL);
 	    HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	    con.setRequestMethod("GET");
-	    System.out.println("header Str: " + headerStr);
 	    if(headerStr != null && !headerStr.equals("") ) {
 	      con.setRequestProperty("Authorization", headerStr);
 	    }
 	    int responseCode = con.getResponseCode();
 	    BufferedReader br;
-	    
-	    System.out.println("responseCode="+responseCode);
 	    
 	    if(responseCode == 200) { // 정상 호출
 	      br = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -128,23 +144,7 @@ public class RestMemberController {
 	  }
 	
 	
-//	public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state) throws IOException{
-//	    /* Callback으로 전달받은 세선검증용 난수값과 세션에 저장되어있는 값이 일치하는지 확인 */
-//	    String sessionState = getSession(session);
-//	    log.info("sessionState 있나?"+sessionState);
-//	    log.info("state 있나?"+state);
-//	        if(StringUtils.pathEquals(sessionState, state)){
-//	            OAuth20Service oauthService = new ServiceBuilder()
-//				.apiKey(CLIENT_ID)
-//	            .apiSecret(CLIENT_SECRET)
-//	            .callback(REDIRECT_URI)
-//	            .state(state)
-//	            .build(NaverLoginApi.instance());
-//	            /* Scribe에서 제공하는 AccessToken 획득 기능으로 네아로 Access Token을 획득 */
-//	            OAuth2AccessToken accessToken =oauthService.getAccessToken(code);
-//					return accessToken;  
-//	        }
-//	        return null;
-//	    }
+	
+	
 
 }

@@ -2,7 +2,9 @@ package com.itbank.controller;
 
 import javax.servlet.http.HttpSession;
 
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,19 +23,21 @@ public class MemberController {
 	
 	//창 페이지
 	@GetMapping("/login")
-	public void login() {}
+	public void login() {
+	}
 	
 	//로그인
 	@PostMapping("/login")
 	public String login(MemberDTO dto, HttpSession session) {
 		MemberDTO login = ms.login(dto);
 		session.setAttribute("login", login);
+		
 		return "redirect:/";
 	}
 	
 	//로그아웃
 	@GetMapping("/logout")
-	public String logout(HttpServletRequest request) {
+	public String logout(HttpServletRequest request, HttpServletResponse resp) {
 		request.getSession().invalidate();
 		return "redirect:" + request.getHeader("referer");
 	}
