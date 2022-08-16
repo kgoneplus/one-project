@@ -35,7 +35,7 @@ function insertHandler (event) {
 		})
 	}
 }
-// 네이버 회원가입 인설트
+// 네이버 회원가입 인설트((나중에 합치기))
 function naverinsertHandler (event) {
 	event.preventDefault()
 	const ConfirmID = document.getElementById('ConfirmID-Message')
@@ -70,8 +70,7 @@ function naverinsertHandler (event) {
 		})
 	}
 }
-//카카오 회원가입 인설트
-
+//카카오 회원가입 인설트((나중에 합치기))
 function kakaoinsertHandler (event) {
 	event.preventDefault()
 	const ConfirmID = document.getElementById('ConfirmID-Message')
@@ -137,6 +136,79 @@ function memberId(event) {
 	})
 	
 }
+
+// 카카오로부터 데이터 받기
+function kakaoLogin() {
+	  Kakao.Auth.login({
+	      success: function (response) {
+	        Kakao.API.request({
+	          url: '/v2/user/me',
+	          success: function (response) {
+	        	  kakaomap(response)
+	          },
+	          fail: function (error) {
+	            console.log(error)
+	          },
+	        })
+	      },
+	      fail: function (error) {
+	        console.log(error)
+	      },
+	    })
+	  }
+
+// 받은데이터 매핑
+function kakaomap(res){
+	  	
+		const kakaouser = res.kakao_account
+	  	const kakaouser_map = {
+	  			'name':kakaouser.profile.nickname,
+	  			'email':kakaouser.email
+	  	}
+		kakaoconfirm(kakaouser_map)
+}
+
+// 매핑받은 데이터 로그인 하기
+function kakaoconfirm(data){
+	 const url = '${cpath}/kakaoconfirm'
+	 const opt = {
+		 method:'POST',
+		 body: JSON.stringify(data),
+		 headers:{
+			'Content-Type' : 'application/json; charset=utf-8'
+		 }
+	 }
+	 fetch(url, opt)
+	 .then(resp => resp.text())
+	 .then(text =>{
+		 if(text == 1){
+			 console.log('로그인 성공')
+			  kakaoLogout()
+			 location.replace("http://localhost:8080/project")
+			
+		 }else{
+			 console.log('실패')
+			 location.replace("http://localhost:8080/project/member/login/kakao")
+		 }
+	 })
+}
+
+
+//카카오 로그아웃
+function kakaoLogout() {
+if (Kakao.Auth.getAccessToken()) {
+	      Kakao.API.request({
+	        url: '/v1/user/unlink',
+	        success: function (response) {
+	        	console.log(response)
+	        },
+	        fail: function (error) {
+	          console.log(error)
+	        },
+	      })
+	      Kakao.Auth.setAccessToken(undefined)
+	    }
+	 }
 // 주소 데이터
 function sample6_execDaumPostcode() {
     new daum.Postcode({
