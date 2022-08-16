@@ -29,20 +29,41 @@ function mabtnClickHandler(event) {
 	if(cnt == 1) quantity.value = 1
 	else quantity.value = cnt - 1
 	
+	const prductMain_idx = Array.from(document.querySelectorAll("input[type='checkbox']"))[idx + 1].value
+	const ob = {
+			'member_idx' : 2,
+			'productMain_idx' : prductMain_idx,
+			'cnt' : quantity.value
+		}
+	
+	const url = cpath + '/buying/cart/home'
+	const opt = {
+			method: 'PUT',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt).then(resp => resp.text())
+	.then(text => {
+		if(text == 1) console.log('수정 성공')
+		else console.log('수정 실패')
+	})
+	
 	const dcP = target.getAttribute('productDiscount')
 	const lastPrice = Array.from(document.querySelectorAll('.lastprice > p'))[idx]
-	lastPrice.innerText = ''
+//	lastPrice.innerText = ''
 	lastPrice.innerText = ((defaultPrice - dcP) * quantity.value).toLocaleString()
 	
 	const priceHidden = Array.from(document.querySelectorAll('.lastprice .price_hidden'))[idx]
 	const discountPrice = Array.from(priceHidden.querySelectorAll('dd'))
 	discountPrice.forEach(dd => {
-		dd.innerText = ''
+//		dd.innerText = ''
 		dd.innerText = (dcP * quantity.value) + '원'
 	})
 		
 	const beforeDiscount = Array.from(document.querySelectorAll('.lastprice > span:first-child'))[idx]
-	beforeDiscount.innerText = ''
+//	beforeDiscount.innerText = ''
 	beforeDiscount.innerText = (defaultPrice * quantity.value).toLocaleString() + '원'
 }
 
@@ -62,20 +83,42 @@ function plbtnClickHandler(event) {
 	if(cnt == maxCnt) quantity.value = maxCnt
 	else quantity.value = +cnt + 1
 	
+	const prductMain_idx = Array.from(document.querySelectorAll("input[type='checkbox']"))[idx + 1].value
+	console.log('prductMain_idx : ', prductMain_idx)
+	const ob = {
+			'member_idx' : 2,
+			'productMain_idx' : prductMain_idx,
+			'cnt' : quantity.value
+		}
+	
+	const url = cpath + '/buying/cart/home'
+	const opt = {
+			method: 'PUT',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt).then(resp => resp.text())
+	.then(text => {
+		if(text == 1) console.log('수정 성공')
+		else console.log('수정 실패')
+	})
+	
 	const dcP = target.getAttribute('productDiscount')
 	const lastPrice = Array.from(document.querySelectorAll('.lastprice > p'))[idx]
-	lastPrice.innerText = ''
+//	lastPrice.innerText = ''
 	lastPrice.innerText = ((defaultPrice - dcP) * quantity.value).toLocaleString()
 	
 	const priceHidden = Array.from(document.querySelectorAll('.lastprice .price_hidden'))[idx]
 	const discountPrice = Array.from(priceHidden.querySelectorAll('dd'))
 	discountPrice.forEach(dd => {
-		dd.innerText = ''
+//		dd.innerText = ''
 		dd.innerText = (dcP * quantity.value) + '원'
 	})
 	
 	const beforeDiscount = Array.from(document.querySelectorAll('.lastprice > span:first-child'))[idx]
-	beforeDiscount.innerText = ''
+//	beforeDiscount.innerText = ''
 	beforeDiscount.innerText = (defaultPrice * quantity.value).toLocaleString() + '원'
 }
 
@@ -95,7 +138,7 @@ function cartDeleteHandler(event) {
 	console.log(idx)
 	
 	const ob = {
-		'member_idx' : 1,
+		'member_idx' : 2,
 		'productMain_idx' : idx
 	}
 	const url = cpath + '/buying/cart/home'
@@ -116,7 +159,7 @@ function cartDeleteHandler(event) {
 
 // 장바구니 로드 핸들러
 function cartLoadHandler() {
-	const url = cpath + '/buying/cart/home/' + 1
+	const url = cpath + '/buying/cart/home/' + 2
 	fetch(url).then(resp => resp.json())
 	.then(json => {
 		const tbody = document.querySelector('.cartProducts tbody')
@@ -184,30 +227,25 @@ function cartAllItemClick(event) {
 function cartToDeliveryInfo(event) {
 	// 선택상품 주문하기
 	let checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']:checked")).map(item => item.value)
-	
+
 	// 전체 상품주문하기
 	if(event.target.classList.contains('orderAll')) {
 		checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']")).map(item => item.value)
 	}
 	checkedItemList = checkedItemList.filter(item => item != 'on')
-	console.log(checkedItemList)
-	// checkedItemList가 상품번호들의 배열이다 -> DTO 리스트로 바꿔야 밑에 fetch의 매개변수와 타입이 맞다 -> 변경 필요
-
-	const url = cpath + '/buying/deliveryInfo/' + 1
+//	console.log(checkedItemList)
+	
+	const url = cpath + '/buying/cart/home/' + 2
 	const opt = {
-		method: 'GET',
+		method: 'PUT',
 		body: JSON.stringify(checkedItemList),
 		headers: {
 			'Content-Type' : 'application/json; charset=utf-8'
 		}
 	}
-	fetch(url, opt)
-//	let checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']:checked"))
-//	checkedItemList = checkedItemList.filter(item => item.value != 'on')
-//	const trArray = Array.from(document.querySelectorAll('.cartProducts tbody > tr'))
-//	for(let i=0; checkedItemList)
-	
-	
+	fetch(url, opt).then(resp => resp.text())
+	.then(text => console.log(text))
+	location.href = cpath + '/buying/deliveryInfo/' + 2;
 }
 
 // 장바구니 -> 결제예정 금액 변동
@@ -217,15 +255,14 @@ function paymentBox() {
 	const totalPrice = document.querySelector('.payTab > .payTabTotalprice:first-child p')
 //	totalPrice.innerText = 
 	
-	//모든 총금액 배열
+	// 모든 총금액 배열
 	let sum = 0
 	const tPs = Array.from(document.querySelectorAll('.lastprice > span:first-child'))
 	tPs.forEach(tp => {
 		console.log(tp.innerText)
 //		tp.innerText.replaceAll(',원', '')
 	})
-	
-	
+		
 	// 결제예정 금액
 	const resultPrice = document.querySelector('.resultPrice p')
 

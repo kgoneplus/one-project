@@ -22,13 +22,20 @@ public class BuyController {
 	
 	@GetMapping("/cart")
 	public void cart() {}
-
-	@GetMapping("/deliveryInfo/{idx}")
-	public ModelAndView deliveryInfo(@PathVariable int idx, @RequestBody List<String> itemList) {
-		ModelAndView mav = new ModelAndView();
-		List<ProductcartDTO> list = service.deliveryInfoSelectList(idx, itemList);
-		mav.addObject("list", list);
-		return mav;
+	
+	@GetMapping("/deliveryInfo/{member_idx}")
+	public String deliveryInfo(@PathVariable int member_idx) {
+		return "/buying/deliveryInfo";
 	}
+
+//	@GetMapping("/deliveryInfo/home/{member_idx}")
+//	public ModelAndView deliveryInfo(@PathVariable int member_idx, @RequestBody List<String> itemList) {
+//		ModelAndView mav = new ModelAndView("/buying/deliveryInfo");
+//		System.out.println("controller member_idx : " + member_idx);
+//		System.out.println("controller itemList : " + itemList);
+//		List<ProductcartDTO> list = service.deliveryInfoSelectList(member_idx, itemList);
+//		mav.addObject("list", list);
+//		return mav;
+//	}
 	
 }
