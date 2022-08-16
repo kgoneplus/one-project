@@ -42,6 +42,7 @@ public class MemberController {
 		return "redirect:" + request.getHeader("referer");
 	}
 	
+	// 회원가입 창
 	@GetMapping("/join")
 	public void join() {}
 	
@@ -49,14 +50,7 @@ public class MemberController {
 	@GetMapping("/join/integration")
 	public void integrationjoin() {}
 	
-	@GetMapping("/join/naver")
-	public void naverjoin() {}
-	
-	@GetMapping("/join/kakao")
-	public void kakaojoin() {}
-	
-	
-	// 로그인
+	// sns/로그인/회원가입
 	@GetMapping("/login/naver")
 	public void naverlogin() {}
 	

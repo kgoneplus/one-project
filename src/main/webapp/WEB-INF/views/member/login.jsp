@@ -14,6 +14,7 @@
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
 	charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="${cpath }/resources/js/function_member.js"></script>
 	
 <body>
 	
@@ -62,9 +63,8 @@
             </form>
         </div>
     </div>
-   <!--  네이버 로그인 스크립트 -->
    <script>
-  
+   Kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
    var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "GNv8IH0Irsq3ZxTgn4bE",
@@ -83,91 +83,6 @@
 	const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
 	btnNaverLogin.click();
 	})	
-	
-
-
-	
-  </script>
-   <!--  카카오 로그인 스크립트 -->
-  <script>
-  Kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
-  console.log(Kakao.isInitialized())
-  function kakaoLogin() {
-	  Kakao.Auth.login({
-	      success: function (response) {
-	        Kakao.API.request({
-	          url: '/v2/user/me',
-	          success: function (response) {
-// 	        	  'name': response.kakao_account.profile.nickname,
-// 	        	  'email': response.kakao_account.email
-	        	  console.log(typeof response)
-	        	  kakaoconfrim(response)
-	          },
-	          fail: function (error) {
-	            console.log(error)
-	          },
-	        })
-	      },
-	      fail: function (error) {
-	        console.log(error)
-	      },
-	    })
-	  }
-  function kakaoconfrim(res){
-	  	
-		const kakaouser = res.kakao_account
-	  	const kakaouser_map = {
-	  			'name':kakaouser.profile.nickname,
-	  			'email':kakaouser.email
-	  	}
-		kakaoconfirm(kakaouser_map)
-  }
-  function kakaoconfirm(data){
-	 const url = '${cpath}/kakaoconfirm'
-	 const opt = {
-		 method:'POST',
-		 body: JSON.stringify(data),
-		 headers:{
-			'Content-Type' : 'application/json; charset=utf-8'
-		 }
-	 }
-	 fetch(url, opt)
-	 .then(resp => resp.text())
-	 .then(text =>{
-		 if(text == 1){
-			 console.log('로그인 성공')
-			  kakaoLogout()
-			 location.replace("http://localhost:8080/project")
-			
-		 }else{
-			 console.log('실패')
-			 location.replace("http://localhost:8080/project/member/login/kakao")
-		 }
-	 })
-  }
-	// kakao로그아웃
-	
-// 	const logout = document.getElementById('logout')
-// 	console.log(logout)
-// 	logout.addEventListener('click', kakaoLogout)
-
-
-// 로그아웃
-function kakaoLogout() {
-  if (Kakao.Auth.getAccessToken()) {
-	      Kakao.API.request({
-	        url: '/v1/user/unlink',
-	        success: function (response) {
-	        	console.log(response)
-	        },
-	        fail: function (error) {
-	          console.log(error)
-	        },
-	      })
-	      Kakao.Auth.setAccessToken(undefined)
-	    }
-	 }
- 
   </script>
 
   
