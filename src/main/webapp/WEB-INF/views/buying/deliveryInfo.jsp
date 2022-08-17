@@ -62,11 +62,9 @@
             <table>
                 <tr>
                     <th>배송시간대</th>
-                    <th>오늘 (화)</th>
-                    <th>08.10 (수)</th>
-                    <th>08.11 (목)</th>
-                    <th>08.12 (금)</th>
-                    <th>08.13 (토)</th>
+            	<c:forEach var="date" items="${deliveryDate}">            	
+                    <th>${date}</th>
+                </c:forEach>
                 </tr>
                 <tr>
                     <th>10:00 ~ 13:00</th>
@@ -98,13 +96,6 @@
             <div class="orderProducts">
                 <h3>주문상품</h3>
                 <ul>
-<!--                     <li> -->
-<!--                         <img src=""> -->
-<!--                         <div class="imgExp hidden"> -->
-<!--                             <p>상품이름아아아아아</p> -->
-<!--                             <span>수량 : 1개</span> -->
-<!--                         </div> -->
-<!--                     </li> -->
 					<c:forEach var="item" items="${orderList }">
 	                    <li>
 	                        <img src="${cpath}/resources/getImage1/${item.productImg}">

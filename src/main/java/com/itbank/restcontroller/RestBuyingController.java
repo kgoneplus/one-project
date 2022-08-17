@@ -42,8 +42,8 @@ public class RestBuyingController {
 	
 	@PutMapping(value="/buying/cart/home/{member_idx}", produces="text/plain; charset=utf-8")
 	public String storeSession(@PathVariable int member_idx, @RequestBody List<String> itemList, HttpSession session) {
-		System.out.println("controller member_idx : " + member_idx);
-		System.out.println("controller itemList : " + itemList);
+//		System.out.println("controller member_idx : " + member_idx);
+//		System.out.println("controller itemList : " + itemList);
 		List<ProductcartDTO> list = service.deliveryInfoSelectList(member_idx, itemList);
 		if(list != null) {
 //			System.out.println("세션 저장 list : " + list);
