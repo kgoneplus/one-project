@@ -10,24 +10,13 @@
 <title>Insert title here</title>
 <script src="${cpath }/resources/js/function_member.js"></script>
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<style>
-.join-form {
-	display: flex;
-	justify-content: center;
-}
-
-form {
-	border: 1px solid black;
-	margin: 10px;
-	padding: 10px;
-}
-</style>
+<link type="text/css" rel="stylesheet"
+	  href="${cpath }/resources/css/style_joinform.css">
 </head>
 <c:set var="kdto" value="${kakaologin }" />
 <body>
-<h1>카카오로그인창</h1>
-<hr>
 <div class="join-form">
+<div><img src="${cpath }/resources/img/oneplus.png" width="200px" height="50px"></div>
 		<form>
 			<div>아이디</div>
 			<input id="idtext" type="text" name="userid"
@@ -45,7 +34,8 @@ form {
 			<div id="ConfirmPW-Message"></div>
 			
 			<div>이름</div>
-			<input type="text" name="name" value="${kdto.name }" readonly>
+			<input type="text" name="name" value="${kdto.name }" placeholder="이름"
+					<c:if test="${not empty kakaologin }">readonly</c:if>>
 			
 			<div>성별</div>
 			<select name="gender">
@@ -57,12 +47,11 @@ form {
 			<input type="date" name="birth" required>
 			
 			<div>핸드폰번호</div>
-			<input type="text" name="phonenum" value="${kdto.phonenum }"
-				>
+			<input type="text" name="phonenum"  placeholder="ex)01012341234">
 				
 			<div>이메일</div>
-			<input type="email" name="email" value="${kdto.email }"
-				 readonly>
+			<input type="email" name="email" value="${kdto.email }" placeholder="ex)kkj1234@naver.com"
+				<c:if test="${not empty kakaologin }">readonly</c:if>>
 			<button id="emailconfirm" type="button">인증번호 요청</button>
 			<div id="ConfirmEmail-Message"></div>
 			

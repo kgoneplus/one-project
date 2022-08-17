@@ -1,13 +1,13 @@
 package com.itbank.controller;
 
 import javax.servlet.http.HttpSession;
-
-
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,14 +23,34 @@ public class MemberController {
 	
 	//창 페이지
 	@GetMapping("/login")
-	public void login() {
-	}
+	public void login() {}
 	
 	//로그인
 	@PostMapping("/login")
-	public String login(MemberDTO dto, HttpSession session) {
+	public String login(MemberDTO dto, HttpSession session, HttpServletResponse resp) {
 		MemberDTO login = ms.login(dto);
 		session.setAttribute("login", login);
+		
+		System.out.println(dto.getUserid_remember());
+		System.out.println("==========================");
+		
+//		Cookie userid = new Cookie("userid", dto.getUserid());
+//		userid.setMaxAge(60*60*24*30);
+//		resp.addCookie(userid);
+//		session.setAttribute("userid", userid.getValue());
+		if(dto.getUserid_remember() != null) {
+			Cookie userid = new Cookie("userid", dto.getUserid());
+			userid.setMaxAge(60*60*24*30);
+			resp.addCookie(userid);
+			session.setAttribute("userid", userid.getValue());
+			
+		}else {
+			Cookie userid = new Cookie("userid", dto.getUserid());
+			userid.setMaxAge(0);
+			resp.addCookie(userid);
+			session.removeAttribute("userid");
+		}
+		
 		
 		return "redirect:/";
 	}
@@ -38,7 +58,9 @@ public class MemberController {
 	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse resp) {
-		request.getSession().invalidate();
+		request.getSession().removeAttribute("login");
+		request.getSession().removeAttribute("naverlogin");
+		request.getSession().removeAttribute("kakaologin");
 		return "redirect:" + request.getHeader("referer");
 	}
 	
