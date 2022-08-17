@@ -24,8 +24,10 @@ public class BuyController {
 	public void cart() {}
 	
 	@GetMapping("/deliveryInfo/{member_idx}")
-	public String deliveryInfo(@PathVariable int member_idx) {
-		return "/buying/deliveryInfo";
+	public ModelAndView deliveryInfo(@PathVariable int member_idx) {
+		ModelAndView mav = new ModelAndView("/buying/deliveryInfo");
+		mav.addObject("deliveryDate", service.deliveryDateCal());
+		return mav;
 	}
 
 //	@GetMapping("/deliveryInfo/home/{member_idx}")
