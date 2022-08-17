@@ -13,6 +13,8 @@
 <script
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
 	charset="utf-8"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="${cpath }/resources/js/function_member.js"></script>
 	
 <body>
 	
@@ -41,10 +43,11 @@
                 </div>
                 <div class="login_button2">
                     <div class="login_button2_naver">
-                        <div id="naverIdLogin"></div>
+                        <div id="naverIdLogin" style="display:none;"></div>
+ 						<a href="#"><button id="naverlogin" type="button">네이버로그인</button></a>
                     </div>
-                    <div class="login_button2_kakao">
-                        <a href="#"><button type="button">카카오로그인</button></a>
+                    <div class="login_button2_kakao" onclick="kakaoLogin();">
+                        <a href="javascript:void(0)"><button type="button">카카오로그인</button></a>
                     </div>
                 </div>
                 <br>
@@ -60,8 +63,8 @@
             </form>
         </div>
     </div>
-   <!--  네이버 로그인 스크립트 -->
    <script>
+   Kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
    var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "GNv8IH0Irsq3ZxTgn4bE",
@@ -74,7 +77,16 @@
 			}
 		);
 	naverLogin.init();
+	
+	const naverbtn = document.getElementById('naverlogin')
+	naverbtn.addEventListener('click',function(){
+	const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
+	btnNaverLogin.click();
+	})	
   </script>
+
+  
+  
 		 
 </body>
 </html>

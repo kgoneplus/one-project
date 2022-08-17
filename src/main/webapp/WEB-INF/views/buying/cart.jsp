@@ -94,6 +94,9 @@
     </div>    
 </main>
 
+<div class="DeliveryContent"></div>
+<div class="DeliveryOverylay"></div>
+
 <script>
 	window.addEventListener('load', cartLoadHandler)
 	window.addEventListener('load', paymentBox)

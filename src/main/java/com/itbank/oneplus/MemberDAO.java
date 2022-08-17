@@ -8,10 +8,22 @@ import org.apache.ibatis.annotations.Select;
 public interface MemberDAO {
 	
 	// 통합 회원 가입할때
-	@Insert("insert into integration_member(idx, name, address, gender, birth, phonenum, userid, userpw, email)\r\n" + 
+	@Insert("insert into integration_member(idx, name, address, gender, birth, phonenum, userid, userpw, email) " + 
 			"       	 values (MEMBER_SEQ.nextval,  #{name}, #{address}, #{gender}, #{birth}, " + 
 			"         #{phonenum}, #{userid}, #{userpw}, #{email})")
 	int insert(MemberDTO dto);
+	
+	// 네이버 회원 가입할때
+	@Insert("insert into naver_member(idx, name, address, gender, birth, phonenum, userid, userpw, email) " + 
+				"       	 values (MEMBER_SEQ.nextval,  #{name}, #{address}, #{gender}, #{birth}, " + 
+				"         #{phonenum}, #{userid}, #{userpw}, #{email})")
+	int naverinsert(MemberDTO dto);
+	
+	// 네이버 회원 가입할때
+	@Insert("insert into kakao_member(idx, name, address, gender, birth, phonenum, userid, userpw, email) " + 
+					"       	 values (MEMBER_SEQ.nextval,  #{name}, #{address}, #{gender}, #{birth}, " + 
+					"         #{phonenum}, #{userid}, #{userpw}, #{email})")
+	int kakaoinsert(MemberDTO dto);
 	
 	// 회원 아디디 중복확인할때
 	@Select("select userid from parent_member")
@@ -25,8 +37,11 @@ public interface MemberDAO {
 	@Select("select * from parent_member where email=#{email} and name=#{name} and phonenum=#{phonenum}")
 	MemberDTO naverconfirm(MemberDTO dto);
 	
+	// 카카오 로그인
+	@Select("select * from parent_member where email=#{email} and name=#{name}")
+	MemberDTO kakaoconfirm(MemberDTO kakao);
+
 	// 회원 테이블 전체 부르기
 	@Select("select * from parent_member")
 	List<MemberDTO> memberconfirm();
-
 }

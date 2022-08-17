@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="cpath" value="${pageContext.request.contextPath }" />
+<script src=""></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,9 +33,11 @@
 		justify-content: center;
 	}
 </style>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+<script src="${cpath }/resources/js/function_member.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
-
 	<header>
 		<div class="join_logoimg">
 			<img src="${cpath }/resources/img/oneplus.png" width="100px">
@@ -48,13 +51,33 @@
 		</div>
 			<a href="${cpath }/member/join/integration"><button type="button" id="integration" >마이홈플러스 회원가입</button></a>
 		<div class="snsjoin">
-			<a href="${cpath }/member/join/integration"><button type="button" id="naver" >네이버가입</button></a>
-			<a href="${cpath }/member/join/integration"><button type="button" id="kakao" >카카오가입</button></a>
+			 <div id="naverIdLogin" style="display:none;"></div><div id="naverlogin"><button type="button">네이버로 회원가입 </button></div>
+			<a href="javascript:void(0)"><button onclick="kakaoLogin()" type="button" id="kakao" >카카오로 회원가입</button></a>
 			
 		</div>
 	</div>
+	<script>
+	Kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
+ 	var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "GNv8IH0Irsq3ZxTgn4bE",
+	  			// 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
+				callbackUrl: "http://localhost:8080/project/member/login/naver",
+	  			// 본인의 callBack url로 수정하세요.
+				isPopup: false,
+				loginButton: {color: "white", type: 3, height: 60}
+	  			// 네이버 로그인버튼 디자인 설정. 한번 바꿔보세요:D
+			}
+		);
+	naverLogin.init();
+	
 
-
+	const naverbtn = document.getElementById('naverlogin')
+	naverbtn.addEventListener('click',function(){
+		const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
+		btnNaverLogin.click();
+	})	
+	</script>
 
 		
 </body>
