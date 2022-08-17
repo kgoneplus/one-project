@@ -270,7 +270,20 @@ function paymentBox() {
 
 // 장바구니 -> 배송관리 핸들러
 function deliveryManagement() {
-	
+	const deliveryContent = document.querySelector('.DeliveryContent')
+	const deliveryOverlay = document.querySelector('.DeliveryOverylay')
+	deliveryContent.style.display = 'block'
+	deliveryOverlay.style.display = 'block'
+	deliveryContent.innerHtml = ''
+		
+	const title = document.createElement('h1')
+	title.innerText = '배송지 관리'
+	deliveryContent.appendChild(title)
+		
+	const modal_deliveryContent = document.createElement('div')
+	modal_deliveryContent.className = 'modal_deliveryContent'
+	modal_deliveryContent.innerHtml = ``
+	deliveryContent.appendChild(modal_deliveryContent)
 }
 
 //주소 데이터

@@ -94,7 +94,20 @@
     </div>    
 </main>
 
-<div class="DeliveryContent"></div>
+<div class="DeliveryContent">
+	<h3>기본배송지</h3>
+	<div>
+		<div class="deliveryCheckbox">
+			<input type="hidden" data-dcode="" data-addr1="" data-addr2="" data-addr3="">
+			<input type="radio">
+		</div>
+		<div class=""></div>
+		<div class="">
+			신지현 (010-1111-1111)<br>
+			[48269] 부산광역시 해운대구 우동 센텀드림월드 1104호
+		</div>
+	</div>
+</div>
 <div class="DeliveryOverylay"></div>
 
 <script>
