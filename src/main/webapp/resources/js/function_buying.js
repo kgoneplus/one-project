@@ -196,7 +196,9 @@ function cartToDeliveryInfo(event) {
 	const url = cpath + '/buying/deliveryInfo/' + 1
 	const opt = {
 		method: 'GET',
-		body: JSON.stringify(checkedItemList),
+		body: JSON.stringify({
+			'productMain_idx' : checkedItemList
+		}),
 		headers: {
 			'Content-Type' : 'application/json; charset=utf-8'
 		}

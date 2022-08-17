@@ -17,9 +17,7 @@ public class ProductcartService {
 	public List<ProductcartDTO> deliveryInfoSelectList(int idx, List<String> itemList) {
 		HashMap<String, Object> param = null;
 		param.put("member_idx", idx);
-		for(int i=0; i<itemList.size(); i++) {
-			param.put("productMain_idx", itemList.get(i));
-		}
+		param.put("itemList", itemList);
 		return dao.deliveryInfoSelectList(param);
 	}
 

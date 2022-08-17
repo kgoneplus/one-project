@@ -28,10 +28,10 @@
 	
 	<select id="deliveryInfoSelectList" parameterType="hashmap" resultType="cart">
 		select * from productMain P
-				<foreach collection="hashmap">
+		<foreach item="item" collection="itemList">
 			join productCart C
-					on #{productMain_idx} = P.idx
-				</foreach>
+					on #{productMain_idx} = #{item}
+		</foreach>
 			where
 				C.member_idx = #{member_idx}
 	</select>
