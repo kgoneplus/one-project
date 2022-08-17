@@ -14,26 +14,13 @@
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="${cpath }/resources/js/function_member.js"></script>
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<style>
-.join-form {
-	display: flex;
-	justify-content: center;
-}
-
-form {
-	border: 1px solid black;
-	margin: 10px;
-	padding: 10px;
-}
-</style>
+<link type="text/css" rel="stylesheet"
+	  href="${cpath }/resources/css/style_joinform.css">
 </head>
-
-
 <c:set var="ndto" value="${naverlogin }" />
 <body>
-	<h1>네이버로그인창</h1>
-	<hr>
 	<div class="join-form">
+	<div><img src="${cpath }/resources/img/oneplus.png" width="200px" height="50px"></div>
 		<form>
 			<div>아이디</div>
 			<input id="idtext" type="text" name="userid"
@@ -51,7 +38,10 @@ form {
 			<div id="ConfirmPW-Message"></div>
 			
 			<div>이름</div>
-			<input type="text" name="name" value="${ndto.name }" readonly>
+			<input  type="text" name="name" placeholder="이름" value="${ndto.name }"
+			<c:if test="${not empty naverlogin }">readonly</c:if> >
+				
+				
 			
 			<div>성별</div>
 			<select name="gender">
@@ -63,12 +53,12 @@ form {
 			<input type="date" name="birth" required>
 			
 			<div>핸드폰번호</div>
-			<input type="text" name="phonenum" value="${ndto.phonenum }"
-				readonly>
+			<input type="text" name="phonenum" value="${ndto.phonenum }" placeholder="ex)01012341234"
+				 <c:if test="${not empty naverlogin }">readonly</c:if>>
 				
 			<div>이메일</div>
-			<input type="email" name="email" value="${ndto.email }"
-				 readonly>
+			<input type="email" name="email" value="${ndto.email }" placeholder="kkj1234@naver.com"
+				 <c:if test="${not empty naverlogin }">readonly</c:if>>
 			<button id="emailconfirm" type="button">인증번호 요청</button>
 			<div id="ConfirmEmail-Message"></div>
 			
