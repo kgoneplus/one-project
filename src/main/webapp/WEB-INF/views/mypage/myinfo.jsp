@@ -35,7 +35,6 @@
 }
 tr {
 	height: 50px;
-	border-bottom: 1px solid black;
 	font-size: 12px;
 }
 .myinfo_last_tr {
@@ -86,7 +85,6 @@ td {
 					<li><a href="${cpath }/mypage/wishlist">나의 찜</a></li>
 					<li><a href="${cpath }/mypage/review">상품리뷰</a></li>
 					<li><a href="${cpath }/mypage/counsel">1:1 문의 내역</a></li>
-					<li><a href="${cpath }/mypage/qna">상품문의</a></li>
 				</ul>
 			</div>
 

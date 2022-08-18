@@ -1,14 +1,17 @@
 package com.itbank.oneplus;
 
+import java.sql.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 //	member_idx      number          ,
 //	idx             number          default ask_seq.nextval primary key,
-//	askType         varchar2(100)   check(askType in('배송', '상품', '주문', '결제', '교환/반품/환불', '행사/쿠폰/포인트', '서비스', '기타')),  -- 문의 유형
-//	orderProduct    varchar2(200)   not null,
+//	askType         varchar2(100)   check(askType in('배송', '상품', '주문', '결제', '교환/반품/환불', '행사/쿠폰/포인트', '서비스', '기타')),
+//	orderProduct    varchar2(200)   ,
 //	title           varchar2(200)   not null,
 //	content         varchar2(1000)  not null,
-//	img             varchar2(255)
+//	img             varchar2(255)	,
+//	writeDate		date			default sysdate
 
 public class AskDTO {
 	
@@ -20,7 +23,14 @@ public class AskDTO {
 	private String content;
 	private String img;
 	private MultipartFile askFile;
+	private Date writeDate; 
 	
+	public Date getWriteDate() {
+		return writeDate;
+	}
+	public void setWriteDate(Date writeDate) {
+		this.writeDate = writeDate;
+	}
 	public int getMember_idx() {
 		return member_idx;
 	}

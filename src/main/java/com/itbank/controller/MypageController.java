@@ -1,6 +1,7 @@
 package com.itbank.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.oneplus.AskDTO;
@@ -64,30 +67,24 @@ public class MypageController {
 	public void reviewList() {
 	}
 
-	// 1:1 문의 내역
+	// 1:1 문의페이지
 	@GetMapping("/counsel")
 	public void counsel() {
 	}
 
-	// 문의하기 2022 08 09 ~ 작업중입니다
+	// 1:1 문의 작성
 	@PostMapping("/counsel")
-	public String write(AskDTO dto) throws IllegalStateException, IOException {
-		int row = mypageService.write(dto);
-		System.out.println(row != 0 ? "작성 성공" : "작성 실패");
-		return "redirect:/mypage/counsel";
-	}
-
-	// 상품 문의
-	@GetMapping("/qna")
-	public void qna() {
+	@ResponseBody
+	public int write(@RequestBody AskDTO dto) {
+		return mypageService.askWrite(dto);
 	}
 
 	// 회원 정보 관리
 	@GetMapping("/myinfo/{idx}")
 	public ModelAndView myinfo(@PathVariable int idx) {
 		ModelAndView mav = new ModelAndView("mypage/myinfo");
-		MemberDTO dto1 = mypageService.selectOneMember(idx);
-		mav.addObject("dto", dto1);
+		MemberDTO dto = mypageService.selectOneMember(idx);
+		mav.addObject("dto", dto);
 		return mav;
 	}
 
