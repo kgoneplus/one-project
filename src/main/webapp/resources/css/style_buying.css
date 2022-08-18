@@ -507,7 +507,7 @@ ul, li {
     border-radius: 3px;
     z-index: 102;
     min-height: 500px;
-    padding: 10px;
+    padding: 20px;
 }
 .DeliveryOverlay {
 	display: none;
@@ -550,8 +550,8 @@ ul, li {
     color: #333;
     font-weight: 400;
 }
-.DeliveryContent table thead tr td:last-child {
-	width: 50%;
+.DeliveryContent table thead tr td:nth-child(3) {
+	width: 60%;
 }
 #addDeliveryAddress {
 	font-size: 12px;
@@ -562,4 +562,14 @@ ul, li {
     background: #fff;
     text-align: center;
     float: right;
+}
+.DeliveryContent table tbody tr td:nth-child(4) {
+	display: inline-block;
+	font-size: 11px;
+	color: #333;
+	color: #999;
+}
+.DeliveryContent table tbody tr td:nth-child(4) > div {
+	padding: 5px;
+	cursor: pointer;
 }
