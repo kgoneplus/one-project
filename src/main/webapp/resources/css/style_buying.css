@@ -483,18 +483,33 @@ ul, li {
 	position: absolute;
 	left: 20px;
 }
-.DeliveryContent {
+.DeliveryContent{
 	display: none;
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
     width: 600px;
     margin-left: -300px;
     background: #fff;
     border-radius: 3px;
-    z-index: 101;
+    z-index: 102;
+    min-height: 500px;
+    padding: 10px;
 }
-.DeliveryOverylay {
+.addDeliveryAddressContent {
+	display: none;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 600px;
+    margin-left: -300px;
+    background: #fff;
+    border-radius: 3px;
+    z-index: 102;
+    min-height: 500px;
+    padding: 10px;
+}
+.DeliveryOverlay {
 	display: none;
 	position: fixed;
 	width: 100%;
@@ -503,4 +518,48 @@ ul, li {
 	left: 0;
 	background: rgba(0, 0, 0, 0.3);
 	z-index: 101;
+}
+.DeliveryContent > .dContentBox {
+	display: flex;
+	align-items: center;
+	margin: 10px;
+}
+.deliveryDefault {
+	padding: 15px 20px;
+    background: #f9fafb;
+    border-radius: 3px;
+    font-size: 13px;
+}
+.DeliveryContent p {
+	color: #666;
+	font-size: 12px;
+}
+.DeliveryContent table {
+	border-collapse: collapse;
+	font-size: 15px;
+    color: #666;
+    width: 540px;
+    text-align: center;
+    margin: 10px 10px 20px;
+}
+.DeliveryContent table thead tr {
+	height: 50px;
+    padding: 15px 5px;
+    background: #f9fafb;
+    font-size: 12px;
+    color: #333;
+    font-weight: 400;
+}
+.DeliveryContent table thead tr td:last-child {
+	width: 50%;
+}
+#addDeliveryAddress {
+	font-size: 12px;
+    color: #333;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    background: #fff;
+    text-align: center;
+    float: right;
 }

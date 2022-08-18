@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itbank.oneplus.DeliveryDTO;
 import com.itbank.oneplus.ProductcartDAO;
 import com.itbank.oneplus.ProductcartDTO;
 
@@ -64,8 +65,21 @@ public class ProductcartService {
 			}
 			dateList.add(smdf.format(now.getTime()) + day);
 		}
-		
 		return dateList;
+	}
+
+	public String[] deliveryDefault(int member_idx) {
+		String address = dao.deliveryDefault(member_idx);
+		String[] defaultAddress = address.split("/");
+		return defaultAddress;
+	}
+
+	public int insertAddress(DeliveryDTO dto) {
+		return dao.insertAddress(dto);
+	}
+
+	public List<DeliveryDTO> addressList(int member_idx) {
+		return dao.addressList(member_idx);
 	}
 
 }
