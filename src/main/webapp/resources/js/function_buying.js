@@ -271,22 +271,33 @@ function deliveryManagement(event) {
 	deliveryOverlay.style.display = 'block'
 		
 	const tbody = document.querySelector('.DeliveryContent tbody')
+	tbody.innerHTML = ''
 	const url = cpath + '/buying/cart/delivery/' + member_idx	
 	fetch(url).then(resp => resp.json())
 	.then(json => {
 		json.forEach(dto => {
 			const tr = document.createElement('tr')
-			for(let key in dto) {
-				switch(key) {
-				case 'dCode':
-				case 'member_idx':
-					break;
-				default :
-					const td = document.createElement('td')
-					td.innerText = dto[key]				
-					tr.appendChild(td)
-				}
-			}
+			const td1 = document.createElement('td')
+			td1.innerHTML = `<input type="radio" value="${dto.dCode}">`
+			tr.appendChild(td1)
+			
+			const td2 = document.createElement('td')
+			td2.innerHTML = `${dto.receiverName}`
+			tr.appendChild(td2)
+			
+			const td3 = document.createElement('td')
+			td3.innerHTML = `${dto.addr1} ${dto.addr2} ${dto.addr3}`
+			tr.appendChild(td3)
+			
+			const td4 = document.createElement('td')
+			const mod = document.createElement('div')
+			mod.innerText = '수정'
+			const del = document.createElement('div')
+			del.innerText = '삭제'
+			td4.appendChild(mod)
+			td4.appendChild(del)
+			tr.appendChild(td4)
+			
 			tbody.appendChild(tr)
 		})
 	})
