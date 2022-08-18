@@ -7,18 +7,74 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <script
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
 	charset="utf-8"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
+<script src="${cpath }/resources/js/function_member.js"></script>
+<script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link type="text/css" rel="stylesheet"
+	  href="${cpath }/resources/css/style_joinform.css">
+</head>
+<c:set var="ndto" value="${naverlogin }" />
 <body>
-	<h1>네이버로그인창</h1>
-	<hr>
+	<div class="join-form">
+	<div><img src="${cpath }/resources/img/oneplus.png" width="200px" height="50px"></div>
+		<form>
+			<div>아이디</div>
+			<input id="idtext" type="text" name="userid"
+				placeholder="영문,소문자,숫자 6~12자" required>
+			<button id="idconfirm" type="button">중복확인</button>
+			<div id="ConfirmID-Message" confirm="false"></div>
+			
+			<div>비밀번호</div>
+			<input id="pw" type="password" name="userpw"
+				placeholder="영문,숫자,특수문자 조합으로 8~20자" required>
+				
+			<div>비밀번호 재확인</div>
+			<input id="pwconfirm" type="password" name="userpw"
+				placeholder="똑같이 입력해 주세요" required>
+			<div id="ConfirmPW-Message"></div>
+			
+			<div>이름</div>
+			<input  type="text" name="name" placeholder="이름" value="${ndto.name }"
+			<c:if test="${not empty naverlogin }">readonly</c:if> >
+				
+				
+			
+			<div>성별</div>
+			<select name="gender">
+				<option>남</option>
+				<option>여</option>
+			</select>
+			
+			<div>생년월일</div>
+			<input type="date" name="birth" required>
+			
+			<div>핸드폰번호</div>
+			<input type="text" name="phonenum" value="${ndto.phonenum }" placeholder="ex)01012341234"
+				 <c:if test="${not empty naverlogin }">readonly</c:if>>
+				
+			<div>이메일</div>
+			<input type="email" name="email" value="${ndto.email }" placeholder="kkj1234@naver.com"
+				 <c:if test="${not empty naverlogin }">readonly</c:if>>
+			<button id="emailconfirm" type="button">인증번호 요청</button>
+			<div id="ConfirmEmail-Message"></div>
+			
+			<div>주소</div>
+			<input type="text" name="addr_number" id="sample6_postcode" placeholder="우편번호" required>
+			<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" required><br>
+
+			<input type="text" name="addr_juso" id="sample6_address" placeholder="주소" required><br>
+			<input type="text" name="addr_detail" id="sample6_detailAddress" placeholder="상세주소" required>
+			<input type="text" name="addr_Reference" id="sample6_extraAddress" placeholder="참고항목" required>
+
+			<p><input type="submit" value="회원 가입"></p>
+		</form>
+	</div>
 	<script>
-	var naverLogin = new naver.LoginWithNaverId({
+	const naverLogin = new naver.LoginWithNaverId({
 		clientId: "GNv8IH0Irsq3ZxTgn4bE", // 본인걸로 수정, 띄어쓰기 금지.
 		callbackUrl: "http://localhost:8080/project/member/login/naver", // 아무거나 설정
 		isPopup: false,
@@ -31,12 +87,12 @@
 	naverLogin.getLoginStatus(function (status) {
 
 	if (status) {	// 성공한다면
-		var email = naverLogin.user.getEmail();
-		var name = naverLogin.user.getName();
-		var phonenum = naverLogin.user.getMobile();
-		var token = naverLogin.accessToken.toString();
+		const email = naverLogin.user.getEmail();
+		const name = naverLogin.user.getName();
+		const phonenum = naverLogin.user.getMobile();
+		let token = naverLogin.accessToken.toString();
 		
-		var tokensplit = token.split('.');
+		const tokensplit = token.split('.');
 		token = tokensplit[1]
 		console.log(token)
 		
@@ -47,40 +103,58 @@
 			dataType: 'text',
 			success: function(row) {
 				if(row == 1) {
-					console.log('성공')
-					const  url = '${cpath}/remove'
-					const ob = token
-					const opt = {
-							method: 'POST',
-							body:JSON.stringify(ob),
-							headers:{
-								'Content-Type': 'application/json; charset=utf-8'
-							}
-					}
-					fetch(url, opt)
+					console.log('로그인 성공 ')
+					const  url = '${cpath}/remove' + '?token='+token
+					fetch(url)
 					.then(resp => resp.text())
 					.then(text => {
 						if(text == 1){
-							alert('토큰삭제성공')
+							console.log('토큰 삭제 성공')
 						}else{
-							alert('토큰삭제실패')
+							console.log('토큰 삭제 실패')
 						}
 					})
-// 					location.replace("http://localhost:8080/project") 
+					location.replace("http://localhost:8080/project") 
 				} else if(row == 0) {
 					console.log('실패')
-					location.replace("http://localhost:8080/project/member/login")
+					
 				}
 			},
 		})
 		
 
 	} else {
-		alret("네이버 로그인 실패");
-		}
+			alret("네이버 로그인 실패");
+			}
+		});
 	});
-});
-	
+	const cpath = '${cpath}'
+		const idconfirm = document.getElementById('idconfirm')			// 아이디 중복확인 버튼
+		const insertForm = document.forms[0]
+		const pw = document.getElementById('pw')						// 비밀번호
+		const pwconfirm = document.getElementById('pwconfirm')			// 비밀번호 재확인
+		const ConfirmPW = document.getElementById('ConfirmPW-Message')	// 비밀번호 재확인 메세지
+
+		// 비밀번호 재확인 함수
+		pwconfirm.onblur = function() {
+			if (!pwconfirm.value.includes(pw.value)) {
+				// 				pwconfirm.focus()
+				pwconfirm.classList.add('invalid')
+				pw.focus()
+				ConfirmPW.innerText = '비밀번호가 다릅니다'
+				ConfirmPW.style.color = 'red'
+			}
+		};
+
+		pwconfirm.onfocus = function() {
+			if (this.classList.contains('invalid')) {
+				this.classList.remove('invalid')
+				ConfirmPW.innerHTML = ''
+			}
+		};
+
+		idconfirm.addEventListener('click', memberId)
+		insertForm.addEventListener('submit', naverinsertHandler)
 	</script>
 </body>
 </html>

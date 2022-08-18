@@ -29,20 +29,38 @@ function mabtnClickHandler(event) {
 	if(cnt == 1) quantity.value = 1
 	else quantity.value = cnt - 1
 	
+	const prductMain_idx = Array.from(document.querySelectorAll("input[type='checkbox']"))[idx + 1].value
+	const ob = {
+			'member_idx' : member_idx,
+			'productMain_idx' : prductMain_idx,
+			'cnt' : quantity.value
+		}
+	
+	const url = cpath + '/buying/cart/home'
+	const opt = {
+			method: 'PUT',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt).then(resp => resp.text())
+	.then(text => {
+		if(text == 1) console.log('수정 성공')
+		else console.log('수정 실패')
+	})
+	
 	const dcP = target.getAttribute('productDiscount')
 	const lastPrice = Array.from(document.querySelectorAll('.lastprice > p'))[idx]
-	lastPrice.innerText = ''
 	lastPrice.innerText = ((defaultPrice - dcP) * quantity.value).toLocaleString()
 	
 	const priceHidden = Array.from(document.querySelectorAll('.lastprice .price_hidden'))[idx]
 	const discountPrice = Array.from(priceHidden.querySelectorAll('dd'))
 	discountPrice.forEach(dd => {
-		dd.innerText = ''
 		dd.innerText = (dcP * quantity.value) + '원'
 	})
 		
 	const beforeDiscount = Array.from(document.querySelectorAll('.lastprice > span:first-child'))[idx]
-	beforeDiscount.innerText = ''
 	beforeDiscount.innerText = (defaultPrice * quantity.value).toLocaleString() + '원'
 }
 
@@ -62,20 +80,39 @@ function plbtnClickHandler(event) {
 	if(cnt == maxCnt) quantity.value = maxCnt
 	else quantity.value = +cnt + 1
 	
+	const prductMain_idx = Array.from(document.querySelectorAll("input[type='checkbox']"))[idx + 1].value
+//	console.log('prductMain_idx : ', prductMain_idx)
+	const ob = {
+			'member_idx' : member_idx,
+			'productMain_idx' : prductMain_idx,
+			'cnt' : quantity.value
+		}
+	
+	const url = cpath + '/buying/cart/home'
+	const opt = {
+			method: 'PUT',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt).then(resp => resp.text())
+	.then(text => {
+		if(text == 1) console.log('수정 성공')
+		else console.log('수정 실패')
+	})
+	
 	const dcP = target.getAttribute('productDiscount')
 	const lastPrice = Array.from(document.querySelectorAll('.lastprice > p'))[idx]
-	lastPrice.innerText = ''
 	lastPrice.innerText = ((defaultPrice - dcP) * quantity.value).toLocaleString()
 	
 	const priceHidden = Array.from(document.querySelectorAll('.lastprice .price_hidden'))[idx]
 	const discountPrice = Array.from(priceHidden.querySelectorAll('dd'))
 	discountPrice.forEach(dd => {
-		dd.innerText = ''
 		dd.innerText = (dcP * quantity.value) + '원'
 	})
 	
 	const beforeDiscount = Array.from(document.querySelectorAll('.lastprice > span:first-child'))[idx]
-	beforeDiscount.innerText = ''
 	beforeDiscount.innerText = (defaultPrice * quantity.value).toLocaleString() + '원'
 }
 
@@ -95,7 +132,7 @@ function cartDeleteHandler(event) {
 	console.log(idx)
 	
 	const ob = {
-		'member_idx' : 1,
+		'member_idx' : member_idx,
 		'productMain_idx' : idx
 	}
 	const url = cpath + '/buying/cart/home'
@@ -116,7 +153,7 @@ function cartDeleteHandler(event) {
 
 // 장바구니 로드 핸들러
 function cartLoadHandler() {
-	const url = cpath + '/buying/cart/home/' + 1
+	const url = cpath + '/buying/cart/home/' + member_idx
 	fetch(url).then(resp => resp.json())
 	.then(json => {
 		const tbody = document.querySelector('.cartProducts tbody')
@@ -129,7 +166,6 @@ function cartLoadHandler() {
 			tr.setAttribute('productPrice', dto.productPrice)
 			tr.setAttribute('productDiscount', dto.productDiscount)
 			tr.setAttribute('maxbuyCnt', dto.maxbuyCnt)
-//			tr.setAttribute('ProductcartDTO', dto)
 			tr.innerHTML = `<td><input type="checkbox" name="productMain_idx" value="${dto.productMain_idx}"></td>
 							<td>
 								<div class="cartProdName">
@@ -184,32 +220,25 @@ function cartAllItemClick(event) {
 function cartToDeliveryInfo(event) {
 	// 선택상품 주문하기
 	let checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']:checked")).map(item => item.value)
-	
+
 	// 전체 상품주문하기
 	if(event.target.classList.contains('orderAll')) {
 		checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']")).map(item => item.value)
 	}
 	checkedItemList = checkedItemList.filter(item => item != 'on')
-	console.log(checkedItemList)
-	// checkedItemList가 상품번호들의 배열이다 -> DTO 리스트로 바꿔야 밑에 fetch의 매개변수와 타입이 맞다 -> 변경 필요
-
-	const url = cpath + '/buying/deliveryInfo/' + 1
+//	console.log(checkedItemList)
+	
+	const url = cpath + '/buying/cart/home/' + member_idx
 	const opt = {
-		method: 'GET',
-		body: JSON.stringify({
-			'productMain_idx' : checkedItemList
-		}),
+		method: 'PUT',
+		body: JSON.stringify(checkedItemList),
 		headers: {
 			'Content-Type' : 'application/json; charset=utf-8'
 		}
 	}
-	fetch(url, opt)
-//	let checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']:checked"))
-//	checkedItemList = checkedItemList.filter(item => item.value != 'on')
-//	const trArray = Array.from(document.querySelectorAll('.cartProducts tbody > tr'))
-//	for(let i=0; checkedItemList)
-	
-	
+	fetch(url, opt).then(resp => resp.text())
+	.then(text => console.log(text))
+	location.href = cpath + '/buying/deliveryInfo/' + member_idx;
 }
 
 // 장바구니 -> 결제예정 금액 변동
@@ -219,21 +248,140 @@ function paymentBox() {
 	const totalPrice = document.querySelector('.payTab > .payTabTotalprice:first-child p')
 //	totalPrice.innerText = 
 	
-	//모든 총금액 배열
+	// 모든 총금액 배열
 	let sum = 0
 	const tPs = Array.from(document.querySelectorAll('.lastprice > span:first-child'))
 	tPs.forEach(tp => {
 		console.log(tp.innerText)
 //		tp.innerText.replaceAll(',원', '')
 	})
-	
-	
+		
 	// 결제예정 금액
 	const resultPrice = document.querySelector('.resultPrice p')
 
 }
 
-// 장바구니 -> 배송관리 핸들러
-function deliveryManagement() {
+// 장바구니 -> 배송관리 열기 핸들러
+function deliveryManagement(event) {
+//	event.stopPropagation()
+	event.preventDefault()
+	const deliveryContent = document.querySelector('.DeliveryContent')
+	const deliveryOverlay = document.querySelector('.DeliveryOverlay')
+	deliveryContent.style.display = 'block'
+	deliveryOverlay.style.display = 'block'
+		
+	const tbody = document.querySelector('.DeliveryContent tbody')
+	const url = cpath + '/buying/cart/delivery/' + member_idx	
+	fetch(url).then(resp => resp.json())
+	.then(json => {
+		json.forEach(dto => {
+			const tr = document.createElement('tr')
+			for(let key in dto) {
+				switch(key) {
+				case 'dCode':
+				case 'member_idx':
+					break;
+				default :
+					const td = document.createElement('td')
+					td.innerText = dto[key]				
+					tr.appendChild(td)
+				}
+			}
+			tbody.appendChild(tr)
+		})
+	})
 	
 }
+
+// 장바구니 -> 배송관리 닫기 핸들러
+function deliveryManagementClose() {
+	document.querySelector('.DeliveryContent').style.display = 'none'
+	document.querySelector('.DeliveryOverlay').style.display = 'none'
+	document.querySelector('.addDeliveryAddressContent').style.display = 'none'
+}
+
+// 장바구니 -> 배송관리 -> 배송지추가 열기 핸들러
+function addDeliveryAddressHandler() {
+	document.querySelector('.addDeliveryAddressContent').style.display = 'block'
+}
+
+//주소 데이터
+function sample6_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+            if(data.userSelectedType === 'R'){
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                // 조합된 참고항목을 해당 필드에 넣는다.
+                document.getElementById("sample6_extraAddress").value = extraAddr;
+            
+            } else {
+                document.getElementById("sample6_extraAddress").value = '';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample6_postcode').value = data.zonecode;
+            document.getElementById("sample6_address").value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById("sample6_detailAddress").focus();
+        }
+    }).open();
+}
+
+// 배송지 추가 insert 핸들러
+function addressInsert(event) {
+	event.preventDefault()
+	const formData = new FormData(event.target)
+	const ob = {
+		'member_idx' : member_idx
+	}
+	for(let key of formData.keys()) {
+		ob[key] = formData.get(key)
+	}
+	const url = cpath + '/buying/cart/delivery'
+	const opt = {
+			method: 'PUT',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt).then(resp => resp.text())
+	.then(text => {
+		if(text == 1) alert('배송지 추가 성공')
+		else alert('배송지 추가 실패')
+		location.reload(true)
+	})
+}
+
+// 배송지 수정 update 핸들러
+
+// 배송지 삭제 delete 핸들러
+
+// 기본 배송지로 설정 핸들러(parent_member table address update)

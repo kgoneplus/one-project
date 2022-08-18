@@ -31,14 +31,14 @@
 			<div class="right">
 				<div>
 					<c:if test="${empty login }">
-						<a href="${cpath }/member/login"> <img
-							src="${cpath }/resources/img/login.png" width="40px"
+						<a href="${cpath }/member/login"> 
+						<img src="${cpath }/resources/img/login.png" width="40px"
 							height="40px">
 						</a>
 					</c:if>
 					<c:if test="${not empty login }">
-						<a href="${cpath }/member/logout"> <img
-							src="${cpath }/resources/img/logout.png" width="40px"
+						<a href="${cpath }/member/logout"> 
+						<img src="${cpath }/resources/img/logout.png" width="40px"
 							height="40px">
 						</a>
 					</c:if>
@@ -54,7 +54,7 @@
 					</ul>
 				</div>
 				<div>
-					<a href="${cpath}/buying/cart"><img
+					<a href="${cpath}/buying/cart/${login.idx}"><img
 						src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a>
 				</div>
 			</div>
@@ -1098,4 +1098,6 @@
 
 		category.addEventListener('click', categoryModal)
 		//category.addEventListener('click', closeModal)
+		
+	
 	</script>

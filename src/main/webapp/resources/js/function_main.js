@@ -56,7 +56,7 @@
 	 const korPrice = price.toLocaleString()
 	 let discountPrice = price - ob.productDiscount
 	 discountPrice = discountPrice.toLocaleString()
-	 // productImg 이미지 파일이름 수정하기
+	 // productSize & review & countDC 값 수정 필요
 	 product.innerHTML += `<div class="productImg">
 								<img src="${cpath}/resources/getImage1/${ob.productImg}">
 							</div>
@@ -83,14 +83,14 @@
  }
  
  // 메인화면 아이템 로드 핸들러
- function mainLoadHandler(mainList_cate) {
+ async function mainLoadHandler(mainList_cate) {
     const list = document.querySelector('.list')
     const offset = list.getAttribute('offset')
     console.log(offset)
     list.innerHTML = ''
      
     const url = cpath + '/mainload/' + offset + '?mainList_cate=' + mainList_cate 
-    fetch(url) 
+    await fetch(url) 
     .then(resp => resp.json())
     .then(json => {
       json.forEach(product => list.appendChild(convert(product)))
