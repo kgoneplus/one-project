@@ -9,21 +9,38 @@
 <title>Insert title here</title>
 <script src="${cpath }/resources/js/function_member.js"></script>
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link type="text/css" rel="stylesheet"
+	  href="${cpath }/resources/css/style_joinform.css">
 <style>
 .join-form {
 	display: flex;
 	justify-content: center;
+	flex-flow: column;
+	align-items: center;
 }
 
 form {
-	border: 1px solid black;
 	margin: 10px;
 	padding: 10px;
+}
+input {
+ 	width: 250px; 
+	height: 25px;
+	border: 1px solid;
+	border-color: #dadada;
+}
+form > div {
+	margin-top:10px;
+	margin-bottom:3px;
+	font-size: 13px;
+	font-weight:bold;
+	font-family: 'NanumBarunGothic',Dotum,Gulim,Tahoma,Verdana,AppleGothic,sans-serif;
 }
 </style>
 </head>
 <body>
 	<div class="join-form">
+	<div><img src="${cpath }/resources/img/oneplus.png" width="200px" height="50px"></div>
 		<form>
 			<div>아이디</div>
 			<input id="idtext" type="text" name="userid"

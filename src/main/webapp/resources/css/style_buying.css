@@ -483,3 +483,24 @@ ul, li {
 	position: absolute;
 	left: 20px;
 }
+.DeliveryContent {
+	display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    margin-left: -300px;
+    background: #fff;
+    border-radius: 3px;
+    z-index: 101;
+}
+.DeliveryOverylay {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.3);
+	z-index: 101;
+}

@@ -13,8 +13,9 @@
 <script
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
 	charset="utf-8"></script>
-	<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="${cpath }/resources/js/function_member.js"></script>
+	
 <body>
 	
 	 <div class="login_menu">
@@ -25,12 +26,12 @@
                 </div>
                 <div class="login_box">
                     <div class="login_login">
-                        <input type="text" name="userid" placeholder="아이디"><br>
-                        <input type="password" name="userpw" placeholder="비밀번호 (대/소문자구분)"><br>
+                        <input id="id" type="text" name="userid" placeholder="아이디"  required autofocus><br>
+                        <input type="password" name="userpw" placeholder="비밀번호 (대/소문자구분)" required><br>
                     </div>
                 <div class="login_find">
                     <div class="login_find_left">
-                        <input type="checkbox" name="유지" value="true">아이디저장
+                        <input type="checkbox" name="userid_remember" value="1">아이디저장
                     </div>
                     <div class="login_find_right">
                         <a href="#">아이디찾기</a>
@@ -42,10 +43,11 @@
                 </div>
                 <div class="login_button2">
                     <div class="login_button2_naver">
-                        <div id="naverIdLogin"></div>
+                        <div id="naverIdLogin" style="display:none;"></div>
+ 						<a href="#"><button id="naverlogin" type="button">네이버로그인</button></a>
                     </div>
-                    <div class="login_button2_kakao">
-                        <a href="#"><button type="button">카카오로그인</button></a>
+                    <div class="login_button2_kakao" onclick="kakaoLogin();">
+                        <a href="javascript:void(0)"><button type="button">카카오로그인</button></a>
                     </div>
                 </div>
                 <br>
@@ -61,20 +63,92 @@
             </form>
         </div>
     </div>
-    <script>
-	var naverLogin = new naver.LoginWithNaverId(
+   <script>
+   const cookie = document.cookie.split('=');
+   if(cookie[1] != null){
+  	 document.getElementById('id').value = cookie[1];
+   }
+  
+   
+   Kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
+   var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "GNv8IH0Irsq3ZxTgn4bE",
-	  			// 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
 				callbackUrl: "http://localhost:8080/project/member/login/naver",
-	  			// 본인의 callBack url로 수정하세요.
 				isPopup: false,
 				loginButton: {color: "white", type: 3, height: 60}
-	  			// 네이버 로그인버튼 디자인 설정. 한번 바꿔보세요:D
 			}
 		);
 	naverLogin.init();
+	
+	const naverbtn = document.getElementById('naverlogin')
+	naverbtn.addEventListener('click',function(){
+	const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
+	btnNaverLogin.click();
+	});
+	
+	
+	
+	
+function kakaoLogin() {
+	  Kakao.Auth.login({
+	      success: function (response) {
+	        Kakao.API.request({
+	          url: '/v2/user/me',
+	          success: function (response) {
+	        	  kakaomap(response)
+	          },
+	          fail: function (error) {
+	            console.log(error)
+	          },
+	        })
+	      },
+	      fail: function (error) {
+	        console.log(error)
+	      },
+	    })
+	  }
+
+// 받은데이터 매핑
+function kakaomap(res){
+	  	
+		const kakaouser = res.kakao_account
+	  	const kakaouser_map = {
+	  			'name':kakaouser.profile.nickname,
+	  			'email':kakaouser.email
+	  	}
+		kakaoconfirm(kakaouser_map)
+}
+
+// 매핑받은 데이터 로그인 하기
+function kakaoconfirm(data){
+	 const url = '${cpath}/kakaoconfirm'
+	 const opt = {
+		 method:'POST',
+		 body: JSON.stringify(data),
+		 headers:{
+			'Content-Type' : 'application/json; charset=utf-8'
+		 }
+	 }
+	 fetch(url, opt)
+	 .then(resp => resp.text())
+	 .then(text =>{
+		 if(text == 1){
+			 console.log('로그인 성공')
+			  kakaoLogout()
+			 location.replace("http://localhost:8080/project")
+			
+		 }else{
+			 console.log('실패')
+			 location.replace("http://localhost:8080/project/member/login/kakao")
+		 }
+	 })
+}
+
   </script>
+
+  
+  
 		 
 </body>
 </html>
