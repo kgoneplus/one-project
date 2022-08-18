@@ -25,8 +25,15 @@ public class MemberDTO {
 	private String addr_juso;
 	private String addr_detail;
 	private String addr_Reference;
+	private String userid_remember;
 	
 	
+	public String getUserid_remember() {
+		return userid_remember;
+	}
+	public void setUserid_remember(String userid_remember) {
+		this.userid_remember = userid_remember;
+	}
 	public String getAddr_number() {
 		return addr_number;
 	}

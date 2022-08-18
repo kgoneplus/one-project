@@ -1,7 +1,5 @@
 'use strict'
 
-
-
 // 회원가입 인설트
 function insertHandler (event) {
 	event.preventDefault()
@@ -23,7 +21,7 @@ function insertHandler (event) {
 				method: 'POST',
 				body: JSON.stringify(ob),
 				headers: {
-					'Content-Type': 'application/json; charset=utf-8'
+					'Content-Type' : 'application/json; charset=utf-8'
 				}
 		}
 		
@@ -32,14 +30,83 @@ function insertHandler (event) {
 		.then(text => {
 			if(text == 1) {
 				alert('작성성공')
-				location.reload(true)
+				location.href = 'http://localhost:8080/project/'
 			}
 		})
-		
 	}
-	
 }
-// 아이디 중복 채크
+// 네이버 회원가입 인설트((나중에 합치기))
+function naverinsertHandler (event) {
+	event.preventDefault()
+	const ConfirmID = document.getElementById('ConfirmID-Message')
+	let confirm = ConfirmID.getAttribute('confirm')
+	const idfocus = document.querySelector('input[name="userid"]')
+	
+	if(confirm == 'false'){
+		idfocus.focus()
+	}
+	else{
+		const ob = {}
+		const formData = new FormData(event.target)
+		for(let key of formData.keys()) {
+			ob[key] = formData.get(key)
+		}
+		const url = `${cpath}/joining/naverjoining`
+			const opt = {
+				method: 'POST',
+				body: JSON.stringify(ob),
+				headers: {
+					'Content-Type' : 'application/json; charset=utf-8'
+				}
+		}
+		
+		fetch(url, opt)
+		.then(resp => resp.text())
+		.then(text => {
+			if(text == 1) {
+				alert('작성성공')
+				location.href("/")
+			}
+		})
+	}
+}
+//카카오 회원가입 인설트((나중에 합치기))
+function kakaoinsertHandler (event) {
+	event.preventDefault()
+	const ConfirmID = document.getElementById('ConfirmID-Message')
+	let confirm = ConfirmID.getAttribute('confirm')
+	const idfocus = document.querySelector('input[name="userid"]')
+	
+	if(confirm == 'false'){
+		idfocus.focus()
+	}
+	else{
+		const ob = {}
+		const formData = new FormData(event.target)
+		for(let key of formData.keys()) {
+			ob[key] = formData.get(key)
+		}
+		const url = `${cpath}/joining/kakaojoining`
+			const opt = {
+				method: 'POST',
+				body: JSON.stringify(ob),
+				headers: {
+					'Content-Type' : 'application/json; charset=utf-8'
+				}
+		}
+		
+		fetch(url, opt)
+		.then(resp => resp.text())
+		.then(text => {
+			if(text == 1) {
+				alert('작성성공')
+				location.href("/")
+			}
+		})
+	}
+}
+
+// 아이디 중복 체크
 function memberId(event) {
 	const url = `${cpath}/joining/memberload`
 	const id = document.getElementById('idtext').value
@@ -68,8 +135,24 @@ function memberId(event) {
 		ConfirmMessage.innerText = message
 	})
 	
-	
 }
+
+
+//카카오 로그아웃
+function kakaoLogout() {
+if (Kakao.Auth.getAccessToken()) {
+	      Kakao.API.request({
+	        url: '/v1/user/unlink',
+	        success: function (response) {
+	        	console.log(response)
+	        },
+	        fail: function (error) {
+	          console.log(error)
+	        },
+	      })
+	      Kakao.Auth.setAccessToken(undefined)
+	    }
+	 }
 // 주소 데이터
 function sample6_execDaumPostcode() {
     new daum.Postcode({
@@ -81,7 +164,7 @@ function sample6_execDaumPostcode() {
             var addr = ''; // 주소 변수
             var extraAddr = ''; // 참고항목 변수
 
-            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
             if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                 addr = data.roadAddress;
             } else { // 사용자가 지번 주소를 선택했을 경우(J)
@@ -118,4 +201,3 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
-

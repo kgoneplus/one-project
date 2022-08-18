@@ -1,9 +1,37 @@
 'use strict'
 
-//// 찜하기 클릭이벤트
+//// 찜취소 클릭이벤트
 //function heartClick(event){
-//	const 
+//	const heartbtn = event.target.style.backgroundImage
+//	if(img.style.backgroundPosition == '-252px -5px')
+// //세션에 로그인이되어있는지 체크
+//	if(member_idx == ""){
+//		if(confirm("로그인 회원만 이용가능합니다.")){
+//			location.href=`${cpath}/member/login`
+//		}
+//	}
+//	//로그인이 되어있으면 이미지바뀌기
+//	else{
+//		const heartImg = Array.from(document.querySelectorAll('.heart'))
+//		heartImg.forEach(img => img.style.backgroundPosition = '-252px -5px')
+//	}
 //}
+
+// 찜하기 클릭이벤트
+function heartClick(event){
+	const heartbtn = event.target.style.backgroundImage
+ //세션에 로그인이되어있는지 체크
+	if(member_idx == ""){
+		if(confirm("로그인 회원만 이용가능합니다.")){
+			location.href=`${cpath}/member/login`
+		}
+	}
+	//로그인이 되어있으면 이미지바뀌기
+	else{
+		const heartImg = Array.from(document.querySelectorAll('.heart'))
+		heartImg.forEach(img => img.style.backgroundPosition = '-252px -5px')
+	}
+}
 
 // convert
 function convert(dto) {

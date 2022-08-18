@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_view.css">
+<script>let member_idx = '${login.idx}'</script>
 <script src="${cpath}/resources/js/function_view.js"></script>
 </head>
 <body>
@@ -453,8 +454,8 @@
 	window.addEventListener('load',allcateloadHandler)
 	
 	
-// 	const heartbtn = Array.from(document.querySelectorAll('.product_heartbtn'))
-// 	heartbtn.forEach(heart => heart.addEventListener('click', heartClick))
+	const heartbtn = Array.from(document.querySelectorAll('.product_heartbtn'))
+	heartbtn.forEach(heart => heart.addEventListener('click', heartClick))
 	
 </script>
 
