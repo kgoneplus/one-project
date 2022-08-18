@@ -29,7 +29,7 @@ public interface MypageDAO {
 			+ " values (#{member_idx}, #{askType}, #{title}, #{content})")
 	public int askWrite(AskDTO dto);
 
-	// 1:1 문의 내역 (로그인 정보의 idx와 같은 것만 출력하도록 작성해야함)
+	// 1:1 문의 내역 ()
 	@Select("select * from ask order by idx desc")
 	List<AskDTO> selectAskAll();
 	
