@@ -839,6 +839,5 @@
     const category = document.querySelector('#cate > a')
 
     category.addEventListener('click', categoryModal)
-    //category.addEventListener('click', closeModal)
 
     </script>

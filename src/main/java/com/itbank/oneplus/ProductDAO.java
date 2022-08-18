@@ -47,6 +47,9 @@ public interface ProductDAO {
 	// 카테고리에서 클릭한 상품 리스트 보여주기
 	List<ProductDTO> categoryList(HashMap<String, String> idx);
 
+	//@Select("select categoryName, category2Name from category where productMain_categoryCode=#{productMain_categoryCode}")
+	List<String> categoryName(HashMap<String, String> idx);
 	
+
 	
 }

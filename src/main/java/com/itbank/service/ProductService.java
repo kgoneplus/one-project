@@ -15,11 +15,24 @@ public class ProductService {
 	
 	@Autowired private ProductDAO dao;
 
+	// 카테고리 클릭시 이동
 	public List<ProductDTO> categoryList(@RequestParam HashMap<String, String> idx) {
 		List<ProductDTO> catelist = dao.categoryList(idx);
 		
-		System.out.println("서비스이거눙" + catelist);
 		return catelist;
+	}
+
+	// 카테고리 클릭시 상단에 카테고리명
+	public List<String> categoryName(HashMap<String, String> idx) {
+		List<String> keyword = dao.categoryName(idx);
+		System.out.println("keyword List : " + keyword);
+//		if(idx.containsKey("productMain_categoryCode") == true) {
+//			keyword.remove("category2Name");
+//		}
+//		else {
+//			keyword.remove("categoryName");
+//		}
+		return keyword;
 	}
 
 }

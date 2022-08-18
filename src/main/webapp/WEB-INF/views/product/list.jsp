@@ -4,13 +4,17 @@
 <title>Insert title here</title>
 
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_search.css">
+<script src="${cpath}/resources/js/function_header.js"></script>
+
 </head>
 
 <body>
+<div class="all">
+	<div id="overlay">
+	</div>
  <div id="search_top">
-<%-- 	 <c:set var="dto" value="${ProductDAO.selectcateName() }">    --%>
         <div class="inputResult">
-            <p>'<strong>복숭아</strong>'검색결과</p>
+            <p>'<strong>${keyword }</strong>'검색결과</p>
             <p><strong>805</strong>개의 상품이 있습니다</p>
         </div>
 
@@ -32,7 +36,6 @@
                 </tr>
             </table>
         </div>
-<%-- 	</c:set> --%>
     </div>
 
 <div id="search_main">
@@ -100,7 +103,7 @@
 <c:forEach var="dto" items="${catelist }"> 
 	        <div class="category_ltem">
 	            <div class="category_ltemimg">
-	                <a href="${cpath }/product/view"><img src="${cpath }/resources/pImg/${dto.productImg }" ></a>
+	                <a href="${cpath }/product/view/${dto.idx}"><img src="${cpath }/resources/pImg/${dto.productImg }" ></a>
 	                <div class="category_ltemimg_hover">
 	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
 	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>
@@ -139,8 +142,13 @@
 	        </div>
 	    </div>
 </div>
-
-
+</div>
+<script>
+	const category = document.querySelector('#cate > a')
+	
+	category.addEventListener('click', categoryModal)
+	
+</script>
 
 
 <%@ include file="../footer.jsp"%>

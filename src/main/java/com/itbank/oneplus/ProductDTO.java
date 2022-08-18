@@ -123,10 +123,17 @@ public class ProductDTO {
 	public void setCategory2(String category2) {
 		this.category2 = category2;
 	}
-	
-	
-	
-
-
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public String getCategory2Name() {
+		return category2Name;
+	}
+	public void setCategory2Name(String category2Name) {
+		this.category2Name = category2Name;
+	}
 	
 }
