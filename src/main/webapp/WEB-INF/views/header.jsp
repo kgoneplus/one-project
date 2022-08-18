@@ -54,7 +54,7 @@
 					</ul>
 				</div>
 				<div>
-					<a href="${cpath}/buying/cart"><img
+					<a href="${cpath}/buying/cart/${login.idx}"><img
 						src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a>
 				</div>
 			</div>
