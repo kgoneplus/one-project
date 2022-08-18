@@ -103,7 +103,11 @@
 <c:forEach var="dto" items="${catelist }"> 
 	        <div class="category_ltem">
 	            <div class="category_ltemimg">
+<<<<<<< HEAD
 	                <a href="${cpath }/product/view/${dto.idx}"><img src="${cpath }/resources/pImg/${dto.productImg }" ></a>
+=======
+	                <a href="${cpath }/product/view"><img src="${cpath }/resources/getImage1/${dto.productImg }" width="218.4" height="218.4"></a>
+>>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
 	                <div class="category_ltemimg_hover">
 	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
 	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>

@@ -19,6 +19,10 @@ public class ProductService {
 	public List<ProductDTO> categoryList(@RequestParam HashMap<String, String> idx) {
 		List<ProductDTO> catelist = dao.categoryList(idx);
 		
+<<<<<<< HEAD
+=======
+//		System.out.println("서비스이거눙" + catelist);
+>>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
 		return catelist;
 	}
 
