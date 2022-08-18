@@ -29,8 +29,8 @@ public class MemberService {
 	
 	public MemberDTO login(MemberDTO dto) {
 		
-//		String hashpw = hash.getHash(dto.getUserpw());
-//		dto.setUserpw(hashpw);
+		String hashpw = hash.getHash(dto.getUserpw());
+		dto.setUserpw(hashpw);
 		MemberDTO login = dao.selectOne(dto);
 
 		return login;

@@ -14,6 +14,45 @@ function orderProductsExpMouseout(event) {
 	imgExps[idx].style.display = 'none'
 }
 
+// 장바구니 -> 수량 감소 핸들러
+function mabtnClickHandler(event) {
+	event.preventDefault()
+	let target = event.target
+	while(target.tagName != 'TR') {
+		target = target.parentNode
+	}
+	const trArray = Array.from(document.querySelectorAll('.cartProducts tbody > tr'))
+	const idx = trArray.indexOf(target)
+	
+	let quantity = Array.from(document.querySelectorAll("input[name='cnt']"))[idx]
+	const cnt = quantity.value 
+	if(cnt == 1) quantity.value = 1
+	else quantity.value = cnt - 1
+	
+	const lastPrice = Array.from(document.querySelectorAll('.lastprice > p'))[idx]
+	const p = lastPrice.innerText.replaceAll(',', '')
+//	const p = dto.productPrice
+	lastPrice.value = p * quantity.value
+//	lastPrice = quantity.value * lastPrice
+}
+
+// 장바구니 -> 수량 증가 핸들러
+function plbtnClickHandler(event) {
+	event.preventDefault()
+	let target = event.target
+	while(target.tagName != 'TR') {
+		target = target.parentNode
+	}
+	const trArray = Array.from(document.querySelectorAll('.cartProducts tbody > tr'))
+	const idx = trArray.indexOf(target)
+	
+	let quantity = Array.from(document.querySelectorAll("input[name='cnt']"))[idx]
+	const cnt = quantity.value 
+	// 최대수량 값 가져온걸로 고정시켜야함 수정 필요 ★
+	if(cnt == 10) quantity.value = 10
+	else quantity.value = +cnt + 1
+}
+
 // 장바구니 로드 핸들러
 function cartLoadHandler() {
 
@@ -23,11 +62,14 @@ function cartLoadHandler() {
 		const tbody = document.querySelector('.cartProducts tbody')
 		tbody.innerHTML = ''
 		json.forEach(dto => {
+			console.log(dto)
+			let korPrice = (dto.productPrice * dto.cnt).toLocaleString()
+			let discountPrice = ((dto.productPrice - dto.productDiscount)*dto.cnt).toLocaleString()
 			const tr = document.createElement('tr')
 			tr.innerHTML = `<td><input type="checkbox" value="${dto.productMain_idx}"></td>
 							<td>
 								<div class="cartProdName">
-									<img src="${cpath}/resources/pImg/${dto.productImg}">
+									<img src="${cpath}/resources/getImage1/${dto.productImg}">
 									<div>
 										${dto.productName}
 										<div class="counter">
@@ -41,36 +83,35 @@ function cartLoadHandler() {
 							</td>
 							<td>
 								<div class="lastprice">
-									<span>${dto.productPrice}원</span>
+									<span>${korPrice}원</span>
 									<div class="lastprice_icon">
 										<div class="price_hidden">
 											<dl>
 												<dt>상품할인</dt>
-												<dd>6000원</dd>
+												<dd>${dto.productDiscount}원</dd>
 											</dl>
 											<dl>
 												<dt>총 할인금액</dt>
-												<dd>11,990원</dd>
+												<dd>${dto.productDiscount}원</dd>
 											</dl>
 										</div>
 									</div>
-									<p>11,990원</p>
+									<p>${discountPrice}</p><span>원</span>
 								</div>
 							</td>
 							<td>-</td>
 							<td><button><div></div></button></td>`
 			tbody.appendChild(tr)
 			
-			let quantity = document.querySelector("input[name='cnt']").value
-			console.log(quantity)
-			const mabtn = document.querySelector('.mabtn')
-			mabtn.addEventListener('click', function () {
-				quantity= +quantity + 1
-			})
-			const plbtn = document.querySelector('.plbtn')
-			plbtn.addEventListener('click', function () {
-				quantity = --quantity
-			})
+//			let mabtn = document.querySelector('.mabtn')
+//			mabtn.addEventListener('click', mabtnClickHandler(dto))
+//			let plbtn = document.querySelector('.plbtn')
+//			plbtn,addEventListener('click', plbtnClickHandler(dto))
+			
+			const mabtns = Array.from(document.querySelectorAll('.mabtn'))
+			mabtns.forEach(btn => btn.addEventListener('click', mabtnClickHandler))
+			const plbtns = Array.from(document.querySelectorAll('.plbtn'))
+			plbtns.forEach(btn => btn.addEventListener('click', plbtnClickHandler))
 		})
 	})
 
