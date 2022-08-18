@@ -97,6 +97,11 @@ public class MemberService {
 		return row;
 	}
 	
+	public int idsearch(MemberDTO dto) {
+		
+		return 0;
+	}
+	
 	
 	
 
