@@ -14,5 +14,4 @@
 		      <if test="productMain_categoryCode != null"> and P.categoryCode = #{productMain_categoryCode}</if>
 	</select>
 	
-	
 </mapper>

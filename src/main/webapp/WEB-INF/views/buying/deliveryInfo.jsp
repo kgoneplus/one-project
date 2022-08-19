@@ -1,18 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="cpath" value="${pageContext.request.contextPath }"/>
+<%@ include file="buyingheader.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>주문/결제 | 홈플러스 온라인, 맛있는 마트</title>
-<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
-<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_buying.css">
-<script>
-	const cpath = '${cpath}'
-</script>
-<script src="${cpath}/resources/js/function_buying.js"></script>
 </head>
 <body>
 
@@ -47,7 +40,7 @@
             <div>
                 <strong>일반배송</strong>
                 <span>센텀시티점</span>
-                <p>부산광역시 해운대구 우동 센텀드림월드 5층</p>
+                <p>${deliveryDefault[0]} ${deliveryDefault[1]} ${deliveryDefault[2]}</p>
             </div>
         </div>
         <p id="notice">* 배송지 변경은 장바구니에서 가능합니다.</p>

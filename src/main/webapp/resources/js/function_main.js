@@ -58,7 +58,7 @@
 	 discountPrice = discountPrice.toLocaleString()
 	 // productSize & review & countDC 값 수정 필요
 	 product.innerHTML += `<div class="productImg">
-								<img src="${cpath}/resources/getImage1/${ob.productImg}">
+								<a href = "${cpath}/product/view/${ob.idx}"><img src="${cpath}/resources/getImage1/${ob.productImg}"></a>
 							</div>
 							<div class="productInfo">
 								<div class="productTitle">

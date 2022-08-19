@@ -190,7 +190,6 @@
                                             </li>
                                         </ul>
                                         </div>
-
                                 </li>
                                 <li>
                                    <a>채소<div class="arrow"></div></a>
@@ -265,8 +264,6 @@
                                          </li>
                                       </ul>
                                    </div>
-                                   
-
                                 </li>
                                 <li>
                                    <a>수산물/건어물<div class="arrow"></div></a>

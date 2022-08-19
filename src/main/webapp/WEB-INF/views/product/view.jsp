@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_view.css">
-<script>let member_idx = '${login.idx}'</script>
+<script>
+	const member_idx = '${login.idx}'
+	const productMain_idx = '${prodOne.idx}'
+</script>
 <script src="${cpath}/resources/js/function_view.js"></script>
 </head>
 <body>
@@ -103,6 +106,7 @@
                     <button type="button" class="product_nowbtn">바로구매</button>
                     <button type="button" class="product_cartbtn">장바구니</button>
                 </div>
+                <div class="product_cartbtnOverlay"></div>
             </div>
         </viewmain>
         <viewmain>
@@ -118,42 +122,6 @@
                     </div>
                     <div class="hotslide">
                     	<div class="hotslide_wrap">
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg1.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!-- 							<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg2.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg4.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg5.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
 						</div>
                     </div>
                 </div>
@@ -450,12 +418,17 @@
 	pdtslideArray.forEach(img => img.addEventListener('click', pdtviewSlide))
 	
 	const categoryCode = '${prodOne.categoryCode}'
-	window.addEventListener('load',cateloadHandler(categoryCode))
-	window.addEventListener('load',allcateloadHandler)
-	
+	window.addEventListener('load', cateloadHandler(categoryCode))
+	window.addEventListener('load', allcateloadHandler)
 	
 	const heartbtn = Array.from(document.querySelectorAll('.product_heartbtn'))
 	heartbtn.forEach(heart => heart.addEventListener('click', heartClick))
+	if(member_idx != ""){
+		window.addEventListener('load', heartloadHandler)
+	}
+	
+	const prodcartBtn = Array.from(document.querySelectorAll('.product_cartbtn'))
+	prodcartBtn.forEach(btn => btn.addEventListener('click', prodcartModal))
 	
 </script>
 

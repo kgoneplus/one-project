@@ -3,6 +3,7 @@ package com.itbank.oneplus;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -58,8 +59,16 @@ public interface ProductDAO {
 	@Select("select * from productMain order by buyCnt offset 0 rows fetch next 6 rows only")
 	List<ProductDTO> allcatehotList();
 
-//	@Insert("insert into prodcut_wishlist ")
-//	List<ProductDTO> wishlist();
+	@Insert("insert into product_wishlist (productMain_idx, parent_member_idx) values (#{productMain_idx}, #{parent_member_idx})")
+	int wishlist(HashMap<String, String> ob);
+
+	@Select("select count(*) from product_wishlist where parent_member_idx=#{parent_member_idx} and productmain_idx=#{productMain_idx}")
+	int heartload(HashMap<String, String> ob);
+
+	@Delete("delete product_wishlist where parent_member_idx=#{parent_member_idx} and productmain_idx=#{productMain_idx}")
+	int deletewishList(HashMap<String, String> ob);
+
+	
 	
 	
 }
