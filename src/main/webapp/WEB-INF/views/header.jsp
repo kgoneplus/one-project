@@ -25,12 +25,13 @@
 			</div>
 
 			<div class="input">
-				<input type="search" placeholder=" 검색어를 입력하세요">
+				<form method="GET" action="${cpath }/product/search">
+					<input type="search" name="param" value="${param.search}" placeholder="검색어를 입력하세요">
+					<button type="submit"></button>
+				</form>
 			</div>
 
-<<<<<<< HEAD
-    category.addEventListener('click', categoryModal)
-=======
+
 			<div class="right">
 				<div>
 					<c:if test="${empty login }">
@@ -675,8 +676,6 @@
 												</div></li>
 										</ul>
 									</div></li>
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
-
 								<li><a>생수/음료
 										<div class="arrow"></div>
 								</a>

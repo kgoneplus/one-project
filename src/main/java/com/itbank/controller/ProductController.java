@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.itbank.oneplus.ProductDTO;
 import com.itbank.service.ProductService;
 
@@ -20,9 +20,24 @@ public class ProductController {
 	
 	@Autowired private ProductService productService;
 
-	// 상품 검색결과를 보여주는 페이지
+	// 헤더 input 검색결과를 보여주는 페이지
 	@GetMapping("/search")
-	public void search() {}
+	public ModelAndView search (@RequestParam HashMap<String, String> param) {
+
+		ModelAndView mav = new ModelAndView("product/search");
+		List<ProductDTO> list = productService.selectSearchList(param);
+		mav.addObject("list", list);	
+	
+		
+		System.out.println(param);
+		System.out.println(param.values());
+		System.out.println(param.size());
+		//System.out.println(param.recome);
+		//System.out.println(mav);
+		
+	
+		return mav;		
+	}
 	
 	// 상품상세페이지를 보여주는 페이지
 	@GetMapping("/view")
@@ -37,12 +52,12 @@ public class ProductController {
 
 		List<String> keyword = productService.categoryName(idx);
 		mav.addObject("keyword", keyword);
-		System.out.println(keyword);
-		System.out.println(catelist);
+		//System.out.println(keyword);
+		//System.out.println(catelist);
 		
 		return mav;
 	}
-
+	
 
 }
 

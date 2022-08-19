@@ -103,11 +103,7 @@
 <c:forEach var="dto" items="${catelist }"> 
 	        <div class="category_ltem">
 	            <div class="category_ltemimg">
-<<<<<<< HEAD
-	                <a href="${cpath }/product/view/${dto.idx}"><img src="${cpath }/resources/pImg/${dto.productImg }" ></a>
-=======
 	                <a href="${cpath }/product/view"><img src="${cpath }/resources/getImage1/${dto.productImg }" width="218.4" height="218.4"></a>
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
 	                <div class="category_ltemimg_hover">
 	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
 	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>
@@ -125,15 +121,15 @@
 	                        </dl>
 	                        <dl>
 	                            <dt>상품할인</dt>
-	                            <dd>-6000원</dd>
+	                            <dd>-${dto.productDiscount }원</dd>
 	                        </dl>
 	                        <dl>
 	                            <dt>할인가</dt>
-	                            <dd>11,990원</dd>
+	                            <dd><fmt:formatNumber value="${dto.productPrice-dto.productDiscount }" />원</dd>
 	                        </dl>
 	                    </div>
 	                </div>
-	                <p>11,990원</p>
+	                <p><fmt:formatNumber value="${dto.productPrice-dto.productDiscount }" />원</p>
 	            </div>
 	            <div class="buyAvg">
 	                <span>⭐</span>
@@ -148,9 +144,9 @@
 </div>
 </div>
 <script>
-	const category = document.querySelector('#cate > a')
+	const Listcategory = document.querySelector('#cate > a')
 	
-	category.addEventListener('click', categoryModal)
+	Listcategory.addEventListener('click', categoryModal)
 	
 </script>
 

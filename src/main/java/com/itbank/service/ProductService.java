@@ -19,13 +19,22 @@ public class ProductService {
 	public List<ProductDTO> categoryList(@RequestParam HashMap<String, String> idx) {
 		List<ProductDTO> catelist = dao.categoryList(idx);
 		
-<<<<<<< HEAD
-=======
 //		System.out.println("서비스이거눙" + catelist);
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
 		return catelist;
 	}
 
+	//헤더 input 검색결과를 보여주는 페이지
+	public List<ProductDTO> selectSearchList(@RequestParam HashMap<String, String> param) {
+		
+		
+		
+		
+		
+		
+		
+		return dao.selectSearchList(param);
+	}
+	
 	// 카테고리 클릭시 상단에 카테고리명
 	public List<String> categoryName(HashMap<String, String> idx) {
 		List<String> keyword = dao.categoryName(idx);
@@ -39,4 +48,8 @@ public class ProductService {
 		return keyword;
 	}
 
+
+
+	
+	
 }

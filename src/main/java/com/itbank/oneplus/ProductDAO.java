@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Repository
 public interface ProductDAO {
@@ -50,6 +51,11 @@ public interface ProductDAO {
 
 	//@Select("select categoryName, category2Name from category where productMain_categoryCode=#{productMain_categoryCode}")
 	List<String> categoryName(HashMap<String, String> idx);
+
+	@Select("select * from productMain "
+			+ " where productName like '%${param}%'"
+			+ " order by idx")
+	List<ProductDTO> selectSearchList(@RequestParam HashMap<String, String> param);
 	
 
 	
