@@ -4,7 +4,12 @@
 <title>Insert title here</title>
 
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_search.css">
+<script>
+	const member_idx = '${login.idx}'
+	const productMain_idx = '${prodOne.idx}'
+</script>
 <script src="${cpath}/resources/js/function_header.js"></script>
+<script src="${cpath}/resources/js/function_search.js"></script>
 </head>
 
 <body>
@@ -79,13 +84,14 @@
 	    <div class="category_topbar">
 	        <div class="category_suggest">
 	            <ul>
-	                <li><a href="${cpath}/product/search?param=${param.param}&recome=best">추천순</a></li>
-	                <li><a href="${cpath}/product/search?param=${param.param}&recome=sumbying">많이 팔린순</a></li>
-	                <li><a href="${cpath}/product/search?param=${param.param}&recome=minprice">낮은 가격순</a></li>
-	                <li><a href="${cpath}/product/search?param=${param.param}&recome=maxprice">높은 가격순</a></li>
-	                <li><a href="${cpath}/product/search?param=${param.param}&recome=lotofrivew">리뷰 많은순</a></li>
+	                <li><a href="${cpath}/product/search?param=${param.param}&recome=best"><button type="button">추천순</button></a></li>
+	                <li><a href="${cpath}/product/search?param=${param.param}&recome=sumbuying"><button type="button">많이 팔린순</button></a></li>
+	                <li><a href="${cpath}/product/search?param=${param.param}&recome=minprice"><button type="button">낮은 가격순</button></a></li>
+	                <li><a href="${cpath}/product/search?param=${param.param}&recome=maxprice"><button type="button">높은 가격순</button></a></li>
+	                <li><a href="${cpath}/product/search?param=${param.param}&recome=lotofreview"><button type="button">리뷰 많은순</button></a></li>
 	            </ul>
 	        </div>
+<!-- 	        	할까말까고민즁 -->
 <!-- 	        <div class="category_input"> -->
 <!-- 	            <input type="text" placeholder="결과 내 재검색"><button class="input_icon"></button> -->
 <!-- 	            <button class="input_button1"></button> -->
@@ -97,10 +103,10 @@
 <c:forEach var="dto" items="${list }"> 	    
 	        <div class="category_ltem">
 	            <div class="category_ltemimg">
-	               <a href="${cpath }/product/view"><img src="${cpath }/resources/getImage1/${dto.productImg }" width="218.4" height="218.4"></a>
+	               <a href="${cpath }/product/view/${dto.idx}"><img src="${cpath }/resources/getImage1/${dto.productImg }" width="218.4" height="218.4"></a>
 	                <div class="category_ltemimg_hover">
-	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
-	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>
+	                    <a href="${cpath }/product/view/${dto.idx}" target="_blank"><button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button></a>
+	                    <a href="#"><button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button></a>
 	                </div>
 	                <div class="dicount_icon">행사<br>상품</div>
 	            </div>
@@ -139,9 +145,10 @@
 
 <script>
 	const Listcategory = document.querySelector('#cate > a') 
+	const cartbtn = document.querySelectorAll('.button2') 
 	
 	Listcategory.addEventListener('click', categoryModal)
-
+	cartbtn.forEach(btn => btn.addEventListener('click', searchCart))
 </script>
 
 

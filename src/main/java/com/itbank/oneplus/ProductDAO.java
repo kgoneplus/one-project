@@ -3,6 +3,8 @@ package com.itbank.oneplus;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,13 +51,32 @@ public interface ProductDAO {
 	// 카테고리에서 클릭한 상품 리스트 보여주기
 	List<ProductDTO> categoryList(HashMap<String, String> idx);
 
+	@Select("select * from productMain where idx=#{idx}")
+	ProductDTO selectProductOne(int idx);
+
+	@Select("select * from productMain where categorycode=#{categorycode} order by buyCnt offset 0 rows fetch next 6 rows only")
+	List<ProductDTO> catehotList(int categorycode);
+
+	@Select("select * from productMain order by buyCnt offset 0 rows fetch next 6 rows only")
+	List<ProductDTO> allcatehotList();
+
+	@Insert("insert into product_wishlist (productMain_idx, parent_member_idx) values (#{productMain_idx}, #{parent_member_idx})")
+	int wishlist(HashMap<String, String> ob);
+
+	@Select("select count(*) from product_wishlist where parent_member_idx=#{parent_member_idx} and productmain_idx=#{productMain_idx}")
+	int heartload(HashMap<String, String> ob);
+
+	@Delete("delete product_wishlist where parent_member_idx=#{parent_member_idx} and productmain_idx=#{productMain_idx}")
+	int deletewishList(HashMap<String, String> ob);
+
+	
 	//@Select("select categoryName, category2Name from category where productMain_categoryCode=#{productMain_categoryCode}")
 	List<String> categoryName(HashMap<String, String> idx);
 
-	@Select("select * from productMain "
-			+ " where productName like '%${param}%'"
-			+ " order by idx")
-	List<ProductDTO> selectSearchList(@RequestParam HashMap<String, String> param);
+	@Select("select distinct P.*, (select count(*) from review where productMain_idx = P.idx) as rcnt from productMain P" + 
+			"    where P.productName like '%${param}%'" + 
+			"    order by ${order}")
+	List<ProductDTO> selectSearchList(HashMap<String, String> map);
 	
 
 	
