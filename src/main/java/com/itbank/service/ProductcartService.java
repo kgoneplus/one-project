@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itbank.oneplus.DeliveryDAO;
 import com.itbank.oneplus.DeliveryDTO;
 import com.itbank.oneplus.ProductcartDAO;
 import com.itbank.oneplus.ProductcartDTO;
@@ -18,6 +19,7 @@ import com.itbank.oneplus.ProductcartDTO;
 public class ProductcartService {
 	
 	@Autowired ProductcartDAO dao;
+	@Autowired DeliveryDAO deliveryDao;
 
 	public List<ProductcartDTO> deliveryInfoSelectList(int idx, List<String> itemList) {
 		List<ProductcartDTO> list = new ArrayList<ProductcartDTO>();
@@ -75,11 +77,23 @@ public class ProductcartService {
 	}
 
 	public int insertAddress(DeliveryDTO dto) {
-		return dao.insertAddress(dto);
+		return deliveryDao.insertAddress(dto);
 	}
 
 	public List<DeliveryDTO> addressList(int member_idx) {
-		return dao.addressList(member_idx);
+		return deliveryDao.addressList(member_idx);
+	}
+
+	public DeliveryDTO addressSelectOne(HashMap<String, String> param) {
+		return deliveryDao.addressSelectOne(param);
+	}
+
+	public int updateAddress(DeliveryDTO dto) {
+		return deliveryDao.updateAddress(dto);
+	}
+
+	public int deleteAddress(HashMap<String, String> param) {
+		return deliveryDao.deleteAddress(param);
 	}
 
 }
