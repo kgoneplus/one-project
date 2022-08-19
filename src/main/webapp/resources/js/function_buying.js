@@ -1,5 +1,72 @@
 'use strict'
 
+//주소 데이터
+function sample6_execDaumPostcode(event) {
+	let target = event.target
+	let flag = true
+	while(flag) {
+		target = target.parentNode
+		for(let i = 0; target.classList != undefined && i < target.classList.length; i++) {
+			const className = target.classList[i]
+			if(className.includes('DeliveryAddressContent')) {
+				flag = false
+				break
+			}
+		}
+	}
+//	console.log(target.className.substring(0, 3))
+	let index = 0
+	if(target.className.substring(0, 3) == 'mod')
+		index = 1
+	
+	
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+            if(data.userSelectedType === 'R'){
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                // 조합된 참고항목을 해당 필드에 넣는다.
+                document.querySelectorAll("#sample6_extraAddress")[index].value = extraAddr;
+            
+            } else {
+                document.querySelectorAll("#sample6_extraAddress")[index].value = '';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.querySelectorAll('#sample6_postcode')[index].value = data.zonecode;
+            document.querySelectorAll("#sample6_address")[index].value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            document.querySelectorAll("#sample6_detailAddress")[index].focus();
+        }
+    }).open();
+}
+
 // 배송정보 페이지 -> 상품 이미지 마우스오버시 상세설명 나타나는 이벤트
 function orderProductsExpMouseover(event) {
 	const idx = orderProducts.indexOf(event.target)
@@ -263,7 +330,6 @@ function paymentBox() {
 
 //배송지 수정 update 핸들러
 function modDeliveryAddress(event) {
-	console.log(event.target.getAttribute('dCode'))
 	const ob = {
 			'member_idx': member_idx,
 			'dCode' : event.target.getAttribute('dCode')
@@ -276,34 +342,83 @@ function modDeliveryAddress(event) {
 				'Content-Type' : 'application/json; charset=utf-8'
 			}
 	}
-	
-	const modDeliveryAddressContent = document.querySelector('.addDeliveryAddressContent')
-	modDeliveryAddressContent.innerHTML = ''
-	modDeliveryAddressContent.innerHTML = ` <h3>배송지 추가</h3>
-											<hr>
-											<form>
-												<div>받는분</div>
-												<input type="text" name="receiverName" required>
-											
-												<div>핸드폰번호</div>
-												<input type="text" name="receiverPhonenum" required>
-													
-												<div>주소</div>
-												<input type="text" name="addr1" id="sample6_postcode" placeholder="우편번호" required>
-												<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" required><br>
-											
-												<input type="text" name="addr2" id="sample6_address" placeholder="주소" required><br>
-												<input type="text" name="addr3" id="sample6_detailAddress" placeholder="상세주소" required>
-												<input type="text" name="dInfo1" id="sample6_extraAddress" placeholder="요청사항" required>
+	fetch(url, opt).then(resp => resp.json())
+	.then(json => {
+		const modDeliveryAddressContent = document.querySelector('.modDeliveryAddressContent')
+		modDeliveryAddressContent.style.display = 'block'
+		document.querySelector('.DeliveryContent').style.display = 'none'
+		modDeliveryAddressContent.innerHTML = ''
+		modDeliveryAddressContent.innerHTML = ` <h3>배송지 추가</h3>
+												<hr>
+												<form>
+													<div>받는분</div>
+													<input type="hidden" name="member_idx" value="${json.member_idx}">
+													<input type="hidden" name="dCode" value="${json.dCode}">
+													<input type="text" name="receiverName" placeholder="${json.receiverName}" required>
 												
-												<input type="submit" value="확인">
-												<input type="button" value="취소" onclick="deliveryManagementClose()">
-											</form>`
+													<div>핸드폰번호</div>
+													<input type="text" name="receiverPhonenum" placeholder="${json.receiverPhonenum}" required>
+														
+													<div>주소</div>
+													<input type="text" name="addr1" id="sample6_postcode" placeholder="${json.addr1}" required>
+													<input type="button" value="우편번호 찾기" required><br>
+												
+													<input type="text" name="addr2" id="sample6_address" placeholder="${json.addr2}" required><br>
+													<input type="text" name="addr3" id="sample6_detailAddress" placeholder="${json.addr3}" required>
+													<input type="text" name="dInfo1" id="sample6_extraAddress" placeholder="${json.dInfo1}" required>
+													
+													<input type="submit" value="확인">
+													<input type="button" value="취소" onclick="deliveryManagementClose()">
+												</form>`
+		
+		modDeliveryAddressContent.querySelector('input[value="우편번호 찾기"]').addEventListener('click', sample6_execDaumPostcode)
+			
+		const form = document.querySelector('.modDeliveryAddressContent > form')
+		form.addEventListener('submit', function (event) {
+			const formData = new FormData(event.target)
+			const ob = {}
+			for(let key of formData.keys()) {
+				ob[key] = formData.get(key)
+			}
+			const url = cpath + '/buying/cart/delivery/insert'
+			const opt = {
+					method: 'POST',
+					body: JSON.stringify(ob),
+					headers: {
+						'Content-Type' : 'application/json; charset=utf-8'
+					}
+			}
+			fetch(url, opt).then(resp => resp.text())
+			.then(text => {
+				if(text == 1) alert('수정 성공')
+				else alert('수정 실패')
+			})
+		})
+	})
+	
 	
 }
 
 // 배송지 삭제 delete 핸들러
-
+function delDeliveryAddress(event) {
+	const ob = {
+			'member_idx': member_idx,
+			'dCode' : event.target.getAttribute('dCode')
+	}
+	const url = cpath + '/buying/cart/delivery'
+	const opt = {
+			method : 'DELETE',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt).then(resp => resp.text())
+	.then(text => {
+		if(text == 1) alert('삭제 성공')
+		location.reload(true)
+	})
+}
 
 
 // 장바구니 -> 배송관리 열기 핸들러
@@ -323,7 +438,7 @@ function deliveryManagement(event) {
 		json.forEach(dto => {
 			const tr = document.createElement('tr')
 			const td1 = document.createElement('td')
-			td1.innerHTML = `<input type="radio" value="${dto.dCode}">`
+			td1.innerHTML = `<input type="radio" name="dCode" value="${dto.dCode}">`
 			tr.appendChild(td1)
 			
 			const td2 = document.createElement('td')
@@ -358,60 +473,12 @@ function deliveryManagementClose() {
 	document.querySelector('.DeliveryContent').style.display = 'none'
 	document.querySelector('.DeliveryOverlay').style.display = 'none'
 	document.querySelector('.addDeliveryAddressContent').style.display = 'none'
+	document.querySelector('.modDeliveryAddressContent').style.display = 'none'
 }
 
 // 장바구니 -> 배송관리 -> 배송지추가 열기 핸들러
 function addDeliveryAddressHandler() {
 	document.querySelector('.addDeliveryAddressContent').style.display = 'block'
-}
-
-//주소 데이터
-function sample6_execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var addr = ''; // 주소 변수
-            var extraAddr = ''; // 참고항목 변수
-
-            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                addr = data.roadAddress;
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                addr = data.jibunAddress;
-            }
-
-            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-            if(data.userSelectedType === 'R'){
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraAddr !== ''){
-                    extraAddr = ' (' + extraAddr + ')';
-                }
-                // 조합된 참고항목을 해당 필드에 넣는다.
-                document.getElementById("sample6_extraAddress").value = extraAddr;
-            
-            } else {
-                document.getElementById("sample6_extraAddress").value = '';
-            }
-
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('sample6_postcode').value = data.zonecode;
-            document.getElementById("sample6_address").value = addr;
-            // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("sample6_detailAddress").focus();
-        }
-    }).open();
 }
 
 // 배송지 추가 insert 핸들러
@@ -442,3 +509,28 @@ function addressInsert(event) {
 
 
 // 기본 배송지로 설정 핸들러(parent_member table address update)
+function updatedefaultAddress() {
+	// 기본배송지로 변경 시 회원 테이블 주소 update -> 그럼 받는분은 어디에 저장??
+	const target = document.querySelector("input[type='radio']:checked")
+	const dCode = target.value
+	
+	const ob = {
+			'idx' : member_idx,
+			'dCode' : target.value
+	}
+	console.log(ob)
+	const url = cpath + '/buying/cart/deliveryUpdate'
+	const opt = {
+			method: 'PUT',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt).then(resp => resp.text())
+	.then(text => {
+		if(text == 1) alert('수정 성공')
+		else alert('수정 실패')
+		location.reload(true)
+	})
+}

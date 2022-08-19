@@ -25,8 +25,12 @@
 			</div>
 
 			<div class="input">
-				<input type="search" placeholder=" 검색어를 입력하세요">
+				<form method="GET" action="${cpath }/product/search">
+					<input type="search" name="param" value="${param.search}" placeholder="검색어를 입력하세요">
+					<button type="submit"></button>
+				</form>
 			</div>
+
 
 			<div class="right">
 				<div>
@@ -672,7 +676,6 @@
 												</div></li>
 										</ul>
 									</div></li>
-
 								<li><a>생수/음료
 										<div class="arrow"></div>
 								</a>

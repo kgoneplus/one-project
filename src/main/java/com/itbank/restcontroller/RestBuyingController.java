@@ -64,4 +64,14 @@ public class RestBuyingController {
 	public DeliveryDTO addressSelectOne(@RequestBody HashMap<String, String> param) {
 		return service.addressSelectOne(param);
 	}
+	
+	@PostMapping(value="/buying/cart/delivery/insert", produces="application/json; charset=utf-8")
+	public int updateAddress(@RequestBody DeliveryDTO dto) {
+		return service.updateAddress(dto);
+	}
+	
+	@DeleteMapping(value="/buying/cart/delivery", produces="application/json; charset=utf-8")
+	public int deleteAddress(@RequestBody HashMap<String, String> param) {
+		return service.deleteAddress(param);
+	}
 }
