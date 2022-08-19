@@ -65,7 +65,7 @@ function naverinsertHandler (event) {
 		.then(text => {
 			if(text == 1) {
 				alert('작성성공')
-				location.href("/")
+				location.href = 'http://localhost:8080/project/member/login'
 			}
 		})
 	}
@@ -100,7 +100,7 @@ function kakaoinsertHandler (event) {
 		.then(text => {
 			if(text == 1) {
 				alert('작성성공')
-				location.href("/")
+				location.href = 'http://localhost:8080/project/member/login'
 			}
 		})
 	}

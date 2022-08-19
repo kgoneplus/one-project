@@ -34,7 +34,7 @@
                         <input type="checkbox" name="userid_remember" value="1">아이디저장
                     </div>
                     <div class="login_find_right">
-                        <a href="#">아이디찾기</a>
+                        <a href="${cpath }/member/login/idsearch">아이디찾기</a>
                         <a href="#"> | 비밀번호찾기</a>
                     </div>
                 </div>    
@@ -96,6 +96,7 @@ function kakaoLogin() {
 	        Kakao.API.request({
 	          url: '/v2/user/me',
 	          success: function (response) {
+	        	  console.log(response)
 	        	  kakaomap(response)
 	          },
 	          fail: function (error) {
@@ -111,7 +112,7 @@ function kakaoLogin() {
 
 // 받은데이터 매핑
 function kakaomap(res){
-	  	
+	 	console.log(res)
 		const kakaouser = res.kakao_account
 	  	const kakaouser_map = {
 	  			'name':kakaouser.profile.nickname,

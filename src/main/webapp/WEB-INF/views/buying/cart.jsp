@@ -118,6 +118,8 @@
 </div>
 <div class="DeliveryOverlay"></div>
 <div class="addDeliveryAddressContent">
+	<h3>배송지 추가</h3>
+	<hr>
 	<form>
 		<div>받는분</div>
 		<input type="text" name="receiverName" required>

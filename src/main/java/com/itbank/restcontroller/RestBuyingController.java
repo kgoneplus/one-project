@@ -1,5 +1,6 @@
 package com.itbank.restcontroller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,7 +50,7 @@ public class RestBuyingController {
 		return "세션 저장 실패";
 	}
 	
-	@PutMapping(value="/buying/cart/delivery", produces="application/json; charset=utf-8")
+	@PostMapping(value="/buying/cart/delivery", produces="application/json; charset=utf-8")
 	public int insertAddress(@RequestBody DeliveryDTO dto) {
 		return service.insertAddress(dto);
 	}
@@ -56,5 +58,10 @@ public class RestBuyingController {
 	@GetMapping(value="/buying/cart/delivery/{member_idx}", produces="application/json; charset=utf-8")
 	public List<DeliveryDTO> addressList(@PathVariable int member_idx) {
 		return service.addressList(member_idx);
+	}
+	
+	@PutMapping(value="/buying/cart/delivery", produces="application/json; charset=utf-8")
+	public DeliveryDTO addressSelectOne(@RequestBody HashMap<String, String> param) {
+		return service.addressSelectOne(param);
 	}
 }

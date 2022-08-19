@@ -77,7 +77,6 @@ const cpath = '${cpath}'
 	// 비밀번호 재확인 함수
 	pwconfirm.onblur = function() {
 		if (!pwconfirm.value.includes(pw.value)) {
-			// 				pwconfirm.focus()
 			pwconfirm.classList.add('invalid')
 			pw.focus()
 			ConfirmPW.innerText = '비밀번호가 다릅니다'

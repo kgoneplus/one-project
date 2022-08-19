@@ -82,4 +82,8 @@ public class ProductcartService {
 		return dao.addressList(member_idx);
 	}
 
+	public DeliveryDTO addressSelectOne(HashMap<String, String> param) {
+		return dao.addressSelectOne(param);
+	}
+
 }

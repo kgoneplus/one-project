@@ -32,4 +32,7 @@ public interface ProductcartDAO {
 	@Select("select * from delivery where member_idx = #{member_idx}")
 	List<DeliveryDTO> addressList(int member_idx);
 
+	@Select("select * from delivery where member_idx=#{member_idx} and dCode=#{dCode}")
+	DeliveryDTO addressSelectOne(HashMap<String, String> param);
+
 }

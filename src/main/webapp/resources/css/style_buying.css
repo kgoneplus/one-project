@@ -529,10 +529,12 @@ ul, li {
     background: #f9fafb;
     border-radius: 3px;
     font-size: 13px;
+    width: 480px;
 }
 .DeliveryContent p {
 	color: #666;
 	font-size: 12px;
+	margin-left: 30px;
 }
 .DeliveryContent table {
 	border-collapse: collapse;

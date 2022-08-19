@@ -261,6 +261,51 @@ function paymentBox() {
 
 }
 
+//배송지 수정 update 핸들러
+function modDeliveryAddress(event) {
+	console.log(event.target.getAttribute('dCode'))
+	const ob = {
+			'member_idx': member_idx,
+			'dCode' : event.target.getAttribute('dCode')
+	}
+	const url = cpath + '/buying/cart/delivery'
+	const opt = {
+			method : 'PUT',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	
+	const modDeliveryAddressContent = document.querySelector('.addDeliveryAddressContent')
+	modDeliveryAddressContent.innerHTML = ''
+	modDeliveryAddressContent.innerHTML = ` <h3>배송지 추가</h3>
+											<hr>
+											<form>
+												<div>받는분</div>
+												<input type="text" name="receiverName" required>
+											
+												<div>핸드폰번호</div>
+												<input type="text" name="receiverPhonenum" required>
+													
+												<div>주소</div>
+												<input type="text" name="addr1" id="sample6_postcode" placeholder="우편번호" required>
+												<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" required><br>
+											
+												<input type="text" name="addr2" id="sample6_address" placeholder="주소" required><br>
+												<input type="text" name="addr3" id="sample6_detailAddress" placeholder="상세주소" required>
+												<input type="text" name="dInfo1" id="sample6_extraAddress" placeholder="요청사항" required>
+												
+												<input type="submit" value="확인">
+												<input type="button" value="취소" onclick="deliveryManagementClose()">
+											</form>`
+	
+}
+
+// 배송지 삭제 delete 핸들러
+
+
+
 // 장바구니 -> 배송관리 열기 핸들러
 function deliveryManagement(event) {
 //	event.stopPropagation()
@@ -292,8 +337,12 @@ function deliveryManagement(event) {
 			const td4 = document.createElement('td')
 			const mod = document.createElement('div')
 			mod.innerText = '수정'
+			mod.setAttribute('dCode', `${dto.dCode}`)
+			mod.addEventListener('click', modDeliveryAddress)
 			const del = document.createElement('div')
 			del.innerText = '삭제'
+			del.setAttribute('dCode', `${dto.dCode}`)
+			del.addEventListener('click', delDeliveryAddress)
 			td4.appendChild(mod)
 			td4.appendChild(del)
 			tr.appendChild(td4)
@@ -377,7 +426,7 @@ function addressInsert(event) {
 	}
 	const url = cpath + '/buying/cart/delivery'
 	const opt = {
-			method: 'PUT',
+			method: 'POST',
 			body: JSON.stringify(ob),
 			headers: {
 				'Content-Type' : 'application/json; charset=utf-8'
@@ -391,8 +440,5 @@ function addressInsert(event) {
 	})
 }
 
-// 배송지 수정 update 핸들러
-
-// 배송지 삭제 delete 핸들러
 
 // 기본 배송지로 설정 핸들러(parent_member table address update)
