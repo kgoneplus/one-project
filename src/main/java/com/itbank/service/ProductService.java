@@ -25,13 +25,7 @@ public class ProductService {
 
 	//헤더 input 검색결과를 보여주는 페이지
 	public List<ProductDTO> selectSearchList(@RequestParam HashMap<String, String> param) {
-		
-		
-		
-		
-		
-		
-		
+
 		return dao.selectSearchList(param);
 	}
 	

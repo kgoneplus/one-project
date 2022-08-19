@@ -1,13 +1,5 @@
-<<<<<<< HEAD
 Manifest-Version: 1.0
 Built-By: kgitbank07
 Build-Jdk: 1.8.0_321
 Created-By: Maven Integration for Eclipse
 
-=======
-Manifest-Version: 1.0
-Built-By: kgitbank03
-Build-Jdk: 1.8.0_321
-Created-By: Maven Integration for Eclipse
-
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git

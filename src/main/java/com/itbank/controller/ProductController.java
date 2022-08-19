@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +19,7 @@ public class ProductController {
 	
 	@Autowired private ProductService productService;
 
-	// 헤더 input 검색결과를 보여주는 페이지
+	// 검색결과를 보여주는 페이지
 	@GetMapping("/search")
 	public ModelAndView search (@RequestParam HashMap<String, String> param) {
 
@@ -28,22 +27,20 @@ public class ProductController {
 		List<ProductDTO> list = productService.selectSearchList(param);
 		mav.addObject("list", list);	
 	
-		
-		System.out.println(param);
-		System.out.println(param.values());
-		System.out.println(param.size());
+		//System.out.println(param);
+		//System.out.println(param.values());
+		//System.out.println(param.size());
 		//System.out.println(param.recome);
 		//System.out.println(mav);
 		
-	
 		return mav;		
 	}
 	
-	// 상품상세페이지를 보여주는 페이지
+	// 상품상세페이지 이동
 	@GetMapping("/view")
 	public void view() {}
 
-	// 카테고리 클릭시 보여주는 리스트 페이지 
+	// 카테고리에서 리스트 페이지 이동
 	@GetMapping("/list")
 	public ModelAndView categoryList(@RequestParam HashMap<String, String> idx) {
 		ModelAndView mav = new ModelAndView();
