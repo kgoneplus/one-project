@@ -29,8 +29,16 @@ public interface MypageDAO {
 			+ " values (#{member_idx}, #{askType}, #{title}, #{content})")
 	public int askWrite(AskDTO dto);
 
-	// 1:1 문의 내역 ()
+	// 1:1 문의 내역 (로그인 정보의 idx와 문의 테이블의 member_idx가 같은 것만 출력하도록 작성해야함)
+//	@Select("select A.* from ask A "
+//			+ "join parent_member M "
+//			+ "on A.member_idx = M.idx "
+//			+ "where M.idx = #{idx}")	// 현재 로그인한 사용자의 idx(세션에서 불러오기)
 	@Select("select * from ask order by idx desc")
 	List<AskDTO> selectAskAll();
+
+	// 1:1 문의 상세 보기
+	@Select("select * from ask where idx = #{idx}")
+	public AskDTO selectAskOne(int idx);
 	
 }

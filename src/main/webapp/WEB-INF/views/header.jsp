@@ -50,12 +50,13 @@
 					<ul>
 						<li><a href="${cpath}/mypage/orders">주문/배송조회</a></li>
 						<li><a href="#">고객센터</a></li>
-						<li><a href="#">회원정보</a></li>
+						<li><a href="${cpath}/mypage/myinfo">회원정보</a></li>
 					</ul>
 				</div>
 				<div>
-					<a href="${cpath}/buying/cart/${login.idx}"><img
-						src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a>
+					<a href="${cpath}/buying/cart/${login.idx}">
+						<img src="${cpath }/resources/img/cart.png" width="40px" height="40px">
+					</a>
 				</div>
 			</div>
 		</div>
