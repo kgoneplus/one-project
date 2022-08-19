@@ -11,7 +11,7 @@
     const src = document.querySelectorAll('.mainImg')[cnt++]
     const wrap = document.querySelector('.mainImg_wrap')
     
-    console.log(cnt, wrap.style.marginLeft, dir)
+    //console.log(cnt, wrap.style.marginLeft, dir)
 
     if(cnt > 4) {
         cnt = 0
@@ -58,7 +58,7 @@
 	 discountPrice = discountPrice.toLocaleString()
 	 // productSize & review & countDC 값 수정 필요
 	 product.innerHTML += `<div class="productImg">
-								<img src="${cpath}/resources/getImage1/${ob.productImg}">
+								<a href = "${cpath}/product/view/${ob.idx}"><img src="${cpath}/resources/getImage1/${ob.productImg}"></a>
 							</div>
 							<div class="productInfo">
 								<div class="productTitle">
@@ -86,7 +86,7 @@
  async function mainLoadHandler(mainList_cate) {
     const list = document.querySelector('.list')
     const offset = list.getAttribute('offset')
-    console.log(offset)
+    //console.log(offset)
     list.innerHTML = ''
      
     const url = cpath + '/mainload/' + offset + '?mainList_cate=' + mainList_cate 
