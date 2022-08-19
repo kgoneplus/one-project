@@ -15,6 +15,7 @@ public class ProductService {
 	
 	@Autowired private ProductDAO dao;
 
+	// 카테고리 클릭시 이동
 	public List<ProductDTO> categoryList(@RequestParam HashMap<String, String> idx) {
 		List<ProductDTO> catelist = dao.categoryList(idx);
 		
@@ -26,4 +27,23 @@ public class ProductService {
 		return dao.selectProductOne(idx);
 	}
 
+	//헤더 input 검색결과를 보여주는 페이지
+	public List<ProductDTO> selectSearchList(@RequestParam HashMap<String, String> param) {
+		return dao.selectSearchList(param);
+	}
+	
+	// 카테고리 클릭시 상단에 카테고리명
+	public List<String> categoryName(HashMap<String, String> idx) {
+		List<String> keyword = dao.categoryName(idx);
+		System.out.println("keyword List : " + keyword);
+//		if(idx.containsKey("productMain_categoryCode") == true) {
+//			keyword.remove("category2Name");
+//		}
+//		else {
+//			keyword.remove("categoryName");
+//		}
+		return keyword;
+	}
+
+	
 }

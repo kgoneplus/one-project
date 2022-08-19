@@ -4,7 +4,7 @@
 <title>Insert title here</title>
 
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_search.css">
-
+<script src="${cpath}/resources/js/function_header.js"></script>
 </head>
 
 <body>
@@ -79,50 +79,51 @@
 	    <div class="category_topbar">
 	        <div class="category_suggest">
 	            <ul>
-	                <li>추천순</li>
-	                <li>많이 팔린순</li>
-	                <li>낮은 가격순</li>
-	                <li>높은 가격순</li>
-	                <li>리뷰 많은순</li>
+	                <li><a href="${cpath}/product/search?param=${param.param}&recome=best">추천순</a></li>
+	                <li><a href="${cpath}/product/search?param=${param.param}&recome=sumbying">많이 팔린순</a></li>
+	                <li><a href="${cpath}/product/search?param=${param.param}&recome=minprice">낮은 가격순</a></li>
+	                <li><a href="${cpath}/product/search?param=${param.param}&recome=maxprice">높은 가격순</a></li>
+	                <li><a href="${cpath}/product/search?param=${param.param}&recome=lotofrivew">리뷰 많은순</a></li>
 	            </ul>
 	        </div>
-	        <div class="category_input">
-	            <input type="text" placeholder="결과 내 재검색"><button class="input_icon"></button>
-	            <button class="input_button1"></button>
-	            <button class="input_button2"></button>
-	        </div>
+<!-- 	        <div class="category_input"> -->
+<!-- 	            <input type="text" placeholder="결과 내 재검색"><button class="input_icon"></button> -->
+<!-- 	            <button class="input_button1"></button> -->
+<!-- 	            <button class="input_button2"></button> -->
+<!-- 	        </div> -->
 	    </div>
 	    <hr>
 	    <div class="category_bottombar">
+<c:forEach var="dto" items="${list }"> 	    
 	        <div class="category_ltem">
 	            <div class="category_ltemimg">
-	                <img src="${cpath }/resources/img/peach.jpg" >
+	               <a href="${cpath }/product/view"><img src="${cpath }/resources/getImage1/${dto.productImg }" width="218.4" height="218.4"></a>
 	                <div class="category_ltemimg_hover">
 	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
 	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>
 	                </div>
 	                <div class="dicount_icon">행사<br>상품</div>
 	            </div>
-	            <p>부드러운복숭아 4-8입(박스)</p>
+	            <p>${dto.productName}</p>
 	            <div class="lastprice">
-	                <span>17,990 원</span>
+	                <span><fmt:formatNumber value="${dto.productPrice }" />원</span>
 	                <div class="lastprice_icon">
 	                    <div class="price_hidden">
 	                        <dl>
 	                            <dt>판매가</dt>
-	                            <dd>17,990원</dd>
+	                            <dd><fmt:formatNumber value="${dto.productPrice }" />원</dd>
 	                        </dl>
 	                        <dl>
 	                            <dt>상품할인</dt>
-	                            <dd>-6000원</dd>
+	                            <dd>-${dto.productDiscount }원</dd>
 	                        </dl>
 	                        <dl>
 	                            <dt>할인가</dt>
-	                            <dd>11,990원</dd>
+	                            <dd><fmt:formatNumber value="${dto.productPrice-dto.productDiscount }" />원</dd>
 	                        </dl>
 	                    </div>
 	                </div>
-	                <p>11,990원</p>
+	                <p><fmt:formatNumber value="${dto.productPrice-dto.productDiscount }" />원</p>
 	            </div>
 	            <div class="buyAvg">
 	                <span>⭐</span>
@@ -130,239 +131,18 @@
 	                <span>월 54,101개 구매</span>
 	            </div>
 	        </div>
-	
-	        <div class="category_ltem">
-	            <div class="category_ltemimg">
-	                <img src="${cpath }/resources/img/peach.jpg" >
-	                <div class="category_ltemimg_hover">
-	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
-	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>
-	                </div>
-	                <div class="dicount_icon">행사<br>상품</div>
-	            </div>
-	            <p>부드러운복숭아 4-8입(박스)</p>
-	            <div class="lastprice">
-	                <span>17,990 원</span>
-	                <div class="lastprice_icon">
-	                    <div class="price_hidden">
-	                        <dl>
-	                            <dt>판매가</dt>
-	                            <dd>17,990원</dd>
-	                        </dl>
-	                        <dl>
-	                            <dt>상품할인</dt>
-	                            <dd>-6000원</dd>
-	                        </dl>
-	                        <dl>
-	                            <dt>할인가</dt>
-	                            <dd>11,990원</dd>
-	                        </dl>
-	                    </div>
-	                </div>
-	                <p>11,990원</p>
-	            </div>
-	            <div class="buyAvg">
-	                <span>⭐</span>
-	                <span>4.4(3884건)  |</span>
-	                <span>월 54,101개 구매</span>
-	            </div>
-	        </div>
-	
-	
-	        <div class="category_ltem">
-	            <div class="category_ltemimg">
-	                <img src="${cpath }/resources/img/peach.jpg" >
-	                <div class="category_ltemimg_hover">
-	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
-	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>
-	                </div>
-	                <div class="dicount_icon">행사<br>상품</div>
-	            </div>
-	            <p>부드러운복숭아 4-8입(박스)</p>
-	            <div class="lastprice">
-	                <span>17,990 원</span>
-	                <div class="lastprice_icon">
-	                    <div class="price_hidden">
-	                        <dl>
-	                            <dt>판매가</dt>
-	                            <dd>17,990원</dd>
-	                        </dl>
-	                        <dl>
-	                            <dt>상품할인</dt>
-	                            <dd>-6000원</dd>
-	                        </dl>
-	                        <dl>
-	                            <dt>할인가</dt>
-	                            <dd>11,990원</dd>
-	                        </dl>
-	                    </div>
-	                </div>
-	                <p>11,990원</p>
-	            </div>
-	            <div class="buyAvg">
-	                <span>⭐</span>
-	                <span>4.4(3884건)  |</span>
-	                <span>월 54,101개 구매</span>
-	            </div>
-	        </div>
-	
-	
-	        <div class="category_ltem">
-	            <div class="category_ltemimg">
-	                <img src="${cpath }/resources/img/peach.jpg" >
-	                <div class="category_ltemimg_hover">
-	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
-	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>
-	                </div>
-	                <div class="dicount_icon">행사<br>상품</div>
-	            </div>
-	            <p>부드러운복숭아 4-8입(박스)</p>
-	            <div class="lastprice">
-	                <span>17,990 원</span>
-	                <div class="lastprice_icon">
-	                    <div class="price_hidden">
-	                        <dl>
-	                            <dt>판매가</dt>
-	                            <dd>17,990원</dd>
-	                        </dl>
-	                        <dl>
-	                            <dt>상품할인</dt>
-	                            <dd>-6000원</dd>
-	                        </dl>
-	                        <dl>
-	                            <dt>할인가</dt>
-	                            <dd>11,990원</dd>
-	                        </dl>
-	                    </div>
-	                </div>
-	                <p>11,990원</p>
-	            </div>
-	            <div class="buyAvg">
-	                <span>⭐</span>
-	                <span>4.4(3884건)  |</span>
-	                <span>월 54,101개 구매</span>
-	            </div>
-	        </div>
-	
-	
-	        <div class="category_ltem">
-	            <div class="category_ltemimg">
-	                <img src="${cpath }/resources/img/peach.jpg" >
-	                <div class="category_ltemimg_hover">
-	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
-	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>
-	                </div>
-	                <div class="dicount_icon">행사<br>상품</div>
-	            </div>
-	            <p>부드러운복숭아 4-8입(박스)</p>
-	            <div class="lastprice">
-	                <span>17,990 원</span>
-	                <div class="lastprice_icon">
-	                    <div class="price_hidden">
-	                        <dl>
-	                            <dt>판매가</dt>
-	                            <dd>17,990원</dd>
-	                        </dl>
-	                        <dl>
-	                            <dt>상품할인</dt>
-	                            <dd>-6000원</dd>
-	                        </dl>
-	                        <dl>
-	                            <dt>할인가</dt>
-	                            <dd>11,990원</dd>
-	                        </dl>
-	                    </div>
-	                </div>
-	                <p>11,990원</p>
-	            </div>
-	            <div class="buyAvg">
-	                <span>⭐</span>
-	                <span>4.4(3884건)  |</span>
-	                <span>월 54,101개 구매</span>
-	            </div>
-	        </div>
-	
-	
-	        <div class="category_ltem">
-	            <div class="category_ltemimg">
-	                <img src="${cpath }/resources/img/peach.jpg" >
-	                <div class="category_ltemimg_hover">
-	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
-	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>
-	                </div>
-	                <div class="dicount_icon">행사<br>상품</div>
-	            </div>
-	            <p>부드러운복숭아 4-8입(박스)</p>
-	            <div class="lastprice">
-	                <span>17,990 원</span>
-	                <div class="lastprice_icon">
-	                    <div class="price_hidden">
-	                        <dl>
-	                            <dt>판매가</dt>
-	                            <dd>17,990원</dd>
-	                        </dl>
-	                        <dl>
-	                            <dt>상품할인</dt>
-	                            <dd>-6000원</dd>
-	                        </dl>
-	                        <dl>
-	                            <dt>할인가</dt>
-	                            <dd>11,990원</dd>
-	                        </dl>
-	                    </div>
-	                </div>
-	                <p>11,990원</p>
-	            </div>
-	            <div class="buyAvg">
-	                <span>⭐</span>
-	                <span>4.4(3884건)  |</span>
-	                <span>월 54,101개 구매</span>
-	            </div>
-	        </div>
-	
-	
-	        <div class="category_ltem">
-	            <div class="category_ltemimg">
-	                <img src="${cpath }/resources/img/peach.jpg">
-	                <div class="category_ltemimg_hover">
-	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
-	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>
-	                </div>
-	                <div class="dicount_icon">행사<br>상품</div>
-	            </div>
-	            <p>부드러운복숭아 4-8입(박스)</p>
-	            <div class="lastprice">
-	                <span>17,990 원</span>
-	                <div class="lastprice_icon">
-	                    <div class="price_hidden">
-	                        <dl>
-	                            <dt>판매가</dt>
-	                            <dd>17,990원</dd>
-	                        </dl>
-	                        <dl>
-	                            <dt>상품할인</dt>
-	                            <dd>-6000원</dd>
-	                        </dl>
-	                        <dl>
-	                            <dt>할인가</dt>
-	                            <dd>11,990원</dd>
-	                        </dl>
-	                    </div>
-	                </div>
-	                <p>11,990원</p>
-	            </div>
-	            <div class="buyAvg">
-	                <span>⭐</span>
-	                <span>4.4(3884건)  |</span>
-	                <span>월 54,101개 구매</span>
-	            </div>
-	        </div>
-	
-	        </div>
-	    </div>
+</c:forEach>	
+	     </div>
+	     </div>
 </div>
 
 
+<script>
+	const Listcategory = document.querySelector('#cate > a') 
+	
+	Listcategory.addEventListener('click', categoryModal)
+
+</script>
 
 
 

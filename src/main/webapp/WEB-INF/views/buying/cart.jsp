@@ -106,14 +106,12 @@
 			<thead>
 				<tr>
 					<td>선택</td>
-					<td>배송지명</td>
 					<td>받는 분</td>
 					<td>주소</td>
+					<td>  </td>
 				</tr>
 			</thead>
-			<tbody>
-			
-			</tbody>
+			<tbody></tbody>
 		</table>
 	</form>
 	<button id="addDeliveryAddress">배송지 추가</button>
@@ -136,7 +134,7 @@
 		<input type="text" name="dInfo1" id="sample6_extraAddress" placeholder="요청사항" required>
 		
 		<input type="submit" value="확인">
-<!-- 		<input type="button" value="취소" onclick="history.go(-1)"> -->
+		<input type="button" value="취소" onclick="deliveryManagementClose()">
 	</form>
 </div>
 

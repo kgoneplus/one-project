@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Repository
 public interface ProductDAO {
@@ -69,6 +70,14 @@ public interface ProductDAO {
 	int deletewishList(HashMap<String, String> ob);
 
 	
+	//@Select("select categoryName, category2Name from category where productMain_categoryCode=#{productMain_categoryCode}")
+	List<String> categoryName(HashMap<String, String> idx);
+
+	@Select("select * from productMain "
+			+ " where productName like '%${param}%'"
+			+ " order by idx")
+	List<ProductDTO> selectSearchList(@RequestParam HashMap<String, String> param);
 	
+
 	
 }
