@@ -1,24 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="cpath" value="${pageContext.request.contextPath }"/>
+<%@ include file="buyingheader.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>주문/결제 | 홈플러스 온라인, 맛있는 마트</title>
-<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
-<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_buying.css">
-<script>
-	const cpath = '${cpath}'
-</script>
-<script src="${cpath}/resources/js/function_buying.js"></script>
 </head>
 <body>
 <div class="buying_header">
     <div class="inner">
         <div class="inner_left">
-            <div class="black_logo"><a href="${cpath}/"></a></div>
+            <div class="black_logo"><a href="${cpath}"></a></div>
         </div>
         <div class="inner_right">
             <a href="${cpath}/">로그아웃</a>
@@ -44,7 +37,7 @@
         </div>
         <div class="homeDeliveryBox">
             <div class="manageDelivery">
-                <p>부산광역시 해운대구 우동 센텀드림월드 5층</p>
+                <p>${deliveryDefault[1]} ${deliveryDefault[2]}</p>
                 <button>배송관리</button>
             </div>
         </div>
@@ -96,19 +89,54 @@
 
 <div class="DeliveryContent">
 	<h3>기본배송지</h3>
-	<div>
+	<div class="dContentBox">
 		<div class="deliveryCheckbox">
-			<input type="hidden" data-dcode="" data-addr1="" data-addr2="" data-addr3="">
+			<input type="hidden" data-addr1="${deliveryDefault[0]}" data-addr2="${deliveryDefault[1]}" data-addr3="${deliveryDefault[2]}">
 			<input type="radio">
 		</div>
-		<div class=""></div>
-		<div class="">
-			신지현 (010-1111-1111)<br>
-			[48269] 부산광역시 해운대구 우동 센텀드림월드 1104호
+		<div class="deliveryDefault">
+			${login.name} (${login.phonenum})<br>
+			[${deliveryDefault[0]}] ${deliveryDefault[1]} ${deliveryDefault[2]}
 		</div>
 	</div>
+	<p>* 배송지 변경 시, 배송매장에 따라 판매가능 상품 및 행사 내용이 변경 될 수 있습니다.</p>
+	<h3>배송지 목록</h3>
+	<form>
+		<table>
+			<thead>
+				<tr>
+					<td>선택</td>
+					<td>받는 분</td>
+					<td>주소</td>
+					<td>  </td>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</form>
+	<button id="addDeliveryAddress">배송지 추가</button>
 </div>
-<div class="DeliveryOverylay"></div>
+<div class="DeliveryOverlay"></div>
+<div class="addDeliveryAddressContent">
+	<form>
+		<div>받는분</div>
+		<input type="text" name="receiverName" required>
+	
+		<div>핸드폰번호</div>
+		<input type="text" name="receiverPhonenum" required>
+			
+		<div>주소</div>
+		<input type="text" name="addr1" id="sample6_postcode" placeholder="우편번호" required>
+		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" required><br>
+	
+		<input type="text" name="addr2" id="sample6_address" placeholder="주소" required><br>
+		<input type="text" name="addr3" id="sample6_detailAddress" placeholder="상세주소" required>
+		<input type="text" name="dInfo1" id="sample6_extraAddress" placeholder="요청사항" required>
+		
+		<input type="submit" value="확인">
+		<input type="button" value="취소" onclick="deliveryManagementClose()">
+	</form>
+</div>
 
 <script>
 	window.addEventListener('load', cartLoadHandler)
@@ -122,6 +150,12 @@
 	
 	const deliveryBtn = document.querySelector('.manageDelivery > button')
 	deliveryBtn.addEventListener('click', deliveryManagement)
+	const DeliveryOverlay = document.querySelector('.DeliveryOverlay')
+	DeliveryOverlay.addEventListener('click', deliveryManagementClose)
+	
+	document.getElementById('addDeliveryAddress').addEventListener('click', addDeliveryAddressHandler)
+	document.querySelector('.addDeliveryAddressContent > form').addEventListener('submit', addressInsert)
+	
 </script>
 
 <%@ include file="../footer.jsp" %>

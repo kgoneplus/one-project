@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.service.MemberService;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 @Controller
 @RequestMapping("/member")
 public class MemberController {
@@ -54,6 +56,10 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	@PostMapping("/login/idsearch")
+	public int idsearch(MemberDTO dto) {
+		return ms.idsearch(dto);
+	}
 	
 	//로그아웃
 	@GetMapping("/logout")
@@ -78,5 +84,9 @@ public class MemberController {
 	
 	@GetMapping("/login/kakao")
 	public void kakaologin() {}
+	
+	// 아이디 찾기
+	@GetMapping("/login/idsearch")
+	public void idserach() {}
 	
 }
