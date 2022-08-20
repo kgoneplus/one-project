@@ -2,18 +2,21 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_view.css">
+<script>
+	const member_idx = '${login.idx}'
+	const productMain_idx = '${prodOne.idx}'
+</script>
 <script src="${cpath}/resources/js/function_view.js"></script>
 </head>
 <body>
-
 <view>
         <viewmain>
             <div id="viewleft">
-                <div class="product_mainimg" style="background-image: url(${cpath}/resources/img/prodslideImg1.jpeg);"></div>
+                <div class="product_mainimg" style="background-image: url(${cpath}/resources/getImage1/${prodOne.productImg });"></div>
                 <div class="product_slide">
 					<div class="prodImg_wrap">
 						<div class="prodslideImg" 
-							style="background-image: url(${cpath}/resources/img/prodslideImg1.jpeg);"></div>
+							style="background-image: url(${cpath}/resources/getImage1/${prodOne.productImg });"></div>
 						<div class="prodslideImg" 
 							style="background-image: url(${cpath}/resources/img/prodslideImg2.jpeg);"></div>
 						<div class="prodslideImg" 
@@ -35,12 +38,12 @@
                 
             </div>
             <div id="viewright">
-                <div class="productTitle font20"><strong>제스프리 썬 골드키위 8-10입(팩)</strong></div>
-                <p class="madeln">원산지: 뉴질랜드</p>
-                <div class="productOrgprice"><p>판매가</p><span class="OrgPrice"><em>12990</em>원</span>
+                <div class="productTitle font20"><strong>${prodOne.productName }</strong></div>
+                <p class="madeln">원산지: ${prodOne.madeln }</p>
+                <div class="productOrgprice"><p>판매가</p><span class="OrgPrice"><em><fmt:formatNumber value="${prodOne.productPrice }" /></em>원</span>
                     <span class="nanoPrice">(1개당 12,990원)</span>
                 </div>
-                <div class="productCardDC"><p>카드할인가</p><span class="cardDC">9,990원</span>
+                <div class="productCardDC"><p>카드할인가</p><span class="cardDC"><fmt:formatNumber value="${prodOne.productPrice - prodOne.productDiscount }" />원</span>
                     <span class="nanoPrice">(1개당 9,990원)</span>
                 </div>
                 <table id="prodtable">
@@ -66,7 +69,7 @@
                     </tr>
                 </table>
                 <div class="buycount">
-                    <div class="productTitle">제스프리 썬 골드키위 8-10입(팩)</div>
+                    <div class="productTitle">${prodOne.productName }</div>
                     <div class="qtyCounter">
                         <div class="counter">
                             <button type="button" class="mabtn">-</button>
@@ -74,7 +77,7 @@
                             <button type="button" class="plbtn">+</button>
                         </div>
                         <div class="qtyPrice">
-                            <strong class="qtyPrice1">12990</strong>원
+                            <strong class="qtyPrice1"><fmt:formatNumber value="${prodOne.productPrice }" /></strong>원
                         </div>
                     </div>
                 </div>
@@ -96,13 +99,14 @@
             <div id="viewright">
                 <div class="product_buytotal">
                     <div class="product_buytotal1">구매예정금액</div>
-                    <div class="product_buysum"><strong>12990</strong>원</div>
+                    <div class="product_buysum"><strong><fmt:formatNumber value="${prodOne.productPrice }" /></strong>원</div>
                 </div>
                 <div class="product_buybtn">
                     <button type="button" class="product_heartbtn"><i class="heart"></i></button>
                     <button type="button" class="product_nowbtn">바로구매</button>
                     <button type="button" class="product_cartbtn">장바구니</button>
                 </div>
+                <div class="product_cartbtnOverlay"></div>
             </div>
         </viewmain>
         <viewmain>
@@ -118,42 +122,6 @@
                     </div>
                     <div class="hotslide">
                     	<div class="hotslide_wrap">
-                    		<div class="hotslide_Swrap">
-                    			<div class="hotslideImg" 
-								style="background-image: url(${cpath}/resources/img/prodslideImg1.jpeg);"></div>
-								<span>상품가격</span>
-								<p>상품명</p>
-                    		</div>
-							<div class="hotslide_Swrap">
-                    			<div class="hotslideImg" 
-								style="background-image: url(${cpath}/resources/img/prodslideImg2.jpeg);"></div>
-								<span>상품가격</span>
-								<p>상품명</p>
-                    		</div>
-                    		<div class="hotslide_Swrap">
-                    			<div class="hotslideImg" 
-								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div>
-								<span>상품가격</span>
-								<p>상품명</p>
-                    		</div>
-                    		<div class="hotslide_Swrap">
-                    			<div class="hotslideImg" 
-								style="background-image: url(${cpath}/resources/img/prodslideImg4.jpeg);"></div>
-								<span>상품가격</span>
-								<p>상품명</p>
-                    		</div>
-                    		<div class="hotslide_Swrap">
-                    			<div class="hotslideImg" 
-								style="background-image: url(${cpath}/resources/img/prodslideImg5.jpeg);"></div>
-								<span>상품가격</span>
-								<p>상품명</p>
-                    		</div>
-                    		<div class="hotslide_Swrap">
-                    			<div class="hotslideImg" 
-								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div>
-								<span>상품가격</span>
-								<p>상품명</p>
-                    		</div>
 						</div>
                     </div>
                 </div>
@@ -170,42 +138,42 @@
                     </div>
                     <div class="hotslide">
                     	<div class="hotslide_wrap">
-                    		<div class="hotslide_Swrap">
-                    			<div class="hotslideImg allhot" 
-								style="background-image: url(${cpath}/resources/img/prodslideImg1.jpeg);"></div>
-								<span>상품가격</span>
-								<p>상품명</p>
-                    		</div>
-							<div class="hotslide_Swrap">
-                    			<div class="hotslideImg allhot" 
-								style="background-image: url(${cpath}/resources/img/prodslideImg2.jpeg);"></div>
-								<span>상품가격</span>
-								<p>상품명</p>
-                    		</div>
-                    		<div class="hotslide_Swrap">
-                    			<div class="hotslideImg allhot" 
-								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div>
-								<span>상품가격</span>
-								<p>상품명</p>
-                    		</div>
-                    		<div class="hotslide_Swrap">
-                    			<div class="hotslideImg allhot" 
-								style="background-image: url(${cpath}/resources/img/prodslideImg4.jpeg);"></div>
-								<span>상품가격</span>
-								<p>상품명</p>
-                    		</div>
-                    		<div class="hotslide_Swrap">
-                    			<div class="hotslideImg allhot" 
-								style="background-image: url(${cpath}/resources/img/prodslideImg5.jpeg);"></div>
-								<span>상품가격</span>
-								<p>상품명</p>
-                    		</div>
-                    		<div class="hotslide_Swrap">
-                    			<div class="hotslideImg allhot" 
-								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div>
-								<span>상품가격</span>
-								<p>상품명</p>
-                    		</div>
+<!--                     		<div class="hotslide_Swrap"> -->
+<!--                     			<div class="hotslideImg allhot"  -->
+<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg1.jpeg);"></div> --%>
+<!-- 								<span>상품가격</span> -->
+<!-- 								<p>상품명</p> -->
+<!--                     		</div> -->
+<!-- 							<div class="hotslide_Swrap"> -->
+<!--                     			<div class="hotslideImg allhot"  -->
+<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg2.jpeg);"></div> --%>
+<!-- 								<span>상품가격</span> -->
+<!-- 								<p>상품명</p> -->
+<!--                     		</div> -->
+<!--                     		<div class="hotslide_Swrap"> -->
+<!--                     			<div class="hotslideImg allhot"  -->
+<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div> --%>
+<!-- 								<span>상품가격</span> -->
+<!-- 								<p>상품명</p> -->
+<!--                     		</div> -->
+<!--                     		<div class="hotslide_Swrap"> -->
+<!--                     			<div class="hotslideImg allhot"  -->
+<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg4.jpeg);"></div> --%>
+<!-- 								<span>상품가격</span> -->
+<!-- 								<p>상품명</p> -->
+<!--                     		</div> -->
+<!--                     		<div class="hotslide_Swrap"> -->
+<!--                     			<div class="hotslideImg allhot"  -->
+<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg5.jpeg);"></div> --%>
+<!-- 								<span>상품가격</span> -->
+<!-- 								<p>상품명</p> -->
+<!--                     		</div> -->
+<!--                     		<div class="hotslide_Swrap"> -->
+<!--                     			<div class="hotslideImg allhot"  -->
+<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div> --%>
+<!-- 								<span>상품가격</span> -->
+<!-- 								<p>상품명</p> -->
+<!--                     		</div> -->
 						</div>
                     </div>
                 </div>
@@ -229,11 +197,11 @@
                 <table id="prodDetailstable">
                     <tr>
                         <td>상품명</td>
-                        <td>제스프리 썬 골드키위 8-10입(팩)</td>
+                        <td>${prodOne.productName }</td>
                     </tr>
                     <tr>
                         <td>상품코드/모델</td>
-                        <td>115034315 (상품문의 시 필요할 수 있으므로 참고하시기 바랍니다.)</td>
+                        <td>${prodOne.idx } (상품문의 시 필요할 수 있으므로 참고하시기 바랍니다.)</td>
                     </tr>
                     <tr>
                         <td>상품구성</td>
@@ -245,7 +213,7 @@
                     </tr>
                     <tr>
                         <td>원산지</td>
-                        <td>뉴질랜드</td>
+                        <td>${prodOne.madeln }</td>
                     </tr>
                     <tr>
                         <td>관련법상 표시사항</td>
@@ -398,7 +366,7 @@
                 
                 <div class="prodremocon">
                     <div class="buycount remo">
-                        <div class="productTitle">제스프리 썬 골드키위 8-10입(팩)</div>
+                        <div class="productTitle">${prodOne.productName }</div>
                         <div class="qtyCounter">
                             <div class="counter">
                                 <button type="button" class="mabtn">-</button>
@@ -406,13 +374,13 @@
                                 <button type="button" class="plbtn">+</button>
                             </div>
                             <div class="qtyPrice">
-                                <strong class="qtyPrice1">12990</strong>원
+                                <strong class="qtyPrice1"><fmt:formatNumber value="${prodOne.productPrice }" /></strong>원
                             </div>
                         </div>
                     </div>
                     <div class="product_buytotal">
                         <div class="product_buytotal1">구매예정금액</div>
-                        <div class="product_buysum"><strong>12990</strong>원</div>
+                        <div class="product_buysum"><strong><fmt:formatNumber value="${prodOne.productPrice }" /></strong>원</div>
                     </div>
                     <div class="product_buybtn">
                         <button type="button" class="product_heartbtn"><i class="heart"></i></button>
@@ -424,7 +392,6 @@
 
             
         </div>
-        
     </view>
 
 <script>
@@ -450,8 +417,18 @@
 	const pdtslideArray = Array.from(document.querySelectorAll('.prodImg_wrap > .prodslideImg'))
 	pdtslideArray.forEach(img => img.addEventListener('click', pdtviewSlide))
 	
+	const categoryCode = '${prodOne.categoryCode}'
+	window.addEventListener('load', cateloadHandler(categoryCode))
+	window.addEventListener('load', allcateloadHandler)
+	
 	const heartbtn = Array.from(document.querySelectorAll('.product_heartbtn'))
 	heartbtn.forEach(heart => heart.addEventListener('click', heartClick))
+	if(member_idx != ""){
+		window.addEventListener('load', heartloadHandler)
+	}
+	
+	const prodcartBtn = Array.from(document.querySelectorAll('.product_cartbtn'))
+	prodcartBtn.forEach(btn => btn.addEventListener('click', prodcartModal))
 	
 </script>
 

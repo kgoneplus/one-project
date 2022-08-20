@@ -15,5 +15,6 @@
 	<typeAliases>
 		<typeAlias type="com.itbank.oneplus.ProductcartDTO" alias="cart"/>
 		<typeAlias type="com.itbank.oneplus.ProductDTO" alias="prod"/>
+		<typeAlias type="com.itbank.oneplus.AskDTO" alias="ask"/>
 	</typeAliases>
 </configuration>		

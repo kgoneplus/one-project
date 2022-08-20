@@ -1,5 +1,6 @@
 package com.itbank.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.itbank.component.HashComponent;
 import com.itbank.oneplus.MemberDTO;
+import com.itbank.oneplus.DeliveryDAO;
+import com.itbank.oneplus.DeliveryDTO;
 import com.itbank.oneplus.MemberDAO;
 
 @Service
@@ -16,6 +19,7 @@ public class MemberService {
 	
 	@Autowired private MemberDAO dao;
 	@Autowired private HashComponent hash;
+	@Autowired private DeliveryDAO deliveryDao;
 	
 	// 통합 회원가입 
 	public int insert(MemberDTO dto) {
@@ -95,6 +99,17 @@ public class MemberService {
 		dto.setUserpw(hashpw);								// 해시값을 다시 dto에 넣어준다
 		int row = dao.kakaoinsert(dto);							// 해시값을 포함한 dto를 insert 한다
 		return row;
+	}
+	
+	public int idsearch(MemberDTO dto) {
+		
+		return 0;
+	}
+	public int updatedefaultAddress(HashMap<String, String> param) {
+		DeliveryDTO dto = deliveryDao.selectDeliveryOne(param);
+		String address = dto.getAddr1() + "/" +  dto.getAddr2() + "/" +  dto.getAddr3() + "/" + dto.getdInfo1();
+		param.put("address", address);
+		return dao.updateAddress(param);
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.mail.Session;
@@ -18,13 +19,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itbank.oneplus.DeliveryDTO;
 import com.itbank.oneplus.MemberDAO;
 import com.itbank.oneplus.MemberDTO;
+import com.itbank.service.MailService;
 import com.itbank.service.MemberService;
 
 @RestController
@@ -33,8 +37,8 @@ public class RestMemberController {
 	// https://member.homeplus.co.kr/member-join-form 통합가입폼
 	// https://sso.homeplus.co.kr/refit/register/registerPage 네이버 로그인폼
 
-	@Autowired
-	private MemberService ms;
+	@Autowired private MemberService ms;
+	@Autowired private MailService mails;
 	@Autowired private MemberDAO dao;
 
 	@GetMapping("/joining/memberload")
@@ -161,9 +165,17 @@ public class RestMemberController {
 	      return null;
 	    }
 	  }
+	// 매일 주소 받아서 인증번호 
+	@PostMapping(value="mailconfirm", produces="application/json; charset=utf-8")
+	public int mailconfirm(@RequestParam("mailadress") String ma, HttpSession session) throws IOException {
+		return mails.sendMailconfirm(ma, session);
+	}
 	
 	
-	
+	@PutMapping(value="/buying/cart/deliveryUpdate")
+	public int updatedefaultAddress(@RequestBody HashMap<String, String> param) {
+		return ms.updatedefaultAddress(param);
+	}
 	
 
 }

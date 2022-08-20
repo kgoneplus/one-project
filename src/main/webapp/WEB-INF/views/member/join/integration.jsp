@@ -9,21 +9,13 @@
 <title>Insert title here</title>
 <script src="${cpath }/resources/js/function_member.js"></script>
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<style>
-.join-form {
-	display: flex;
-	justify-content: center;
-}
+<link type="text/css" rel="stylesheet"
+	  href="${cpath }/resources/css/style_joinform.css">
 
-form {
-	border: 1px solid black;
-	margin: 10px;
-	padding: 10px;
-}
-</style>
 </head>
 <body>
 	<div class="join-form">
+	<div><img src="${cpath }/resources/img/oneplus.png" width="200px" height="50px"></div>
 		<form>
 			<div>아이디</div>
 			<input id="idtext" type="text" name="userid"
@@ -57,9 +49,9 @@ form {
 				required>
 				
 			<div>이메일</div>
-			<input type="email" name="email" placeholder="itbank@naver.com"
+			<input id="mailadress" type="email" name="email" placeholder="itbank@naver.com"
 				required>
-			<button id="emailconfirm" type="button">인증번호 요청</button>
+			<button id="emailconfirm" onclick="">인증번호 요청</button>
 			<div id="ConfirmEmail-Message"></div>
 			
 			<div>주소</div>
@@ -102,6 +94,48 @@ form {
 
 	idconfirm.addEventListener('click', memberId)
 	insertForm.addEventListener('submit', insertHandler)
+	
+	// 메일 인증 요청
+	
+	const mail = document.getElementById('emailconfirm')
+	console.log(mail)
+	mail.addEventListener('click', test())
+	
+	
+	function test(event){
+		const mailadress = document.getElementById('mailadress').value
+		console.log(mailadress)
+		
+	}
+	
+	if(mailadress == 1234567){
+		mail.addEventListener('click', mailconfirm(mailadress))
+	}
+	
+	
+	
+	function mailconfirm (ma){
+		const url = '${cpath}/mailconfirm'
+		const opt = {
+				method: 'POST',
+				body: JSON.stringify({
+				'mailadress' : ma	
+				}),
+				headers: {
+					'Content-Type' : 'application/json; charset=utf-8'
+				}
+		}
+		fetch(url, opt)
+		.then(resp => resp.text())
+		.then(test => {
+			if(test == 1){
+				console.log('성공')
+			}
+			else{
+				console.log('실패')
+			}
+		})
+	}
 </script>
 </body>
 </html>

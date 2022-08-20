@@ -95,10 +95,10 @@
 		const listLiArray = Array.from(document.querySelectorAll('.main_list_nav > ul > li'))		
 		const mainoverlay = document.getElementById('main')
 
-  		
-		window.addEventListener('load', mainLoadHandler(''))
-		toTop.addEventListener('click', scrollToTop)
-		listLiArray.forEach(li => li.addEventListener('click', mainSelectLiClick))
+  		//mainLoadHandler load로 불러오는 것 수정필요!!!!
+// 		window.addEventListener('load', mainLoadHandler(''))
+// 		toTop.addEventListener('click', scrollToTop)
+// 		listLiArray.forEach(li => li.addEventListener('click', mainSelectLiClick))
 
 		
 		mainoverlay.addEventListener('click', closeModal)

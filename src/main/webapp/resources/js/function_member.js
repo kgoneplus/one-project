@@ -30,7 +30,7 @@ function insertHandler (event) {
 		.then(text => {
 			if(text == 1) {
 				alert('작성성공')
-				location.reload(true)
+				location.href = 'http://localhost:8080/project/'
 			}
 		})
 	}
@@ -65,7 +65,7 @@ function naverinsertHandler (event) {
 		.then(text => {
 			if(text == 1) {
 				alert('작성성공')
-				location.reload(true)
+				location.href = 'http://localhost:8080/project/member/login'
 			}
 		})
 	}
@@ -100,7 +100,7 @@ function kakaoinsertHandler (event) {
 		.then(text => {
 			if(text == 1) {
 				alert('작성성공')
-				location.reload(true)
+				location.href = 'http://localhost:8080/project/member/login'
 			}
 		})
 	}
@@ -135,62 +135,6 @@ function memberId(event) {
 		ConfirmMessage.innerText = message
 	})
 	
-}
-
-// 카카오로부터 데이터 받기
-function kakaoLogin() {
-	  Kakao.Auth.login({
-	      success: function (response) {
-	        Kakao.API.request({
-	          url: '/v2/user/me',
-	          success: function (response) {
-	        	  kakaomap(response)
-	          },
-	          fail: function (error) {
-	            console.log(error)
-	          },
-	        })
-	      },
-	      fail: function (error) {
-	        console.log(error)
-	      },
-	    })
-	  }
-
-// 받은데이터 매핑
-function kakaomap(res){
-	  	
-		const kakaouser = res.kakao_account
-	  	const kakaouser_map = {
-	  			'name':kakaouser.profile.nickname,
-	  			'email':kakaouser.email
-	  	}
-		kakaoconfirm(kakaouser_map)
-}
-
-// 매핑받은 데이터 로그인 하기
-function kakaoconfirm(data){
-	 const url = '${cpath}/kakaoconfirm'
-	 const opt = {
-		 method:'POST',
-		 body: JSON.stringify(data),
-		 headers:{
-			'Content-Type' : 'application/json; charset=utf-8'
-		 }
-	 }
-	 fetch(url, opt)
-	 .then(resp => resp.text())
-	 .then(text =>{
-		 if(text == 1){
-			 console.log('로그인 성공')
-			  kakaoLogout()
-			 location.replace("http://localhost:8080/project")
-			
-		 }else{
-			 console.log('실패')
-			 location.replace("http://localhost:8080/project/member/login/kakao")
-		 }
-	 })
 }
 
 
