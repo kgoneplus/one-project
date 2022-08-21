@@ -64,19 +64,19 @@
             <div class="payTab">
                 <div class="payTabTotalprice">
                     <span>총주문금액</span>
-                    <span><p>150000</p>원</span>
+                    <span><p></p>원</span>
                 </div>
                 <div class="payTabTotalprice">
                     <span>배송비</span>
-                    <span><p>3000</p>원</span>
+                    <span><p></p>원</span>
                 </div>
                 <div class="payTabTotalprice">
                     <span>할인금액</span>
-                    <span><p>-1200</p>원</span>
+                    <span><p></p>원</span>
                 </div>
                 <div class="resultPrice payTabTotalprice">
                     <span>결제예정금액</span>
-                    <span><p>75000</p>원</span>
+                    <span><p></p>원</span>
                 </div>
                 <div class="keepgoingBtn">
                     <button class="orderAll" type="submit">전체상품 주문하기</button>
@@ -144,18 +144,14 @@
 
 <script>
 	window.addEventListener('load', cartLoadHandler)
-	window.addEventListener('load', loadPaymentBox)
 	
-	const allcheck = document.getElementById('allChecked')
-	allcheck.addEventListener('change', cartAllItemClick)
+	document.getElementById('allChecked').addEventListener('change', cartAllItemClick)
 	
 	const btns = Array.from(document.querySelectorAll('.keepgoingBtn > button'))
 	btns.forEach(btn => btn.addEventListener('click', cartToDeliveryInfo))
 	
-	const deliveryBtn = document.querySelector('.manageDelivery > button')
-	deliveryBtn.addEventListener('click', deliveryManagement)
-	const DeliveryOverlay = document.querySelector('.DeliveryOverlay')
-	DeliveryOverlay.addEventListener('click', deliveryManagementClose)
+	document.querySelector('.manageDelivery > button').addEventListener('click', deliveryManagement)
+	document.querySelector('.DeliveryOverlay').addEventListener('click', deliveryManagementClose)
 	
 	document.getElementById('addDeliveryAddress').addEventListener('click', addDeliveryAddressHandler)
 	document.querySelector('.addDeliveryAddressContent > form').addEventListener('submit', addressInsert)

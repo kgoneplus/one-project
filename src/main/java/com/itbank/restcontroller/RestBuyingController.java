@@ -74,4 +74,9 @@ public class RestBuyingController {
 	public int deleteAddress(@RequestBody HashMap<String, String> param) {
 		return service.deleteAddress(param);
 	}
+	
+	@PostMapping(value="/buying/cart/pay/{member_idx}", produces="application/json; charset=utf-8")
+	public List<ProductcartDTO> paymentbox(@PathVariable int member_idx, @RequestBody List<String> itemList) {
+		return service.deliveryInfoSelectList(member_idx, itemList);
+	}
 }

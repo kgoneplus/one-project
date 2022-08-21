@@ -24,5 +24,6 @@ public interface ProductcartDAO {
 	@Select("select address from parent_member where idx=#{member_idx}")
 	String deliveryDefault(int member_idx);
 
+
 	
 }

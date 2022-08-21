@@ -129,6 +129,8 @@ function mabtnClickHandler(event) {
 		
 	const beforeDiscount = Array.from(document.querySelectorAll('.lastprice > span:first-child'))[idx]
 	beforeDiscount.innerText = (defaultPrice * quantity.value).toLocaleString() + '원'
+	
+	loadPaymentBox()
 }
 
 // 장바구니 -> 수량 증가 핸들러
@@ -181,6 +183,8 @@ function plbtnClickHandler(event) {
 	
 	const beforeDiscount = Array.from(document.querySelectorAll('.lastprice > span:first-child'))[idx]
 	beforeDiscount.innerText = (defaultPrice * quantity.value).toLocaleString() + '원'
+
+	loadPaymentBox()
 }
 
 // 장바구니 -> 장바구니 목록 삭제 버튼
@@ -270,19 +274,70 @@ function cartLoadHandler() {
 							<td><button class="cartDeleteBtn" onclick="cartDeleteHandler(event)"><div></div></button></td>`
 			tbody.appendChild(tr)
 		})
+		const checkboxes = Array.from(document.querySelectorAll("input[type='checkbox']"))
+		checkboxes.forEach(checkbox => checkbox.addEventListener('change', paymentBox))
 	})
-
-		
 }
 
+//장바구니 -> 결제예정 금액 변동
+function loadPaymentBox(json) {
+	
+	// 총 금액 div
+	const totalPrice = document.querySelector('.payTab > .payTabTotalprice:first-child p')
+	
+	// 할인 금액 div
+	const discountPrice = document.querySelector('.payTab > .payTabTotalprice:nth-child(3) p')
+	
+	// 배송비 div
+	const deliveryP = document.querySelector('.payTab > .payTabTotalprice:nth-child(2) p')
+	
+	// 결제예정 금액 div
+	const resultPrice = document.querySelector('.resultPrice p')
+	
+	let tP = 0
+	let pay = 0
+	let discount = 0
+		
+	json.forEach(dto => {
+		tP = tP + (dto.productPrice * dto.cnt)
+		discount += (dto.productDiscount * dto.cnt)
+		pay = tP - discount
+	})
+	totalPrice.innerText = tP.toLocaleString()
+	resultPrice.innerText = pay.toLocaleString()
+	discountPrice.innerText = '-' + discount
+	if(tP >= 40000) deliveryP.innerText = 0
+	else deliveryP.innerText = 3000
+}
+
+
+// 장바구니 -> 선택시 paymentBox 가격 변경
+function paymentBox() {
+	let checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']:checked")).map(item => item.value)
+	checkedItemList = checkedItemList.filter(item => item != 'on')
+	
+	const url = cpath + '/buying/cart/pay/' + member_idx
+	const opt = {
+		method: 'POST',
+		body: JSON.stringify(checkedItemList),
+		headers: {
+			'Content-Type' : 'application/json; charset=utf-8'
+		}
+	}
+	fetch(url, opt).then(resp => resp.json())
+	.then(json => {loadPaymentBox(json)})
+}
+
+
 // 장바구니 -> 전체 선택시, 아이템 전체 선택되는 함수
-function cartAllItemClick(event) {
+function cartAllItemClick() {
 	const ItemList = Array.from(document.querySelectorAll("input[type='checkbox']"))
+	const allcheck = document.getElementById('allChecked')
 	ItemList.forEach((checkbox) => {
 	    checkbox.checked = allcheck.checked
 	})
-	loadPaymentBox()
 }
+
 
 // 장바구니 -> 전체상품 주문하기, 선택상품 주문하기 클릭 시 배송정보로 이동(상품번호 포함해서)
 function cartToDeliveryInfo(event) {
@@ -309,47 +364,6 @@ function cartToDeliveryInfo(event) {
 	location.href = cpath + '/buying/deliveryInfo/' + member_idx;
 }
 
-// 장바구니 -> 결제예정 금액 변동
-function loadPaymentBox() {
-	
-	// 총 금액 div
-	const totalPrice = document.querySelector('.payTab > .payTabTotalprice:first-child p')
-	
-	// 할인 금액 div
-	const discountPrice = document.querySelector('.payTab > .payTabTotalprice:nth-child(3) p')
-	
-	// 배송비 div
-	const deliveryP = document.querySelector('.payTab > .payTabTotalprice:nth-child(2) p')
-	
-	// 결제예정 금액 div
-	const resultPrice = document.querySelector('.resultPrice p')
-	
-	let tP = 0
-	let pay = 0
-	let discount = 0
-	
-	
-	// 모든 총금액 배열
-	const url = cpath + '/buying/cart/home/' + member_idx
-	fetch(url).then(resp => resp.json())
-	.then(json => {
-//		console.log(json)
-		json.forEach(dto => {
-			tP = tP + (dto.productPrice * dto.cnt)
-			discount += (dto.productDiscount * dto.cnt)
-			pay = tP - discount
-		})
-		totalPrice.innerText = tP.toLocaleString()
-		resultPrice.innerText = pay.toLocaleString()
-		discountPrice.innerText = '-' + discount
-		if(tP >= 40000) deliveryP.innerText = 0
-		else deliveryP.innerText = 3000
-	})
-	
-		
-	
-
-}
 
 //배송지 수정 update 핸들러
 function modDeliveryAddress(event) {
