@@ -507,7 +507,6 @@ function addressInsert(event) {
 	})
 }
 
-
 // 기본 배송지로 설정 핸들러(parent_member table address update)
 function updatedefaultAddress() {
 	// 기본배송지로 변경 시 회원 테이블 주소 update -> 그럼 받는분은 어디에 저장??
