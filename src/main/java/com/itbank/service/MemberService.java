@@ -1,7 +1,11 @@
 package com.itbank.service;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,8 @@ public class MemberService {
 	
 	@Autowired private MemberDAO dao;
 	@Autowired private HashComponent hash;
+	@Autowired private MailService ms;
+
 	
 	// 통합 회원가입 
 	public int insert(MemberDTO dto) {
@@ -97,9 +103,16 @@ public class MemberService {
 		return row;
 	}
 	
-	public int idsearch(MemberDTO dto) {
+	public int idsearch(MemberDTO dto) throws AddressException, IOException, MessagingException {
+		MemberDTO result = dao.selectIdserachConfirm(dto);
+		System.out.println(result.getIdx());
 		
-		return 0;
+		if(result != null) {
+			return ms.sendMail(result);
+		}else {
+			return 0;
+		}
 	}
+
 
 }

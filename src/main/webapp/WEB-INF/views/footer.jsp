@@ -58,7 +58,6 @@
                         <span>1577-3355</span>
                     </div>
                     <ul>
-                    	
                         <li>Email : onlinemart@oneplus.co.kr</li>
                     </ul>
                 </div>

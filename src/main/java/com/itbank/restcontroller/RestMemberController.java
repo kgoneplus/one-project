@@ -167,8 +167,8 @@ public class RestMemberController {
 	  }
 	// 매일 주소 받아서 인증번호 
 	@PostMapping(value="mailconfirm", produces="application/json; charset=utf-8")
-	public int mailconfirm(@RequestParam("mailadress") String ma, HttpSession session) throws IOException {
-		return mails.sendMailconfirm(ma, session);
+	public int mailconfirm(@RequestBody HashMap<String, String> param, HttpSession session) throws IOException {
+		return mails.sendMailconfirm(param.get("mailadress"), session);
 	}
 	
 }

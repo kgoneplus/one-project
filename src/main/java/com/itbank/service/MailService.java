@@ -2,8 +2,8 @@ package com.itbank.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Properties;
+import java.util.Random;
 import java.util.Scanner;
 
 import javax.mail.Authenticator;
@@ -21,6 +21,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import com.itbank.oneplus.MemberDTO;
+
 @Service
 public class MailService {
 	
@@ -28,7 +30,8 @@ public class MailService {
 	@Value("classpath:account.txt")
 	private Resource account;
 	
-	public int sendMail(HashMap<String, String> param) 
+	// 아이디 찾기 메일 전송
+	public int sendMail(MemberDTO param) 
 			throws IOException, AddressException, MessagingException {
 		
 		File f = account.getFile();
@@ -62,13 +65,13 @@ public class MailService {
 		mailSession.setDebug(true);
 		
 		InternetAddress from = new InternetAddress("rkdwns21@naver.com");
-		InternetAddress to = new InternetAddress(param.get("email"));
+		InternetAddress to = new InternetAddress(param.getEmail());
 		
 		Message mimeMessage = new MimeMessage(mailSession);
 		mimeMessage.setFrom(from);
 		mimeMessage.setRecipient(Message.RecipientType.TO, to);
-		mimeMessage.setSubject(param.get("title"));
-		mimeMessage.setText(param.get("content"));
+		mimeMessage.setSubject("Oneplus ID찾기");
+		mimeMessage.setText(param.getUserid());
 		Transport.send(mimeMessage);
 		
 		return 1;
@@ -78,6 +81,13 @@ public class MailService {
 
 		File f = account.getFile();
 		Scanner sc = new Scanner(f);
+		Random ran = new Random();
+		String n1 = ran.nextInt(10) + "";
+		String n2 = ran.nextInt(10) + "";
+		String n3 = ran.nextInt(10) + "";
+		String n4 = ran.nextInt(10) + "";
+		String confirm = n1+ n2+ n3 + n4;
+		session.setAttribute("eamilconfirmnumber", confirm);
 		
 		String data = null;
 		while(sc.hasNextLine()) {
@@ -112,13 +122,13 @@ public class MailService {
 		Message mimeMessage = new MimeMessage(mailSession);
 		
 		try {
-			mimeMessage.setFrom(new InternetAddress("rkdwns21@naver.com"));
+			mimeMessage.setFrom(new InternetAddress("rkdwns21@naver.com"));		// 보내는사람?
 			
-			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(ma));
+			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(ma));		// 받는사람??
 			
 			mimeMessage.setSubject("OnePlus 인증번호 발송");
 			
-			mimeMessage.setText("1234");
+			mimeMessage.setText(confirm);
 			
 			Transport.send(mimeMessage);
 			
