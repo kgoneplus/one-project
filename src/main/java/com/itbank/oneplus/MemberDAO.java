@@ -50,4 +50,7 @@ public interface MemberDAO {
 	// 장바구니에서 기본 배송지 변경
 	@Update("update parent_member set address=#{address} where idx=#{idx}")
 	int updateAddress(HashMap<String, String> param);
+	
+	@Select("select * from parent_member where email=#{email} and name=#{name}")
+	MemberDTO selectIdserachConfirm(MemberDTO dto);
 }
