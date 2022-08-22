@@ -37,7 +37,7 @@
         </div>
         <div class="homeDeliveryBox">
             <div class="manageDelivery">
-                <p>${deliveryDefault[1]} ${deliveryDefault[2]}</p>
+                <p>${deliveryDefault.address}</p>
                 <button>배송관리</button>
             </div>
         </div>
@@ -64,19 +64,19 @@
             <div class="payTab">
                 <div class="payTabTotalprice">
                     <span>총주문금액</span>
-                    <span><p>150000</p>원</span>
+                    <span><p></p>원</span>
                 </div>
                 <div class="payTabTotalprice">
                     <span>배송비</span>
-                    <span><p>3000</p>원</span>
+                    <span><p></p>원</span>
                 </div>
                 <div class="payTabTotalprice">
                     <span>할인금액</span>
-                    <span><p>-1200</p>원</span>
+                    <span><p></p>원</span>
                 </div>
                 <div class="resultPrice payTabTotalprice">
                     <span>결제예정금액</span>
-                    <span><p>75000</p>원</span>
+                    <span><p></p>원</span>
                 </div>
                 <div class="keepgoingBtn">
                     <button class="orderAll" type="submit">전체상품 주문하기</button>
@@ -91,12 +91,12 @@
 	<h3>기본배송지</h3>
 	<div class="dContentBox">
 		<div class="deliveryCheckbox">
-			<input type="hidden" data-addr1="${deliveryDefault[0]}" data-addr2="${deliveryDefault[1]}" data-addr3="${deliveryDefault[2]}">
+			<input type="hidden" name="dCode" value="${deliveryDefault.dCode}">
 			<input type="radio">
 		</div>
 		<div class="deliveryDefault">
-			${login.name} (${login.phonenum})<br>
-			[${deliveryDefault[0]}] ${deliveryDefault[1]} ${deliveryDefault[2]}
+			${deliveryDefault.receiverName} (${deliveryDefault.receiverPhonenum})<br>
+			[${deliveryDefault.address}]
 		</div>
 	</div>
 	<p>* 배송지 변경 시, 배송매장에 따라 판매가능 상품 및 행사 내용이 변경 될 수 있습니다.</p>
@@ -134,7 +134,7 @@
 	
 		<input type="text" name="addr2" id="sample6_address" placeholder="주소" required><br>
 		<input type="text" name="addr3" id="sample6_detailAddress" placeholder="상세주소" required>
-		<input type="text" name="dInfo1" id="sample6_extraAddress" placeholder="요청사항" required>
+		<input type="text" name="addr4" id="sample6_extraAddress" placeholder="요청사항" required>
 		
 		<input type="submit" value="확인">
 		<input type="button" value="취소" onclick="deliveryManagementClose()">
@@ -144,18 +144,13 @@
 
 <script>
 	window.addEventListener('load', cartLoadHandler)
-	window.addEventListener('load', paymentBox)
-	
-	const allcheck = document.getElementById('allChecked')
-	allcheck.addEventListener('change', cartAllItemClick)
+// 	document.getElementById('allChecked').addEventListener('change', cartAllItemClick)
 	
 	const btns = Array.from(document.querySelectorAll('.keepgoingBtn > button'))
 	btns.forEach(btn => btn.addEventListener('click', cartToDeliveryInfo))
 	
-	const deliveryBtn = document.querySelector('.manageDelivery > button')
-	deliveryBtn.addEventListener('click', deliveryManagement)
-	const DeliveryOverlay = document.querySelector('.DeliveryOverlay')
-	DeliveryOverlay.addEventListener('click', deliveryManagementClose)
+	document.querySelector('.manageDelivery > button').addEventListener('click', deliveryManagement)
+	document.querySelector('.DeliveryOverlay').addEventListener('click', deliveryManagementClose)
 	
 	document.getElementById('addDeliveryAddress').addEventListener('click', addDeliveryAddressHandler)
 	document.querySelector('.addDeliveryAddressContent > form').addEventListener('submit', addressInsert)
@@ -163,6 +158,9 @@
 	//sample6_execDaumPostcode()
 	document.querySelector('.addDeliveryAddressContent input[value="우편번호 찾기"]').addEventListener('click', sample6_execDaumPostcode)
 	
+	const target = document.getElementById('allChecked')
+	const evt = new Event('click')
+	target.dispatchEvent(evt)
 </script>
 
 <%@ include file="../footer.jsp" %>

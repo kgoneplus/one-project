@@ -171,11 +171,4 @@ public class RestMemberController {
 		return mails.sendMailconfirm(ma, session);
 	}
 	
-	
-	@PutMapping(value="/buying/cart/deliveryUpdate")
-	public int updatedefaultAddress(@RequestBody HashMap<String, String> param) {
-		return ms.updatedefaultAddress(param);
-	}
-	
-
 }
