@@ -51,7 +51,9 @@
 			<div>이메일</div>
 			<input id="mailadress" type="email" name="email" placeholder="itbank@naver.com"
 				required>
-			<button id="emailconfirm" onclick="">인증번호 요청</button>
+			<input type="button" onclick="mailconfirm()" value="인증번호 요청">
+			<input id="confirmnumber" type="text" name="emailconfirm" placeholder="인증번호4자리입력">
+			<input type="button" onclick="mailConfirmNumber()" value="인증">
 			<div id="ConfirmEmail-Message"></div>
 			
 			<div>주소</div>
@@ -68,11 +70,14 @@
 
 <script>
 	const cpath = '${cpath}'
+	const emailconfirm = '${eamilconfirmnumber}'
 	const idconfirm = document.getElementById('idconfirm')			// 아이디 중복확인 버튼
 	const insertForm = document.forms[0]
 	const pw = document.getElementById('pw')						// 비밀번호
 	const pwconfirm = document.getElementById('pwconfirm')			// 비밀번호 재확인
 	const ConfirmPW = document.getElementById('ConfirmPW-Message')	// 비밀번호 재확인 메세지
+	const emailconfirmMessage = document.getElementById('ConfirmEmail-Message')
+	const mailconfrimnumber = document.getElementById('confirmnumber')
 
 	// 비밀번호 재확인 함수
 	pwconfirm.onblur = function() {
@@ -95,31 +100,29 @@
 	idconfirm.addEventListener('click', memberId)
 	insertForm.addEventListener('submit', insertHandler)
 	
-	// 메일 인증 요청
+	// 메일 인증 
+	function mailConfirmNumber(){
+		console.log(emailconfirm)
+		console.log(mailconfrimnumber.value)
+		if(mailconfrimnumber.value == emailconfirm){
+			emailconfirmMessage.innerText = '인증 완료'
+		}
+		else {
+			emailconfirmMessage.innerText = '인증번호가 틀립니다'
+		}
+	}
 	
-	const mail = document.getElementById('emailconfirm')
-	console.log(mail)
-	mail.addEventListener('click', test())
+	//메일 보내기
 	
 	
-	function test(event){
-		const mailadress = document.getElementById('mailadress').value
-		console.log(mailadress)
+	
+	function mailconfirm (){
 		
-	}
-	
-	if(mailadress == 1234567){
-		mail.addEventListener('click', mailconfirm(mailadress))
-	}
-	
-	
-	
-	function mailconfirm (ma){
 		const url = '${cpath}/mailconfirm'
 		const opt = {
 				method: 'POST',
 				body: JSON.stringify({
-				'mailadress' : ma	
+				'mailadress' : document.getElementById('mailadress').value	
 				}),
 				headers: {
 					'Content-Type' : 'application/json; charset=utf-8'
