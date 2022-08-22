@@ -51,6 +51,7 @@ public interface MemberDAO {
 	@Update("update parent_member set address=#{address} where idx=#{idx}")
 	int updateAddress(HashMap<String, String> param);
 	
+	
 	@Select("select * from parent_member where email=#{email} and name=#{name}")
 	MemberDTO selectIdserachConfirm(MemberDTO dto);
 }

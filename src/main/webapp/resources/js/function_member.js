@@ -201,9 +201,13 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
-//메일 인증 
+
+//메일 인증확인하기 
 function mailConfirmNumber(){
-	if(mailconfrimnumber.value == emailconfirm){
+	console.log(mailconfrimnumber.value)
+	let number = sessionStorage.getItem("emailconfirmnumber")
+	console.log(number)
+	if(mailconfrimnumber.value == number){
 		emailconfirmMessage.innerText = '인증 완료'
 	}
 	else {
@@ -226,9 +230,10 @@ function mailconfirm (){
 	}
 	fetch(url, opt)
 	.then(resp => resp.text())
-	.then(test => {
-		if(test == 1){
+	.then(text => {
+		if(text != null){
 			console.log('성공')
+			sessionStorage.setItem("emailconfirmnumber", text) // 세션 스토리지 저장하기 *****
 		}
 		else{
 			console.log('실패')
