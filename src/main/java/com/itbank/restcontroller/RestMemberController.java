@@ -172,10 +172,6 @@ public class RestMemberController {
 	}
 	
 	
-	@PutMapping(value="/buying/cart/deliveryUpdate")
-	public int updatedefaultAddress(@RequestBody HashMap<String, String> param) {
-		return ms.updatedefaultAddress(param);
-	}
 	
 
 }
