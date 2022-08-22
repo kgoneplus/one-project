@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Properties;
+import java.util.Random;
 import java.util.Scanner;
 
 import javax.mail.Authenticator;
@@ -78,6 +79,13 @@ public class MailService {
 
 		File f = account.getFile();
 		Scanner sc = new Scanner(f);
+		Random ran = new Random();
+		String n1 = ran.nextInt(10) + "";
+		String n2 = ran.nextInt(10) + "";
+		String n3 = ran.nextInt(10) + "";
+		String n4 = ran.nextInt(10) + "";
+		String confirm = n1+ n2+ n3 + n4;
+		session.setAttribute("eamilconfirmnumber", confirm);
 		
 		String data = null;
 		while(sc.hasNextLine()) {
@@ -118,7 +126,7 @@ public class MailService {
 			
 			mimeMessage.setSubject("OnePlus 인증번호 발송");
 			
-			mimeMessage.setText("1234");
+			mimeMessage.setText(confirm);
 			
 			Transport.send(mimeMessage);
 			
