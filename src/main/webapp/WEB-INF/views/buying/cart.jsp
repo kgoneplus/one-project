@@ -115,9 +115,12 @@
 		</table>
 	</form>
 	<button id="addDeliveryAddress">배송지 추가</button>
+	<div><button id="changeDefaultAddress">배송지 변경</button></div>
 </div>
 <div class="DeliveryOverlay"></div>
 <div class="addDeliveryAddressContent">
+	<h3>배송지 추가</h3>
+	<hr>
 	<form>
 		<div>받는분</div>
 		<input type="text" name="receiverName" required>
@@ -127,7 +130,7 @@
 			
 		<div>주소</div>
 		<input type="text" name="addr1" id="sample6_postcode" placeholder="우편번호" required>
-		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" required><br>
+		<input type="button" value="우편번호 찾기" required><br>
 	
 		<input type="text" name="addr2" id="sample6_address" placeholder="주소" required><br>
 		<input type="text" name="addr3" id="sample6_detailAddress" placeholder="상세주소" required>
@@ -137,6 +140,7 @@
 		<input type="button" value="취소" onclick="deliveryManagementClose()">
 	</form>
 </div>
+<div class="modDeliveryAddressContent"></div>
 
 <script>
 	window.addEventListener('load', cartLoadHandler)
@@ -155,6 +159,9 @@
 	
 	document.getElementById('addDeliveryAddress').addEventListener('click', addDeliveryAddressHandler)
 	document.querySelector('.addDeliveryAddressContent > form').addEventListener('submit', addressInsert)
+	document.getElementById('changeDefaultAddress').addEventListener('click', updatedefaultAddress)
+	//sample6_execDaumPostcode()
+	document.querySelector('.addDeliveryAddressContent input[value="우편번호 찾기"]').addEventListener('click', sample6_execDaumPostcode)
 	
 </script>
 

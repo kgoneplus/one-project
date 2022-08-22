@@ -107,7 +107,37 @@ td {
 	padding-top: 13px;
 	padding-right: 10px;
 }
-.ask_wrap > .item > .menu {
+.ask_wrap > .item > .menu, .content {
+	display: none;
+}
+
+.askList_modal {
+	display: none;
+}
+.askList_overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 70%;
+	z-index: 5;
+}
+.askList_content {
+	position: absolute;
+	z-index: 6;
+	width: 700px;
+	height: 660px;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	overflow: auto;
+	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+}
+.askList_hidden {
 	display: none;
 }
 </style>
@@ -156,7 +186,8 @@ td {
 	function convertAsk(dto) {
 		const item = document.createElement('div')
 		item.classList.add('item')
-		item.setAttribute('idx', dto.idx)
+		item.setAttribute('idx', dto.idx)					// 작성한 문의 상세보기
+		item.setAttribute('member_idx', dto.member_idx)		// 작성자와 일치하는 문의만
 		
 		for(let key in dto) {
 			const div = document.createElement('div')
@@ -165,21 +196,13 @@ td {
 			case 'idx':
 			case 'img':
 			case 'orderProduct':
-// 			case 'uploadFile':
-			case 'content':
+			case 'askFile':
 				continue;
 			case 'writeDate':
 				div.classList.add(key)
 				div.innerText = new Date(dto[key]).toISOString().split('T')[0]
 				item.appendChild(div)
 				break;
-			
-// 				div.classList.add(key)
-// 				const pre = document.createElement('pre')
-// 				pre.innerText = dto[key]
-// 				div.appendChild(pre)
-// 				item.appendChild(div)
-// 				break;
 			default:
 				div.classList.add(key)
 				div.innerText = dto[key]
@@ -192,12 +215,15 @@ td {
 		waiting.classList.add('waiting')
 		const direction = document.createElement('div')
 		direction.classList.add('direction')
+		
 		const btn1 = document.createElement('button')
 		btn1.innerText = '수정'
 		const askAnswer = document.createElement('div')
 		askAnswer.innerText = '답변대기중'
 		const open = document.createElement('div')
 		open.innerText = '▼'
+		
+		item.addEventListener('click', askOpenModal)
 		
 		menu.appendChild(btn1)
 		waiting.appendChild(askAnswer)
@@ -220,7 +246,54 @@ td {
 			json.forEach(dto => wrap.appendChild(convertAsk(dto)))
 		})
 	}
-	
+		
+	// 문의 내용 상세보기(...공사중...)
+	async function askOpenModal(event) {
+		console.log(event.target.parentNode.getAttribute('idx'))
+		
+		const idx = event.target.parentNode.getAttribute('idx')
+		const url = '${cpath}/mypageing/counseling/' + idx
+		
+		const menu = document.querySelector('.menu')
+		const content = document.querySelector('.content')
+		menu.style.display = 'flex'
+		content.style.display = 'flex'
+		
+		await fetch(url)
+		.then(resp => resp.json())
+		.then(json => {
+			const askListContent = document.querySelector('.askList_content')
+			askListContent.innerHTML = ''
+						
+			const title = document.createElement('div')
+			title.className = 'title'
+			title.innerText = json.title
+			
+			const askType = document.createElement('div')
+			askType.className = 'askType'
+			askType.innerText = json.askType
+			
+			const content = document.createElement('div')
+			content.className = 'content'
+			content.innerText = json.content
+			
+			const writeDate = document.createElement('div')
+			writeDate.className = 'writeDate'
+			writeDate.innerText = json.writeDate
+			
+			const btn = document.createElement('button')
+			btn.setAttribute('idx', json.idx)
+			btn.className = 'btn'
+			btn.innerText = '수정'
+			btn.addEventListener('click', modifyHandler)
+			
+			content.appendChild(title)
+			content.appendChild(askType)
+			content.appendChild(content)
+			content.appendChild(writeDate)
+			content.appendChild(btn)
+		})
+	}
 </script>
 <main>
     <div class="mypagewrapper">
@@ -292,6 +365,11 @@ td {
                 </form>
             </div>
             <div class="ask_wrap"></div>
+            
+            <div class="askList_modal" class="askList_hidden">
+            	<div class="askList_content"></div>
+            	<div class="askList_overlay"></div>
+            </div>
         </section>
     </div>
 		
@@ -303,7 +381,7 @@ td {
 				<div class="counsel_close">X</div>
 			</div>
 							
-			<form class="counsel_form">
+			<form class="counsel_form" enctype="multipart/form-data">
 				<input type="hidden" name="member_idx" value="${login.idx }">
 				<table class="counsel_table">
 				<tr>
@@ -334,13 +412,10 @@ td {
 							  placeholder="문의 내용을 입력해 주세요 (최대 700자 이내)&#13;&#10;고객님의 개인정보가 기입되지 않도록 주의해주세요" required></textarea>
 					</td>
 				</tr>
-<!-- 				<p>이미지 등록(선택) -->
-<!-- 					<input type="file" name="img"> -->
-<!-- 				</p>					 -->
-<!-- 				<p>답변알림(선택) -->
-<!-- 					<span><input type="checkbox">이메일 알림</span> -->
-<!-- 					<span><input type="text" name="content" placeholder="babo@naver.com"></span> -->
-<!-- 				</p> -->
+<!-- 				<tr> -->
+<!-- 					<th>이미지 등록(선택)</th> -->
+<!-- 					<td><input type="file" name="askFile" accept="image/*"></td> -->
+<!-- 				</tr>					 -->
 				</table>
 				<p class="counsel_submit"><input type="submit" value="등록"></p>
 			</form>
@@ -350,7 +425,7 @@ td {
 </main>
 
 <script>
-	const counselModal_overlay = document.querySelector('.counsel_overlay')
+	const counselModal_overlay = document.querySelector('.counsel_overlay')		
 	const counselModal_close = document.querySelector('.counsel_close')
 	const counselModal_open = document.querySelector('.rightArea')
 	const writeForm = document.forms[1]											// 1:1 문의 등록 폼

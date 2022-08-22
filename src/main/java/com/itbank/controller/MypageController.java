@@ -75,7 +75,7 @@ public class MypageController {
 	// 1:1 문의 작성
 	@PostMapping("/counsel")
 	@ResponseBody
-	public int write(@RequestBody AskDTO dto) {
+	public int write(@RequestBody AskDTO dto) throws IllegalStateException, IOException {
 		return mypageService.askWrite(dto);
 	}
 
