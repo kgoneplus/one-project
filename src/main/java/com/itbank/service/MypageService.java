@@ -57,8 +57,13 @@ public class MypageService {
 //	}
 
 	// 1:1 문의 내역
-	public List<AskDTO> selectAskAll() {
-		return mypageDAO.selectAskAll();
+	public List<AskDTO> selectAskAll(int idx) {
+		return mypageDAO.selectAskAll(idx);
+	}
+	
+	// 1:1 문의 상세 보기
+	public AskDTO selectAskOne(int idx) {
+		return mypageDAO.selectAskOne(idx);
 	}
 
 	// 회원탈퇴
@@ -84,10 +89,9 @@ public class MypageService {
 		dto.setUserpw(hashpw);
 		return mypageDAO.update(dto);
 	}
-	
-	// 1:1 문의 상세 보기
-	public AskDTO selectAskOne(int idx) {
-		return mypageDAO.selectAskOne(idx);
+
+	// 1:1 문의 삭제
+	public int askOneDelete(int idx) {
+		return mypageDAO.askOneDelete(idx);
 	}
-	
 }
