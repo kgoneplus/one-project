@@ -1,7 +1,11 @@
 package com.itbank.service;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import com.itbank.component.HashComponent;
 import com.itbank.oneplus.MemberDTO;
+import com.itbank.oneplus.DeliveryDAO;
+import com.itbank.oneplus.DeliveryDTO;
 import com.itbank.oneplus.MemberDAO;
 
 @Service
@@ -16,6 +22,7 @@ public class MemberService {
 	
 	@Autowired private MemberDAO dao;
 	@Autowired private HashComponent hash;
+	@Autowired private MailService ms;
 	
 	// 통합 회원가입 
 	public int insert(MemberDTO dto) {
@@ -96,6 +103,20 @@ public class MemberService {
 		int row = dao.kakaoinsert(dto);							// 해시값을 포함한 dto를 insert 한다
 		return row;
 	}
+	
+	public int idsearch(MemberDTO dto) throws AddressException, IOException, MessagingException {
+		MemberDTO result = dao.selectIdserachConfirm(dto);
+		System.out.println(result.getIdx());
+		
+		if(result != null) {
+			return ms.sendMail(result);
+		}else {
+			return 0;
+		}
+	}
+	
+	
+
 	
 	
 	

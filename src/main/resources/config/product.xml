@@ -12,7 +12,30 @@
 		      on P.categoryCode = C.productMain_categoryCode
 		   where C.category2 = #{category2} 
 		      <if test="productMain_categoryCode != null"> and P.categoryCode = #{productMain_categoryCode}</if>
+		      
+		<!--      중분류 -->
+<!-- 		select C.category2, P.categoryCode, C.category2Name as category2Name from productMain P -->
+<!-- 		    join category C -->
+<!-- 		        on P.categoryCode = C.productMain_categoryCode -->
+<!-- 		    where -->
+<!-- 		        category2=#{category2} -->
+<!-- 		         <if test="productMain_categoryCode != null"> </if> -->
+		
+		<!--   소분류         -->
+<!-- 		select C.category2, P.categoryCode, C.categoryName as category2Name from productMain P -->
+<!-- 		    join category C -->
+<!-- 		        on P.categoryCode = C.productMain_categoryCode -->
+<!-- 		    where -->
+<!-- 		        category2=#{category2} and C.productMain_categoryCode = ${productMain_categoryCode} -->
+		       
 	</select>
 	
-	
+	<select id="categoryName" parameterType="String" resultType="prod">
+		select C.category2, P.categoryCode, C.category2Name as category2Name from productMain P 
+		    join category C
+		        on P.categoryCode = C.productMain_categoryCode
+		    where	    	
+		   		 category2=#{category2}		        
+		         <if test="productMain_categoryCode != null">and productMain_categoryCode=#{productMain_categoryCode}</if>
+	</select>
 </mapper>

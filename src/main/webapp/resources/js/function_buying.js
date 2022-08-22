@@ -1,5 +1,72 @@
 'use strict'
 
+//주소 데이터
+function sample6_execDaumPostcode(event) {
+	let target = event.target
+	let flag = true
+	while(flag) {
+		target = target.parentNode
+		for(let i = 0; target.classList != undefined && i < target.classList.length; i++) {
+			const className = target.classList[i]
+			if(className.includes('DeliveryAddressContent')) {
+				flag = false
+				break
+			}
+		}
+	}
+//	console.log(target.className.substring(0, 3))
+	let index = 0
+	if(target.className.substring(0, 3) == 'mod')
+		index = 1
+	
+	
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+            if(data.userSelectedType === 'R'){
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                // 조합된 참고항목을 해당 필드에 넣는다.
+                document.querySelectorAll("#sample6_extraAddress")[index].value = extraAddr;
+            
+            } else {
+                document.querySelectorAll("#sample6_extraAddress")[index].value = '';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.querySelectorAll('#sample6_postcode')[index].value = data.zonecode;
+            document.querySelectorAll("#sample6_address")[index].value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            document.querySelectorAll("#sample6_detailAddress")[index].focus();
+        }
+    }).open();
+}
+
 // 배송정보 페이지 -> 상품 이미지 마우스오버시 상세설명 나타나는 이벤트
 function orderProductsExpMouseover(event) {
 	const idx = orderProducts.indexOf(event.target)
@@ -31,7 +98,7 @@ function mabtnClickHandler(event) {
 	
 	const prductMain_idx = Array.from(document.querySelectorAll("input[type='checkbox']"))[idx + 1].value
 	const ob = {
-			'member_idx' : 2,
+			'member_idx' : member_idx,
 			'productMain_idx' : prductMain_idx,
 			'cnt' : quantity.value
 		}
@@ -52,18 +119,15 @@ function mabtnClickHandler(event) {
 	
 	const dcP = target.getAttribute('productDiscount')
 	const lastPrice = Array.from(document.querySelectorAll('.lastprice > p'))[idx]
-//	lastPrice.innerText = ''
 	lastPrice.innerText = ((defaultPrice - dcP) * quantity.value).toLocaleString()
 	
 	const priceHidden = Array.from(document.querySelectorAll('.lastprice .price_hidden'))[idx]
 	const discountPrice = Array.from(priceHidden.querySelectorAll('dd'))
 	discountPrice.forEach(dd => {
-//		dd.innerText = ''
 		dd.innerText = (dcP * quantity.value) + '원'
 	})
 		
 	const beforeDiscount = Array.from(document.querySelectorAll('.lastprice > span:first-child'))[idx]
-//	beforeDiscount.innerText = ''
 	beforeDiscount.innerText = (defaultPrice * quantity.value).toLocaleString() + '원'
 }
 
@@ -84,9 +148,9 @@ function plbtnClickHandler(event) {
 	else quantity.value = +cnt + 1
 	
 	const prductMain_idx = Array.from(document.querySelectorAll("input[type='checkbox']"))[idx + 1].value
-	console.log('prductMain_idx : ', prductMain_idx)
+//	console.log('prductMain_idx : ', prductMain_idx)
 	const ob = {
-			'member_idx' : 2,
+			'member_idx' : member_idx,
 			'productMain_idx' : prductMain_idx,
 			'cnt' : quantity.value
 		}
@@ -107,18 +171,15 @@ function plbtnClickHandler(event) {
 	
 	const dcP = target.getAttribute('productDiscount')
 	const lastPrice = Array.from(document.querySelectorAll('.lastprice > p'))[idx]
-//	lastPrice.innerText = ''
 	lastPrice.innerText = ((defaultPrice - dcP) * quantity.value).toLocaleString()
 	
 	const priceHidden = Array.from(document.querySelectorAll('.lastprice .price_hidden'))[idx]
 	const discountPrice = Array.from(priceHidden.querySelectorAll('dd'))
 	discountPrice.forEach(dd => {
-//		dd.innerText = ''
 		dd.innerText = (dcP * quantity.value) + '원'
 	})
 	
 	const beforeDiscount = Array.from(document.querySelectorAll('.lastprice > span:first-child'))[idx]
-//	beforeDiscount.innerText = ''
 	beforeDiscount.innerText = (defaultPrice * quantity.value).toLocaleString() + '원'
 }
 
@@ -138,7 +199,7 @@ function cartDeleteHandler(event) {
 	console.log(idx)
 	
 	const ob = {
-		'member_idx' : 2,
+		'member_idx' : member_idx,
 		'productMain_idx' : idx
 	}
 	const url = cpath + '/buying/cart/home'
@@ -159,7 +220,7 @@ function cartDeleteHandler(event) {
 
 // 장바구니 로드 핸들러
 function cartLoadHandler() {
-	const url = cpath + '/buying/cart/home/' + 2
+	const url = cpath + '/buying/cart/home/' + member_idx
 	fetch(url).then(resp => resp.json())
 	.then(json => {
 		const tbody = document.querySelector('.cartProducts tbody')
@@ -172,7 +233,6 @@ function cartLoadHandler() {
 			tr.setAttribute('productPrice', dto.productPrice)
 			tr.setAttribute('productDiscount', dto.productDiscount)
 			tr.setAttribute('maxbuyCnt', dto.maxbuyCnt)
-//			tr.setAttribute('ProductcartDTO', dto)
 			tr.innerHTML = `<td><input type="checkbox" name="productMain_idx" value="${dto.productMain_idx}"></td>
 							<td>
 								<div class="cartProdName">
@@ -235,7 +295,7 @@ function cartToDeliveryInfo(event) {
 	checkedItemList = checkedItemList.filter(item => item != 'on')
 //	console.log(checkedItemList)
 	
-	const url = cpath + '/buying/cart/home/' + 2
+	const url = cpath + '/buying/cart/home/' + member_idx
 	const opt = {
 		method: 'PUT',
 		body: JSON.stringify(checkedItemList),
@@ -245,7 +305,7 @@ function cartToDeliveryInfo(event) {
 	}
 	fetch(url, opt).then(resp => resp.text())
 	.then(text => console.log(text))
-	location.href = cpath + '/buying/deliveryInfo/' + 2;
+	location.href = cpath + '/buying/deliveryInfo/' + member_idx;
 }
 
 // 장바구니 -> 결제예정 금액 변동
@@ -268,69 +328,209 @@ function paymentBox() {
 
 }
 
-// 장바구니 -> 배송관리 핸들러
-function deliveryManagement() {
-	const deliveryContent = document.querySelector('.DeliveryContent')
-	const deliveryOverlay = document.querySelector('.DeliveryOverylay')
-	deliveryContent.style.display = 'block'
-	deliveryOverlay.style.display = 'block'
-	deliveryContent.innerHtml = ''
+//배송지 수정 update 핸들러
+function modDeliveryAddress(event) {
+	const ob = {
+			'member_idx': member_idx,
+			'dCode' : event.target.getAttribute('dCode')
+	}
+	const url = cpath + '/buying/cart/delivery'
+	const opt = {
+			method : 'PUT',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt).then(resp => resp.json())
+	.then(json => {
+		const modDeliveryAddressContent = document.querySelector('.modDeliveryAddressContent')
+		modDeliveryAddressContent.style.display = 'block'
+		document.querySelector('.DeliveryContent').style.display = 'none'
+		modDeliveryAddressContent.innerHTML = ''
+		modDeliveryAddressContent.innerHTML = ` <h3>배송지 추가</h3>
+												<hr>
+												<form>
+													<div>받는분</div>
+													<input type="hidden" name="member_idx" value="${json.member_idx}">
+													<input type="hidden" name="dCode" value="${json.dCode}">
+													<input type="text" name="receiverName" placeholder="${json.receiverName}" required>
+												
+													<div>핸드폰번호</div>
+													<input type="text" name="receiverPhonenum" placeholder="${json.receiverPhonenum}" required>
+														
+													<div>주소</div>
+													<input type="text" name="addr1" id="sample6_postcode" placeholder="${json.addr1}" required>
+													<input type="button" value="우편번호 찾기" required><br>
+												
+													<input type="text" name="addr2" id="sample6_address" placeholder="${json.addr2}" required><br>
+													<input type="text" name="addr3" id="sample6_detailAddress" placeholder="${json.addr3}" required>
+													<input type="text" name="dInfo1" id="sample6_extraAddress" placeholder="${json.dInfo1}" required>
+													
+													<input type="submit" value="확인">
+													<input type="button" value="취소" onclick="deliveryManagementClose()">
+												</form>`
 		
-	const title = document.createElement('h1')
-	title.innerText = '배송지 관리'
-	deliveryContent.appendChild(title)
-		
-	const modal_deliveryContent = document.createElement('div')
-	modal_deliveryContent.className = 'modal_deliveryContent'
-	modal_deliveryContent.innerHtml = ``
-	deliveryContent.appendChild(modal_deliveryContent)
+		modDeliveryAddressContent.querySelector('input[value="우편번호 찾기"]').addEventListener('click', sample6_execDaumPostcode)
+			
+		const form = document.querySelector('.modDeliveryAddressContent > form')
+		form.addEventListener('submit', function (event) {
+			const formData = new FormData(event.target)
+			const ob = {}
+			for(let key of formData.keys()) {
+				ob[key] = formData.get(key)
+			}
+			const url = cpath + '/buying/cart/delivery/insert'
+			const opt = {
+					method: 'POST',
+					body: JSON.stringify(ob),
+					headers: {
+						'Content-Type' : 'application/json; charset=utf-8'
+					}
+			}
+			fetch(url, opt).then(resp => resp.text())
+			.then(text => {
+				if(text == 1) alert('수정 성공')
+				else alert('수정 실패')
+			})
+		})
+	})
+	
+	
 }
 
-//주소 데이터
-function sample6_execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+// 배송지 삭제 delete 핸들러
+function delDeliveryAddress(event) {
+	const ob = {
+			'member_idx': member_idx,
+			'dCode' : event.target.getAttribute('dCode')
+	}
+	const url = cpath + '/buying/cart/delivery'
+	const opt = {
+			method : 'DELETE',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt).then(resp => resp.text())
+	.then(text => {
+		if(text == 1) alert('삭제 성공')
+		location.reload(true)
+	})
+}
 
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var addr = ''; // 주소 변수
-            var extraAddr = ''; // 참고항목 변수
 
-            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                addr = data.roadAddress;
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                addr = data.jibunAddress;
-            }
+// 장바구니 -> 배송관리 열기 핸들러
+function deliveryManagement(event) {
+//	event.stopPropagation()
+	event.preventDefault()
+	const deliveryContent = document.querySelector('.DeliveryContent')
+	const deliveryOverlay = document.querySelector('.DeliveryOverlay')
+	deliveryContent.style.display = 'block'
+	deliveryOverlay.style.display = 'block'
+		
+	const tbody = document.querySelector('.DeliveryContent tbody')
+	tbody.innerHTML = ''
+	const url = cpath + '/buying/cart/delivery/' + member_idx	
+	fetch(url).then(resp => resp.json())
+	.then(json => {
+		json.forEach(dto => {
+			const tr = document.createElement('tr')
+			const td1 = document.createElement('td')
+			td1.innerHTML = `<input type="radio" name="dCode" value="${dto.dCode}">`
+			tr.appendChild(td1)
+			
+			const td2 = document.createElement('td')
+			td2.innerHTML = `${dto.receiverName}`
+			tr.appendChild(td2)
+			
+			const td3 = document.createElement('td')
+			td3.innerHTML = `${dto.addr1} ${dto.addr2} ${dto.addr3}`
+			tr.appendChild(td3)
+			
+			const td4 = document.createElement('td')
+			const mod = document.createElement('div')
+			mod.innerText = '수정'
+			mod.setAttribute('dCode', `${dto.dCode}`)
+			mod.addEventListener('click', modDeliveryAddress)
+			const del = document.createElement('div')
+			del.innerText = '삭제'
+			del.setAttribute('dCode', `${dto.dCode}`)
+			del.addEventListener('click', delDeliveryAddress)
+			td4.appendChild(mod)
+			td4.appendChild(del)
+			tr.appendChild(td4)
+			
+			tbody.appendChild(tr)
+		})
+	})
+	
+}
 
-            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-            if(data.userSelectedType === 'R'){
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraAddr !== ''){
-                    extraAddr = ' (' + extraAddr + ')';
-                }
-                // 조합된 참고항목을 해당 필드에 넣는다.
-                document.getElementById("sample6_extraAddress").value = extraAddr;
-            
-            } else {
-                document.getElementById("sample6_extraAddress").value = '';
-            }
+// 장바구니 -> 배송관리 닫기 핸들러
+function deliveryManagementClose() {
+	document.querySelector('.DeliveryContent').style.display = 'none'
+	document.querySelector('.DeliveryOverlay').style.display = 'none'
+	document.querySelector('.addDeliveryAddressContent').style.display = 'none'
+	document.querySelector('.modDeliveryAddressContent').style.display = 'none'
+}
 
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('sample6_postcode').value = data.zonecode;
-            document.getElementById("sample6_address").value = addr;
-            // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("sample6_detailAddress").focus();
-        }
-    }).open();
+// 장바구니 -> 배송관리 -> 배송지추가 열기 핸들러
+function addDeliveryAddressHandler() {
+	document.querySelector('.addDeliveryAddressContent').style.display = 'block'
+}
+
+// 배송지 추가 insert 핸들러
+function addressInsert(event) {
+	event.preventDefault()
+	const formData = new FormData(event.target)
+	const ob = {
+		'member_idx' : member_idx
+	}
+	for(let key of formData.keys()) {
+		ob[key] = formData.get(key)
+	}
+	const url = cpath + '/buying/cart/delivery'
+	const opt = {
+			method: 'POST',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt).then(resp => resp.text())
+	.then(text => {
+		if(text == 1) alert('배송지 추가 성공')
+		else alert('배송지 추가 실패')
+		location.reload(true)
+	})
+}
+
+
+// 기본 배송지로 설정 핸들러(parent_member table address update)
+function updatedefaultAddress() {
+	// 기본배송지로 변경 시 회원 테이블 주소 update -> 그럼 받는분은 어디에 저장??
+	const target = document.querySelector("input[type='radio']:checked")
+	const dCode = target.value
+	
+	const ob = {
+			'idx' : member_idx,
+			'dCode' : target.value
+	}
+	console.log(ob)
+	const url = cpath + '/buying/cart/deliveryUpdate'
+	const opt = {
+			method: 'PUT',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt).then(resp => resp.text())
+	.then(text => {
+		if(text == 1) alert('수정 성공')
+		else alert('수정 실패')
+		location.reload(true)
+	})
 }

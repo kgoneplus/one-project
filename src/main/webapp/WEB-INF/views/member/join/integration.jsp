@@ -11,32 +11,7 @@
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link type="text/css" rel="stylesheet"
 	  href="${cpath }/resources/css/style_joinform.css">
-<style>
-.join-form {
-	display: flex;
-	justify-content: center;
-	flex-flow: column;
-	align-items: center;
-}
 
-form {
-	margin: 10px;
-	padding: 10px;
-}
-input {
- 	width: 250px; 
-	height: 25px;
-	border: 1px solid;
-	border-color: #dadada;
-}
-form > div {
-	margin-top:10px;
-	margin-bottom:3px;
-	font-size: 13px;
-	font-weight:bold;
-	font-family: 'NanumBarunGothic',Dotum,Gulim,Tahoma,Verdana,AppleGothic,sans-serif;
-}
-</style>
 </head>
 <body>
 	<div class="join-form">
@@ -74,9 +49,11 @@ form > div {
 				required>
 				
 			<div>이메일</div>
-			<input type="email" name="email" placeholder="itbank@naver.com"
+			<input id="mailadress" type="email" name="email" placeholder="itbank@naver.com"
 				required>
-			<button id="emailconfirm" type="button">인증번호 요청</button>
+			<input type="button" onclick="mailconfirm()" value="인증번호 요청">
+			<div><input id="confirmnumber" type="text" name="emailconfirm" placeholder="인증번호4자리입력">
+			<input type="button" onclick="mailConfirmNumber()" value="인증"></div>
 			<div id="ConfirmEmail-Message"></div>
 			
 			<div>주소</div>
@@ -92,12 +69,15 @@ form > div {
 	</div>
 
 <script>
-	const cpath = '${cpath}'
+	const cpath = '${cpath}'			
+	const emailconfirm = '${eamilconfirmnumber}'						// 세션에 저장된 인증번호
 	const idconfirm = document.getElementById('idconfirm')			// 아이디 중복확인 버튼
 	const insertForm = document.forms[0]
 	const pw = document.getElementById('pw')						// 비밀번호
 	const pwconfirm = document.getElementById('pwconfirm')			// 비밀번호 재확인
 	const ConfirmPW = document.getElementById('ConfirmPW-Message')	// 비밀번호 재확인 메세지
+	const emailconfirmMessage = document.getElementById('ConfirmEmail-Message')		// 컨펌 매세지 띄우기
+	const mailconfrimnumber = document.getElementById('confirmnumber')				// 입력값 폼
 
 	// 비밀번호 재확인 함수
 	pwconfirm.onblur = function() {
@@ -119,6 +99,8 @@ form > div {
 
 	idconfirm.addEventListener('click', memberId)
 	insertForm.addEventListener('submit', insertHandler)
+	
+	
 </script>
 </body>
 </html>

@@ -101,8 +101,14 @@
 	padding: 20px 0;
 	margin: 0;
 }
-.review_writed {
-	cursor: pointer;
+.review_write > .review_button {
+    margin-top: 15px;
+    width: 70px;
+    height: 36px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
 }
 .star {
     position: relative;
@@ -129,14 +135,7 @@
 </head>
 <body>
 <script>
-	function reviewOpenModal() {
-		const review_modal = document.querySelector('.review_modal')
-		review_modal.style.display = 'flex'
-	}	
-	function reviewCloesModal() {
-		const review_modal = document.querySelector('.review_modal')
-		review_modal.style.display = 'none'
-	}	
+	const cpath = '${cpath}'
 </script>
 <main>
 	<div class="mypagewrapper">
@@ -165,7 +164,6 @@
                     <li><a href="${cpath }/mypage/wishlist">나의 찜</a></li>
                     <li><a href="${cpath }/mypage/review">상품리뷰</a></li>
                     <li><a href="${cpath }/mypage/counsel">1:1 문의 내역</a></li>
-                    <li><a href="${cpath }/mypage/qna">상품문의</a></li>
                 </ul>
             </div>
             
@@ -186,11 +184,8 @@
                     <h2>상품 리뷰</h2>
                 </div>
                 <div class="rightArea"></div>
-                <div class="review_write"><button>리뷰작성</button></div>
+                <div class="review_write"><button class="review_button">리뷰작성</button></div>
             </div>
-
-			<div class="">작성 가능한 리뷰</div>            
-            <div class="review_writed">내가 쓴 리뷰</div>
             <div class="dateFilter">
                 <form>
                     <div class="filterlist">

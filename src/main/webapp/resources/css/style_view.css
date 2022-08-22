@@ -1,4 +1,5 @@
-	@charset "utf-8";
+@charset "utf-8";
+
 view {
 	overflow: hidden;
 /* 	padding-top: 20px; */
@@ -113,10 +114,22 @@ view > viewmain:first-child{
 	width: 560px;
 }
 
-.font20 {
+#viewright > .font20 {
 	font-size: 20px;
+	width: 540px;
+	height: 54px;
 }
-
+.buycount > .productTitle {
+    color: rgb(51, 51, 51);
+    width: 500px;
+    height: 44px;
+    line-height: 1.47;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
 .madeln {
 	font-size: 15px;
 	margin: 10px 0 40px;
@@ -278,6 +291,8 @@ view > viewmain:first-child{
 
 .prodremocon>.buycount>.productTitle {
 	text-align: left;
+	width: 290px;
+	padding-bottom: 10px;
 }
 
 .prodremocon>.product_buybtn {
@@ -329,6 +344,14 @@ view > viewmain:first-child{
 	background-position: -1265px -5px;
 	display: inline-block;
 }
+.product_heartbtn>.heartOn {
+	background-position: -252px -5px;
+	width: 30px;
+	height: 30px;
+	background-image: url(../img/homeplusicon.png);
+	background-repeat: no-repeat;
+	display: inline-block;
+}
 
 .product_nowbtn {
 	width: 236px;
@@ -345,6 +368,16 @@ view > viewmain:first-child{
 	color: white;
 	font-size: 24px;
 	border: 0;
+}
+.product_cartbtnOverlay {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+/* 	background: rgba(0, 0, 0, 0.3); */
+	z-index: 2;
 }
 
 .hotslide {
@@ -545,6 +578,4 @@ view > viewmain:first-child{
 .txtCaution > ul > li{
 	list-style: outside;
 }
-/* .prodfooter{ */
-/* 	padding-bottom: 70px; */
-/* } */
+
