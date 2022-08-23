@@ -76,8 +76,9 @@ public class MailService {
 		
 		return 1;
 	}
-	// 유저 메일 인증 번호 발송
-	public int sendMailconfirm(String ma, HttpSession session) throws IOException {
+	
+	// 이메일 인증번호 발송
+	public String sendMailconfirm(String ma) throws IOException {
 
 		File f = account.getFile();
 		Scanner sc = new Scanner(f);
@@ -87,7 +88,6 @@ public class MailService {
 		String n3 = ran.nextInt(10) + "";
 		String n4 = ran.nextInt(10) + "";
 		String confirm = n1+ n2+ n3 + n4;
-		session.setAttribute("eamilconfirmnumber", confirm);
 		
 		String data = null;
 		while(sc.hasNextLine()) {
@@ -132,16 +132,16 @@ public class MailService {
 			
 			Transport.send(mimeMessage);
 			
-			return 1;
+			return confirm;
 			
 		} catch (AddressException e) {
 			System.out.println("잘못된 주소");
 			e.printStackTrace();
-			return -1;
+			return null;
 		} catch (MessagingException e) {
 			System.out.println("메시지 전송에 문제 발생");
 			e.printStackTrace();
-			return -2;
+			return null;
 		}
 	}
 

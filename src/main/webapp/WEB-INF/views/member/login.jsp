@@ -39,12 +39,12 @@
                     </div>
                 </div>    
                 <div class="login_button1">
-                 	<a href="#"><button type="submit">로그인</button></a> 
+                 	<a><button type="submit">로그인</button></a> 
                 </div>
                 <div class="login_button2">
                     <div class="login_button2_naver">
                         <div id="naverIdLogin" style="display:none;"></div>
- 						<a href="#"><button id="naverlogin" type="button">네이버로그인</button></a>
+ 						<a><button id="naverlogin" type="button">네이버로그인</button></a>
                     </div>
                     <div class="login_button2_kakao" onclick="kakaoLogin();">
                         <a href="javascript:void(0)"><button type="button">카카오로그인</button></a>
@@ -55,9 +55,9 @@
                     <a href="${cpath }/member/join"><button type="button">회원가입</button></a>
                 </div>
                 <div class="login_nologin">
-                        <a href="#">비회원 주문하기</a>
+                        <a>비회원 주문하기</a>
                         |
-                        <a href="#">비회원 주문조회</a>
+                        <a>비회원 주문조회</a>
                 </div>
                 </div>
             </form>

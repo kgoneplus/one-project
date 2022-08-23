@@ -40,7 +40,7 @@
             <div>
                 <strong>일반배송</strong>
                 <span>센텀시티점</span>
-                <p>${deliveryDefault[0]} ${deliveryDefault[1]} ${deliveryDefault[2]}</p>
+	            <p>${deliveryDefault.address}</p>
             </div>
         </div>
         <p id="notice">* 배송지 변경은 장바구니에서 가능합니다.</p>
@@ -55,33 +55,27 @@
             <table>
                 <tr>
                     <th>배송시간대</th>
-            	<c:forEach var="date" items="${deliveryDate}">            	
+            		<c:forEach var="date" items="${deliveryDate}">            	
                     <th>${date}</th>
-                </c:forEach>
+                	</c:forEach>
                 </tr>
                 <tr>
                     <th>10:00 ~ 13:00</th>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 10:00 ~ 13:00">주문가능</td>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 10:00 ~ 13:00">주문가능</td>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 10:00 ~ 13:00">주문가능</td>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 10:00 ~ 13:00">주문가능</td>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 10:00 ~ 13:00">주문가능</td>
+                	<c:forEach var="date" items="${deliveryDate}">
+                    <td><input type="radio" name="deliveryDate" value="${date} + 10:00 ~ 13:00">주문가능</td>
+                    </c:forEach>
                 </tr>
                 <tr>
                     <th>14:00 ~ 17:00</th>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 14:00 ~ 17:00">주문가능</td>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 14:00 ~ 17:00">주문가능</td>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 14:00 ~ 17:00">주문가능</td>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 14:00 ~ 17:00">주문가능</td>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 14:00 ~ 17:00">주문가능</td>
+                	<c:forEach var="date" items="${deliveryDate}">
+                    <td><input type="radio" name="deliveryDate" value="${date}+ 14:00 ~ 17:00">주문가능</td>
+                    </c:forEach>
                 </tr>
                 <tr>
                     <th>18:00 ~ 21:00</th>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 18:00 ~ 21:00">주문가능</td>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 18:00 ~ 21:00">주문가능</td>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 18:00 ~ 21:00">주문가능</td>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 18:00 ~ 21:00">주문가능</td>
-                    <td><input type="radio" name="deliveryDate" value="날짜 + 18:00 ~ 21:00">주문가능</td>
+                	<c:forEach var="date" items="${deliveryDate}">
+                    <td><input type="radio" name="deliveryDate" value="${date}+ 18:00 ~ 21:00">주문가능</td>
+                    </c:forEach>
                 </tr>
             </table>
         </div>
@@ -103,19 +97,19 @@
             <div class="payTab">
                 <div class="payTabTotalprice">
                     <span>총주문금액</span>
-                    <span><p>150000</p>원</span>
+                    <span><p><fmt:formatNumber value="${totalPrice}" pattern="#,###" /></p>원</span>
                 </div>
                 <div class="payTabTotalprice">
                     <span>배송비</span>
-                    <span><p>3000</p>원</span>
+                    <span><p><fmt:formatNumber value="${deliveryFee}" pattern="#,###" /></p>원</span>
                 </div>
                 <div class="payTabTotalprice">
                     <span>할인금액</span>
-                    <span><p>-1200</p>원</span>
+                    <span><p><fmt:formatNumber value="${discountPrice}" pattern="#,###" /></p>원</span>
                 </div>
                 <div class="resultPrice payTabTotalprice">
                     <span>결제예정금액</span>
-                    <span><p>75000</p>원</span>
+                    <span><p><fmt:formatNumber value="${pay}" pattern="#,###" /></p>원</span>
                 </div>
                 <div class="keepgoingBtn">
                     <button>계속하기</button>
@@ -130,5 +124,7 @@
 	const orderProducts = Array.from(document.querySelectorAll('.orderProducts > ul > li > img'))
 	orderProducts.forEach(img => img.addEventListener('mouseover', orderProductsExpMouseover))
 	orderProducts.forEach(img => img.addEventListener('mouseout', orderProductsExpMouseout))
+	
+	
 </script>
 <%@ include file="../footer.jsp" %>

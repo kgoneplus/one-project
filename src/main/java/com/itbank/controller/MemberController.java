@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.service.MemberService;
 
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/member")
@@ -90,12 +89,11 @@ public class MemberController {
 	@GetMapping("/login/idsearch")
 	public void idserach() {}
 	
+	// 아이디 찾기
 	@PostMapping("/login/idsearch")
-	public ModelAndView idsearch(MemberDTO dto) throws AddressException, IOException, MessagingException {
-		ModelAndView mav = new ModelAndView("/member/login");
-		mav.addObject(ms.idsearch(dto));
-		
-		return mav;
+	public String idsearch(MemberDTO dto) throws AddressException, IOException, MessagingException {
+		ms.idsearch(dto);
+		return "redirect:/member/login";
 	}
 	
 }

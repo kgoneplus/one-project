@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.itbank.component.HashComponent;
 import com.itbank.oneplus.MemberDTO;
-import com.itbank.oneplus.DeliveryDAO;
-import com.itbank.oneplus.DeliveryDTO;
 import com.itbank.oneplus.MemberDAO;
 
 @Service
@@ -23,6 +21,7 @@ public class MemberService {
 	@Autowired private MemberDAO dao;
 	@Autowired private HashComponent hash;
 	@Autowired private MailService ms;
+
 	
 	// 통합 회원가입 
 	public int insert(MemberDTO dto) {
@@ -106,19 +105,13 @@ public class MemberService {
 	
 	public int idsearch(MemberDTO dto) throws AddressException, IOException, MessagingException {
 		MemberDTO result = dao.selectIdserachConfirm(dto);
-		System.out.println(result.getIdx());
-		
 		if(result != null) {
 			return ms.sendMail(result);
 		}else {
+			System.out.println("불일치");
 			return 0;
 		}
 	}
-	
-	
 
-	
-	
-	
 
 }

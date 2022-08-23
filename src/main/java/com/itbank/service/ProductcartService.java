@@ -21,7 +21,7 @@ public class ProductcartService {
 	@Autowired ProductcartDAO dao;
 	@Autowired DeliveryDAO deliveryDao;
 
-	public List<ProductcartDTO> deliveryInfoSelectList(int idx, List<String> itemList) {
+ 	public List<ProductcartDTO> deliveryInfoSelectList(int idx, List<String> itemList) {
 		List<ProductcartDTO> list = new ArrayList<ProductcartDTO>();
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("member_idx", idx);
@@ -70,13 +70,17 @@ public class ProductcartService {
 		return dateList;
 	}
 
-	public String[] deliveryDefault(int member_idx) {
-		String address = dao.deliveryDefault(member_idx);
-		String[] defaultAddress = address.split("/");
-		return defaultAddress;
+	public DeliveryDTO deliveryDefault(int member_idx) {
+		return deliveryDao.getdefaultAddress(member_idx);
 	}
 
 	public int insertAddress(DeliveryDTO dto) {
+		String address = "";
+		address += dto.getAddr1() + "/";
+		address += dto.getAddr2() + "/";
+		address += dto.getAddr3() + "/";
+		address += dto.getAddr4();
+		dto.setAddress(address);
 		return deliveryDao.insertAddress(dto);
 	}
 
@@ -85,15 +89,33 @@ public class ProductcartService {
 	}
 
 	public DeliveryDTO addressSelectOne(HashMap<String, String> param) {
-		return deliveryDao.addressSelectOne(param);
+		DeliveryDTO dto = deliveryDao.addressSelectOne(param);
+		dto.setAddr1(dto.getAddress().split("/")[0]);
+		dto.setAddr2(dto.getAddress().split("/")[1]);
+		dto.setAddr3(dto.getAddress().split("/")[2]);
+		dto.setAddr4(dto.getAddress().split("/")[3]);
+		return dto;
 	}
 
 	public int updateAddress(DeliveryDTO dto) {
+		String address = "";
+		address += dto.getAddr1() + "/";
+		address += dto.getAddr2() + "/";
+		address += dto.getAddr3() + "/";
+		address += dto.getAddr4();
+		dto.setAddress(address);
 		return deliveryDao.updateAddress(dto);
 	}
 
 	public int deleteAddress(HashMap<String, String> param) {
 		return deliveryDao.deleteAddress(param);
+	}
+
+	public int updatedefaultAddress(HashMap<String, String> param) {
+		int n = deliveryDao.updateDefaultAddress(param);
+		int o = deliveryDao.eraseDefaultAddress(param);
+		if(n == 1 && o == 1) return 1;
+		else return 0;
 	}
 
 }
