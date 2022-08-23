@@ -223,7 +223,66 @@
 	                			<div class="prodreviewBox">
 	                				<div class="totalScopeBox">평점/5.0(별다가져오기) 리뷰건수</div>
 	                				<div class="scopeGraphList">
-	                					
+	                					<div class="graphItem state">
+	                						<strong>상품상태</strong>
+	                						<ul>
+	                							<li>
+	                								<div class="label">아주 좋아요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="num"><strong>87</strong>%</div>
+	                							</li>
+	                							<li>
+	                								<div class="label">보통이에요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="num"><strong>11</strong>%</div>
+	                							</li>
+	                							<li>
+	                								<div class="label">별로에요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="num"><strong>2</strong>%</div>
+	                							</li>
+	                						</ul>
+	                					</div>
+	                					<div class="graphItem accuracy">
+	                						<strong>상품일치여부</strong>
+	                						<ul>
+	                							<li>
+	                								<div class="label">똑같아요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="num"><strong>87</strong>%</div>
+	                							</li>
+	                							<li>
+	                								<div class="label">비슷해요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="num"><strong>11</strong>%</div>
+	                							</li>
+	                							<li>
+	                								<div class="label">달라요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="num"><strong>2</strong>%</div>
+	                							</li>
+	                						</ul>
+	                					</div>
+	                					<div class="graphItem price">
+	                						<strong>가격</strong>
+	                						<ul>
+	                							<li>
+	                								<div class="label">만족해요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="num"><strong>87</strong>%</div>
+	                							</li>
+	                							<li>
+	                								<div class="label">보통이에요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="num"><strong>11</strong>%</div>
+	                							</li>
+	                							<li>
+	                								<div class="label">별로에요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="num"><strong>2</strong>%</div>
+	                							</li>
+	                						</ul>
+	                					</div>
 	                				</div>
 	                			</div>
 	                	</div>

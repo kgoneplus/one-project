@@ -151,7 +151,6 @@ view > viewmain:first-child{
 	background-image: url(../img/homeplusicon.png);
 	display: inline-block;
     background-repeat: no-repeat;
-/*     width: 0%; */
     height: 30px;
     background-position: -800px -5px;
     position: absolute;
