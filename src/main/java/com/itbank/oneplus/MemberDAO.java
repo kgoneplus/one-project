@@ -44,4 +44,8 @@ public interface MemberDAO {
 	// 회원 테이블 전체 부르기
 	@Select("select * from parent_member")
 	List<MemberDTO> memberconfirm();
+	
+
+	@Select("select * from parent_member where email=#{email} and name=#{name}")
+	MemberDTO selectIdserachConfirm(MemberDTO dto);
 }

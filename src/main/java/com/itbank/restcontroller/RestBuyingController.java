@@ -1,5 +1,6 @@
 package com.itbank.restcontroller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,12 +45,25 @@ public class RestBuyingController {
 		List<ProductcartDTO> list = service.deliveryInfoSelectList(member_idx, itemList);
 		if(list != null) {
 			session.setAttribute("orderList", list);
+			int tP = 0;
+			int discount = 0;
+			int pay = 0;
+			for(int i=0; i<list.size(); i++) {
+				ProductcartDTO dto = list.get(i);
+				tP += dto.getProductPrice() * dto.getCnt();
+				discount += dto.getProductDiscount() * dto.getCnt();
+				pay = tP - discount;
+			}
+			session.setAttribute("totalPrice", tP);
+			session.setAttribute("pay", pay);
+			session.setAttribute("discountPrice", discount);
+			session.setAttribute("deliveryFee", pay >= 40000 ? 0 : 3000);
 			return "세션 저장 성공";
 		}
 		return "세션 저장 실패";
 	}
 	
-	@PutMapping(value="/buying/cart/delivery", produces="application/json; charset=utf-8")
+	@PostMapping(value="/buying/cart/delivery", produces="application/json; charset=utf-8")
 	public int insertAddress(@RequestBody DeliveryDTO dto) {
 		return service.insertAddress(dto);
 	}
@@ -56,5 +71,30 @@ public class RestBuyingController {
 	@GetMapping(value="/buying/cart/delivery/{member_idx}", produces="application/json; charset=utf-8")
 	public List<DeliveryDTO> addressList(@PathVariable int member_idx) {
 		return service.addressList(member_idx);
+	}
+	
+	@PutMapping(value="/buying/cart/delivery", produces="application/json; charset=utf-8")
+	public DeliveryDTO addressSelectOne(@RequestBody HashMap<String, String> param) {
+		return service.addressSelectOne(param);
+	}
+	
+	@PostMapping(value="/buying/cart/delivery/insert", produces="application/json; charset=utf-8")
+	public int updateAddress(@RequestBody DeliveryDTO dto) {
+		return service.updateAddress(dto);
+	}
+	
+	@DeleteMapping(value="/buying/cart/delivery", produces="application/json; charset=utf-8")
+	public int deleteAddress(@RequestBody HashMap<String, String> param) {
+		return service.deleteAddress(param);
+	}
+	
+	@PostMapping(value="/buying/cart/pay/{member_idx}", produces="application/json; charset=utf-8")
+	public List<ProductcartDTO> paymentbox(@PathVariable int member_idx, @RequestBody List<String> itemList) {
+		return service.deliveryInfoSelectList(member_idx, itemList);
+	}
+	
+	@PutMapping(value="/buying/cart/deliveryUpdate")
+	public int updatedefaultAddress(@RequestBody HashMap<String, String> param) {
+		return service.updatedefaultAddress(param);
 	}
 }

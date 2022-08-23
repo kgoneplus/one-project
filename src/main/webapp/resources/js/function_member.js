@@ -201,3 +201,45 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
+
+//메일 인증확인하기 
+function mailConfirmNumber(){
+	console.log(mailconfrimnumber.value)
+	let number = sessionStorage.getItem("emailconfirmnumber")
+	console.log(number)
+	if(mailconfrimnumber.value == number){
+		emailconfirmMessage.innerText = '인증 완료'
+	}
+	else {
+		emailconfirmMessage.innerText = '인증번호가 틀립니다'
+	}
+}
+
+//메일 보내기
+function mailconfirm (){
+	
+	const url = `${cpath}/mailconfirm`
+	const opt = {
+			method: 'POST',
+			body: JSON.stringify({
+			'mailadress' : document.getElementById('mailadress').value	
+			}),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt)
+	.then(resp => resp.text())
+	.then(text => {
+		if(text != null){
+			console.log('성공')
+			sessionStorage.setItem("emailconfirmnumber", text) // 세션 스토리지 저장하기 *****
+		}
+		else{
+			console.log('실패')
+		}
+	})
+}
+
+
+

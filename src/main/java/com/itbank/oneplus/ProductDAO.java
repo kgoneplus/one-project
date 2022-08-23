@@ -70,14 +70,8 @@ public interface ProductDAO {
 	@Delete("delete product_wishlist where parent_member_idx=#{parent_member_idx} and productmain_idx=#{productMain_idx}")
 	int deletewishList(HashMap<String, String> ob);
 
-	
 	//@Select("select categoryName, category2Name from category where productMain_categoryCode=#{productMain_categoryCode}")
 	List<String> categoryName(HashMap<String, String> idx);
-
-	@Select("select * from productMain "
-			+ " where productName like '%${param}%'"
-			+ " order by idx")
-	List<ProductDTO> selectSearchList(@RequestParam HashMap<String, String> param);
 
 	@Insert("insert into productcart values (#{cnt}, #{member_idx}, #{productMain_idx})")
 	int insertproductcart(HashMap<String, String> ob);
@@ -92,6 +86,11 @@ public interface ProductDAO {
 
 	@Select("select * from productSummary where productMain_idx=#{idx}")
 	ProductSummaryDTO prodSummaryOne(int idx);
+	
+	@Select("select distinct P.*, (select count(*) from review where productMain_idx = P.idx) as rcnt from productMain P" + 
+			"    where P.productName like '%${param}%'" + 
+			"    order by ${order}")
+	List<ProductDTO> selectSearchList(HashMap<String, String> map);
 	
 
 	

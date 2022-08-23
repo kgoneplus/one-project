@@ -32,17 +32,20 @@ public class MypageService {
 		}
 	}
 
-	// 문의하기 2022 08 09 ~ 작업중입니다
-//	public int write(AskDTO dto) throws IllegalStateException, IOException {
+	// 1:1 문의하기 (이미지 없이_미완성)
+	public int askWrite(AskDTO dto) {
+		return mypageDAO.askWrite(dto);
+	}
+	
+//	public int askWrite(AskDTO dto) throws IllegalStateException, IOException {
 //		String fileName = makeNewFileName(dto);
 //		File dest = new File(uploadPath, fileName);
 //		dto.getAskFile().transferTo(dest);
-//
+//		
 //		boolean flag = "".equals(dto.getAskFile().getOriginalFilename());
 //		dto.setImg(flag ? "" : fileName);
-//
-//		int row = askDAO.insert(dto);
-//		return row;
+//		
+//		return mypageDAO.askWrite(dto);
 //	}
 
 //	private String makeNewFileName(AskDTO dto) {
@@ -53,14 +56,14 @@ public class MypageService {
 //		return fileName;
 //	}
 
-	// 1:1 문의하기 (이미지 없이_미완성)
-	public int askWrite(AskDTO dto) {
-		return mypageDAO.askWrite(dto);
-	}
-
 	// 1:1 문의 내역
-	public List<AskDTO> selectAskAll() {
-		return mypageDAO.selectAskAll();
+	public List<AskDTO> selectAskAll(int idx) {
+		return mypageDAO.selectAskAll(idx);
+	}
+	
+	// 1:1 문의 상세 보기
+	public AskDTO selectAskOne(int idx) {
+		return mypageDAO.selectAskOne(idx);
 	}
 
 	// 회원탈퇴
@@ -86,5 +89,9 @@ public class MypageService {
 		dto.setUserpw(hashpw);
 		return mypageDAO.update(dto);
 	}
-	
+
+	// 1:1 문의 삭제
+	public int askOneDelete(int idx) {
+		return mypageDAO.askOneDelete(idx);
+	}
 }

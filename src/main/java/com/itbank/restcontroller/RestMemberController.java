@@ -19,11 +19,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itbank.oneplus.DeliveryDTO;
 import com.itbank.oneplus.MemberDAO;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.service.MailService;
@@ -165,12 +167,9 @@ public class RestMemberController {
 	  }
 	// 매일 주소 받아서 인증번호 
 	@PostMapping(value="mailconfirm", produces="application/json; charset=utf-8")
-	public int mailconfirm(@RequestParam("mailadress") String ma, HttpSession session) throws IOException {
-		return mails.sendMailconfirm(ma, session);
+	public String mailconfirm(@RequestBody HashMap<String, String> param) throws IOException {
+		return mails.sendMailconfirm(param.get("mailadress"));
 	}
-	
-	
-	
 	
 
 }

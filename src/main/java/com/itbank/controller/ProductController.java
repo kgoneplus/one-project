@@ -21,15 +21,21 @@ public class ProductController {
 	
 	@Autowired private ProductService productService;
 
-	// 헤더 input 검색결과를 보여주는 페이지
+	// 검색결과를 보여주는 페이지
 	@GetMapping("/search")
-	public ModelAndView search (@RequestParam HashMap<String, String> param) {
+	public ModelAndView search (@RequestParam HashMap<String, String> map) {
 
 		ModelAndView mav = new ModelAndView("product/search");
-		List<ProductDTO> list = productService.selectSearchList(param);
+		List<ProductDTO> list = productService.selectSearchList(map);
+		//System.out.println(map.get("param"));
+		//System.out.println(map.get("recome"));
 		mav.addObject("list", list);	
 		return mav;		
 	}
+	
+	// 상품상세페이지 이동
+	@GetMapping("/view")
+	public void view() {}
 	
 	// 상품상세페이지를 보여주는 페이지
 	@GetMapping("/view/{idx}")
@@ -42,7 +48,7 @@ public class ProductController {
 		return mav;
 	}
 
-	// 카테고리 클릭시 보여주는 리스트 페이지 
+	// 카테고리에서 리스트 페이지 이동
 	@GetMapping("/list")
 	public ModelAndView categoryList(@RequestParam HashMap<String, String> idx) {
 		ModelAndView mav = new ModelAndView();
@@ -51,12 +57,10 @@ public class ProductController {
 
 		List<String> keyword = productService.categoryName(idx);
 		mav.addObject("keyword", keyword);
-		//System.out.println(keyword);
-		//System.out.println(catelist);
+
 		return mav;
 	}
-	
-	// summary상품 불러오기(아직미완성)
+
 
 }
 
