@@ -1,11 +1,9 @@
 package com.itbank.oneplus;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 public interface MemberDAO {
 	
@@ -46,12 +44,8 @@ public interface MemberDAO {
 	// 회원 테이블 전체 부르기
 	@Select("select * from parent_member")
 	List<MemberDTO> memberconfirm();
+	
 
-	// 장바구니에서 기본 배송지 변경
-	@Update("update parent_member set address=#{address} where idx=#{idx}")
-	int updateAddress(HashMap<String, String> param);
-	
-	
 	@Select("select * from parent_member where email=#{email} and name=#{name}")
 	MemberDTO selectIdserachConfirm(MemberDTO dto);
 }
