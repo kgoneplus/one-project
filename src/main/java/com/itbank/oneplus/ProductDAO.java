@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Repository
 public interface ProductDAO {
@@ -69,10 +70,23 @@ public interface ProductDAO {
 	@Delete("delete product_wishlist where parent_member_idx=#{parent_member_idx} and productmain_idx=#{productMain_idx}")
 	int deletewishList(HashMap<String, String> ob);
 
-	
 	//@Select("select categoryName, category2Name from category where productMain_categoryCode=#{productMain_categoryCode}")
 	List<String> categoryName(HashMap<String, String> idx);
 
+	@Insert("insert into productcart values (#{cnt}, #{member_idx}, #{productMain_idx})")
+	int insertproductcart(HashMap<String, String> ob);
+
+
+	@Select("select avg(Grade) as prodAvggrade from review where productMain_idx=#{productMain_idx}")
+	String prodAvggrade(int productMain_idx);
+
+	// 리뷰리스트불러오기
+	@Select("select * from review where member_idx=#{member_idx} and productMain_idx=#{productMain_idx}")
+	List<ReviewDTO> prodreviewList(HashMap<String, String> ob);
+
+	@Select("select * from productSummary where productMain_idx=#{idx}")
+	ProductSummaryDTO prodSummaryOne(int idx);
+	
 	@Select("select distinct P.*, (select count(*) from review where productMain_idx = P.idx) as rcnt from productMain P" + 
 			"    where P.productName like '%${param}%'" + 
 			"    order by ${order}")

@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.oneplus.ProductDAO;
 import com.itbank.oneplus.ProductDTO;
 import com.itbank.oneplus.ProductSummaryDAO;
 import com.itbank.oneplus.ProductSummaryDTO;
+import com.itbank.oneplus.ReviewDTO;
 
 @RestController
 public class RestViewController {
@@ -32,11 +34,7 @@ public class RestViewController {
 	public List<ProductDTO> allcatehotList(){
 		return dao.allcatehotList();
 	}
-	
-	@GetMapping(value="/product/view/summary")
-	public List<ProductSummaryDTO> summaryList(){
-		return summarydao.summaryList();
-	}
+
 	
 	//로그인이 되어있으면 insert wishtable에 추가&삭제
 	@PostMapping(value="/prodwishList")
@@ -48,8 +46,36 @@ public class RestViewController {
 	
 	@PostMapping(value="/prodwishList/heartload")
 	public int heartload(@RequestBody HashMap<String, String> ob) {
-		System.out.println(ob);
 		return dao.heartload(ob);
-		
+	}
+	
+	// 장바구니보내기 
+	@PostMapping(value="/product/view/insertcart")
+	public int insertproductcart(@RequestBody HashMap<String, String> ob){
+		return dao.insertproductcart(ob);
+	}
+	
+	// 상품별 별점 점수 계산
+	@PostMapping(value="/product/reviewAvggrade")
+	public String prodAvggrade(@RequestBody int productMain_idx){
+		String avg = dao.prodAvggrade(productMain_idx);
+		if(avg == null) {
+			avg = "0.0";
+		}
+		else {
+			if(avg.length() == 1) {
+				avg += ".0";
+			}
+			else {
+				avg = avg.substring(0,3);
+			}
+		}
+		return avg;
+	}
+	
+	// 리뷰리스트불러오기
+	@GetMapping(value="/product/reviewList")
+	public List<ReviewDTO> prodreviewList(@RequestBody HashMap<String, String> ob){
+		return dao.prodreviewList(ob);
 	}
 }
