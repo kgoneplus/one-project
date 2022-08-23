@@ -30,7 +30,7 @@ function insertHandler (event) {
 		.then(text => {
 			if(text == 1) {
 				alert('작성성공')
-				location.href = 'http://localhost:8080/project/'
+				location.href = 'http://localhost:8080/project/member/login'
 			}
 		})
 	}
