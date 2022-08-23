@@ -50,7 +50,7 @@
                             <li><a href="#">회원정보</a></li>
                         </ul> 
                 </div>   
-                <div><a href="${cpath}/buying/cart"><img src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a></div>
+                <div><a href="${cpath}/buying/cart/${login.idx}"><img src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a></div>
             </div>
         </div>
         <nav>

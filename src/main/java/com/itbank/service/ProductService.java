@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itbank.oneplus.ProductDAO;
 import com.itbank.oneplus.ProductDTO;
+import com.itbank.oneplus.ProductSummaryDTO;
 
 @Service
 public class ProductService {
@@ -43,6 +44,10 @@ public class ProductService {
 //			keyword.remove("categoryName");
 //		}
 		return keyword;
+	}
+
+	public ProductSummaryDTO prodSummaryOne(int idx) {
+		return dao.prodSummaryOne(idx);
 	}
 
 	

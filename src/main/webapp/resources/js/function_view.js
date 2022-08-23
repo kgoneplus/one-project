@@ -1,24 +1,193 @@
 'use strict'
+//상품별 별점 점수 -> 이미지
+function prodgradImg(text){
+	const stars = Array.from(document.querySelectorAll('.scopeImg'))
+	console.log(stars)
+	let lastindex = 0;
+	for(let i = 0; i <= text; i++) {
+		stars[i].style.width = '100%'
+		lastindex = i
+	}
+	stars[lastindex].style.width = text.substring(2) + '0%'
+
+}
+
+// 상품별 별점 점수
+function prodgradHandler(){
+	const scopeNum = document.querySelector('.scopeNum')
+	const url = cpath + '/product/reviewAvggrade'
+	const opt = {
+			method: 'POST',
+			body: JSON.stringify(productMain_idx),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+		}
+	fetch(url,opt)
+	.then(resp =>resp.text())
+	.then(text=>{
+		scopeNum.innerText = text
+//		console.log(text)
+		prodgradImg(text)
+	})
+}
+
+
+
+// 바로구매
+function productnowHandler(){
+	if(member_idx == ""){
+		if(confirm("로그인 회원만 이용가능합니다.")){
+			location.href=`${cpath}/member/login`
+		}
+	}else{
+		const ob = {
+				'productMain_idx': productMain_idx,
+				'member_idx': member_idx,
+				'cnt' : document.querySelector('.count').value
+		}
+		const url = cpath + '/product/view/insertcart'
+		const opt = {
+				method: 'POST',
+				body: JSON.stringify(ob),
+				headers: {
+					'Content-Type' : 'application/json; charset=utf-8'
+				}
+		}
+		fetch(url,opt)
+		.then(resp =>resp.text())
+		.then(text=>{
+			if(text != 0){
+				let checkedItemList = [productMain_idx]
+				const url = cpath + '/buying/cart/home/' + member_idx
+				const opt = {
+						method: 'PUT',
+						body: JSON.stringify(checkedItemList),
+						headers: {
+							'Content-Type' : 'application/json; charset=utf-8'
+						}
+				}
+				fetch(url, opt).then(resp => resp.text())
+				.then(text => console.log(text))
+				location.href = cpath + '/buying/deliveryInfo/' + member_idx;
+			}
+		})
+	}
+}
+
+// 장바구니추가
+function insertproductcart(event){
+	const ob = {
+			'productMain_idx': productMain_idx,
+			'member_idx': member_idx,
+			'cnt' : document.querySelector('.count').value
+		}
+		const url = cpath + '/product/view/insertcart'
+		const opt = {
+				method: 'POST',
+				body: JSON.stringify(ob),
+				headers: {
+					'Content-Type' : 'application/json; charset=utf-8'
+				}
+			}
+			fetch(url,opt)
+			.then(resp =>resp.text())
+			.then(text=>{
+				if(text != 0){
+					alert('장바구니추가성공')
+				}
+				if(event.target.classList.contains('shopping') == false)
+					location.href = cpath + '/buying/cart/' + member_idx
+			})
+}
+
+// 장바구니 모달 닫기
+function prodcartcloseModal(event) {
+	if(event.target.classList.contains('product_cartbtn')) {
+		prodcartModal()
+		return
+	}
+	document.querySelector('.product_cartbtnOverlay').style.display = 'none'
+	document.querySelector('.prodremocon >.product_cartbtnOverlay').style.display = 'none'
+}
+
+// 리모컨장바구니 모달
+function prodcartremoModal(event){
+	if(member_idx == ""){
+		if(confirm("로그인 회원만 이용가능합니다.")){
+			location.href=`${cpath}/member/login`
+		}
+	}else{
+		event.stopPropagation()
+		const prodcartbtnOverlay2 = document.querySelectorAll('.product_cartbtnOverlay')[1]
+		prodcartbtnOverlay2.innerHTML = ''
+		prodcartbtnOverlay2.style.display = 'block'
+				
+		const cartPopup = document.createElement('div')
+		cartPopup.className = 'cartPopup'
+			
+		const p = document.createElement('p')
+		p.classList.add('p')
+		p.innerText = '장바구니에 상품을 담았습니다.'
+			cartPopup.appendChild(p)
+			
+		const strong = document.createElement('strong')
+		strong.classList.add('strong')
+		strong.innerHTML = '장바구니로 이동하시겠습니까?<br>'
+			cartPopup.appendChild(strong)
+			
+		const button1 = document.createElement('button')
+		button1.classList.add('shopping')
+		button1.innerText = '쇼핑계속하기'
+		cartPopup.appendChild(button1)
+		button1.addEventListener('click', insertproductcart)
+		
+		const button2 = document.createElement('button')
+		button2.innerText = '장바구니 바로가기'
+		cartPopup.appendChild(button2)
+		button2.addEventListener('click', insertproductcart)	
+		
+		prodcartbtnOverlay2.appendChild(cartPopup)
+	}
+}
 
 // 장바구니 모달
-function prodcartModal(event){
-	const prodcartbtnOverlay = document.querySelectorAll('.product_cartbtnOverlay')
-	prodcartbtnOverlay.style.display = 'block'
-	
-	const cartPopup = document.createElement('div')
-	cartPopup.className = 'cartPopup'
-	
-	const p = document.createElement('p')
-	p.classList.add('p')
-	p.innerText = '장바구니에 상품을 담았습니다.'
-	content.appendChild(p)
-	
-	const strong = document.createElement('strong')
-	strong.classList.add('strong')
-	strong.innerText = '장바구니로 이동하시겠습니까?'
-	content.appendChild(strong)
-	
-
+function prodcartModal(){
+	if(member_idx == ""){
+		if(confirm("로그인 회원만 이용가능합니다.")){
+			location.href=`${cpath}/member/login`
+		}
+	}else{
+		const prodcartbtnOverlay = document.querySelector('.product_cartbtnOverlay')
+		prodcartbtnOverlay.innerHTML = ''
+		prodcartbtnOverlay.style.display = 'block'
+			
+		const cartPopup = document.createElement('div')
+		cartPopup.className = 'cartPopup'
+			
+		const p = document.createElement('p')
+		p.classList.add('p')
+		p.innerText = '장바구니에 상품을 담았습니다.'
+		cartPopup.appendChild(p)
+		
+		const strong = document.createElement('strong')
+		strong.classList.add('strong')
+		strong.innerHTML = '장바구니로 이동하시겠습니까?<br>'
+		cartPopup.appendChild(strong)
+			
+		const button1 = document.createElement('button')
+		button1.classList.add('shopping')
+		button1.innerText = '쇼핑계속하기'
+		cartPopup.appendChild(button1)
+		button1.addEventListener('click', insertproductcart)
+		
+		const button2 = document.createElement('button')
+		button2.innerText = '장바구니 바로가기'
+		cartPopup.appendChild(button2)
+		button2.addEventListener('click', insertproductcart)	
+		
+		prodcartbtnOverlay.appendChild(cartPopup)
+	}
 }
 
 // 찜상태그대로~

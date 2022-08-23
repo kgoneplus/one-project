@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Repository
 public interface ProductDAO {
@@ -77,6 +78,20 @@ public interface ProductDAO {
 			+ " where productName like '%${param}%'"
 			+ " order by idx")
 	List<ProductDTO> selectSearchList(@RequestParam HashMap<String, String> param);
+
+	@Insert("insert into productcart values (#{cnt}, #{member_idx}, #{productMain_idx})")
+	int insertproductcart(HashMap<String, String> ob);
+
+
+	@Select("select avg(Grade) as prodAvggrade from review where productMain_idx=#{productMain_idx}")
+	String prodAvggrade(int productMain_idx);
+
+	// 리뷰리스트불러오기
+	@Select("select * from review where member_idx=#{member_idx} and productMain_idx=#{productMain_idx}")
+	List<ReviewDTO> prodreviewList(HashMap<String, String> ob);
+
+	@Select("select * from productSummary where productMain_idx=#{idx}")
+	ProductSummaryDTO prodSummaryOne(int idx);
 	
 
 	
