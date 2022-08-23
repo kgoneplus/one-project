@@ -78,12 +78,13 @@ public class RestMemberController {
 	}
 	
 	// 네이버 로그인
-	@PostMapping("/member/login/naverSave")
-	public @ResponseBody int naverSave(@RequestParam("email") String email, @RequestParam("name") String name,@RequestParam("phonenum") String phonenum, HttpSession session) {
+	@PostMapping("/naverSave")
+	public int naverSave(@RequestBody HashMap<String, String> param, HttpSession session) {
 		int row = 0;
 		
-		phonenum = phonenum.replace("-", "");
-		
+		String phonenum = param.get("phonenum").replace("-", "");
+		String email = param.get("email");
+		String name = param.get("name");
 		MemberDTO naver = new MemberDTO();
 		
 		naver.setPhonenum(phonenum);
