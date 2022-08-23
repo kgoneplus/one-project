@@ -51,8 +51,8 @@
 			<div>이메일</div>
 			<input id="mailadress" type="email" name="email" placeholder="itbank@naver.com"
 				required>
-			<input type="button" onclick="mailconfirm()" value="인증번호 요청">
-			<div><input id="confirmnumber" type="text" name="emailconfirm" placeholder="인증번호4자리입력">
+			<button id="mailconfirmBtn">인증번호 요청</button>
+			<div><input id="confirmnumber" type="password" name="emailconfirm" placeholder="인증번호4자리입력">
 			<input type="button" onclick="mailConfirmNumber()" value="인증"></div>
 			<div id="ConfirmEmail-Message"></div>
 			
@@ -69,8 +69,8 @@
 	</div>
 
 <script>
-	const cpath = '${cpath}'			
-	const emailconfirm = '${eamilconfirmnumber}'						// 세션에 저장된 인증번호
+	const cpath = '${cpath}'		
+	const mailconfirmBtn = document.getElementById('mailconfirmBtn')
 	const idconfirm = document.getElementById('idconfirm')			// 아이디 중복확인 버튼
 	const insertForm = document.forms[0]
 	const pw = document.getElementById('pw')						// 비밀번호
@@ -82,21 +82,23 @@
 	// 비밀번호 재확인 함수
 	pwconfirm.onblur = function() {
 		if (!pwconfirm.value.includes(pw.value)) {
-			// 				pwconfirm.focus()
 			pwconfirm.classList.add('invalid')
 			pw.focus()
 			ConfirmPW.innerText = '비밀번호가 다릅니다'
 			ConfirmPW.style.color = 'red'
 		}
-	};
+	}
 
 	pwconfirm.onfocus = function() {
 		if (this.classList.contains('invalid')) {
 			this.classList.remove('invalid')
 			ConfirmPW.innerHTML = ''
 		}
-	};
-
+	}
+	
+	
+	
+	mailconfirmBtn.addEventListener('click', mailconfirm)
 	idconfirm.addEventListener('click', memberId)
 	insertForm.addEventListener('submit', insertHandler)
 	

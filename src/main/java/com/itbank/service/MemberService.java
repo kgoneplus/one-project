@@ -105,11 +105,10 @@ public class MemberService {
 	
 	public int idsearch(MemberDTO dto) throws AddressException, IOException, MessagingException {
 		MemberDTO result = dao.selectIdserachConfirm(dto);
-		System.out.println(result.getIdx());
-		
 		if(result != null) {
 			return ms.sendMail(result);
 		}else {
+			System.out.println("불일치");
 			return 0;
 		}
 	}
