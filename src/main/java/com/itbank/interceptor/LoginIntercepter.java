@@ -24,7 +24,7 @@ public class LoginIntercepter extends HandlerInterceptorAdapter {
 		String url = null;
 		url = request.getRequestURL().toString();					// 요청 URL을 가져와서 스트링으로 변환
 		url = URLEncoder.encode(url, "utf-8"); 						// 특수기호때문에 urlEncoding 처리함
-		
+		System.out.println(url);
 		if(login == null) {
 			System.out.println("preHandle (false)");
 			System.out.println("인터셉터에 의해 로그인 페이지로 이동합니다");
