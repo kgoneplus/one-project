@@ -89,6 +89,7 @@ public class MemberController {
 	@GetMapping("/login/idsearch")
 	public void idserach() {}
 	
+	// 아이디 찾기
 	@PostMapping("/login/idsearch")
 	public String idsearch(MemberDTO dto) throws AddressException, IOException, MessagingException {
 		ms.idsearch(dto);

@@ -17,6 +17,9 @@ public class BuyController {
 	
 	@Autowired ProductcartService service;
 	
+	@GetMapping("/cart")
+	public void cartinterceptor() {};	// 인터셉터를위한 더미
+	
 	@GetMapping("/cart/{member_idx}")
 	public ModelAndView cart(@PathVariable int member_idx) {
 		ModelAndView mav = new ModelAndView("/buying/cart");
