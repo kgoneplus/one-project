@@ -1,6 +1,11 @@
 package com.itbank.controller;
 
 import javax.servlet.http.HttpSession;
+
+import java.io.IOException;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,11 +16,11 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.service.MemberService;
 
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/member")
@@ -56,11 +61,6 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
-	@PostMapping("/login/idsearch")
-	public int idsearch(MemberDTO dto) {
-		return ms.idsearch(dto);
-	}
-	
 	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse resp) {
@@ -88,5 +88,11 @@ public class MemberController {
 	// 아이디 찾기
 	@GetMapping("/login/idsearch")
 	public void idserach() {}
+	
+	@PostMapping("/login/idsearch")
+	public String idsearch(MemberDTO dto) throws AddressException, IOException, MessagingException {
+		ms.idsearch(dto);
+		return "redirect:/member/login";
+	}
 	
 }

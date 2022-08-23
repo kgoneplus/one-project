@@ -51,9 +51,9 @@
 			<div>이메일</div>
 			<input id="mailadress" type="email" name="email" placeholder="itbank@naver.com"
 				required>
-			<input type="button" onclick="mailconfirm()" value="인증번호 요청">
-			<input id="confirmnumber" type="text" name="emailconfirm" placeholder="인증번호4자리입력">
-			<input type="button" onclick="mailConfirmNumber()" value="인증">
+			<button id="mailconfirmBtn">인증번호 요청</button>
+			<div><input id="confirmnumber" type="password" name="emailconfirm" placeholder="인증번호4자리입력">
+			<input type="button" onclick="mailConfirmNumber()" value="인증"></div>
 			<div id="ConfirmEmail-Message"></div>
 			
 			<div>주소</div>
@@ -69,76 +69,40 @@
 	</div>
 
 <script>
-	const cpath = '${cpath}'
-	const emailconfirm = '${eamilconfirmnumber}'
+	const cpath = '${cpath}'		
+	const mailconfirmBtn = document.getElementById('mailconfirmBtn')
 	const idconfirm = document.getElementById('idconfirm')			// 아이디 중복확인 버튼
 	const insertForm = document.forms[0]
 	const pw = document.getElementById('pw')						// 비밀번호
 	const pwconfirm = document.getElementById('pwconfirm')			// 비밀번호 재확인
 	const ConfirmPW = document.getElementById('ConfirmPW-Message')	// 비밀번호 재확인 메세지
-	const emailconfirmMessage = document.getElementById('ConfirmEmail-Message')
-	const mailconfrimnumber = document.getElementById('confirmnumber')
+	const emailconfirmMessage = document.getElementById('ConfirmEmail-Message')		// 컨펌 매세지 띄우기
+	const mailconfrimnumber = document.getElementById('confirmnumber')				// 입력값 폼
 
 	// 비밀번호 재확인 함수
 	pwconfirm.onblur = function() {
 		if (!pwconfirm.value.includes(pw.value)) {
-			// 				pwconfirm.focus()
 			pwconfirm.classList.add('invalid')
 			pw.focus()
 			ConfirmPW.innerText = '비밀번호가 다릅니다'
 			ConfirmPW.style.color = 'red'
 		}
-	};
+	}
 
 	pwconfirm.onfocus = function() {
 		if (this.classList.contains('invalid')) {
 			this.classList.remove('invalid')
 			ConfirmPW.innerHTML = ''
 		}
-	};
-
+	}
+	
+	
+	
+	mailconfirmBtn.addEventListener('click', mailconfirm)
 	idconfirm.addEventListener('click', memberId)
 	insertForm.addEventListener('submit', insertHandler)
 	
-	// 메일 인증 
-	function mailConfirmNumber(){
-		console.log(emailconfirm)
-		console.log(mailconfrimnumber.value)
-		if(mailconfrimnumber.value == emailconfirm){
-			emailconfirmMessage.innerText = '인증 완료'
-		}
-		else {
-			emailconfirmMessage.innerText = '인증번호가 틀립니다'
-		}
-	}
 	
-	//메일 보내기
-	
-	
-	
-	function mailconfirm (){
-		
-		const url = '${cpath}/mailconfirm'
-		const opt = {
-				method: 'POST',
-				body: JSON.stringify({
-				'mailadress' : document.getElementById('mailadress').value	
-				}),
-				headers: {
-					'Content-Type' : 'application/json; charset=utf-8'
-				}
-		}
-		fetch(url, opt)
-		.then(resp => resp.text())
-		.then(test => {
-			if(test == 1){
-				console.log('성공')
-			}
-			else{
-				console.log('실패')
-			}
-		})
-	}
 </script>
 </body>
 </html>

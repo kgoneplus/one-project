@@ -167,15 +167,12 @@ public class RestMemberController {
 	  }
 	// 매일 주소 받아서 인증번호 
 	@PostMapping(value="mailconfirm", produces="application/json; charset=utf-8")
-	public int mailconfirm(@RequestBody HashMap<String, String> param, HttpSession session) throws IOException {
-		return mails.sendMailconfirm(param.get("mailadress"), session);
+	public String mailconfirm(@RequestBody HashMap<String, String> param) throws IOException {
+		return mails.sendMailconfirm(param.get("mailadress"));
 	}
 	
 	
-	@PutMapping(value="/buying/cart/deliveryUpdate")
-	public int updatedefaultAddress(@RequestBody HashMap<String, String> param) {
-		return ms.updatedefaultAddress(param);
-	}
+	
 	
 
 }

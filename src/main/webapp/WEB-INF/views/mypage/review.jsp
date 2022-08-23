@@ -110,26 +110,48 @@
     color: rgb(255, 255, 255);
     cursor: pointer;
 }
-.star {
-    position: relative;
-    font-size: 2rem;
-    color: #ddd;
+
+
+
+#myform fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+    margin: 0 115px;
+    text-align: center;
 }
-.star input {
+#myform fieldset legend{
+    text-align: right;
+}
+.text-bold {
+	font-weight: bold;
+}
+#myform > .star_grade > input[type=radio]{
+    display: none;
+}
+#myform label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#reviewContents {
     width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    opacity: 0;
-    cursor: pointer;
-}
-.star span {
-    width: 0;
-    position: absolute; 
-    left: 0;
-    color: red;
-    overflow: hidden;
-    pointer-events: none;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 1.5px #D3D3D3;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
 }
 </style>
 </head>
@@ -227,26 +249,32 @@
 				<div>상품명</div>
 			</div>
 			
-			<form id="review_form">
-				<div class="review_item">
-					<div>상품에 만족하셨나요?</div>
-					<div>
-						<span class="star">
-							★★★★★
-						<span>★★★★★</span>
-						    <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
-						</span>
-					</div>
-				</div>
+			<form class="mb-3" id="myform">
+				<input type="hidden" name="member_idx" value="${login.idx }">		<!-- 로그인 세션에 저장된 member_idx -->
+				<input type="hidden" name="productMain_idx" value="${prod.idx }">	<!-- 해당 상품의 idx -->
+				<input type="hidden" name="idx" value="${dto.idx }">				<!-- 리뷰 테이블의 idx -->
 				
-				<!-- 선택된 값이 submit 돼야함 -->
+				<fieldset class="star_grade">
+					<div class="text-bold">상품에 만족하셨나요?</div>
+					<input type="radio" name="Grade" value="5" id="rate1">
+						<label for="rate1">★</label>
+					<input type="radio" name="Grade" value="4" id="rate2">
+						<label for="rate2">★</label>
+					<input type="radio" name="Grade" value="3" id="rate3">
+						<label for="rate3">★</label>
+					<input type="radio" name="Grade" value="2" id="rate4">
+						<label for="rate4">★</label>
+					<input type="radio" name="Grade" value="1" id="rate5">
+						<label for="rate5">★</label>
+				</fieldset>
+				
 				<!-- pState -->
 				<div class="review_item_check">
 					<div>[상품상태] 상품의 상태는 어떤가요?</div>
 					<div class="review_item_click">
-						<div class="">아주 좋아요</div>
-						<div class="">보통이에요</div>
-						<div class="">별로에요</div>
+						<p><input type="radio" name="pState" value="아주 좋아요">아주 좋아요</p>
+						<p><input type="radio" name="pState" value="보통이에요">보통이에요</p>
+						<p><input type="radio" name="pState" value="별로에요">별로에요</p>
 					</div>
 				</div>
 				
@@ -254,9 +282,9 @@
 				<div class="review_item_check">
 					<div>[상품일치여부] 구매한 상품과 받은 상품이 똑같은가요?</div>
 					<div class="review_item_click">
-						<div class="">똑같아요</div>
-						<div class="">비슷해요</div>
-						<div class="">달라요</div>
+						<p><input type="radio" name="pSame" value="똑같아요">똑같아요</p>
+						<p><input type="radio" name="pSame" value="비슷해요">비슷해요</p>
+						<p><input type="radio" name="pSame" value="달라요">달라요</p>
 					</div>
 				</div>
 			
@@ -264,9 +292,9 @@
 				<div class="review_item_check">
 					<div>[가격] 상품의 가격은 어떤가요?</div>
 					<div class="review_item_click">
-						<div class="">만족해요</div>
-						<div class="">보통이에요</div>
-						<div class="">별로에요</div>
+						<p><input type="radio" name="price" value="만족해요">만족해요</p>
+						<p><input type="radio" name="price" value="보통이에요">보통이에요</p>
+						<p><input type="radio" name="price" value="별로에요">별로에요</p>
 					</div>
 				</div>
 			
@@ -276,16 +304,16 @@
 						<textarea name="content"	
 								  rows="10"
 								  cols="66"
-								  placeholder="자세한 리뷰는 다른 고객님들의 구매에 큰 도움이 됩니다&#13;&#10;(10자 이상 500자 이내로 입력해주세요.)"></textarea>
+								  placeholder="자세한 리뷰는 다른 고객님들의 구매에 큰 도움이 됩니다&#13;&#10;(10자 이상 500자 이내로 입력해주세요.)"
+								  required></textarea>
 					</div>
 				</div>
-			
-				<div class="review_item">
-					<div>사진을 등록해주세요(선택)</div>
-					<div id="review_upload">
-						<p><input type="file" name="uploadFile"></p>
-					</div>
-				</div>
+<!-- 				<div class="review_item"> -->
+<!-- 					<div>사진을 등록해주세요(선택)</div> -->
+<!-- 					<div id="review_upload"> -->
+<!-- 						<p><input type="file" name="uploadFile"></p> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</form>
 			<p class="review_submit"><input type="submit" value="등록하기"></p>	
 		</div>
