@@ -106,7 +106,7 @@ public class RestMemberController {
 	// 토큰삭제
 	@GetMapping("/remove") 
 	@CrossOrigin
-	public @ResponseBody int remove(@RequestParam("token") String token, HttpSession session, HttpServletResponse resp)  {
+	public  int remove(@RequestParam("token") String token, HttpSession session, HttpServletResponse resp)  {
 		
 		
         
@@ -170,6 +170,17 @@ public class RestMemberController {
 	@PostMapping(value="mailconfirm", produces="application/json; charset=utf-8")
 	public String mailconfirm(@RequestBody HashMap<String, String> param) throws IOException {
 		return mails.sendMailconfirm(param.get("mailadress"));
+	}
+	
+	@PostMapping("/passSearch")
+	public MemberDTO passSearch(@RequestBody MemberDTO dto) {
+		return dao.selectPassSearch(dto);
+	}
+	@PostMapping("/passUpdate")
+	public int passUpdate(@RequestBody MemberDTO dto) { // dto 안에 userId 새로 업데이트할 비밀번호를 각각 담고있음
+		System.out.println(dto.getUserid());
+		System.out.println(dto.getUserpw());
+		return ms.passUpdate(dto);
 	}
 	
 
