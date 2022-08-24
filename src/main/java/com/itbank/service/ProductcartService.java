@@ -6,11 +6,16 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itbank.oneplus.DeliveryDAO;
 import com.itbank.oneplus.DeliveryDTO;
+import com.itbank.oneplus.OrdersDAO;
+import com.itbank.oneplus.OrdersDTO;
+import com.itbank.oneplus.OrdersDetailDTO;
 import com.itbank.oneplus.ProductcartDAO;
 import com.itbank.oneplus.ProductcartDTO;
 
@@ -20,6 +25,7 @@ public class ProductcartService {
 	
 	@Autowired ProductcartDAO dao;
 	@Autowired DeliveryDAO deliveryDao;
+	@Autowired OrdersDAO ordersDao;
 
  	public List<ProductcartDTO> deliveryInfoSelectList(int idx, List<String> itemList) {
 		List<ProductcartDTO> list = new ArrayList<ProductcartDTO>();
@@ -116,6 +122,30 @@ public class ProductcartService {
 		int o = deliveryDao.eraseDefaultAddress(param);
 		if(n == 1 && o == 1) return 1;
 		else return 0;
+	}
+
+	public int insertOrders(OrdersDTO dto) {
+		return ordersDao.insertOrders(dto);
+	}
+
+	public int insertOrdersDetail(int ordersIdx, HttpSession session) {
+		int result = 0;
+		List<ProductcartDTO> list = (List<ProductcartDTO>) session.getAttribute("orderList");
+//		System.out.println(session.getAttribute("orderList"));
+		for(int i=0; i<list.size(); i++) {
+			ProductcartDTO cartdto = list.get(i);
+			OrdersDetailDTO eachdto = new OrdersDetailDTO();
+			eachdto.setOrders_idx(ordersIdx);
+			eachdto.setProductMain_idx(cartdto.getProductMain_idx());
+			eachdto.setProductPrice(cartdto.getProductPrice());
+			eachdto.setProductCnt(cartdto.getCnt());
+			result = ordersDao.insertOrdersDetail(eachdto);
+		}
+		return result;
+	}
+
+	public int getmaxIdx() {
+		return ordersDao.getmaxIdx();
 	}
 
 }

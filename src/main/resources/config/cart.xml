@@ -33,5 +33,5 @@
 			where
 				C.member_idx = ${member_idx} and C.productMain_idx = ${productMain_idx}
 	</select>
-	
 </mapper>
+

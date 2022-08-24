@@ -19,6 +19,7 @@ public interface ProductcartDAO {
 
 	@Update("update productCart set cnt=${cnt} where productMain_idx=${productMain_idx} and member_idx=${member_idx}")
 	int cartUpdate(ProductcartDTO dto);
+	
 
 	
 }
