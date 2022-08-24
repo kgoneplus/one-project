@@ -43,5 +43,13 @@ public interface MypageDAO {
 	// 1:1 문의 삭제
 	@Delete("delete ask where idx = #{idx}")
 	public int askOneDelete(int idx);
+
+	// 리뷰할 상품 더미
+	@Select("select * from productMain where idx < 10")
+	public List<ProductDTO> selectProdList();
+
+	// 리뷰 작성
+//	@Insert("insert into review (productMain_idx, member_idx, pState, pSame, price, content, Grade, img) "
+//			+ "values (#{productMain_idx}, #{member_idx}, #{pState}, #{pSame}, #{price}, #{content}, #{Grade}, #{img})")
 	
 }

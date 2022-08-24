@@ -90,9 +90,18 @@
 <!-- 				디비값으로구현해야됨 -->
                 <div class="product_reviewSummary">
                 	<div class="reviewScoreBox">
-                		<div class="scopeNum">별점몇?</div>
-                		<div class="scopeGrade">몇개니</div>
-                		<div class="scopeTotal">몇개구매함?</div>
+                		<div class="scope">
+		                	<div class="scopeNum"></div>
+		                	<div class="scopeGradeBox">
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+		                	</div>
+                		</div>
+
+                		<div class="scopeTotal">월간구매   <fmt:formatNumber value="${prodOne.buyCnt }" />개</div>
                 	</div>
                 </div>
             </div>
@@ -106,7 +115,9 @@
                     <button type="button" class="product_nowbtn">바로구매</button>
                     <button type="button" class="product_cartbtn">장바구니</button>
                 </div>
-                <div class="product_cartbtnOverlay"></div>
+                <div class="product_cartbtnOverlay">
+                	
+                </div>
             </div>
         </viewmain>
         <viewmain>
@@ -138,42 +149,6 @@
                     </div>
                     <div class="hotslide">
                     	<div class="hotslide_wrap">
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg allhot"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg1.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!-- 							<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg allhot"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg2.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg allhot"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg allhot"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg4.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg allhot"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg5.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg allhot"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
 						</div>
                     </div>
                 </div>
@@ -243,7 +218,15 @@
             </div>
 	                </div>
 	                <div class="prodreview">
-	                    <p>테스트페이지1</p>
+	                	<div class="prodreviewDetailArea">
+		                    <div class="prodreviewTitle"><h3>상품리뷰</h3></div>
+	                			<div class="prodreviewBox">
+	                				<div class="totalScopeBox">평점/5.0(별다가져오기) 리뷰건수</div>
+	                				<div class="scopeGraphList">
+	                					
+	                				</div>
+	                			</div>
+	                	</div>
 	                </div>
 	                <div class="prodDelivery">
 	                	<div class="prodDetailArea">
@@ -387,6 +370,9 @@
                         <button type="button" class="product_nowbtn">바로구매</button>
                     </div>
                     <button type="button" class="product_cartbtn">장바구니</button>
+                    <div class="product_cartbtnOverlay overlay2">
+                    
+                    </div>
                 </div>
             </div>
 
@@ -427,9 +413,20 @@
 		window.addEventListener('load', heartloadHandler)
 	}
 	
-	const prodcartBtn = Array.from(document.querySelectorAll('.product_cartbtn'))
-	prodcartBtn.forEach(btn => btn.addEventListener('click', prodcartModal))
+	const prodcartBtn = document.querySelector('.product_cartbtn')
+	prodcartBtn.addEventListener('click', prodcartModal)
 	
+	const prodcartBtn2 = document.querySelectorAll('.product_cartbtn')[1]
+	prodcartBtn2.addEventListener('click', prodcartremoModal)
+
+	document.querySelector('view').addEventListener('click', prodcartcloseModal)
+	document.querySelector('.product_cartbtnOverlay').addEventListener('click', prodcartcloseModal)
+	
+	const productnowBtn = document.querySelectorAll('.product_nowbtn')
+	productnowBtn.forEach(btn => btn.addEventListener('click', productnowHandler))
+	
+	window.addEventListener('load', prodgradHandler)
+// 	window.addEventListener('load', prodgradImg)
 </script>
 
 <%@ include file="../footer.jsp"%>

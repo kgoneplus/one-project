@@ -14,6 +14,8 @@ import com.itbank.component.HashComponent;
 import com.itbank.oneplus.AskDTO;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.oneplus.MypageDAO;
+import com.itbank.oneplus.ProductDTO;
+import com.itbank.oneplus.ReviewDTO;
 
 @Service
 public class MypageService {
@@ -94,4 +96,10 @@ public class MypageService {
 	public int askOneDelete(int idx) {
 		return mypageDAO.askOneDelete(idx);
 	}
+
+	// 리뷰 할 상품 불러오기
+	public List<ProductDTO> selectProdList() {
+		return mypageDAO.selectProdList();
+	}
+
 }

@@ -13,11 +13,6 @@ function ordersTablistHandler(event) {
 	ordersTablistContent[idx].classList.add('tablistContentSelected')
 }
 
-// 리뷰창에서 별점 색 바꾸기(별점 마다 점수가 들어갸야함)
-const drawStar = (target) => {
-    document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
-}
-
 //1:1 문의 모달창
 function counselOpenModal() {
 	const counsel_modal = document.querySelector('.counsel_modal')

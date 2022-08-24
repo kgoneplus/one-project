@@ -46,8 +46,12 @@
 	cursor: pointer;
 }
 .review_content > div:nth-child(2) {
-	margin: 30px 25px;
+	margin: 20px 15px;
 	display: flex;
+}
+.review_content > div:nth-child(2) > div:nth-child(2) {
+	margin: auto;
+	font-weight: bolder;
 }
 .review_content > div:nth-child(3) {
 	margin: 35px 25px;
@@ -72,6 +76,9 @@
 	display: flex;
 	justify-content: space-between;
 	padding: 10px 0;
+}
+.review_item_click > p {
+	width: 170px;
 }
 .review_item_check > div:nth-child(1) {
 	font-weight: bold;
@@ -103,6 +110,7 @@
 }
 .review_write > .review_button {
     margin-top: 15px;
+    margin-right: 10px;
     width: 70px;
     height: 36px;
     border-radius: 2px;
@@ -110,48 +118,35 @@
     color: rgb(255, 255, 255);
     cursor: pointer;
 }
-
-
-
-#myform fieldset{
-    display: inline-block;
-    direction: rtl;
-    border:0;
-    margin: 0 115px;
-    text-align: center;
+.review_prodList {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px;
+	border: 1px solid black;
+	border-radius: 2px;
+	padding-top: 4px;
 }
-#myform fieldset legend{
-    text-align: right;
+.review_prodImg > img {
+	width: 60px;
+	height: 60px;
+	margin: 0 20px;
 }
-.text-bold {
+.review_prodImg2 > img {
+	width: 80px;
+	height: 80px;
+	margin: 0 20px;
+}
+.review_mid {
+	width: 630px;
+	padding-top: 5px;
+}
+.review_mid > div:nth-child(1) > a {
+	color: #b7b7b7;
+	border-bottom: 1px solid;
+}
+.review_mid > div:nth-child(2) {
+	margin-top: 10px;
 	font-weight: bold;
-}
-#myform > .star_grade > input[type=radio]{
-    display: none;
-}
-#myform label{
-    font-size: 3em;
-    color: transparent;
-    text-shadow: 0 0 0 #f0f0f0;
-}
-#myform label:hover{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#myform label:hover ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#myform input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#reviewContents {
-    width: 100%;
-    height: 150px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: solid 1.5px #D3D3D3;
-    border-radius: 5px;
-    font-size: 16px;
-    resize: none;
 }
 </style>
 </head>
@@ -206,7 +201,6 @@
                     <h2>상품 리뷰</h2>
                 </div>
                 <div class="rightArea"></div>
-                <div class="review_write"><button class="review_button">리뷰작성</button></div>
             </div>
             <div class="dateFilter">
                 <form>
@@ -229,96 +223,97 @@
                 </form>
             </div>
             <div>
-            	<div><img src="${cpath }/resources/getImage1/136098546s0374.jpg"></div>
-            	<div></div>
-            	<div></div>
-            	<div></div>
+            	<c:forEach var="dto" items="${prod }">
+            	<div class="review_prodList">
+            		<div>
+	            		<div class="review_prodImg"><img src="${cpath }/resources/getImage1/${dto.productImg}"></div>
+	            	</div>
+	            	<div class="review_mid">
+		            	<div><a href="${cpath }/product/view/${dto.idx }">${dto.idx }</a></div>
+		            	<div>${dto.productName }</div>
+	            	</div>
+	            	<div class="review_write"><button class="review_button">리뷰작성</button></div>
+	            </div>
+	            
+	            <div class="review_modal" class="review_hidden">
+					<div class="review_content">
+						<div>
+							<div>리뷰작성</div>
+							<div class="review_close">X</div>
+						</div>
+						
+						<div class="review_prod_img_name">
+							<div class="review_prodImg2"><img src="${cpath }/resources/getImage1/${dto.productImg}"></div>
+							<div>${dto.productName }</div>
+						</div>
+						
+						<form method="POST" class="mb-3" id="myform">
+							<input type="hidden" name="member_idx" value="${login.idx }">
+							
+							<div>
+								<div>상품 별점을 남겨주세요!</div>
+								<p><input type="radio" name="Grade" value="1">★</p>
+								<p><input type="radio" name="Grade" value="2">★★</p>
+								<p><input type="radio" name="Grade" value="3">★★★</p>
+								<p><input type="radio" name="Grade" value="4">★★★★</p>
+								<p><input type="radio" name="Grade" value="5">★★★★★</p>
+							</div>
+							
+							<!-- pState -->
+							<div class="review_item_check">
+								<div>[상품상태] 상품의 상태는 어떤가요?</div>
+								<div class="review_item_click">
+									<p><input type="radio" name="pState" value="아주 좋아요">아주 좋아요</p>
+									<p><input type="radio" name="pState" value="보통이에요">보통이에요</p>
+									<p><input type="radio" name="pState" value="별로에요">별로에요</p>
+								</div>
+							</div>
+							
+							<!-- pSame -->
+							<div class="review_item_check">
+								<div>[상품일치여부] 구매한 상품과 받은 상품이 똑같은가요?</div>
+								<div class="review_item_click">
+									<p><input type="radio" name="pSame" value="똑같아요">똑같아요</p>
+									<p><input type="radio" name="pSame" value="비슷해요">비슷해요</p>
+									<p><input type="radio" name="pSame" value="달라요">달라요</p>
+								</div>
+							</div>
+						
+							<!-- price -->
+							<div class="review_item_check">
+								<div>[가격] 상품의 가격은 어떤가요?</div>
+								<div class="review_item_click">
+									<p><input type="radio" name="price" value="만족해요">만족해요</p>
+									<p><input type="radio" name="price" value="보통이에요">보통이에요</p>
+									<p><input type="radio" name="price" value="별로에요">별로에요</p>
+								</div>
+							</div>
+						
+							<div class="review_item">
+								<div>어떤 점이 좋았나요?</div>
+								<div class="review_textarea">
+									<textarea name="content"	
+											  rows="10"
+											  cols="66"
+											  placeholder="자세한 리뷰는 다른 고객님들의 구매에 큰 도움이 됩니다&#13;&#10;(10자 이상 500자 이내로 입력해주세요.)"
+											  required></textarea>
+								</div>
+							</div>
+			<!-- 				<div class="review_item"> -->
+			<!-- 					<div>사진을 등록해주세요(선택)</div> -->
+			<!-- 					<div id="review_upload"> -->
+			<!-- 						<p><input type="file" name="uploadFile"></p> -->
+			<!-- 					</div> -->
+			<!-- 				</div> -->
+						</form>
+						<p class="review_submit"><input type="submit" value="등록하기"></p>	
+					</div>
+					<div class="review_overlay"></div>
+				</div>
+            	</c:forEach>
             </div>
         </section>
     </div>
-		
-	<div class="review_modal" class="review_hidden">
-		<div class="review_content">
-			<div>
-				<div>리뷰작성</div>
-				<div class="review_close">X</div>
-			</div>
-			
-			<div>
-				<div>상품이미지</div>
-				<div>상품명</div>
-			</div>
-			
-			<form class="mb-3" id="myform">
-				<input type="hidden" name="member_idx" value="${login.idx }">		<!-- 로그인 세션에 저장된 member_idx -->
-				<input type="hidden" name="productMain_idx" value="${prod.idx }">	<!-- 해당 상품의 idx -->
-				<input type="hidden" name="idx" value="${dto.idx }">				<!-- 리뷰 테이블의 idx -->
-				
-				<fieldset class="star_grade">
-					<div class="text-bold">상품에 만족하셨나요?</div>
-					<input type="radio" name="Grade" value="5" id="rate1">
-						<label for="rate1">★</label>
-					<input type="radio" name="Grade" value="4" id="rate2">
-						<label for="rate2">★</label>
-					<input type="radio" name="Grade" value="3" id="rate3">
-						<label for="rate3">★</label>
-					<input type="radio" name="Grade" value="2" id="rate4">
-						<label for="rate4">★</label>
-					<input type="radio" name="Grade" value="1" id="rate5">
-						<label for="rate5">★</label>
-				</fieldset>
-				
-				<!-- pState -->
-				<div class="review_item_check">
-					<div>[상품상태] 상품의 상태는 어떤가요?</div>
-					<div class="review_item_click">
-						<p><input type="radio" name="pState" value="아주 좋아요">아주 좋아요</p>
-						<p><input type="radio" name="pState" value="보통이에요">보통이에요</p>
-						<p><input type="radio" name="pState" value="별로에요">별로에요</p>
-					</div>
-				</div>
-				
-				<!-- pSame -->
-				<div class="review_item_check">
-					<div>[상품일치여부] 구매한 상품과 받은 상품이 똑같은가요?</div>
-					<div class="review_item_click">
-						<p><input type="radio" name="pSame" value="똑같아요">똑같아요</p>
-						<p><input type="radio" name="pSame" value="비슷해요">비슷해요</p>
-						<p><input type="radio" name="pSame" value="달라요">달라요</p>
-					</div>
-				</div>
-			
-				<!-- price -->
-				<div class="review_item_check">
-					<div>[가격] 상품의 가격은 어떤가요?</div>
-					<div class="review_item_click">
-						<p><input type="radio" name="price" value="만족해요">만족해요</p>
-						<p><input type="radio" name="price" value="보통이에요">보통이에요</p>
-						<p><input type="radio" name="price" value="별로에요">별로에요</p>
-					</div>
-				</div>
-			
-				<div class="review_item">
-					<div>어떤 점이 좋았나요?</div>
-					<div class="review_textarea">
-						<textarea name="content"	
-								  rows="10"
-								  cols="66"
-								  placeholder="자세한 리뷰는 다른 고객님들의 구매에 큰 도움이 됩니다&#13;&#10;(10자 이상 500자 이내로 입력해주세요.)"
-								  required></textarea>
-					</div>
-				</div>
-<!-- 				<div class="review_item"> -->
-<!-- 					<div>사진을 등록해주세요(선택)</div> -->
-<!-- 					<div id="review_upload"> -->
-<!-- 						<p><input type="file" name="uploadFile"></p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-			</form>
-			<p class="review_submit"><input type="submit" value="등록하기"></p>	
-		</div>
-		<div class="review_overlay"></div>
-	</div>
 </main>
 
 <script>

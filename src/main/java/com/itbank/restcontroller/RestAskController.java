@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itbank.oneplus.AskDTO;
+import com.itbank.oneplus.ProductDTO;
 import com.itbank.service.MypageService;
 
 @RestController

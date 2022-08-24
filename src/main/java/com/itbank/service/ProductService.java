@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itbank.oneplus.ProductDAO;
 import com.itbank.oneplus.ProductDTO;
+import com.itbank.oneplus.ProductSummaryDTO;
 
 @Service
 public class ProductService {
@@ -53,6 +54,10 @@ public class ProductService {
 		return keyword;
 	}
 
+	public ProductSummaryDTO prodSummaryOne(int idx) {
+		return dao.prodSummaryOne(idx);
+	}
+	
 	// 추천순 많이팔린순 낮은가격순 ...
 	public List<ProductDTO> orderList(HashMap<String, String> param) {
 		System.out.println(param);

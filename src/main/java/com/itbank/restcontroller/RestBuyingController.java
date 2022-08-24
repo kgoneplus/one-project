@@ -45,6 +45,19 @@ public class RestBuyingController {
 		List<ProductcartDTO> list = service.deliveryInfoSelectList(member_idx, itemList);
 		if(list != null) {
 			session.setAttribute("orderList", list);
+			int tP = 0;
+			int discount = 0;
+			int pay = 0;
+			for(int i=0; i<list.size(); i++) {
+				ProductcartDTO dto = list.get(i);
+				tP += dto.getProductPrice() * dto.getCnt();
+				discount += dto.getProductDiscount() * dto.getCnt();
+				pay = tP - discount;
+			}
+			session.setAttribute("totalPrice", tP);
+			session.setAttribute("pay", pay);
+			session.setAttribute("discountPrice", discount);
+			session.setAttribute("deliveryFee", pay >= 40000 ? 0 : 3000);
 			return "세션 저장 성공";
 		}
 		return "세션 저장 실패";
@@ -73,5 +86,15 @@ public class RestBuyingController {
 	@DeleteMapping(value="/buying/cart/delivery", produces="application/json; charset=utf-8")
 	public int deleteAddress(@RequestBody HashMap<String, String> param) {
 		return service.deleteAddress(param);
+	}
+	
+	@PostMapping(value="/buying/cart/pay/{member_idx}", produces="application/json; charset=utf-8")
+	public List<ProductcartDTO> paymentbox(@PathVariable int member_idx, @RequestBody List<String> itemList) {
+		return service.deliveryInfoSelectList(member_idx, itemList);
+	}
+	
+	@PutMapping(value="/buying/cart/deliveryUpdate")
+	public int updatedefaultAddress(@RequestBody HashMap<String, String> param) {
+		return service.updatedefaultAddress(param);
 	}
 }

@@ -18,6 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.oneplus.AskDTO;
 import com.itbank.oneplus.MemberDTO;
+import com.itbank.oneplus.ProductDTO;
+import com.itbank.oneplus.ProductcartDTO;
+import com.itbank.oneplus.ReviewDTO;
 import com.itbank.service.MypageService;
 
 @Controller
@@ -62,9 +65,13 @@ public class MypageController {
 	public void wishlist() {
 	}
 
-	// 상품리뷰
+	// 작성할 리뷰 더미
 	@GetMapping("/review")
-	public void reviewList() {
+	public ModelAndView reviewList() {
+		ModelAndView mav = new ModelAndView();
+		List<ProductDTO> prod = mypageService.selectProdList();
+		mav.addObject("prod", prod);
+		return mav;
 	}
 
 	// 1:1 문의페이지

@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.itbank.component.HashComponent;
 import com.itbank.oneplus.MemberDTO;
-import com.itbank.oneplus.DeliveryDAO;
-import com.itbank.oneplus.DeliveryDTO;
 import com.itbank.oneplus.MemberDAO;
 
 @Service
@@ -23,6 +21,7 @@ public class MemberService {
 	@Autowired private MemberDAO dao;
 	@Autowired private HashComponent hash;
 	@Autowired private MailService ms;
+
 	
 	// 통합 회원가입 
 	public int insert(MemberDTO dto) {
@@ -113,11 +112,6 @@ public class MemberService {
 			return 0;
 		}
 	}
-	
-	
 
-	
-	
-	
 
 }

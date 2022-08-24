@@ -171,8 +171,5 @@ public class RestMemberController {
 		return mails.sendMailconfirm(param.get("mailadress"));
 	}
 	
-	
-	
-	
 
 }
