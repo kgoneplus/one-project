@@ -236,7 +236,7 @@
 						<form id="reviewInsertForm">
 							<input type="hidden" name="member_idx" value="${login.idx }">
 							
-							<!-- 이미지로 바꿔야함 -->
+							<!-- 별 이미지로 바꿔야함 -->
 							<div>
 								<div>상품 별점을 남겨주세요!</div>
 								<p><input type="radio" name="Grade" value="1">★</p>
