@@ -15,7 +15,7 @@ public interface OrdersDAO {
 
 	int insertOrders(OrdersDTO dto);
 
-	@Insert("insert into ordersDetail (orders_idx, productMain_idx, productCnt, productPrice) values (#{orders_idx}, #{productMain_idx}, #{productCnt}, #{productPrice}, #{orderStatus})")
+	@Insert("insert into ordersDetail (orders_idx, productMain_idx, productCnt, productPrice) values (#{orders_idx}, #{productMain_idx}, #{productCnt}, #{productPrice})")
 	int insertOrdersDetail(OrdersDetailDTO eachdto);
 
 	@Select("select max(idx) from orders")

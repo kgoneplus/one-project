@@ -566,13 +566,15 @@ function updatedefaultAddress() {
 		location.href = cpath + '/buying/cart/' + member_idx
 	})
 }
+
 // 결제 전 주문 insert
 function orderInsertHandler() {
+	const deliveryDate = document.querySelector("input[type='radio']:checked")
 	let result = 0
 	const url = cpath + '/buying/insertOrder/' 
 	const ob = {
 			'member_idx' : member_idx,
-			'deliveryDate' : document.querySelector("input[type='radio']:checked").value,
+			'deliveryDate' : deliveryDate.value,
 			'receiverName' : document.querySelector('.homeDeliveryTab').getAttribute('receiverName'),
 			'receiverPhonenum' : document.querySelector('.homeDeliveryTab').getAttribute('receiverPhonenum'),
 			'address' : document.querySelector('.homeDeliveryTab > div p').innerText,

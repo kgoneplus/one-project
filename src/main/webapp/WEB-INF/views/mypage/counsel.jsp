@@ -5,9 +5,6 @@
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 <script src="${cpath}/resources/js/function_mypage.js"></script>
-<script>
-	const cpath = '${cpath}'
-</script>
 <style>
 .counsel_modal {
 	display: none;
@@ -349,7 +346,7 @@ td {
 	counselModal_overlay.addEventListener('click', counselCloesModal)
 	counselModal_close.addEventListener('click', counselCloesModal)
 	writeForm.addEventListener('submit', askHandler)							// 1:1 문의 등록
-	window.addEventListener('load', selectAskAll(login_idx))					// 1:1 문의 내역
+	window.addEventListener('load', selectAskAll(login_idx))					// 1:1 문의 내역 상세보기
 	askList_close.addEventListener('click', askCloesModal)						// 1:1 문의 내역 삭제
 </script>
 <%@ include file="../footer.jsp" %>
