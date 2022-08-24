@@ -49,6 +49,9 @@ public interface MemberDAO {
 	@Select("select * from parent_member where email=#{email} and name=#{name}")
 	MemberDTO selectIdserachConfirm(MemberDTO dto);
 	
+	@Select("select * from parent_member where userid=#{userid}")
+	MemberDTO selectPassSearch(MemberDTO dto);
+	
 	@Update("update parent_member set userpw = #{userpw} where userid=#{userid}")
 	int passUpdate(MemberDTO dto);
 }
