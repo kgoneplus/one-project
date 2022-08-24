@@ -30,7 +30,7 @@ public interface DeliveryDAO {
 
 	@Delete("delete delivery where member_idx=#{member_idx} and dCode=#{dCode}")
 	int deleteAddress(HashMap<String, String> param);
-
+	
 	@Select("select * from delivery where isDefault='y' and member_idx=#{member_idx}")
 	DeliveryDTO getdefaultAddress(int member_idx);
 

@@ -148,18 +148,15 @@ td {
 								<th>휴대전화번호 *</th>
 								<td><input type="text" name="phonenum" value="${dto.phonenum }"></td>
 							</tr>
-							<tr>
-								<th>주소</th>
-								<td>${dto.address }</td>
-							</tr>
+							
 							<tr class="myinfo_last_tr">
-								<th>변경할 주소</th>
+								<th>주소</th>
 								<td>
-									<input type="text" name="addr_number" id="sample6_postcode" placeholder="우편번호" required>
+									<input type="text" name="addr_number" id="sample6_postcode" value="${dto.addr_number }" placeholder="우편번호" required>
 									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" required><br>
-									<input type="text" name="addr_juso" id="sample6_address" placeholder="주소" required>
-									<input type="text" name="addr_detail" id="sample6_detailAddress" placeholder="상세주소" required>
-									<input type="text" name="addr_Reference" id="sample6_extraAddress" placeholder="참고항목" required>
+									<input type="text" name="addr_juso" id="sample6_address" value="${ dto.addr_juso}" placeholder="주소" required>
+									<input type="text" name="addr_detail" id="sample6_detailAddress" value="${dto.addr_detail }" placeholder="상세주소" required>
+									<input type="text" name="addr_Reference" id="sample6_extraAddress" value="${dto.addr_Reference }" placeholder="참고항목" required>
 								</td>
 							</tr>
 						</table>

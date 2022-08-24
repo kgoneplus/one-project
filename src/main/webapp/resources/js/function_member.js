@@ -30,7 +30,7 @@ function insertHandler (event) {
 		.then(text => {
 			if(text == 1) {
 				alert('작성성공')
-				location.href = 'http://localhost:8080/project/'
+				location.href = 'http://localhost:8080/project/member/login'
 			}
 		})
 	}
@@ -136,8 +136,82 @@ function memberId(event) {
 	})
 	
 }
+// 네이버 로그인 핸들러
+function naverloginhandler( ) {
+	
+	naverLogin.getLoginStatus( function (status) {
 
-
+	if (status) {	// 성공한다면
+		let email = naverLogin.user.getEmail();
+		let name = naverLogin.user.getName();
+		let phonenum = naverLogin.user.getMobile();
+		let token = naverLogin.accessToken.toString();
+		const tokensplit = token.split('.');
+		token = tokensplit[1]
+		console.log(token)
+		
+		
+		phonenum = phonenum.replace("-","")
+		phonenum = phonenum.replace("-","")
+		
+		const emailvalue = document.getElementById('emailvalue')
+		const namevalue = document.getElementById('namevalue')
+		const phonenumvalue = document.getElementById('phonenumvalue')
+		
+		emailvalue.value = email
+		namevalue.value = name
+		phonenumvalue.value = phonenum
+	
+		
+		console.log(email)
+		console.log(name)
+		console.log(phonenum)
+		
+		
+		
+		
+//		sessionStorage.setItem("email", email) // 세션 스토리지 저장하기 *****
+//		sessionStorage.setItem("name", name) // 세션 스토리지 저장하기 *****
+//		sessionStorage.setItem("phonenum", phonenum) // 세션 스토리지 저장하기 *****
+		
+		
+	const url = `${cpath}/naverSave`
+	const opt = {
+			method:'POST',
+			body: JSON.stringify({
+				'email':email, 'name':name, 'phonenum':phonenum	
+			}),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			},
+	}
+	fetch(url, opt)
+	.then(resp => resp.text())
+	.then( text => {
+		if(text == 1){
+			console.log('로그인 성공 ')
+			const url = `${cpath}/remove` + '?token='+token
+			fetch(url)
+			.then(resp => resp.text())
+			.then(text => {
+				if(text == 1){
+					console.log('토큰 삭제 성공')
+				}else{
+					console.log('토큰 삭제 실패')
+				}
+				
+			})
+			} else if(text == 0) {
+				console.log('실패')
+			}
+		
+			
+		})
+	} else {
+			alret("네이버 로그인 실패");
+			}
+	});
+};
 //카카오 로그아웃
 function kakaoLogout() {
 if (Kakao.Auth.getAccessToken()) {
@@ -239,6 +313,63 @@ function mailconfirm (){
 			console.log('실패')
 		}
 	})
+}
+
+// 카카오 로긴
+function kakaoLogin() {
+	  Kakao.Auth.login({
+	      success: function (response) {
+	        Kakao.API.request({
+	          url: '/v2/user/me',
+	          success: function (response) {
+	        	  console.log(response)
+	        	  kakaomap(response)
+	          },
+	          fail: function (error) {
+	            console.log(error)
+	          },
+	        })
+	      },
+	      fail: function (error) {
+	        console.log(error)
+	      },
+	    })
+	  }
+
+//받은데이터 매핑
+function kakaomap(res){
+	 	console.log(res)
+		const kakaouser = res.kakao_account
+	  	const kakaouser_map = {
+	  			'name':kakaouser.profile.nickname,
+	  			'email':kakaouser.email
+	  	}
+		kakaoconfirm(kakaouser_map)
+}
+
+// 매핑받은 데이터 로그인 하기
+function kakaoconfirm(data){
+	 const url = `${cpath}/kakaoconfirm`
+	 const opt = {
+		 method:'POST',
+		 body: JSON.stringify(data),
+		 headers:{
+			'Content-Type' : 'application/json; charset=utf-8'
+		 }
+	 }
+	 fetch(url, opt)
+	 .then(resp => resp.text())
+	 .then(text =>{
+		 if(text == 1){
+			 console.log('로그인 성공')
+			  kakaoLogout()
+			 location.replace("http://localhost:8080/project")
+			
+		 }else{
+			 console.log('실패')
+			 location.replace("http://localhost:8080/project/member/login/kakao")
+		 }
+	 })
 }
 
 

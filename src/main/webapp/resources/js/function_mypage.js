@@ -1,5 +1,15 @@
 'use strict'
 
+// 리뷰 모달
+function reviewOpenModal() {
+	const review_modal = document.getElementById('review_modal')
+	review_modal.style.display = 'flex'
+}	
+function reviewCloesModal() {
+	const review_modal = document.getElementById('review_modal')
+	review_modal.style.display = 'none'
+}	
+
 // 주문배송조회 페이지 -> 안내 탭 카테고리 클릭 핸들러
 function ordersTablistHandler(event) {
 	const ordersTablist = Array.from(document.querySelectorAll('.orders_tablist > ul > li'))
@@ -115,6 +125,34 @@ function selectAskAll(idx) {
 		json.forEach(dto => wrap.appendChild(convertAsk(dto)))
 	})
 }
+
+// 리뷰 컨벌트
+function convertReview(dto) {
+	const item = document.createElement('div')
+	item.classList.add('review_itemList')
+	
+	item.innerHTML += `<div class="productImg"><img src="${cpath}/resources/getImage1/${dto.productImg}"></div>`
+	item.innerHTML += `<div class="productIdx"><a href="${cpath}/product/view/${dto.idx}">${dto.idx}</a></div>`
+	item.innerHTML += `<div class="productName">${dto.productName}</div>`
+	item.innerHTML += `<div class="review_write"><button>리뷰작성</button></div>`
+	
+	const reviewModal_open = item.querySelector('.review_write')
+	reviewModal_open.addEventListener('click', reviewOpenModal)
+	
+	return item
+}
+
+// 리뷰할 상품 불러오기(일단 상품 더미)
+function selectReviewAll() {
+	const wrap = document.getElementById('review_wrap')
+	const url = cpath + '/mypageing/reviewing'
+	
+	fetch(url)
+	.then(resp => resp.json())
+	.then(json => { 
+		json.forEach(dto => wrap.appendChild(convertReview(dto)))
+	})
+}
 	
 // 문의 내용 상세보기(관리자 댓글, 작성자 댓글 기능)
 function askOpenModal(event) {
@@ -188,12 +226,30 @@ function askDeleteHandler(event) {
 	})
 }
 
-// 리뷰 모달
-function reviewOpenModal() {
-	const review_modal = document.querySelector('.review_modal')
-	review_modal.style.display = 'flex'
-}	
-function reviewCloesModal() {
-	const review_modal = document.querySelector('.review_modal')
-	review_modal.style.display = 'none'
-}	
+// 리뷰 작성하기(...공사중...)
+function insertReview(event) {
+	event.preventDefault()
+	
+	const ob = {}
+	const formData = new FormData(event.target)
+	for(let key of formData.keys()) {
+		ob[key] = formData.get(key)
+	}
+	
+	const url = cpath + '/mypageing/reviewWrite'
+	const opt = {
+		method: 'POST',
+		body: JSON.stringify(ob),
+		headers: {
+			'Content-Type': 'application/json; charset=utf-8'
+		}
+	}
+	fetch(url, opt)
+	.then(resp => resp.text())
+	.then(text => {
+		if(text == 1) {
+			alert('작성성공')
+			location.href = 'http://localhost:8080/project/mypage/review'
+		}
+	})
+}

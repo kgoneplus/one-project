@@ -29,7 +29,7 @@ public class MypageController {
 
 	@Autowired
 	private MypageService mypageService;
-
+	
 	// 마이페이지 메인
 	@GetMapping("/mypageMain")
 	public void mypage() {
@@ -65,15 +65,11 @@ public class MypageController {
 	public void wishlist() {
 	}
 
-	// 작성할 리뷰 더미
+	// 리뷰 페이지
 	@GetMapping("/review")
-	public ModelAndView reviewList() {
-		ModelAndView mav = new ModelAndView();
-		List<ProductDTO> prod = mypageService.selectProdList();
-		mav.addObject("prod", prod);
-		return mav;
+	public void reviewList() {
 	}
-
+	
 	// 1:1 문의페이지
 	@GetMapping("/counsel")
 	public void counsel() {
@@ -91,6 +87,13 @@ public class MypageController {
 	public ModelAndView myinfo(@PathVariable int idx) {
 		ModelAndView mav = new ModelAndView("mypage/myinfo");
 		MemberDTO dto = mypageService.selectOneMember(idx);
+		
+		String[] address = dto.getAddress().split("/");
+		dto.setAddr_number(address[0]);
+		dto.setAddr_juso(address[1]);
+		dto.setAddr_detail(address[2]);
+		dto.setAddr_Reference(address[3]);
+		
 		mav.addObject("dto", dto);
 		return mav;
 	}

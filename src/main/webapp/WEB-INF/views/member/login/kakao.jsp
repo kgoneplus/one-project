@@ -52,7 +52,10 @@
 			<div>이메일</div>
 			<input type="email" name="email" value="${kdto.email }" placeholder="ex)kkj1234@naver.com"
 				<c:if test="${not empty kakaologin }">readonly</c:if>>
-			<button id="emailconfirm" type="button">인증번호 요청</button>
+			<button id="mailconfirmBtn">인증번호 요청</button>
+			<div><input id="confirmnumber" type="password" name="emailconfirm" placeholder="인증번호4자리입력">
+			<input type="button" onclick="mailConfirmNumber()" value="인증"></div>
+			<div id="ConfirmEmail-Message"></div>
 			<div id="ConfirmEmail-Message"></div>
 			
 			<div>주소</div>
@@ -67,12 +70,15 @@
 		</form>
 	</div>
 <script>
-const cpath = '${cpath}'
+	const cpath = '${cpath}'		
+	const mailconfirmBtn = document.getElementById('mailconfirmBtn')
 	const idconfirm = document.getElementById('idconfirm')			// 아이디 중복확인 버튼
 	const insertForm = document.forms[0]
 	const pw = document.getElementById('pw')						// 비밀번호
 	const pwconfirm = document.getElementById('pwconfirm')			// 비밀번호 재확인
 	const ConfirmPW = document.getElementById('ConfirmPW-Message')	// 비밀번호 재확인 메세지
+	const emailconfirmMessage = document.getElementById('ConfirmEmail-Message')		// 컨펌 매세지 띄우기
+	const mailconfrimnumber = document.getElementById('confirmnumber')				// 입력값 폼
 
 	// 비밀번호 재확인 함수
 	pwconfirm.onblur = function() {
@@ -90,7 +96,8 @@ const cpath = '${cpath}'
 			ConfirmPW.innerHTML = ''
 		}
 	};
-
+	
+	mailconfirmBtn.addEventListener('click', mailconfirm)
 	idconfirm.addEventListener('click', memberId)
 	insertForm.addEventListener('submit', kakaoinsertHandler)
 </script>

@@ -108,9 +108,8 @@
 	padding: 20px 0;
 	margin: 0;
 }
-.review_write > .review_button {
-    margin-top: 15px;
-    margin-right: 10px;
+.review_write > button {
+    margin: 23px;
     width: 70px;
     height: 36px;
     border-radius: 2px;
@@ -118,7 +117,8 @@
     color: rgb(255, 255, 255);
     cursor: pointer;
 }
-.review_prodList {
+
+.review_itemList {
 	display: flex;
 	justify-content: space-between;
 	margin: 20px;
@@ -126,34 +126,28 @@
 	border-radius: 2px;
 	padding-top: 4px;
 }
-.review_prodImg > img {
-	width: 60px;
-	height: 60px;
-	margin: 0 20px;
-}
-.review_prodImg2 > img {
+.productImg > img {
 	width: 80px;
 	height: 80px;
 	margin: 0 20px;
 }
-.review_mid {
-	width: 630px;
-	padding-top: 5px;
+.productIdx {
+	text-align: center;
+    margin-top: 30px;
 }
-.review_mid > div:nth-child(1) > a {
+.productIdx > a {
 	color: #b7b7b7;
 	border-bottom: 1px solid;
+	font-size: 20px;
 }
-.review_mid > div:nth-child(2) {
+.productName {
 	margin-top: 10px;
 	font-weight: bold;
+	margin: auto;
 }
 </style>
 </head>
 <body>
-<script>
-	const cpath = '${cpath}'
-</script>
 <main>
 	<div class="mypagewrapper">
         <aside>
@@ -222,20 +216,12 @@
                     </div>
                 </form>
             </div>
-            <div>
-            	<c:forEach var="dto" items="${prod }">
-            	<div class="review_prodList">
-            		<div>
-	            		<div class="review_prodImg"><img src="${cpath }/resources/getImage1/${dto.productImg}"></div>
-	            	</div>
-	            	<div class="review_mid">
-		            	<div><a href="${cpath }/product/view/${dto.idx }">${dto.idx }</a></div>
-		            	<div>${dto.productName }</div>
-	            	</div>
-	            	<div class="review_write"><button class="review_button">리뷰작성</button></div>
-	            </div>
+            <div>            	
+				<!-- 리뷰할 상품 목록 -->
+	            <div id="review_wrap"></div>
 	            
-	            <div class="review_modal" class="review_hidden">
+	            <!-- 상품 리뷰 모달(...공사중...) -->
+	            <div id="review_modal" class="review_hidden">
 					<div class="review_content">
 						<div>
 							<div>리뷰작성</div>
@@ -243,13 +229,14 @@
 						</div>
 						
 						<div class="review_prod_img_name">
-							<div class="review_prodImg2"><img src="${cpath }/resources/getImage1/${dto.productImg}"></div>
-							<div>${dto.productName }</div>
+							<div>상품이미지</div>
+							<div>상품이름</div>							
 						</div>
 						
-						<form method="POST" class="mb-3" id="myform">
+						<form id="reviewInsertForm">
 							<input type="hidden" name="member_idx" value="${login.idx }">
 							
+							<!-- 이미지로 바꿔야함 -->
 							<div>
 								<div>상품 별점을 남겨주세요!</div>
 								<p><input type="radio" name="Grade" value="1">★</p>
@@ -305,24 +292,24 @@
 			<!-- 						<p><input type="file" name="uploadFile"></p> -->
 			<!-- 					</div> -->
 			<!-- 				</div> -->
-						</form>
 						<p class="review_submit"><input type="submit" value="등록하기"></p>	
+						</form>
 					</div>
 					<div class="review_overlay"></div>
 				</div>
-            	</c:forEach>
             </div>
         </section>
     </div>
 </main>
 
 <script>
-	const reviewModal_overlay = document.querySelector('.review_overlay')
 	const reviewModal_close = document.querySelector('.review_close')
-	const reviewModal_open = document.querySelector('.review_write')
+	const reviewModal_overlay = document.querySelector('.review_overlay')
+	const reviewInsertForm = document.getElementById('reviewInsertForm')
 	
-	reviewModal_open.addEventListener('click', reviewOpenModal)
+    window.addEventListener('load', selectReviewAll)							// 리뷰할 상품 더미 출력
+ 	reviewModal_close.addEventListener('click', reviewCloesModal)
 	reviewModal_overlay.addEventListener('click', reviewCloesModal)
-    reviewModal_close.addEventListener('click', reviewCloesModal)
+	reviewInsertForm.addEventListener('submit', insertReview)
 </script>
 <%@ include file="../footer.jsp" %>

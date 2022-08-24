@@ -5,9 +5,6 @@
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 <script src="${cpath}/resources/js/function_mypage.js"></script>
-<script>
-	const cpath = '${cpath}'
-</script>
 <style>
 .counsel_modal {
 	display: none;
