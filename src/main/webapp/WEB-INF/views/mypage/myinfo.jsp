@@ -6,54 +6,6 @@
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 <script src="${cpath }/resources/js/function_member.js"></script>
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<style>
-.myinfo_main {
-	width: 800px;
-	height: 500px;
-	margin: auto;
-}
-.myinfo_main > div:nth-child(1) {
-	display: flex;
-	justify-content: space-between;
-	margin: 10px 0;
-}
-.myinfo_main > div:nth-child(2) {
-	border-top: 2px solid black;
-}
-.myinfo_main > div:nth-child(2) > p {
-	border-bottom: 1px solid #dadada;
-}
-.myinfo_main > div:nth-child(1) > div:nth-child(1) {
-	font-weight: bold;
-	font-size: 20px;
-}
-.myinfo_main > div:nth-child(1) > div:nth-child(2) {
-	font-size: 12px;
-}
-.myinfo_table {
-	border-collapse: collapse;
-}
-tr {
-	height: 50px;
-	font-size: 12px;
-}
-.myinfo_last_tr {
-	height: 80px;
-}
-th {
-	text-align: left;
-	width: 150px;
-	background-color: #f5f5f5;
-	padding-left: 10px;
-}
-td {
-	padding-left: 20px;
-}
-.myinfo_submit {
-	text-align: center;
-	cursor: pointer;
-}
-</style>
 </head>
 <body>
 	<main>
@@ -115,23 +67,23 @@ td {
 					<form method="POST">
 						<input type="hidden" name="idx" value="${dto.idx }">
 						<table class="myinfo_table">
-							<tr>
+							<tr class="myinfo_table_tr">
 								<th>이름 *</th>
 								<td>${dto.name }</td>
 							</tr>
-							<tr>
+							<tr class="myinfo_table_tr">
 								<th>아이디 *</th>
 								<td>${dto.userid }</td>
 							</tr>
-							<tr>
+							<tr class="myinfo_table_tr">
 								<th>비밀번호 *</th>
 								<td><input type="password" name="userpw" value="${dto.userpw }"></td>
 							</tr>
-							<tr>
+							<tr class="myinfo_table_tr">
 								<th>법정 생년월일 *</th>
 								<td>${dto.birth }</td>
 							</tr>
-							<tr>
+							<tr class="myinfo_table_tr">
 								<th>성별</th>
 								<td>
 									<select name="gender">
@@ -140,16 +92,16 @@ td {
 									</select>
 								</td>
 							</tr>
-							<tr>
+							<tr class="myinfo_table_tr">
 								<th>이메일 *</th>
 								<td><input type="email" name="email" value="${dto.email }"></td>
 							</tr>
-							<tr>
+							<tr class="myinfo_table_tr">
 								<th>휴대전화번호 *</th>
 								<td><input type="text" name="phonenum" value="${dto.phonenum }"></td>
 							</tr>
 							
-							<tr class="myinfo_last_tr">
+							<tr class="myinfo_last_tr myinfo_table_tr">
 								<th>주소</th>
 								<td>
 									<input type="text" name="addr_number" id="sample6_postcode" value="${dto.addr_number }" placeholder="우편번호" required>
