@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -81,8 +82,8 @@ public interface ProductDAO {
 	String prodAvggrade(int productMain_idx);
 
 	// 리뷰리스트불러오기
-	@Select("select * from review where member_idx=#{member_idx} and productMain_idx=#{productMain_idx}")
-	List<ReviewDTO> prodreviewList(HashMap<String, String> ob);
+//	@Select("select * from review where productMain_idx=#{productMain_idx}")
+//	List<ReviewDTO> prodreviewList(int productMain_idx);
 
 	@Select("select * from productSummary where productMain_idx=#{idx}")
 	ProductSummaryDTO prodSummaryOne(int idx);
@@ -91,6 +92,16 @@ public interface ProductDAO {
 			"    where P.productName like '%${param}%'" + 
 			"    order by ${order}")
 	List<ProductDTO> selectSearchList(HashMap<String, String> map);
+
+	@Select("select count(*) from review where ${string}=#{string2} and productMain_idx=#{productMain_idx}")
+	int getpState(@Param("string")String string, @Param("string2")String string2, @Param("productMain_idx")int productMain_idx);
+
+	@Select("select count(*) from review where productMain_idx=#{productMain_idx}")
+	int allreviewCnt(int productMain_idx);
+
+	int selectreviewCount(HashMap<String, Object> param);
+
+	List<ReviewDTO> selectreviewList(HashMap<String, Object> param);
 	
 
 	

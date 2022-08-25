@@ -38,4 +38,21 @@
 		   		 category2=#{category2}		        
 		         <if test="productMain_categoryCode != null">and productMain_categoryCode=#{productMain_categoryCode}</if>
 	</select>
+	
+	<select id="selectreviewList" 
+			parameterType="hashmap" 
+			resultType="review">
+		select * from review where productMain_idx=#{productMain_idx}
+				<if test="filter == '최근등록순'">order by idx desc</if>
+				<if test="filter == '평점높은순'">order by grade desc</if>
+				<if test="filter == '평점낮은순'">order by grade</if>			
+			offset #{paging.offset} rows
+			fetch next #{paging.perPage} rows only
+	</select>
+	
+	<select id="selectreviewCount" 
+			parameterType="hashmap" 
+			resultType="int">
+		select count(*) from review where productMain_idx=#{productMain_idx}
+	</select>
 </mapper>

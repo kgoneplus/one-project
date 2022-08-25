@@ -217,49 +217,55 @@
                 </table>
             </div>
 	                </div>
-	                <div class="prodreview">
+	                <div class="prodreview" page="1">
 	                	<div class="prodreviewDetailArea">
 		                    <div class="prodreviewTitle"><h3>상품리뷰</h3></div>
 	                			<div class="prodreviewBox">
-	                				<div class="totalScopeBox">평점/5.0(별다가져오기) 리뷰건수</div>
+	                				<div class="totalScopeBox"><div class="scopeNum"></div>
+	                					<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg1"></i></span></div>
+					                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg1"></i></span></div>
+					                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg1"></i></span></div>
+					                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg1"></i></span></div>
+					                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg1"></i></span></div>
+	                				<span class="allreviewCnt"></span></div>
 	                				<div class="scopeGraphList">
-	                					<div class="graphItem state">
+	                					<div class="graphItem pState">
 	                						<strong>상품상태</strong>
 	                						<ul>
 	                							<li>
-	                								<div class="label">아주 좋아요</div>
+	                								<div class="graphlabel">아주 좋아요</div>
 	                								<div class="graphBox"><div class="per"></div></div>
-	                								<div class="num"><strong>87</strong>%</div>
+	                								<div class="graphnum"><strong class="verygood"></strong>%</div>
 	                							</li>
 	                							<li>
-	                								<div class="label">보통이에요</div>
+	                								<div class="graphlabel">보통이에요</div>
 	                								<div class="graphBox"><div class="per"></div></div>
-	                								<div class="num"><strong>11</strong>%</div>
+	                								<div class="graphnum"><strong class="normal"></strong>%</div>
 	                							</li>
 	                							<li>
-	                								<div class="label">별로에요</div>
+	                								<div class="graphlabel">별로에요</div>
 	                								<div class="graphBox"><div class="per"></div></div>
-	                								<div class="num"><strong>2</strong>%</div>
+	                								<div class="graphnum"><strong class="bad"></strong>%</div>
 	                							</li>
 	                						</ul>
 	                					</div>
-	                					<div class="graphItem accuracy">
+	                					<div class="graphItem pSame">
 	                						<strong>상품일치여부</strong>
 	                						<ul>
 	                							<li>
-	                								<div class="label">똑같아요</div>
+	                								<div class="graphlabel">똑같아요</div>
 	                								<div class="graphBox"><div class="per"></div></div>
-	                								<div class="num"><strong>87</strong>%</div>
+	                								<div class="graphnum"><strong class="same"></strong>%</div>
 	                							</li>
 	                							<li>
-	                								<div class="label">비슷해요</div>
+	                								<div class="graphlabel">비슷해요</div>
 	                								<div class="graphBox"><div class="per"></div></div>
-	                								<div class="num"><strong>11</strong>%</div>
+	                								<div class="graphnum"><strong class="alike"></strong>%</div>
 	                							</li>
 	                							<li>
-	                								<div class="label">달라요</div>
+	                								<div class="graphlabel">달라요</div>
 	                								<div class="graphBox"><div class="per"></div></div>
-	                								<div class="num"><strong>2</strong>%</div>
+	                								<div class="graphnum"><strong class="nsame"></strong>%</div>
 	                							</li>
 	                						</ul>
 	                					</div>
@@ -267,25 +273,39 @@
 	                						<strong>가격</strong>
 	                						<ul>
 	                							<li>
-	                								<div class="label">만족해요</div>
+	                								<div class="graphlabel">만족해요</div>
 	                								<div class="graphBox"><div class="per"></div></div>
-	                								<div class="num"><strong>87</strong>%</div>
+	                								<div class="graphnum"><strong class="pgood"></strong>%</div>
 	                							</li>
 	                							<li>
-	                								<div class="label">보통이에요</div>
+	                								<div class="graphlabel">보통이에요</div>
 	                								<div class="graphBox"><div class="per"></div></div>
-	                								<div class="num"><strong>11</strong>%</div>
+	                								<div class="graphnum"><strong class="pnormal"></strong>%</div>
 	                							</li>
 	                							<li>
-	                								<div class="label">별로에요</div>
+	                								<div class="graphlabel">별로에요</div>
 	                								<div class="graphBox"><div class="per"></div></div>
-	                								<div class="num"><strong>2</strong>%</div>
+	                								<div class="graphnum"><strong class="pbad"></strong>%</div>
 	                							</li>
 	                						</ul>
 	                					</div>
 	                				</div>
 	                			</div>
+	                			<div class="reviewFilterTitle">
+	                				<div class="reviewFilter">
+		                				<select name="filter" id="filter">
+		                					<option selected value="최근등록순">최근등록순</option>
+		                					<option value="평점높은순">평점높은순</option>
+		                					<option value="평점낮은순">평점낮은순</option>
+		                				</select>
+	                				</div>
+	                				<table class="prodreviewTable">
+	                				</table>
+	                			</div>
 	                	</div>
+	                	<div class="pagingNumber">
+
+						</div>
 	                </div>
 	                <div class="prodDelivery">
 	                	<div class="prodDetailArea">
@@ -298,7 +318,7 @@
 			                    				<strong class="prodDeliveryType">점포배송(자차배송)</strong>
 			                    				<em>내가 원하는 아무때나!</em>
 			                    				<p>지정한 날짜와 시간에 정확하게 도착해요.</p>
-			                    			</div>
+			       	             			</div>
 			                    		</li>
 			                    		<li>
 			                    			<i class="ico ico02"></i>
@@ -485,7 +505,20 @@
 	productnowBtn.forEach(btn => btn.addEventListener('click', productnowHandler))
 	
 	window.addEventListener('load', prodgradHandler)
-// 	window.addEventListener('load', prodgradImg)
+	
+	let filter = document.getElementById('filter')
+	filter.addEventListener('change', proddetailReview)
+	
+	window.addEventListener('load', prodreviewList)
+	filter.addEventListener('change', async function() {
+// 		filter.setAttribute('first', 1)
+		await prodreviewList(event)
+		console.log(filter.value)
+		
+	})
+	
+// 	window.addEventListener('load', proddetailReview)
+
 </script>
 
 <%@ include file="../footer.jsp"%>
