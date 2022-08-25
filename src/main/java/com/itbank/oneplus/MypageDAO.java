@@ -29,19 +29,27 @@ public interface MypageDAO {
 			+ " values (#{member_idx}, #{askType}, #{title}, #{content})")
 	public int askWrite(AskDTO dto);
 
-	// 1:1 문의 내역
+	// 1:1 문의 내역(작성자와 일치하는 문의만)
 	@Select("select A.* from ask A "
 			+ "join parent_member M "
 			+ "on A.member_idx = M.idx "
 			+ "where M.idx = #{idx}")
 	List<AskDTO> selectAskAll(int idx);
 
-	// 1:1 문의 상세 보기
+	// 1:1 문의 상세 보기(관리자 코멘트 작성 해야함)
 	@Select("select * from ask where idx = #{idx}")
 	public AskDTO selectAskOne(int idx);
 
 	// 1:1 문의 삭제
 	@Delete("delete ask where idx = #{idx}")
 	public int askOneDelete(int idx);
-	
+
+	// 리뷰할 상품 더미
+	@Select("select * from productMain where idx < 5")
+	public List<ProductDTO> selectReviewList();
+
+	// 리뷰 작성(...공사중...)
+	@Insert("insert into review (productMain_idx, member_idx, pState, pSame, price, content, Grade, img) "
+			+ "values (#{productMain_idx}, #{member_idx}, #{pState}, #{pSame}, #{price}, #{content}, #{Grade}, #{img})")
+	public int writeReview(ReviewDTO dto);
 }

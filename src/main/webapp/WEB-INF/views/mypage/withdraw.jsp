@@ -64,15 +64,15 @@
 					<div>• 연결되었던 모든 SNS 계정도 함께 삭제되며, 재가입시 새롭게 인증 진행을 하셔야 합니다.</div>
 				</div>
 				
-				<fieldset>
-					<div><input type="checkbox" required>안내 사항을 모두 확인하였으며, 탈퇴하는 사이트의 이용 데이터가 복구가 불가함에 동의합니다.</div>
-					<div>또한 모든 홈플러스 패밀리사이트를 탈퇴하는 경우, 탈퇴 아이디(ID호출)의 재사용이 불가함에 동의합니다</div>
-				</fieldset>		
-				
 				<div>
-					<!-- POST가 아니고 비밀번호 일치여부 확인해서 데이터 삭제해야함
-					  -->
 					<form id="memberDeleteForm" method="post" onsubmit="return memberSecession();">
+						<fieldset class="withdraw_fs">
+								<input type="checkbox" required>
+								<div>
+									<div>안내 사항을 모두 확인하였으며, 탈퇴하는 사이트의 이용 데이터가 복구가 불가함에 동의합니다.</div>
+									<div>또한 모든 홈플러스 패밀리사이트를 탈퇴하는 경우, 탈퇴 아이디(ID호출)의 재사용이 불가함에 동의합니다</div>
+								</div>
+						</fieldset>
 						<p>아이디
 							<input type="text" name="userid" value="${login.userid }" readonly>
 						</p>

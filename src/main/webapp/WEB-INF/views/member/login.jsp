@@ -22,7 +22,7 @@
         <div class="login_center">
             <form method="POST">
                 <div class="login_logo">
-                    <a href="#"><img src="${cpath }/resources/img/oneplus.png" width="195px" height="50px"></a>
+                    <a href="${cpath }"><img src="${cpath }/resources/img/oneplus.png" width="195px" height="50px"></a>
                 </div>
                 <div class="login_box">
                     <div class="login_login">
@@ -35,7 +35,7 @@
                     </div>
                     <div class="login_find_right">
                         <a href="${cpath }/member/login/idsearch">아이디찾기</a>
-                        <a href="#"> | 비밀번호찾기</a>
+                        <a href="${cpath }/member/login/passSearch"> | 비밀번호찾기</a>
                     </div>
                 </div>    
                 <div class="login_button1">
@@ -64,6 +64,7 @@
         </div>
     </div>
    <script>
+   const cpath = '${cpath}'
    const cookie = document.cookie.split('=');
    if(cookie[1] != null){
   	 document.getElementById('id').value = cookie[1];
@@ -71,6 +72,7 @@
   
    
    Kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
+   
    var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "GNv8IH0Irsq3ZxTgn4bE",
@@ -83,68 +85,12 @@
 	
 	const naverbtn = document.getElementById('naverlogin')
 	naverbtn.addEventListener('click',function(){
-	const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
-	btnNaverLogin.click();
+		const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
+		btnNaverLogin.click();
 	});
 	
-	
-	
-	
-function kakaoLogin() {
-	  Kakao.Auth.login({
-	      success: function (response) {
-	        Kakao.API.request({
-	          url: '/v2/user/me',
-	          success: function (response) {
-	        	  console.log(response)
-	        	  kakaomap(response)
-	          },
-	          fail: function (error) {
-	            console.log(error)
-	          },
-	        })
-	      },
-	      fail: function (error) {
-	        console.log(error)
-	      },
-	    })
-	  }
 
-// 받은데이터 매핑
-function kakaomap(res){
-	 	console.log(res)
-		const kakaouser = res.kakao_account
-	  	const kakaouser_map = {
-	  			'name':kakaouser.profile.nickname,
-	  			'email':kakaouser.email
-	  	}
-		kakaoconfirm(kakaouser_map)
-}
 
-// 매핑받은 데이터 로그인 하기
-function kakaoconfirm(data){
-	 const url = '${cpath}/kakaoconfirm'
-	 const opt = {
-		 method:'POST',
-		 body: JSON.stringify(data),
-		 headers:{
-			'Content-Type' : 'application/json; charset=utf-8'
-		 }
-	 }
-	 fetch(url, opt)
-	 .then(resp => resp.text())
-	 .then(text =>{
-		 if(text == 1){
-			 console.log('로그인 성공')
-			  kakaoLogout()
-			 location.replace("http://localhost:8080/project")
-			
-		 }else{
-			 console.log('실패')
-			 location.replace("http://localhost:8080/project/member/login/kakao")
-		 }
-	 })
-}
 
   </script>
 

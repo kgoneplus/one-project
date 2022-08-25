@@ -112,6 +112,14 @@ public class MemberService {
 			return 0;
 		}
 	}
+	// 
+	public int passUpdate(MemberDTO dto) {
+		
+		String hashpw = hash.getHash(dto.getUserpw());
+		dto.setUserpw(hashpw);
+		
+		return dao.passUpdate(dto);
+	}
 
 
 }

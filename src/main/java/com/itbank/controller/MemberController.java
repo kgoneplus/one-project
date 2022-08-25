@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itbank.oneplus.MemberDAO;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.service.MemberService;
 
@@ -27,24 +28,26 @@ import com.itbank.service.MemberService;
 public class MemberController {
 	
 	@Autowired private MemberService ms;
+	@Autowired private MemberDAO dao;
 	
 	//창 페이지
 	@GetMapping("/login")
-	public void login() {}
+	public void login(String url) {
+		System.out.println("전달받은 url" + url);
+	}
 	
 	//로그인
 	@PostMapping("/login")
-	public String login(MemberDTO dto, HttpSession session, HttpServletResponse resp) {
+	public String login(String url, MemberDTO dto, HttpSession session, HttpServletResponse resp) {
 		MemberDTO login = ms.login(dto);
 		session.setAttribute("login", login);
 		
 		System.out.println(dto.getUserid_remember());
 		System.out.println("==========================");
+		if(url != null && url.contains("cart")) {
+			url = url + "/" + login.getIdx();
+		}
 		
-//		Cookie userid = new Cookie("userid", dto.getUserid());
-//		userid.setMaxAge(60*60*24*30);
-//		resp.addCookie(userid);
-//		session.setAttribute("userid", userid.getValue());
 		if(dto.getUserid_remember() != null) {
 			Cookie userid = new Cookie("userid", dto.getUserid());
 			userid.setMaxAge(60*60*24*30);
@@ -59,7 +62,7 @@ public class MemberController {
 		}
 		
 		
-		return "redirect:/";
+		return "redirect:" + (url == null ? "/" : url);
 	}
 	//로그아웃
 	@GetMapping("/logout")
@@ -95,5 +98,9 @@ public class MemberController {
 		ms.idsearch(dto);
 		return "redirect:/member/login";
 	}
+	// 비밀번호 찾기
+	@GetMapping("/login/passSearch")
+	public void passSerach() {}
+	
 	
 }
