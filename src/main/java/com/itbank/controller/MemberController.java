@@ -28,22 +28,23 @@ import com.itbank.service.MemberService;
 public class MemberController {
 	
 	@Autowired private MemberService ms;
-	@Autowired private MemberDAO dao;
 	
 	//창 페이지
 	@GetMapping("/login")
 	public void login(String url) {
-		System.out.println("전달받은 url" + url);
+		
 	}
 	
 	//로그인
 	@PostMapping("/login")
 	public String login(String url, MemberDTO dto, HttpSession session, HttpServletResponse resp) {
+		
 		MemberDTO login = ms.login(dto);
+		if(login == null) {
+			return "redirect:/member/login";
+		}
 		session.setAttribute("login", login);
 		
-		System.out.println(dto.getUserid_remember());
-		System.out.println("==========================");
 		if(url != null && url.contains("cart")) {
 			url = url + "/" + login.getIdx();
 		}

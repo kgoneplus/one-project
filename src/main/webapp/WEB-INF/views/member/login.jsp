@@ -39,7 +39,7 @@
                     </div>
                 </div>    
                 <div class="login_button1">
-                 	<a><button type="submit">로그인</button></a> 
+                 	<a><button type="submit" onclick="login_confirm()">로그인</button></a> 
                 </div>
                 <div class="login_button2">
                     <div class="login_button2_naver">
@@ -65,14 +65,17 @@
     </div>
    <script>
    const cpath = '${cpath}'
+   
+   // 아아디 저장 기능
    const cookie = document.cookie.split('=');
    if(cookie[1] != null){
   	 document.getElementById('id').value = cookie[1];
    }
   
-   
+   // 카카오 인잇..
    Kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
    
+   // 네이버 로그인
    var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "GNv8IH0Irsq3ZxTgn4bE",
