@@ -35,7 +35,7 @@
                     </div>
                     <div class="login_find_right">
                         <a href="${cpath }/member/login/idsearch">아이디찾기</a>
-                        <a href="#"> | 비밀번호찾기</a>
+                        <a href="${cpath }/member/login/passSearch"> | 비밀번호찾기</a>
                     </div>
                 </div>    
                 <div class="login_button1">

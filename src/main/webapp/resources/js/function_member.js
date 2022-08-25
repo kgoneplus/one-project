@@ -124,7 +124,6 @@ function memberId(event) {
 				message = '중복된 아이디'
 				idfocus.focus()
 				ConfirmMessage.setAttribute('confirm', 'false')
-				
 				ConfirmMessage.style.color = 'red'
 			}
 		})
@@ -148,7 +147,6 @@ function naverloginhandler( ) {
 		let token = naverLogin.accessToken.toString();
 		const tokensplit = token.split('.');
 		token = tokensplit[1]
-		console.log(token)
 		
 		
 		phonenum = phonenum.replace("-","")
@@ -163,16 +161,10 @@ function naverloginhandler( ) {
 		phonenumvalue.value = phonenum
 	
 		
-		console.log(email)
-		console.log(name)
-		console.log(phonenum)
 		
 		
 		
 		
-//		sessionStorage.setItem("email", email) // 세션 스토리지 저장하기 *****
-//		sessionStorage.setItem("name", name) // 세션 스토리지 저장하기 *****
-//		sessionStorage.setItem("phonenum", phonenum) // 세션 스토리지 저장하기 *****
 		
 		
 	const url = `${cpath}/naverSave`
@@ -371,6 +363,99 @@ function kakaoconfirm(data){
 		 }
 	 })
 }
+
+//비밀번호 확인 
+function passSearch(event){
+	event.preventDefault()
+	const url = `${cpath}/passSearch`
+	const ob = {}
+	const formData = new FormData(event.target)
+	for(let key of formData.keys()) {
+		ob[key] = formData.get(key)
+	}
+	
+	const opt = {
+			method:'POST',
+			body: JSON.stringify(ob),
+			headers:{
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt)
+	.then(resp => resp.json())
+	.then(json => {
+		passconfirm (json.email)
+		passSearch_email.innerText = json.email + '로 인증번호 발송'
+		passSearch_inputform.style.display = 'block'
+	})
+}
+
+function passconfirm (email){
+	
+	const url = `${cpath}/mailconfirm`
+	const opt = {
+			method: 'POST',
+			body: JSON.stringify({
+			'mailadress' : email	
+			}),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt)
+	.then(resp => resp.text())
+	.then(text => {
+		if(text != null){
+			console.log('성공')
+			sessionStorage.setItem("emailconfirmnumber", text)
+		}
+		else{
+			console.log('실패')
+		}
+	})
+}
+// 비밀번호 인증 함수 (인증후 -> 업데이트 시키러가자)
+function mailConfirmNumber2(){
+	console.log(mailconfrimnumber.value)
+	let number = sessionStorage.getItem("emailconfirmnumber")
+	console.log(number)
+	if(mailconfrimnumber.value == number){
+//		PasswordInput(passId.value)
+	}
+	else {
+		emailconfirmMessage.innerText = '인증번호가 틀립니다'
+	}
+}
+function PasswordInput(event){
+	event.preventDefault()
+	const userid = document.getElementById('passId').value
+	let ob = {}
+	const formData = new FormData(event.target)
+	for(let key of formData.keys()) {
+		ob[key] = formData.get(key)
+	}
+	ob['userid'] = userid
+	console.log(ob)
+	const url = `${cpath}/passUpdate`
+	const opt = {
+			method: 'POST',
+			body: JSON.stringify(ob),
+			headers:{
+				'Content-Type':'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt)
+	.then(resp => resp.text())
+	.then(text => {
+		if(text == 1){
+			console.log('성공')
+			location.href = `${cpath}/member/login`
+		}else {
+			console.log('실패')
+		}
+	})
+}
+
 
 
 

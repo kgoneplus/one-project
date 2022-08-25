@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 public interface MemberDAO {
 	
@@ -45,7 +46,12 @@ public interface MemberDAO {
 	@Select("select * from parent_member")
 	List<MemberDTO> memberconfirm();
 	
-
 	@Select("select * from parent_member where email=#{email} and name=#{name}")
 	MemberDTO selectIdserachConfirm(MemberDTO dto);
+	
+	@Select("select * from parent_member where userid=#{userid}")
+	MemberDTO selectPassSearch(MemberDTO dto);
+	
+	@Update("update parent_member set userpw = #{userpw} where userid=#{userid}")
+	int passUpdate(MemberDTO dto);
 }

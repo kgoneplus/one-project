@@ -63,7 +63,7 @@ public class MypageService {
 		return mypageDAO.selectAskAll(idx);
 	}
 	
-	// 1:1 문의 상세 보기
+	// 1:1 문의 상세 보기(관리자 코멘트 작성 해야함)
 	public AskDTO selectAskOne(int idx) {
 		return mypageDAO.selectAskOne(idx);
 	}

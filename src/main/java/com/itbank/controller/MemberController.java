@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itbank.oneplus.MemberDAO;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.service.MemberService;
 
@@ -27,6 +28,7 @@ import com.itbank.service.MemberService;
 public class MemberController {
 	
 	@Autowired private MemberService ms;
+	@Autowired private MemberDAO dao;
 	
 	//창 페이지
 	@GetMapping("/login")
@@ -96,5 +98,9 @@ public class MemberController {
 		ms.idsearch(dto);
 		return "redirect:/member/login";
 	}
+	// 비밀번호 찾기
+	@GetMapping("/login/passSearch")
+	public void passSerach() {}
+	
 	
 }

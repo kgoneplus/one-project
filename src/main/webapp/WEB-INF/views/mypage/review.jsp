@@ -22,7 +22,7 @@
 .review_content {
 	position: absolute;
 	z-index: 6;
-	width: 534px;
+	width: 548px;
 	height: 600px;
 	justify-content: center;
 	align-items: center;
@@ -31,6 +31,7 @@
 	top: 50%;
   	left: 50%;
   	transform: translate(-50%, -50%);
+  	border: 1px solid black;
 }
 .review_hidden {
 	display: none;
@@ -105,8 +106,15 @@
 }
 .review_submit {
 	text-align: center;
-	padding: 20px 0;
-	margin: 0;
+	padding-bottom: 20px;
+}
+.review_submit > input {
+	width: 92px;
+    height: 36px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
 }
 .review_write > button {
     margin: 23px;
@@ -122,14 +130,15 @@
 	display: flex;
 	justify-content: space-between;
 	margin: 20px;
-	border: 1px solid black;
-	border-radius: 2px;
+	border: 1px solid #cdcdcd;
+	border-radius: 5px;
 	padding-top: 4px;
 }
 .productImg > img {
 	width: 80px;
 	height: 80px;
 	margin: 0 20px;
+	border: 1px solid #cdcdcd
 }
 .productIdx {
 	text-align: center;
@@ -239,20 +248,36 @@
 							<!-- 별 이미지로 바꿔야함 -->
 							<div>
 								<div>상품 별점을 남겨주세요!</div>
-								<p><input type="radio" name="Grade" value="1">★</p>
-								<p><input type="radio" name="Grade" value="2">★★</p>
-								<p><input type="radio" name="Grade" value="3">★★★</p>
-								<p><input type="radio" name="Grade" value="4">★★★★</p>
-								<p><input type="radio" name="Grade" value="5">★★★★★</p>
+								<select name="Grade" required>
+									<option value="">선택</option>
+									<option value="1">1</option>
+									<option value="1.5">1.5</option>
+									<option value="2">2</option>
+									<option value="2.5">2.5</option>
+									<option value="3">3</option>
+									<option value="3.5">3.5</option>
+									<option value="4">4</option>
+									<option value="4.5">4.5</option>
+									<option value="5">5</option>
+								</select>
 							</div>
 							
 							<!-- pState -->
 							<div class="review_item_check">
 								<div>[상품상태] 상품의 상태는 어떤가요?</div>
 								<div class="review_item_click">
-									<p><input type="radio" name="pState" value="아주 좋아요">아주 좋아요</p>
-									<p><input type="radio" name="pState" value="보통이에요">보통이에요</p>
-									<p><input type="radio" name="pState" value="별로에요">별로에요</p>
+									<label class="review_ladel">
+										<input type="radio" name="pState" value="아주 좋아요" required>
+										<span>아주 좋아요</span>
+									</label>
+									<label class="review_ladel">
+										<input type="radio" name="pState" value="보통이에요">
+										<span>보통이에요</span>
+									</label>
+									<label class="review_ladel">
+										<input type="radio" name="pState" value="별로에요">
+										<span>별로에요</span>
+									</label>
 								</div>
 							</div>
 							
@@ -260,9 +285,18 @@
 							<div class="review_item_check">
 								<div>[상품일치여부] 구매한 상품과 받은 상품이 똑같은가요?</div>
 								<div class="review_item_click">
-									<p><input type="radio" name="pSame" value="똑같아요">똑같아요</p>
-									<p><input type="radio" name="pSame" value="비슷해요">비슷해요</p>
-									<p><input type="radio" name="pSame" value="달라요">달라요</p>
+									<label class="review_ladel">
+										<input type="radio" name="pSame" value="똑같아요" required>
+										<span>똑같아요</span>
+									</label>
+									<label class="review_ladel">
+										<input type="radio" name="pSame" value="비슷해요">
+										<span>비슷해요</span>
+									</label>
+									<label class="review_ladel">
+										<input type="radio" name="pSame" value="달라요">
+										<span>달라요</span>
+									</label>
 								</div>
 							</div>
 						
@@ -270,9 +304,18 @@
 							<div class="review_item_check">
 								<div>[가격] 상품의 가격은 어떤가요?</div>
 								<div class="review_item_click">
-									<p><input type="radio" name="price" value="만족해요">만족해요</p>
-									<p><input type="radio" name="price" value="보통이에요">보통이에요</p>
-									<p><input type="radio" name="price" value="별로에요">별로에요</p>
+									<label class="review_ladel">
+										<input type="radio" name="price" value="만족해요" required>
+										<span>만족해요</span>
+									</label>
+									<label class="review_ladel">
+										<input type="radio" name="price" value="보통이에요">
+										<span>보통이에요</span>
+									</label>
+									<label class="review_ladel">
+										<input type="radio" name="price" value="별로에요">
+										<span>별로에요</span>
+									</label>
 								</div>
 							</div>
 						
