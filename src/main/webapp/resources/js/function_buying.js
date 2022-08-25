@@ -568,10 +568,9 @@ function updatedefaultAddress() {
 }
 
 // 결제 전 주문 insert
-function orderInsertHandler() {
+async function orderInsertHandler() {
 	const deliveryDate = document.querySelector("input[type='radio']:checked")
-	let result = 0
-	const url = cpath + '/buying/insertOrder/' 
+	const url = cpath + '/buying/insertOrder' 
 	const ob = {
 			'member_idx' : member_idx,
 			'deliveryDate' : deliveryDate.value,
@@ -579,8 +578,8 @@ function orderInsertHandler() {
 			'receiverPhonenum' : document.querySelector('.homeDeliveryTab').getAttribute('receiverPhonenum'),
 			'address' : document.querySelector('.homeDeliveryTab > div p').innerText,
 			'totalPrice' : document.querySelector('.payTab > .payTabTotalprice:first-child p').innerText.replace(',', ''),
-			'discountPrice' : document.querySelector('.payTab > .payTabTotalprice:nth-child(2) p').innerText.replace(',', ''),
-			'deliveryFee' : document.querySelector('.payTab > .payTabTotalprice:nth-child(3) p').innerText.replace(',', ''),
+			'discountPrice' : document.querySelector('.payTab > .payTabTotalprice:nth-child(3) p').innerText.replace(',', ''),
+			'deliveryFee' : document.querySelector('.payTab > .payTabTotalprice:nth-child(2) p').innerText.replace(',', ''),
 			'purchase' : document.querySelector('.resultPrice p').innerText.replace(',', '')
 	}
 //	console.log(ob)
@@ -591,63 +590,71 @@ function orderInsertHandler() {
 				'Content-Type' : 'application/json; charset=utf-8'
 			}
 	}
-	fetch(url, opt).then(resp => resp.text())
+	return await fetch(url, opt).then(resp => resp.text())
 	.then(text => {
-		if(text == 1) {
-			alert('주문테이블에 추가 성공')
-			result = 1
+//		console.log('주문테이블 추가 후 결과 : ', text)
+		if(text == 0) {
+			alert('주문테이블에 추가 실패')
+			return 0
 		}
-		else alert('주문테이블에 추가 실패')
+		alert('주문테이블에 추가 성공')
+//		console.log('text : ', text)
+		return text
 	})
-	return result
+}
+
+// 주문정보 selectOne
+async function selectOneOrders(ordersidx) {
+	const url = cpath + '/buying/getOrders/' + ordersidx
+	return await fetch(url).then(resp => resp.json())
+	.then(json => {
+		return json
+	})
+}
+
+async function selectMember(idx) {
+	const url = cpath + '/buying/getMember/' + idx
+	return await fetch(url).then(resp => resp.json())
+	.then(json => {
+		return json
+	})
+}
+
+// 주문 후 장바구니 테이블에서 삭제
+async function deleteproductCartHandler(ordersidx) {
+	const url = cpath + '/buying/cart/delete/' + ordersidx
+    const opt = {
+  		  method: 'DELETE'
+    }
+    return await fetch(url, opt).then(resp => resp.text())
 }
 
 // 아임포트 api
-function iamport() {
+async function iamport(ordersidx) {
+	var result = await selectOneOrders(ordersidx);
+	var orderer = await selectMember(result.member_idx);
+//	console.log(orderer)
 	IMP.init('imp35518566');
 	IMP.request_pay({
-	    pg: "kakaopay.",
+	    pg: "kakaopay",
 	    pay_method: "card",
-	    merchant_uid : 'merchant_'+new Date().getTime(),
-	    name : '결제테스트',
-	    amount : 14000,
+	    merchant_uid : 'merchant_'+ new Date().getTime(),
+	    name : '주문번호 ' + ordersidx,
+	    amount : result.totalPrice,
 	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자',
-	    buyer_tel : '010-1234-5678',
-	    buyer_addr : '서울특별시 강남구 삼성동',
-	    buyer_postcode : '123-456'
-	  }, function(rsp) {
+	    buyer_name : orderer.name,
+	    buyer_tel : orderer.phonenum,
+	    buyer_addr : orderer.address
+//	    buyer_postcode : '123-456'
+	  }, async function(rsp) {
           if ( rsp.success ) {
-              //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-              jQuery.ajax({
-                  url: "/buying/kakaopay", //cross-domain error가 발생하지 않도록 주의해주세요
-                  type: 'POST',
-                  dataType: 'json',
-                  contentType: 'application/json',
-                  data: JSON.stringify({
-                      uid : rsp.imp_uid,
-                      price: rsp.paid_amount
-                      //기타 필요한 데이터가 있으면 추가 전달
-                  })
-              }).done(function(data) {
-                  //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-                  if ( everythings_fine ) {
-                      msg = '결제가 완료되었습니다.';
-                      msg += '\n고유ID : ' + rsp.imp_uid;
-                      msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-                      msg += '\n결제 금액 : ' + rsp.paid_amount;
-                      msg += '카드 승인번호 : ' + rsp.apply_num;
-
-                      alert(msg);
-                  } else {
-                      //[3] 아직 제대로 결제가 되지 않았습니다.
-                      //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-                  }
-              });
-              //성공시 이동할 페이지
-//              location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg;
+        	  // 장바구니 테이블 삭제 & 결제완료로 상태 바꾸기
+              const cart = await deleteproductCartHandler(ordersidx);
+//              console.log('cart : ', cart)
+              if(cart == 1) alert('장바구니 삭제완료')
+              else alert('장바구니는 안지워졌네...')
               // 성공시에 ordersDetail에 orderStatus결제완료로 바꾸기
-              // 성공시에 productcart에서 삭제하기
+              
               // 결제 중간에 취소했을 때는 주문 테이블에서 삭제하기
               location.href = cpath + '/mypage/orders'
           } else {
@@ -662,25 +669,7 @@ function iamport() {
 }
 
 // 카카오페이 api
-function kakaopay() {
-	const result = orderInsertHandler()
-	// result는 왜 0인가 확인 필!
-	console.log(result)
-	iamport()
-//	if(result == 1) {
-//		iamport()
-//		const url = cpath + '/buying/kakaopay'
-//		const opt = {
-//				method: 'POST',
-//				body: JSON.stringify(ob),
-//				headers: {
-//					'Content-Type' : 'application/json; charset=utf-8'
-//				}
-//		}
-//		fetch(url, opt).then(resp => resp.json())
-//		.then(json => {
-//			console.log(json)
-//		})
-//	}
-	
+async function kakaopay() {
+	let ordersidx = await orderInsertHandler()
+	iamport(ordersidx)	
 }

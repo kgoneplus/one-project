@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import com.itbank.oneplus.DeliveryDAO;
 import com.itbank.oneplus.DeliveryDTO;
+import com.itbank.oneplus.MemberDAO;
+import com.itbank.oneplus.MemberDTO;
 import com.itbank.oneplus.OrdersDAO;
 import com.itbank.oneplus.OrdersDTO;
 import com.itbank.oneplus.OrdersDetailDTO;
@@ -26,6 +28,7 @@ public class ProductcartService {
 	@Autowired ProductcartDAO dao;
 	@Autowired DeliveryDAO deliveryDao;
 	@Autowired OrdersDAO ordersDao;
+	@Autowired MemberDAO memberDao;
 
  	public List<ProductcartDTO> deliveryInfoSelectList(int idx, List<String> itemList) {
 		List<ProductcartDTO> list = new ArrayList<ProductcartDTO>();
@@ -146,6 +149,33 @@ public class ProductcartService {
 
 	public int getmaxIdx() {
 		return ordersDao.getmaxIdx();
+	}
+
+	public OrdersDTO getOrders(int idx) {
+		return ordersDao.getOrders(idx);
+	}
+
+	public MemberDTO getMember(int idx) {
+		return memberDao.getMember(idx);
+	}
+
+	public int deleteProductCart(int orders_idx) {
+		List<OrdersDetailDTO> list = ordersDao.getOrdersDetail(orders_idx);
+//		System.out.println("list : " + list);
+		int member_idx = ordersDao.getmemberIdx(orders_idx);
+//		System.out.println("member_idx : " + member_idx);
+		int result = 0;
+		for(int i=0; i<list.size(); i++) {
+			// 장바구니 테이블 삭제
+			ProductcartDTO dto = new ProductcartDTO();
+			dto.setProductMain_idx(list.get(i).getProductMain_idx());
+			dto.setMember_idx(member_idx);
+			result = dao.cartDelete(dto);
+			// ordersDetail 결제완료로 상태 바꾸기
+			ordersDao.updateOrderStatus(list.get(i).getIdx());
+			if(result != 1) return result;
+		}
+		return result;
 	}
 
 }

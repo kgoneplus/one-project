@@ -1,9 +1,9 @@
 package com.itbank.restcontroller;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+//import java.io.IOException;
+//import java.net.HttpURLConnection;
+//import java.net.MalformedURLException;
+//import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itbank.oneplus.DeliveryDTO;
+import com.itbank.oneplus.MemberDTO;
 import com.itbank.oneplus.OrdersDTO;
 import com.itbank.oneplus.ProductcartDAO;
 import com.itbank.oneplus.ProductcartDTO;
@@ -111,34 +112,49 @@ public class RestBuyingController {
 		if(ordersIdx == 1) ordersIdx = service.getmaxIdx();
 //		System.out.println("ordersIdx : " + ordersIdx);
 		int insertOrdersDetail = service.insertOrdersDetail(ordersIdx, session);
-		return insertOrdersDetail;
+		if(insertOrdersDetail == 1) return ordersIdx;
+		else return 0;
 	}
 	
 	@PostMapping(value="/buying/kakaopay")
 	@CrossOrigin
 	public void kakaopay() {
-		try {
-		URL url = new URL("http://kapi.kakao.com/v1/payment/approve");
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Authorization", "KakaoAK 84098da293601af21d10b10a0f28a008");
-		conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-		conn.setDoOutput(true);
-		String parameter = "cid=TC0ONETIME"
-						+ "partner_order_id=partner_order_id"
-						+ "partner_user_id=partner_user_id"
-						+ "item_name=" + ""
-						+ "quantity=1"
-						+ "total_amount=2200"
-						+ "tax_free_amount=0"
-						+ "approval_url=https://developers.kakao.com/success"
-						+ "fail_url=https://developers.kakao.com/fail"
-						+ "cancel_url=https://developers.kakao.com/cancel";
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+//		try {
+//		URL url = new URL("http://kapi.kakao.com/v1/payment/approve");
+//		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//		conn.setRequestMethod("POST");
+//		conn.setRequestProperty("Authorization", "KakaoAK 84098da293601af21d10b10a0f28a008");
+//		conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+//		conn.setDoOutput(true);
+//		String parameter = "cid=TC0ONETIME"
+//						+ "partner_order_id=partner_order_id"
+//						+ "partner_user_id=partner_user_id"
+//						+ "item_name=" + ""
+//						+ "quantity=1"
+//						+ "total_amount=2200"
+//						+ "tax_free_amount=0"
+//						+ "approval_url=https://developers.kakao.com/success"
+//						+ "fail_url=https://developers.kakao.com/fail"
+//						+ "cancel_url=https://developers.kakao.com/cancel";
+//		} catch (MalformedURLException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}		
+	}
+	
+	@GetMapping(value="/buying/getOrders/{idx}")
+	public OrdersDTO getOrders(@PathVariable int idx) {
+		return service.getOrders(idx);
+	}
+	
+	@GetMapping(value="/buying/getMember/{idx}")
+	public MemberDTO getMember(@PathVariable int idx) {
+		return service.getMember(idx);
+	}
+	
+	@DeleteMapping(value="/buying/cart/delete/{idx}")
+	public int deleteproductCart(@PathVariable int idx) {
+		return service.deleteProductCart(idx);
 	}
 }
