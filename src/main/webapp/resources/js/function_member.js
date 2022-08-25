@@ -420,6 +420,7 @@ function mailConfirmNumber2(){
 	let number = sessionStorage.getItem("emailconfirmnumber")
 	console.log(number)
 	if(mailconfrimnumber.value == number){
+		password_input.style.display = 'block'
 //		PasswordInput(passId.value)
 	}
 	else {

@@ -88,7 +88,7 @@ public interface ProductDAO {
 	@Select("select * from productSummary where productMain_idx=#{idx}")
 	ProductSummaryDTO prodSummaryOne(int idx);
 	
-	@Select("select distinct P.*, (select count(*) from review where productMain_idx = P.idx) as rcnt from productMain P" + 
+	@Select("select distinct P.* , (select count(*) from review where productMain_idx = P.idx) as rcnt from productMain P" + 
 			"    where P.productName like '%${param}%'" + 
 			"    order by ${order}")
 	List<ProductDTO> selectSearchList(HashMap<String, String> map);
