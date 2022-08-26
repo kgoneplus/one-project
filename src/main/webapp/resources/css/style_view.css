@@ -471,27 +471,45 @@ view > viewmain:first-child{
     display: none;
     position: absolute;
     width: 500px;
-    height: 100px;
-    top: 902px;
+    height: 140px;
+    top: 896px;
     background: white;
     z-index: 2;
     font-size: 15px;
     float: right;
-    border: 5px solid #df0011;
+    border: 2px solid #df0011;
     text-align: center;
-    line-height: 25px;
+    line-height: 40px;
+    border-radius: 36px;
+}
+.product_cartbtnOverlay button{
+	background-color: white;
+    width: 160px;
+    height: 30px;
+    margin: 4px;
+    border-radius: 5px;
+}
+.cartPopup > .shopping{
+	background-color: black;
+	color: white;
+    font-weight: 600;
+}
+.cartPopup > button:nth-last-child(1){
+	border-color: #df0011;
+	background-color: #df0011;
+	color: white;
+    font-weight: 600;
 }
 .prodremocon >.product_cartbtnOverlay{
 	display: none;
     position: absolute;
     width: 300px;
-    height: 100px;
-    top: 439px;
+    height: 137px;
+    top: 411px;
     background: white;
     z-index: 2;
     font-size: 15px;
     float: right;
-    border: 5px solid blue;
     text-align: center;
     line-height: 25px;
 }
@@ -527,6 +545,7 @@ view > viewmain:first-child{
 .hotslide_wrap p{
 	font-size: 12px;
 	padding: 0 5px;
+	margin: 3px 0;
 }
 .prodDetailTab {
 	display: flex;
