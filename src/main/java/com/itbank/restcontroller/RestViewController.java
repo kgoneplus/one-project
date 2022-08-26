@@ -103,16 +103,9 @@ public class RestViewController {
 		result.put("allreviewCnt", allreviewCnt);
 		return result;
 	}
-	
-	// 상품별리뷰리스트불러오기
-//	@PostMapping(value="/product/prodreviewList/{productMain_idx}")
-//	public List<ReviewDTO> prodreviewList(@PathVariable int productMain_idx){
-//		return dao.prodreviewList(productMain_idx);
-//	}
-	
+
 	@PostMapping(value="/product/prodreviewList")
 	public HashMap<String, Object> prodreviewList(@RequestBody HashMap<String, Object> param){
-//		ModelAndView mav = new ModelAndView("/product/view") ;
 		int reviewCount = restviewService.selectreviewCount(param);
 		int page = Integer.parseInt(String.valueOf(param.get("page")));
 		PruductPaging paging = new PruductPaging(page, reviewCount);			
@@ -120,29 +113,10 @@ public class RestViewController {
 		param.put("filter", param.get("filter"));
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		List<ReviewDTO> list = restviewService.prodreviewList(param);	
-//		mav.addObject("list", list);			
-//		mav.addObject("paging", paging);
 		hashMap.put("paging", paging);
 		hashMap.put("list", list);
 		return hashMap;
 	}
 	
-	// 페이징
-//	@PostMapping(value="/product/prodreview/paging/{productMain_idx}")
-//	public ModelAndView reviewPaging(@PathVariable int productMain_idx,
-//									@RequestBody HashMap<String, Object> param,
-//									@RequestParam(defaultValue = "1") Integer page
-//																) {
-//		ModelAndView mav = new ModelAndView("/product/view/{productMain_idx}") ;
-//		int reviewCount = restviewService.selectreviewCount(param);	
-//		PruductPaging paging = new PruductPaging(page, reviewCount);			
-//		param.put("paging", paging);							
-//		System.out.println("여기");
-//		
-//		List<ReviewDTO> list = restviewService.selectreviewList(param);	
-//		mav.addObject("list", list);			
-//		mav.addObject("paging", paging);		
-//		return mav;
-//	}
 	
 }
