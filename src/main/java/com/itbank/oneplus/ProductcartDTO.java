@@ -1,7 +1,10 @@
 package com.itbank.oneplus;
 
+import java.io.Serializable;
 
-public class ProductcartDTO {
+public class ProductcartDTO implements Serializable{
+	private static final long serialVersionUID = -247666390070460631L;
+	
 	private int member_idx;
 	private int productMain_idx;
 	private String productName;

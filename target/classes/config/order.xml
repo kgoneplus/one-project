@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itbank.oneplus.OrdersDAO">
+	<insert id="insertOrders" parameterType="order">
+<!-- 		<selectKey resultType="int" keyProperty="idx"> -->
+<!-- 			SELECT orders_seq.nextval FROM DUAL -->
+<!-- 		</selectKey> -->
+		insert into orders (member_idx, deliveryDate, receiverName, receiverPhonenum, address, totalPrice, discountPrice, deliveryFee, purchase) values (#{member_idx}, #{deliveryDate}, #{receiverName}, #{receiverPhonenum}, #{address}, #{totalPrice}, #{discountPrice}, #{deliveryFee}, #{purchase})
+	</insert>
+</mapper>
