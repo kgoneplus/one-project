@@ -1,6 +1,6 @@
 package com.itbank.oneplus;
 
-public class PruductPaging {	// 전체 레코드 수를 일정한 단위 크기로 나누어서 보여주기
+public class PruductPaging {	
 	private int page;				// 요청받은 페이지(*)
 	private int boardCount;			// 총 게시글의 개수(*)
 	private int perPage = 10;		// 화면당 출력할 게시글의 개수
