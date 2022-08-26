@@ -54,4 +54,8 @@ public interface MemberDAO {
 	
 	@Update("update parent_member set userpw = #{userpw} where userid=#{userid}")
 	int passUpdate(MemberDTO dto);
+
+	// 결제 시 회원정보 부르기
+	@Select("select * from parent_member where idx=#{idx}")
+	MemberDTO getMember(int idx);
 }
