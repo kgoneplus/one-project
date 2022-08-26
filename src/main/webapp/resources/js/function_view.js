@@ -84,7 +84,7 @@ async function prodreviewList(event){
 			trtable.appendChild(tdsysdate)
 			
 			prodreview.appendChild(trtable)
-			userReveiwImg(dto.grade+"", index)
+			userReveiwImg(dto.reviewGrade+"", index)
 		})
 		const pagingNumber = document.querySelector('.pagingNumber')
 		pagingNumber.innerHTML = ''

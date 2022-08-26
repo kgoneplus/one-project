@@ -2,12 +2,10 @@
 
 view {
 	overflow: hidden;
-/* 	padding-top: 20px; */
 }
 viewmain {
 	display: flex;
 	justify-content: space-between;
-/* 	border: solid 1px #df0011; */
 	width: 1200px;
 	margin: auto;
 }
@@ -15,7 +13,6 @@ view > viewmain:first-child{
 	padding-top: 70px;
 }
 #viewmain1 {
-/* 	border: solid 1px #df0011; */
 	width: 1200px;
 	margin: auto;
 }
@@ -27,21 +24,18 @@ view > viewmain:first-child{
 #viewleft {
 	display: block;
 	justify-content: center;
-/* 	border: solid 1px blue; */
 	width: 560px;
 }
 
 .product_mainimg {
 	width: 558px;
 	height: 558px;
-/* 	border: solid 1px #df0011; */
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: auto 100%;
 }
 
 .product_slide {
-/* 	border: 1px solid #df0011; */
 	height: 100px;
 	overflow: hidden;
 	padding-top: 20px;
@@ -131,7 +125,6 @@ view > viewmain:first-child{
 	font-size: 17px;
 }
 .nowpage{
-/* 	font-weight: bold; */
 	color: black;
 }
 .scopeGrade{
@@ -139,7 +132,6 @@ view > viewmain:first-child{
     position: relative;
     width: 30px;
     height: 30px;
-/*     padding: 0px 7px; */
     text-align: left;
 }
 .tdstar .scopeGrade {
@@ -194,16 +186,13 @@ view > viewmain:first-child{
     top: 0px;
 }
 .scopeTotal{
-/* 	float: right; */
     font-size: 18px;
     font-weight: 600;
-/*     text-align: right; */
     color: rgb(102, 102, 102);
 }
 #viewright {
 	display: block;
 	justify-content: center;
-/* 	border: solid 1px blue; */
 	width: 560px;
 }
 
@@ -356,7 +345,6 @@ view > viewmain:first-child{
 	float: right;
 	position: relative;
 	width: 28px;
-/* 	height: 100%; */
 	border-radius: 0px;
 	background-color: white;
 	border: none;
@@ -514,13 +502,11 @@ view > viewmain:first-child{
     line-height: 25px;
 }
 .hotslide {
-/* 	border: 1px solid #df0011; */
 	height: 260px;
 	overflow: hidden;
 }
 .hotslide_wrap{
 	display: flex;
-/* 	justify-content: space-around; */
 }
 .hotslide_Swrap{
 	width: 180px;
@@ -550,8 +536,6 @@ view > viewmain:first-child{
 .prodDetailTab {
 	display: flex;
 	margin: auto;
-/* 	border: 5px solid #blue; */
-	
 }
 
 .prodDetailbutton {
@@ -569,7 +553,6 @@ view > viewmain:first-child{
 }
 
 .prodremocon {
-/* 	border: 1px solid #df0011; */
 	height: 610px;
 	width: 300px;
 	background-color: #f9fafe;
@@ -578,8 +561,6 @@ view > viewmain:first-child{
 	top: 200px;
 	display: flex;
 	flex-direction: column;
-/* 	margin-top: 27px; */
-/* 	margin-bottom: 70px; */
 	margin: 27px 0 70px 0;
 }
 
@@ -647,7 +628,6 @@ view > viewmain:first-child{
 	padding-top: 30px;
 }
 .graphBox{
-	/* 	overflow: hidden; */
     float: left;
     width: 100px;
     height: 3px;
@@ -662,10 +642,8 @@ view > viewmain:first-child{
 }
 .per{
     background-color: rgb(223, 0, 17);
-    /* 	overflow: hidden; */
     height: 3px;
     border-radius: 3px;
-/*     width: 0%; */
 }
 .pSame .per{
     background-color: rgb(0, 188, 212);
