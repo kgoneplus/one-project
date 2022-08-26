@@ -75,7 +75,7 @@ public class MypageController {
 	public void counsel() {
 	}
 
-	// 1:1 문의 작성
+	// 1:1 문의 작성(관리자 코멘트 작성 해야함)
 	@PostMapping("/counsel")
 	@ResponseBody
 	public int write(@RequestBody AskDTO dto) throws IllegalStateException, IOException {

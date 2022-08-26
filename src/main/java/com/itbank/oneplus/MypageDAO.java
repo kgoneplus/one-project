@@ -36,7 +36,7 @@ public interface MypageDAO {
 			+ "where M.idx = #{idx}")
 	List<AskDTO> selectAskAll(int idx);
 
-	// 1:1 문의 상세 보기
+	// 1:1 문의 상세 보기(관리자 코멘트 작성 해야함)
 	@Select("select * from ask where idx = #{idx}")
 	public AskDTO selectAskOne(int idx);
 

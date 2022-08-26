@@ -25,7 +25,7 @@ public class ReviewDTO {
 	private String price;
 	private String content;
 	private Date makeDate;
-	private int Grade;
+	private double Grade;
 	private String img;
 	private MultipartFile luloadFile;
 	
@@ -77,12 +77,6 @@ public class ReviewDTO {
 	public void setMakeDate(Date makeDate) {
 		this.makeDate = makeDate;
 	}
-	public int getGrade() {
-		return Grade;
-	}
-	public void setGrade(int grade) {
-		Grade = grade;
-	}
 	public String getImg() {
 		return img;
 	}
@@ -94,5 +88,11 @@ public class ReviewDTO {
 	}
 	public void setLuloadFile(MultipartFile luloadFile) {
 		this.luloadFile = luloadFile;
+	}
+	public double getGrade() {
+		return Grade;
+	}
+	public void setGrade(double grade) {
+		Grade = grade;
 	}
 }

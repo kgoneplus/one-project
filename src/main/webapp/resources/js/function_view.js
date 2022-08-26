@@ -1,20 +1,184 @@
 'use strict'
+// 리뷰 페이징
+//function prodreviewPaging(){
+//	const ob = {}
+//	const url = cpath + '/product/prodreview/paging/' + productMain_idx
+//	const opt = {
+//			method: 'POST',
+//			body: JSON.stringify(ob),
+//			headers: {
+//				'Content-Type' : 'application/json; charset=utf-8'
+//			}
+//		}
+//	fetch(url,opt)
+//	.then(resp =>resp.json())
+//	.then(json=>{
+//		console.log(json)
+//		
+//	})
+//}
+
+// userid 리뷰 스타
+function userReveiwImg(text, index){
+	const tdstar = Array.from(document.querySelectorAll('.prodreviewTable .tdstar'))[index]
+	const scopeImg = Array.from(tdstar.querySelectorAll('.scopeImg'))
+	let lastindex = 0;
+	for(let i = 0; i <= text; i++) {
+		scopeImg[i].style.width = '100%'
+		lastindex = i
+	}
+	scopeImg[lastindex].style.width = +(text.substring(2))/1.6 * 10 + '%'
+
+}
+
+// 페이지 attribute 변경
+function changePageAttribute(event) {
+	let page = document.querySelector('.prodreview').setAttribute('page', event.target.innerText.substring(1,2))
+	prodreviewList(event)
+	
+}
+
+// 상품별 리뷰 리스트
+async function prodreviewList(event){	
+	let page = document.querySelector('.prodreview').getAttribute('page')
+//	console.log(page)
+	const prodreview = document.querySelector('.prodreviewTable')
+	prodreview.innerHTML = ''
+	
+	const ob = {
+		'productMain_idx' : productMain_idx,
+		'page' : page,
+		'filter' : filter.value
+	}
+	const url = cpath + '/product/prodreviewList'
+	const opt = {
+			method: 'POST',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+		}
+	await fetch(url,opt)
+	.then(resp =>resp.json())
+	.then(json=>{
+//		console.log(json.list)
+		json.list.forEach((dto, index) =>{
+			const trtable = document.createElement('tr')
+			
+			const tdstar = document.createElement('td')
+			tdstar.className = 'tdstar'
+			tdstar.setAttribute("index", index)
+			tdstar.innerHTML = `<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>`
+			trtable.appendChild(tdstar)
+			
+			const tdcontent = document.createElement('td')
+			tdcontent.className = 'tdcontent'
+			tdcontent.innerHTML = dto.content
+			trtable.appendChild(tdcontent)	
+			
+			const tduserid = document.createElement('td')
+			tduserid.className = 'tduserid'
+			tduserid.innerHTML = dto.member_idx
+			trtable.appendChild(tduserid)	
+			
+			const tdsysdate = document.createElement('td')
+			tdsysdate.className = 'tdsysdate'
+			const d = new Date(dto.makeDate).toISOString().split('T')[0]
+			tdsysdate.innerHTML = d
+			trtable.appendChild(tdsysdate)
+			
+			prodreview.appendChild(trtable)
+			userReveiwImg(dto.grade+"", index)
+		})
+		const pagingNumber = document.querySelector('.pagingNumber')
+		pagingNumber.innerHTML = ''
+		if(json.paging.prev) {
+			document.querySelector('.prodreview').setAttribute('page', json.paging.begin - 5)
+			pagingNumber.innerHTML += `<span><button onclick="prodreviewList()">이전</button><span>`
+//			pagingNumber.innerHTML += `<span><button onclick="prodreviewList(${json.paging.begin - 5}, ${filter})">이전</button><span>`
+		}
+		
+		for(let i=json.paging.begin; i<=json.paging.end; i++) {
+			pagingNumber.innerHTML += `<span class="nowpage nowpage${i}"><button onclick="changePageAttribute(event)">[${i }]</button><span>`
+//			pagingNumber.innerHTML += `<span class="nowpage"><button onclick="prodreviewList(${i}, ${filter})">[${i }]</button><span>`
+		}
+		if(json.paging.next) {
+			document.querySelector('.prodreview').setAttribute('page', json.paging.end + 1)
+			pagingNumber.innerHTML += `<span><button onclick="prodreviewList()">다음</button><span>`
+//			pagingNumber.innerHTML += `<span><button onclick="prodreviewList(${json.paging.end + 1}, ${filter})">다음</button><span>`
+		}
+	})
+	const pageArray = Array.from(document.querySelectorAll('span.nowpage > button')) 
+	const current = pageArray.filter(btn => btn.innerText == '[' + page + ']')[0]
+	pageArray.forEach(btn => btn.style.fontWeight = 'normal')
+	current.style.fontWeight = 'bolder'
+
+}
+
+
+// 상품상세 리뷰 점수 -> 이미지
+function prodperImg(json, index){
+	const per = Array.from(document.querySelectorAll('.per'))
+	per[index].style.width = json + '%'
+}
+
+// 상품상세 리뷰 점수
+function proddetailReview(event){
+	const graphnum = Array.from(document.querySelectorAll('.graphnum > strong'))
+	const url = cpath + '/product/detailReview/' + productMain_idx
+	const opt = {
+			method: 'POST'
+		}
+	fetch(url,opt)
+	.then(resp =>resp.json())
+	.then(json=>{
+		for(let key in json) {
+			if(key == 'allreviewCnt') {
+				document.querySelector('.allreviewCnt').innerText = json[key] + '건'
+			}
+			graphnum.forEach((dto, index) => {
+				if(dto.classList.contains(key)) {
+					dto.innerText = json[key]
+					prodperImg(json[key], index)
+				}
+			})
+		}
+	})
+
+//	const filter = document.getElementById('filter').value
+//	let page = document.querySelector('.prodreview').getAttribute('page')
+//	prodreviewList(page, prodreviewList(page, filter))
+	
+//	const page = document.querySelector('.prodreview').getAttribute('page')
+//	prodreviewList(page, prodreviewList(page))
+//	window.addEventListener('load', prodreviewList)
+	
+}
+
 //상품별 별점 점수 -> 이미지
 function prodgradImg(text){
 	const stars = Array.from(document.querySelectorAll('.scopeImg'))
-	console.log(stars)
+	const stars1 = Array.from(document.querySelectorAll('.scopeImg1'))
+	
 	let lastindex = 0;
 	for(let i = 0; i <= text; i++) {
 		stars[i].style.width = '100%'
+		stars1[i].style.width = '100%'
 		lastindex = i
 	}
 	stars[lastindex].style.width = text.substring(2) + '0%'
+	stars1[lastindex].style.width = text.substring(2) + '0%'
 
 }
 
 // 상품별 별점 점수
 function prodgradHandler(){
 	const scopeNum = document.querySelector('.scopeNum')
+	const scopeNum1 = document.querySelectorAll('.scopeNum')[1]
 	const url = cpath + '/product/reviewAvggrade'
 	const opt = {
 			method: 'POST',
@@ -27,12 +191,11 @@ function prodgradHandler(){
 	.then(resp =>resp.text())
 	.then(text=>{
 		scopeNum.innerText = text
-//		console.log(text)
+		scopeNum1.innerText = text
 		prodgradImg(text)
 	})
+	
 }
-
-
 
 // 바로구매
 function productnowHandler(){
@@ -266,7 +429,7 @@ function convert(dto) {
 	hotslide_Swrap.appendChild(hotslideImg)
 	
 	const productPrice = document.createElement('span')
-	productPrice.innerText = dto.productPrice
+	productPrice.innerText = dto.productPrice + '원'
 	hotslide_Swrap.appendChild(productPrice)
 	
 	const prodName = document.createElement('p')

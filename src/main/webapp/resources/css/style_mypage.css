@@ -478,6 +478,363 @@ section {
 	width: 880px;
 	align-items: center;
 }
+/* ======================================== withdraw (회원탈퇴) ======================================== */
+.withdraw_wrap > div:nth-child(1) {
+	font-size: 19px;
+	color: #111;
+	margin: 10px 0px 15px 0px;
+}
+.withdraw_wrap > div:nth-child(2) {
+	font-size: 12px;
+	color: #666666;
+}
+.withdraw_wrap > div:nth-child(2) > div {
+	margin: 10px 0;
+}
+.withdraw_fs {
+	display: flex;
+	padding: 25px;
+	font-size: 13px;
+	color: #111111;
+}
+.withdraw_fs > input {
+	margin-bottom: 23px;
+}
+#memberDeleteForm > p {
+	font-size: 15px;
+	font-weight: bold;
+	color: #111111;
+}
+#memberDeleteForm > button {
+	width: 70px;
+    height: 30px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+/* ======================================== withdraw ======================================== */
 
-/* ------------- review ------------- */
+/* ======================================== myinfo (개인정보수정) ======================================== */
+.myinfo_main {
+	width: 800px;
+	height: 500px;
+	margin: auto;
+}
+.myinfo_main > div:nth-child(1) {
+	display: flex;
+	justify-content: space-between;
+	margin: 10px 0;
+}
+.myinfo_main > div:nth-child(2) {
+	border-top: 2px solid black;
+}
+.myinfo_main > div:nth-child(2) > p {
+	border-bottom: 1px solid #dadada;
+}
+.myinfo_main > div:nth-child(1) > div:nth-child(1) {
+	font-weight: bold;
+	font-size: 20px;
+}
+.myinfo_main > div:nth-child(1) > div:nth-child(2) {
+	font-size: 12px;
+}
+.myinfo_table {
+	border-collapse: collapse;
+}
+.myinfo_table_tr {
+	height: 50px;
+	font-size: 12px;
+}
+.myinfo_last_tr {
+	height: 80px;
+}
+.myinfo_table_tr > th {
+	text-align: left;
+	width: 150px;
+	background-color: #f5f5f5;
+	padding-left: 10px;
+}
+.myinfo_table_tr > td {
+	padding-left: 20px;
+}
+.myinfo_submit {
+	text-align: center;
+}
+.myinfo_submit > input {
+	width: 70px;
+    height: 30px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+	cursor: pointer;
+}
+/* ======================================== myinfo ======================================== */
 
+/* ======================================== counsel (1:1문의) ======================================== */
+.counsel_modal {
+	display: none;
+}
+.counsel_overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 70%;
+	z-index: 5;
+}
+.counsel_content {
+	position: absolute;
+	z-index: 6;
+	width: 700px;
+	height: 440px;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	overflow: auto;
+	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	border: 1px solid black;
+}
+.counsel_hidden {
+	display: none;
+}
+.counsel_content > div:nth-child(1) {
+	font-weight: bold;
+	padding: 25px;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 2px solid gray;	
+}
+.counsel_close {
+	cursor: pointer;
+}
+.counsel_submit {
+	text-align: center;
+	margin-bottom: 0;
+    margin-top: 25px;
+}
+.counsel_submit > input {
+	width: 70px;
+    height: 30px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+	cursor: pointer;
+}
+.counsel_form {
+	padding: 24px 50px;
+	width: 600px;
+}
+.counsel_table {
+	border-collapse: collapse;
+}
+.counsel_tr {
+	height: 50px;
+	border: 1px solid black;
+	font-size: 12px;
+}
+.counsel_tr > th {
+	text-align: left;
+	width: 150px;
+	background-color: #f5f5f5;
+	padding-left: 10px;
+}
+.counsel_tr > td {
+	padding-left: 20px;
+}
+.ask_wrap > .item {
+	margin: 20px auto;
+	width: 900px;
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid #dadada;
+	cursor: pointer;
+}
+.ask_wrap > .item > .askType {
+	width: 150px;
+	height: 50px;
+	text-align: center;
+	padding-top: 13px;
+	font-weight: bold;
+}
+.ask_wrap > .item > .title {
+	width: 450px;
+	height: 50px;
+	padding-top: 15px;
+	font-size: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.ask_wrap > .item > .writeDate {
+	height: 50px;
+	padding-top: 13px;
+	color: #dadada;
+	font-weight: bold;
+}
+.ask_wrap > .item > .waiting {
+	height: 50px;
+	padding-top: 13px;
+	color: red;
+	font-weight: bold;
+}
+.ask_wrap > .item > .direction {
+	height: 50px;
+	padding-top: 13px;
+	padding-right: 10px;
+}
+.askList_overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 70%;
+	z-index: 5;
+}
+.askList_content {
+	position: absolute;
+	z-index: 6;
+	width: 750px;
+	height: auto;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	overflow: auto;
+	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	border: 2px solid black;
+}
+.askList_hidden {
+	display: none;
+}
+.askList_top {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid black;
+	margin-bottom: 20px;
+}
+.askList_top > .askType {
+	width: 150px;
+	height: 35px;
+	text-align: center;
+	padding-top: 13px;
+	font-weight: bold;
+}
+.askList_top > .title {
+	width: 440px;
+	height: 35px;
+	padding-top: 15px;
+	font-size: 15px;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.askList_top > .writeDate {
+	height: 35px;
+	padding-top: 13px;
+	font-weight: bold;
+	padding-right: 10px;
+}
+.askList_mid > .content {
+	border: 1px solid #dadada;
+	width: 650px;
+	height: 220px;
+	margin: auto;
+	padding: 10px;
+	font-size: 13px;
+	color: #666666;
+	word-break: break-word;
+}
+.askList_bottom {
+	display: flex;
+	justify-content: space-between;
+}
+.askList_bottom > .btn {
+	margin: 20px;
+	width: 92px;
+    height: 36px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+.rightArea > .ask_button {
+    width: 92px;
+    height: 36px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+/* ======================================== counsel ======================================== */
+
+/* ======================================== review (리뷰) ======================================== */
+
+/* label 커스텀 */
+.review_ladel input[type="radio"] {
+    display: none;
+}
+.review_ladel input[type="radio"] + span {
+    display: inline-block;
+    padding: 7px 25px;
+    border: 1px solid #cdcdcd;
+    background-color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 90px;
+}
+.review_ladel input[type="radio"]:checked + span {
+    border: 2px solid red;
+    font-weight: bold;
+}
+/* ======================================== review ======================================== */
+
+/* ======================================== agree (개인정보 이용내역) ======================================== */
+.agree_pTag {
+	font-size: 15px;
+	font-weight: bold;
+}
+.agree_divTag {
+	font-size: 12px;
+	color: #666666;
+}
+.agree_table {
+	width: 909px;
+	height: auto;
+    margin-top: 20px;
+	border: 1px solid #cdcdcd;
+    border-collapse: collapse;
+}
+.agree_table_tr > td, .agree_table_tr > th {
+	text-align: center;
+	height: 50px;
+	border: 1px solid #cdcdcd;
+}
+.agree_table_tr > th {
+	background-color: #f5f5f5;
+	font-size: 14px;
+	font-weight: bold;
+}
+.agree_table_tr > td {
+	font-size: 13px;
+	color: #666666;
+}
+.agree_table_tr2 > td {
+	font-size: 13px;
+	color: #666666;
+	width: 0;
+	text-align: center;
+	height: 50px;
+	border: 1px solid #cdcdcd;
+}
+/* ======================================== agree ======================================== */

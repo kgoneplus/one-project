@@ -57,7 +57,7 @@ public class ProductController {
 
 		List<String> keyword = productService.categoryName(idx);
 		mav.addObject("keyword", keyword);
-
+		
 		return mav;
 	}
 
