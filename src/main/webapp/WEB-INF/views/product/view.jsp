@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="txtMaxbuy">최대12개 구매가능</p>
+                <p class="txtMaxbuy">최대<span>${prodOne.maxbuyCnt }</span>개 구매가능</p>
 
             </div>
         </viewmain>
@@ -180,11 +180,11 @@
                     </tr>
                     <tr>
                         <td>상품구성</td>
-                        <td>1.1kg 내외</td>
+                        <td>상품상세참고</td>
                     </tr>
                     <tr>
                         <td>포장단위별 내용물의 용량(중량), 수량, 크기</td>
-                        <td>1.1kg 내외</td>
+                        <td>상품상세참고</td>
                     </tr>
                     <tr>
                         <td>원산지</td>
@@ -196,7 +196,7 @@
                     </tr>
                     <tr>
                         <td>생산자 및 소재지</td>
-                        <td>순수유통</td>
+                        <td>${prodSummary.make }</td>
                     </tr>
                     <tr>
                         <td>제조연월일 및 유통기한</td>
@@ -204,7 +204,7 @@
                     </tr>
                     <tr>
                         <td>보관방법/취급방법</td>
-                        <td>직사광선을 피해 서늘한 장소에 보관하시기 바랍니다.</td>
+                        <td>${prodSummary.productStorage }</td>
                     </tr>
                     <tr>
                         <td>A/S책임자 및 소비자상담 관련 전화번호</td>
@@ -510,14 +510,10 @@
 	filter.addEventListener('change', proddetailReview)
 	
 	window.addEventListener('load', prodreviewList)
-	filter.addEventListener('change', async function() {
-// 		filter.setAttribute('first', 1)
-		await prodreviewList(event)
-		console.log(filter.value)
-		
-	})
+	filter.addEventListener('change', function() {
+		prodreviewList(event)})
 	
-// 	window.addEventListener('load', proddetailReview)
+	window.addEventListener('load', proddetailReview)
 
 </script>
 
