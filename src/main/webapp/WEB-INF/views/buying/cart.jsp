@@ -158,6 +158,7 @@
 	//sample6_execDaumPostcode()
 	document.querySelector('.addDeliveryAddressContent input[value="우편번호 찾기"]').addEventListener('click', sample6_execDaumPostcode)
 	
+	// 이벤트 디스패치 수정 필
 	const target = document.getElementById('allChecked')
 	const evt = new Event('click')
 	target.dispatchEvent(evt)

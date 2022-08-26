@@ -1,22 +1,4 @@
 'use strict'
-// 리뷰 페이징
-//function prodreviewPaging(){
-//	const ob = {}
-//	const url = cpath + '/product/prodreview/paging/' + productMain_idx
-//	const opt = {
-//			method: 'POST',
-//			body: JSON.stringify(ob),
-//			headers: {
-//				'Content-Type' : 'application/json; charset=utf-8'
-//			}
-//		}
-//	fetch(url,opt)
-//	.then(resp =>resp.json())
-//	.then(json=>{
-//		console.log(json)
-//		
-//	})
-//}
 
 // userid 리뷰 스타
 function userReveiwImg(text, index){
@@ -28,20 +10,29 @@ function userReveiwImg(text, index){
 		lastindex = i
 	}
 	scopeImg[lastindex].style.width = +(text.substring(2))/1.6 * 10 + '%'
-
 }
 
 // 페이지 attribute 변경
 function changePageAttribute(event) {
-	let page = document.querySelector('.prodreview').setAttribute('page', event.target.innerText.substring(1,2))
-	prodreviewList(event)
+	let page = document.querySelector('.prodreview')
+	let begin = document.querySelector('.tdstar').getAttribute('begin')
+	let end = document.querySelector('.tdstar').getAttribute('end')
 	
+	if(event.target.classList.contains('prev')) {
+		page.setAttribute('page', +begin - 5)
+	}
+	else if(event.target.classList.contains('next')) {
+		page.setAttribute('page', +end + 1)
+	}
+	else {
+		page.setAttribute('page', event.target.innerText.substring(1,2))
+	}
+	prodreviewList(event)
 }
 
 // 상품별 리뷰 리스트
 async function prodreviewList(event){	
 	let page = document.querySelector('.prodreview').getAttribute('page')
-//	console.log(page)
 	const prodreview = document.querySelector('.prodreviewTable')
 	prodreview.innerHTML = ''
 	
@@ -61,13 +52,14 @@ async function prodreviewList(event){
 	await fetch(url,opt)
 	.then(resp =>resp.json())
 	.then(json=>{
-//		console.log(json.list)
 		json.list.forEach((dto, index) =>{
 			const trtable = document.createElement('tr')
 			
 			const tdstar = document.createElement('td')
 			tdstar.className = 'tdstar'
 			tdstar.setAttribute("index", index)
+			tdstar.setAttribute("begin", json.paging.begin)
+			tdstar.setAttribute("end", json.paging.end)
 			tdstar.innerHTML = `<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
 			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
 			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
@@ -92,24 +84,19 @@ async function prodreviewList(event){
 			trtable.appendChild(tdsysdate)
 			
 			prodreview.appendChild(trtable)
-			userReveiwImg(dto.grade+"", index)
+			userReveiwImg(dto.reviewGrade+"", index)
 		})
 		const pagingNumber = document.querySelector('.pagingNumber')
 		pagingNumber.innerHTML = ''
 		if(json.paging.prev) {
-			document.querySelector('.prodreview').setAttribute('page', json.paging.begin - 5)
-			pagingNumber.innerHTML += `<span><button onclick="prodreviewList()">이전</button><span>`
-//			pagingNumber.innerHTML += `<span><button onclick="prodreviewList(${json.paging.begin - 5}, ${filter})">이전</button><span>`
+			pagingNumber.innerHTML += `<span><button class="prev" onclick="changePageAttribute(event)">이전</button><span>`
 		}
 		
 		for(let i=json.paging.begin; i<=json.paging.end; i++) {
 			pagingNumber.innerHTML += `<span class="nowpage nowpage${i}"><button onclick="changePageAttribute(event)">[${i }]</button><span>`
-//			pagingNumber.innerHTML += `<span class="nowpage"><button onclick="prodreviewList(${i}, ${filter})">[${i }]</button><span>`
 		}
 		if(json.paging.next) {
-			document.querySelector('.prodreview').setAttribute('page', json.paging.end + 1)
-			pagingNumber.innerHTML += `<span><button onclick="prodreviewList()">다음</button><span>`
-//			pagingNumber.innerHTML += `<span><button onclick="prodreviewList(${json.paging.end + 1}, ${filter})">다음</button><span>`
+			pagingNumber.innerHTML += `<span><button class="next" onclick="changePageAttribute(event)">다음</button><span>`
 		}
 	})
 	const pageArray = Array.from(document.querySelectorAll('span.nowpage > button')) 
@@ -148,15 +135,6 @@ function proddetailReview(event){
 			})
 		}
 	})
-
-//	const filter = document.getElementById('filter').value
-//	let page = document.querySelector('.prodreview').getAttribute('page')
-//	prodreviewList(page, prodreviewList(page, filter))
-	
-//	const page = document.querySelector('.prodreview').getAttribute('page')
-//	prodreviewList(page, prodreviewList(page))
-//	window.addEventListener('load', prodreviewList)
-	
 }
 
 //상품별 별점 점수 -> 이미지
@@ -172,7 +150,6 @@ function prodgradImg(text){
 	}
 	stars[lastindex].style.width = text.substring(2) + '0%'
 	stars1[lastindex].style.width = text.substring(2) + '0%'
-
 }
 
 // 상품별 별점 점수
@@ -194,7 +171,6 @@ function prodgradHandler(){
 		scopeNum1.innerText = text
 		prodgradImg(text)
 	})
-	
 }
 
 // 바로구매
@@ -568,9 +544,11 @@ function pdtClickHandler(event){
 
 // plus(+)함수
 function plCounter(event){
+	const maxCnt = document.querySelector('.txtMaxbuy > span').innerText
 	let counter1 = Array.from(document.querySelectorAll('.count'))
 	let cnt = document.querySelector('.count').value
-	cnt = +cnt + 1
+	if(cnt == maxCnt) cnt = maxCnt
+	else cnt = +cnt + 1
 	
 	let qtyPrice = Array.from(document.querySelectorAll('.qtyPrice1'))
 	
@@ -578,6 +556,8 @@ function plCounter(event){
 
 	let chprice = price * +cnt
 	chprice = Intl.NumberFormat('ko-kr').format(chprice)
+	
+	
 	
 	counter1.forEach(count => count.value = cnt)
 	qtyPrice.forEach(pri => pri.innerText = chprice)

@@ -95,4 +95,5 @@ public class ReviewDTO {
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
+	
 }

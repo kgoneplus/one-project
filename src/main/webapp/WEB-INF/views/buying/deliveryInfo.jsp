@@ -36,7 +36,7 @@
                 <span>주문완료</span>
             </div>
         </div>
-        <div class="homeDeliveryTab">
+        <div class="homeDeliveryTab" receiverName="${deliveryDefault.receiverName}" receiverPhonenum="${deliveryDefault.receiverPhonenum}">
             <div>
                 <strong>일반배송</strong>
                 <span>센텀시티점</span>
@@ -48,7 +48,8 @@
         <div class="homeTitleWrap">
             <h2>배송시간 / 날짜선택</h2>
             <div class="homeStep">
-                <span>지금 주문하면 .... 까지 점포배송 가능합니다</span>
+            	<span></span>
+<!--                 <span>지금 주문하면 .... 까지 점포배송 가능합니다</span> -->
             </div>
         </div>
         <div class="deliveryTimeChoice">
@@ -62,19 +63,19 @@
                 <tr>
                     <th>10:00 ~ 13:00</th>
                 	<c:forEach var="date" items="${deliveryDate}">
-                    <td><input type="radio" name="deliveryDate" value="${date} + 10:00 ~ 13:00">주문가능</td>
+                    <td><input type="radio" name="deliveryDate" value="${date} 10:00 ~ 13:00">주문가능</td>
                     </c:forEach>
                 </tr>
                 <tr>
                     <th>14:00 ~ 17:00</th>
                 	<c:forEach var="date" items="${deliveryDate}">
-                    <td><input type="radio" name="deliveryDate" value="${date}+ 14:00 ~ 17:00">주문가능</td>
+                    <td><input type="radio" name="deliveryDate" value="${date} 14:00 ~ 17:00">주문가능</td>
                     </c:forEach>
                 </tr>
                 <tr>
                     <th>18:00 ~ 21:00</th>
                 	<c:forEach var="date" items="${deliveryDate}">
-                    <td><input type="radio" name="deliveryDate" value="${date}+ 18:00 ~ 21:00">주문가능</td>
+                    <td><input type="radio" name="deliveryDate" value="${date} 18:00 ~ 21:00">주문가능</td>
                     </c:forEach>
                 </tr>
             </table>
@@ -85,7 +86,7 @@
                 <ul>
 					<c:forEach var="item" items="${orderList }">
 	                    <li>
-	                        <img src="${cpath}/resources/getImage1/${item.productImg}">
+	                        <a href="${cpath}/product/view/${item.productMain_idx}"><img src="${cpath}/resources/getImage1/${item.productImg}"></a>
 	                        <div class="imgExp hidden">
 	                            <p>${item.productName}</p>
 	                            <span>수량 : ${item.cnt}</span>
@@ -112,7 +113,7 @@
                     <span><p><fmt:formatNumber value="${pay}" pattern="#,###" /></p>원</span>
                 </div>
                 <div class="keepgoingBtn">
-                    <button>계속하기</button>
+                    <button>카카오페이 결제하기</button>
                 </div>
             </div>
         </div>
@@ -121,10 +122,10 @@
 
 
 <script>
-	const orderProducts = Array.from(document.querySelectorAll('.orderProducts > ul > li > img'))
+	const orderProducts = Array.from(document.querySelectorAll('.orderProducts > ul > li > a > img'))
 	orderProducts.forEach(img => img.addEventListener('mouseover', orderProductsExpMouseover))
 	orderProducts.forEach(img => img.addEventListener('mouseout', orderProductsExpMouseout))
-	
-	
+
+	document.querySelector('.keepgoingBtn').addEventListener('click', kakaopay)
 </script>
 <%@ include file="../footer.jsp" %>

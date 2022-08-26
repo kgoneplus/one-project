@@ -1,6 +1,6 @@
 'use strict'
 
-// 리뷰 작성하기(...공사중...)
+// 리뷰 작성하기
 function insertReview(event) {
 	const review_submit = document.querySelector('.review_submit')
 	const idxss = review_submit.getAttribute('productidx')

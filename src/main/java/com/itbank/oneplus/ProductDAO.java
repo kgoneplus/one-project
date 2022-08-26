@@ -78,7 +78,7 @@ public interface ProductDAO {
 	int insertproductcart(HashMap<String, String> ob);
 
 
-	@Select("select avg(Grade) as prodAvggrade from review where productMain_idx=#{productMain_idx}")
+	@Select("select avg(reviewGrade) as prodAvggrade from review where productMain_idx=#{productMain_idx}")
 	String prodAvggrade(int productMain_idx);
 
 	// 리뷰리스트불러오기
