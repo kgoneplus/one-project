@@ -16,12 +16,15 @@ import com.itbank.component.HashComponent;
 import com.itbank.oneplus.AskDTO;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.oneplus.MypageDAO;
+import com.itbank.oneplus.OrdersDAO;
+import com.itbank.oneplus.OrdersDetailDTO;
 import com.itbank.oneplus.ProductDTO;
 import com.itbank.oneplus.ReviewDTO;
 
 @Service
 public class MypageService {
 
+	@Autowired private OrdersDAO ordersDao;
 	@Autowired private MypageDAO mypageDAO;
 	@Autowired private HashComponent hash;
 	private String uploadPath = "D:\\ProjectForder";
@@ -106,5 +109,9 @@ public class MypageService {
 	public int writeReview( ReviewDTO dto) {
 		System.out.println("서비스Grade : " + dto.getReviewGrade());
 		return mypageDAO.writeReview(dto);
+	}
+
+	public List<OrdersDetailDTO> selectOrdersList(int idx) {
+		return ordersDao.selectOrdersList(idx);
 	}
 }

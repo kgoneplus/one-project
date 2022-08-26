@@ -36,4 +36,6 @@ public interface OrdersDAO {
 	@Update("update ordersDetail set orderStatus='결제완료' where idx=#{idx}")
 	int updateOrderStatus(int idx);
 
+	List<OrdersDetailDTO> selectOrdersList(int idx);
+
 }
