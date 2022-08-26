@@ -8,20 +8,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.oneplus.ProductDAO;
 import com.itbank.oneplus.ProductDTO;
 import com.itbank.oneplus.ProductSummaryDAO;
-import com.itbank.oneplus.ProductSummaryDTO;
+import com.itbank.oneplus.PruductPaging;
 import com.itbank.oneplus.ReviewDTO;
+import com.itbank.service.RestViewService;
 
 @RestController
 public class RestViewController {
 
 	@Autowired private ProductDAO dao;
 	@Autowired private ProductSummaryDAO summarydao;
+	@Autowired private RestViewService restviewService;
 	
 	// 카테고리 내 인기상품 불러오기
 	@GetMapping(value = "/product/view/cateload/{categorycode}")
@@ -44,6 +47,7 @@ public class RestViewController {
 		return current == 1 ? 0 : 1;
 	}
 	
+	// 찜하기
 	@PostMapping(value="/prodwishList/heartload")
 	public int heartload(@RequestBody HashMap<String, String> ob) {
 		return dao.heartload(ob);
@@ -73,9 +77,72 @@ public class RestViewController {
 		return avg;
 	}
 	
-	// 리뷰리스트불러오기
-	@GetMapping(value="/product/reviewList")
-	public List<ReviewDTO> prodreviewList(@RequestBody HashMap<String, String> ob){
-		return dao.prodreviewList(ob);
+	// 상품상세리뷰 점수 계산
+	@PostMapping(value="/product/detailReview/{productMain_idx}")
+	public HashMap<String, Integer> proddetailReview(@PathVariable int productMain_idx) {
+
+		HashMap<String, Integer> result = new HashMap<String, Integer>();
+		int allreviewCnt = dao.allreviewCnt(productMain_idx);
+		int verygood = dao.getpState("pState", "아주 좋아요", productMain_idx) * 100 / allreviewCnt;
+		int normal = dao.getpState("pState", "보통이에요", productMain_idx) * 100  / allreviewCnt;
+		result.put("verygood", verygood);
+		result.put("normal", normal);
+		result.put("bad", 100 - (verygood + normal));
+		
+		int same = dao.getpState("pSame", "똑같아요", productMain_idx) * 100 / allreviewCnt;
+		int alike = dao.getpState("pSame", "비슷해요", productMain_idx) * 100 / allreviewCnt;
+		result.put("same", same);
+		result.put("alike", alike);
+		result.put("nsame", 100 - (same + alike));
+		
+		int pgood = dao.getpState("price", "만족해요", productMain_idx) * 100 / allreviewCnt;
+		int pnormal = dao.getpState("price", "보통이에요", productMain_idx) * 100 / allreviewCnt;
+		result.put("pgood", pgood);
+		result.put("pnormal", pnormal);
+		result.put("pbad", 100 - (pgood + pnormal));
+		result.put("allreviewCnt", allreviewCnt);
+		return result;
 	}
+	
+	// 상품별리뷰리스트불러오기
+//	@PostMapping(value="/product/prodreviewList/{productMain_idx}")
+//	public List<ReviewDTO> prodreviewList(@PathVariable int productMain_idx){
+//		return dao.prodreviewList(productMain_idx);
+//	}
+	
+	@PostMapping(value="/product/prodreviewList")
+	public HashMap<String, Object> prodreviewList(@RequestBody HashMap<String, Object> param){
+//		ModelAndView mav = new ModelAndView("/product/view") ;
+		int reviewCount = restviewService.selectreviewCount(param);
+		int page = Integer.parseInt(String.valueOf(param.get("page")));
+		PruductPaging paging = new PruductPaging(page, reviewCount);			
+		param.put("paging", paging);
+		param.put("filter", param.get("filter"));
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		List<ReviewDTO> list = restviewService.prodreviewList(param);	
+//		mav.addObject("list", list);			
+//		mav.addObject("paging", paging);
+		hashMap.put("paging", paging);
+		hashMap.put("list", list);
+		return hashMap;
+	}
+	
+	// 페이징
+//	@PostMapping(value="/product/prodreview/paging/{productMain_idx}")
+//	public ModelAndView reviewPaging(@PathVariable int productMain_idx,
+//									@RequestBody HashMap<String, Object> param,
+//									@RequestParam(defaultValue = "1") Integer page
+//																) {
+//		ModelAndView mav = new ModelAndView("/product/view/{productMain_idx}") ;
+//		int reviewCount = restviewService.selectreviewCount(param);	
+//		PruductPaging paging = new PruductPaging(page, reviewCount);			
+//		param.put("paging", paging);							
+//		System.out.println("여기");
+//		
+//		List<ReviewDTO> list = restviewService.selectreviewList(param);	
+//		mav.addObject("list", list);			
+//		mav.addObject("paging", paging);		
+//		return mav;
+//	}
+	
 }

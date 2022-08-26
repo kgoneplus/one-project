@@ -48,8 +48,8 @@ public interface MypageDAO {
 	@Select("select * from productMain where idx < 5")
 	public List<ProductDTO> selectReviewList();
 
-	// 리뷰 작성(...공사중...)
-	@Insert("insert into review (productMain_idx, member_idx, pState, pSame, price, content, Grade, img) "
-			+ "values (#{productMain_idx}, #{member_idx}, #{pState}, #{pSame}, #{price}, #{content}, #{Grade}, #{img})")
+	// 리뷰 작성
+	@Insert("insert into review (productMain_idx, member_idx, pState, pSame, price, content, reviewGrade) "
+			+ "values (#{productMain_idx}, #{member_idx}, #{pState}, #{pSame}, #{price}, #{content}, #{reviewGrade})")
 	public int writeReview(ReviewDTO dto);
 }

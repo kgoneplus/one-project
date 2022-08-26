@@ -1,9 +1,52 @@
 'use strict'
 
+// 리뷰 작성하기(...공사중...)
+function insertReview(event) {
+	const review_submit = document.querySelector('.review_submit')
+	const idxss = review_submit.getAttribute('productidx')
+	event.preventDefault()
+	
+	const ob = {
+		'productMain_idx':idxss
+	}
+	const formData = new FormData(event.target)
+	for(let key of formData.keys()) {
+		ob[key] = formData.get(key)
+	}
+	console.log(ob)
+	const url = cpath + '/mypageing/reviewWrite'
+	const opt = {
+		method: 'POST',
+		body: JSON.stringify(ob),
+		headers: {
+			'Content-Type': 'application/json; charset=utf-8'
+		}
+	}
+	fetch(url, opt)
+	.then(resp => resp.text())
+	.then(text => {
+		if(text == 1) {
+			alert('작성성공')
+			location.href = 'http://localhost:8080/project/mypage/review'
+		}
+		else {
+			alert('실패')
+			location.href = 'http://localhost:8080/project/mypage/review'
+		}
+	})
+}
+
 // 리뷰 모달
-function reviewOpenModal() {
+function reviewOpenModal(event) {
 	const review_modal = document.getElementById('review_modal')
 	review_modal.style.display = 'flex'
+	console.log('productidx : ' + event.target.getAttribute('productidx'))
+	
+	const target = event.target.getAttribute('productidx')
+	console.log('productidx_target : ' + target)
+	
+	const review_submit = document.querySelector('.review_submit')
+	review_submit.setAttribute('productIdx', target)
 }	
 function reviewCloesModal() {
 	const review_modal = document.getElementById('review_modal')
@@ -133,14 +176,15 @@ function convertReview(dto) {
 	
 	item.innerHTML += `<div class="productImg"><img src="${cpath}/resources/getImage1/${dto.productImg}"></div>`
 	item.innerHTML += `<div class="productIdx"><a href="${cpath}/product/view/${dto.idx}">${dto.idx}</a></div>`
-	item.innerHTML += `<div class="productName">${dto.productName}</div>`
-	item.innerHTML += `<div class="review_write"><button>리뷰작성</button></div>`
+	item.innerHTML += `<div class="productName"><a href="${cpath}/product/view/${dto.idx}">${dto.productName}</a></div>`
+	item.innerHTML += `<div class="review_write"><button productIdx="${dto.idx}">리뷰작성</button></div>`
 	
 	const reviewModal_open = item.querySelector('.review_write')
 	reviewModal_open.addEventListener('click', reviewOpenModal)
 	
 	return item
 }
+
 
 // 리뷰할 상품 불러오기(일단 상품 더미)
 function selectReviewAll() {
@@ -226,30 +270,3 @@ function askDeleteHandler(event) {
 	})
 }
 
-// 리뷰 작성하기(...공사중...)
-function insertReview(event) {
-	event.preventDefault()
-	
-	const ob = {}
-	const formData = new FormData(event.target)
-	for(let key of formData.keys()) {
-		ob[key] = formData.get(key)
-	}
-	
-	const url = cpath + '/mypageing/reviewWrite'
-	const opt = {
-		method: 'POST',
-		body: JSON.stringify(ob),
-		headers: {
-			'Content-Type': 'application/json; charset=utf-8'
-		}
-	}
-	fetch(url, opt)
-	.then(resp => resp.text())
-	.then(text => {
-		if(text == 1) {
-			alert('작성성공')
-			location.href = 'http://localhost:8080/project/mypage/review'
-		}
-	})
-}
