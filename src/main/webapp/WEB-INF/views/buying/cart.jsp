@@ -96,7 +96,7 @@
 		</div>
 		<div class="deliveryDefault">
 			${login.name} (${login.phonenum})<br>
-			[${deliveryDefault[0]}] ${deliveryDefault[1]} ${deliveryDefault[2]}
+			[${deliveryDefault.address}]
 		</div>
 	</div>
 	<p>* 배송지 변경 시, 배송매장에 따라 판매가능 상품 및 행사 내용이 변경 될 수 있습니다.</p>
