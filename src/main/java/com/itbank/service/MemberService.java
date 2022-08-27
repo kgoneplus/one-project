@@ -1,8 +1,11 @@
 package com.itbank.service;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.itbank.component.HashComponent;
 import com.itbank.oneplus.MemberDTO;
-import com.itbank.oneplus.DeliveryDAO;
-import com.itbank.oneplus.DeliveryDTO;
 import com.itbank.oneplus.MemberDAO;
 
 @Service
@@ -19,7 +20,8 @@ public class MemberService {
 	
 	@Autowired private MemberDAO dao;
 	@Autowired private HashComponent hash;
-	@Autowired private DeliveryDAO deliveryDao;
+	@Autowired private MailService ms;
+
 	
 	// 통합 회원가입 
 	public int insert(MemberDTO dto) {
@@ -101,18 +103,23 @@ public class MemberService {
 		return row;
 	}
 	
-	public int idsearch(MemberDTO dto) {
+	public int idsearch(MemberDTO dto) throws AddressException, IOException, MessagingException {
+		MemberDTO result = dao.selectIdserachConfirm(dto);
+		if(result != null) {
+			return ms.sendMail(result);
+		}else {
+			System.out.println("불일치");
+			return 0;
+		}
+	}
+	// 
+	public int passUpdate(MemberDTO dto) {
 		
-		return 0;
+		String hashpw = hash.getHash(dto.getUserpw());
+		dto.setUserpw(hashpw);
+		
+		return dao.passUpdate(dto);
 	}
-	public int updatedefaultAddress(HashMap<String, String> param) {
-		DeliveryDTO dto = deliveryDao.selectDeliveryOne(param);
-		String address = dto.getAddr1() + "/" +  dto.getAddr2() + "/" +  dto.getAddr3() + "/" + dto.getdInfo1();
-		param.put("address", address);
-		return dao.updateAddress(param);
-	}
-	
-	
-	
+
 
 }

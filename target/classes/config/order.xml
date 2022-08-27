@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itbank.oneplus.OrdersDAO">
+	<insert id="insertOrders" parameterType="order">
+<!-- 		<selectKey resultType="int" keyProperty="idx"> -->
+<!-- 			SELECT orders_seq.nextval FROM DUAL -->
+<!-- 		</selectKey> -->
+		insert into orders (member_idx, deliveryDate, receiverName, receiverPhonenum, address, totalPrice, discountPrice, deliveryFee, purchase) values (#{member_idx}, #{deliveryDate}, #{receiverName}, #{receiverPhonenum}, #{address}, #{totalPrice}, #{discountPrice}, #{deliveryFee}, #{purchase})
+	</insert>
+	
+	<select id="selectOrdersList" resultType="orderDetail">
+		select P.idx AS productMain_idx, P.productName, P.productPrice, C.productCnt, P.productImg, C.orders_idx, M.orderDate from ordersDetail C
+		    join productMain P
+		        on C.productMain_idx = P.idx
+		    join orders M
+		        on M.idx = C.orders_idx
+		    where
+		        M.member_idx = #{idx}
+	</select>
+</mapper>

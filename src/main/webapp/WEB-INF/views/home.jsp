@@ -47,38 +47,6 @@
 
 	<div class="list" offset="0"></div>
 
-
-	<div id="remocon">
-		<div class="remocon_frame">
-			<div class="remocon_miniItem">
-				<figure>
-					<img src="${cpath }/resources/img/icon_147.png">
-					<figcaption>로그인</figcaption>
-				</figure>
-			</div>
-			<div class="remocon_miniItem">
-				<figure>
-					<img src="${cpath }/resources/img/icon_139.png">
-					<figcaption>배송</figcaption>
-				</figure>
-			</div>
-			<div class="remocon_miniItem">
-				<figure>
-					<img src="${cpath }/resources/img/icon_152.png">
-					<figcaption>장바구니</figcaption>
-				</figure>
-			</div>
-			<div class="remocon_miniItem">
-				<figure>
-					<img src="">
-					<figcaption>최근 본 상품</figcaption>
-				</figure>
-			</div>
-			<div class="remocon_miniItem">
-				<button id="toTop">TOP</button>
-			</div>
-		</div>
-	</div>
 	</main>
 
 	<script>
@@ -96,9 +64,9 @@
 		const mainoverlay = document.getElementById('main')
 
   		//mainLoadHandler load로 불러오는 것 수정필요!!!!
-// 		window.addEventListener('load', mainLoadHandler(''))
-// 		toTop.addEventListener('click', scrollToTop)
-// 		listLiArray.forEach(li => li.addEventListener('click', mainSelectLiClick))
+		window.addEventListener('load', mainLoadHandler(''))
+		toTop.addEventListener('click', scrollToTop)
+		listLiArray.forEach(li => li.addEventListener('click', mainSelectLiClick))
 
 		
 		mainoverlay.addEventListener('click', closeModal)

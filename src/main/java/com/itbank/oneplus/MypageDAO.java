@@ -29,16 +29,27 @@ public interface MypageDAO {
 			+ " values (#{member_idx}, #{askType}, #{title}, #{content})")
 	public int askWrite(AskDTO dto);
 
-	// 1:1 문의 내역 (로그인 정보의 idx와 문의 테이블의 member_idx가 같은 것만 출력하도록 작성해야함)
-//	@Select("select A.* from ask A "
-//			+ "join parent_member M "
-//			+ "on A.member_idx = M.idx "
-//			+ "where M.idx = #{idx}")	// 현재 로그인한 사용자의 idx(세션에서 불러오기)
-	@Select("select * from ask order by idx desc")
-	List<AskDTO> selectAskAll();
+	// 1:1 문의 내역(작성자와 일치하는 문의만)
+	@Select("select A.* from ask A "
+			+ "join parent_member M "
+			+ "on A.member_idx = M.idx "
+			+ "where M.idx = #{idx}")
+	List<AskDTO> selectAskAll(int idx);
 
-	// 1:1 문의 상세 보기
+	// 1:1 문의 상세 보기(관리자 코멘트 작성 해야함)
 	@Select("select * from ask where idx = #{idx}")
 	public AskDTO selectAskOne(int idx);
-	
+
+	// 1:1 문의 삭제
+	@Delete("delete ask where idx = #{idx}")
+	public int askOneDelete(int idx);
+
+	// 리뷰할 상품 더미
+	@Select("select * from productMain where idx < 5")
+	public List<ProductDTO> selectReviewList();
+
+	// 리뷰 작성
+	@Insert("insert into review (productMain_idx, member_idx, pState, pSame, price, content, reviewGrade) "
+			+ "values (#{productMain_idx}, #{member_idx}, #{pState}, #{pSame}, #{price}, #{content}, #{reviewGrade})")
+	public int writeReview(ReviewDTO dto);
 }

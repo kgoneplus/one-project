@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.itbank.oneplus.ProductDTO;
+import com.itbank.oneplus.ProductSummaryDTO;
 import com.itbank.service.ProductService;
 
 
@@ -41,6 +42,8 @@ public class ProductController {
 	public ModelAndView view(@PathVariable int idx) {
 		ModelAndView mav = new ModelAndView("/product/view");
 		ProductDTO prodOne = productService.selectProductOne(idx);
+		ProductSummaryDTO prodSummary = productService.prodSummaryOne(idx);
+		mav.addObject("prodSummary", prodSummary);
 		mav.addObject("prodOne", prodOne);	
 		return mav;
 	}
@@ -54,8 +57,10 @@ public class ProductController {
 
 		List<String> keyword = productService.categoryName(idx);
 		mav.addObject("keyword", keyword);
-
+		
 		return mav;
 	}
+
+
 }
 

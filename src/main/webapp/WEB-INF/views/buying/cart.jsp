@@ -8,19 +8,6 @@
 <title>주문/결제 | 홈플러스 온라인, 맛있는 마트</title>
 </head>
 <body>
-<div class="buying_header">
-    <div class="inner">
-        <div class="inner_left">
-            <div class="black_logo"><a href="${cpath}"></a></div>
-        </div>
-        <div class="inner_right">
-            <a href="${cpath}/">로그아웃</a>
-            <a href="${cpath}/mypage/mypageMain">마이페이지</a>
-            <a href="${cpath}/">고객센터</a>
-        </div>
-    </div>
-</div>
-
 <main>
     <div class="mainDiv">
         <div class="homeTitleWrap">
@@ -37,7 +24,7 @@
         </div>
         <div class="homeDeliveryBox">
             <div class="manageDelivery">
-                <p>${deliveryDefault[1]} ${deliveryDefault[2]}</p>
+                <p>${deliveryDefault.address}</p>
                 <button>배송관리</button>
             </div>
         </div>
@@ -91,11 +78,11 @@
 	<h3>기본배송지</h3>
 	<div class="dContentBox">
 		<div class="deliveryCheckbox">
-			<input type="hidden" data-addr1="${deliveryDefault[0]}" data-addr2="${deliveryDefault[1]}" data-addr3="${deliveryDefault[2]}">
+			<input type="hidden" name="dCode" value="${deliveryDefault.dCode}">
 			<input type="radio">
 		</div>
 		<div class="deliveryDefault">
-			${login.name} (${login.phonenum})<br>
+			${deliveryDefault.receiverName} (${deliveryDefault.receiverPhonenum})<br>
 			[${deliveryDefault.address}]
 		</div>
 	</div>
@@ -134,7 +121,7 @@
 	
 		<input type="text" name="addr2" id="sample6_address" placeholder="주소" required><br>
 		<input type="text" name="addr3" id="sample6_detailAddress" placeholder="상세주소" required>
-		<input type="text" name="dInfo1" id="sample6_extraAddress" placeholder="요청사항" required>
+		<input type="text" name="addr4" id="sample6_extraAddress" placeholder="요청사항" required>
 		
 		<input type="submit" value="확인">
 		<input type="button" value="취소" onclick="deliveryManagementClose()">
@@ -144,8 +131,7 @@
 
 <script>
 	window.addEventListener('load', cartLoadHandler)
-	
-	document.getElementById('allChecked').addEventListener('change', cartAllItemClick)
+// 	document.getElementById('allChecked').addEventListener('change', cartAllItemClick)
 	
 	const btns = Array.from(document.querySelectorAll('.keepgoingBtn > button'))
 	btns.forEach(btn => btn.addEventListener('click', cartToDeliveryInfo))
@@ -159,6 +145,10 @@
 	//sample6_execDaumPostcode()
 	document.querySelector('.addDeliveryAddressContent input[value="우편번호 찾기"]').addEventListener('click', sample6_execDaumPostcode)
 	
+	// 이벤트 디스패치 수정 필
+	const target = document.getElementById('allChecked')
+	const evt = new Event('click')
+	target.dispatchEvent(evt)
 </script>
 
 <%@ include file="../footer.jsp" %>

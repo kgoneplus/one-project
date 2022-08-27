@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Repository
 public interface ProductDAO {
@@ -69,14 +71,37 @@ public interface ProductDAO {
 	@Delete("delete product_wishlist where parent_member_idx=#{parent_member_idx} and productmain_idx=#{productMain_idx}")
 	int deletewishList(HashMap<String, String> ob);
 
-	
 	//@Select("select categoryName, category2Name from category where productMain_categoryCode=#{productMain_categoryCode}")
 	List<String> categoryName(HashMap<String, String> idx);
 
-	@Select("select distinct P.*, (select count(*) from review where productMain_idx = P.idx) as rcnt from productMain P" + 
+	@Insert("insert into productcart values (#{cnt}, #{member_idx}, #{productMain_idx})")
+	int insertproductcart(HashMap<String, String> ob);
+
+
+	@Select("select avg(reviewGrade) as prodAvggrade from review where productMain_idx=#{productMain_idx}")
+	String prodAvggrade(int productMain_idx);
+
+	// 리뷰리스트불러오기
+//	@Select("select * from review where productMain_idx=#{productMain_idx}")
+//	List<ReviewDTO> prodreviewList(int productMain_idx);
+
+	@Select("select * from productSummary where productMain_idx=#{idx}")
+	ProductSummaryDTO prodSummaryOne(int idx);
+	
+	@Select("select distinct P.* , (select count(*) from review where productMain_idx = P.idx) as rcnt from productMain P" + 
 			"    where P.productName like '%${param}%'" + 
 			"    order by ${order}")
 	List<ProductDTO> selectSearchList(HashMap<String, String> map);
+
+	@Select("select count(*) from review where ${string}=#{string2} and productMain_idx=#{productMain_idx}")
+	int getpState(@Param("string")String string, @Param("string2")String string2, @Param("productMain_idx")int productMain_idx);
+
+	@Select("select count(*) from review where productMain_idx=#{productMain_idx}")
+	int allreviewCnt(int productMain_idx);
+
+	int selectreviewCount(HashMap<String, Object> param);
+
+	List<ReviewDTO> selectreviewList(HashMap<String, Object> param);
 	
 
 	

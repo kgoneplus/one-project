@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="cpath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,23 @@
 	let member_idx = '${login.idx}'
 </script>
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <script src="${cpath}/resources/js/function_buying.js"></script>
 </head>
 <body>
+<div class="buying_header">
+    <div class="inner">
+        <div class="inner_left">
+            <div class="black_logo" onclick="location.href = '${cpath}'"></div>
+        </div>
+        <div class="inner_right">
+            <a href="${cpath}/">로그아웃</a>
+            <a href="${cpath}/mypage/mypageMain">마이페이지</a>
+            <a href="${cpath}/">고객센터</a>
+        </div>
+    </div>
+</div>
 

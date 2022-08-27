@@ -4,15 +4,15 @@ import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-//	member_idx          number          ,
-//	productMain_idx     number          ,
-//	idx                 number          default review_seq.nextval primary key,
-//	pState              varchar2(200)   check(pState in('아주 좋아요', '보통이에요', '별로에요')),
-//	pSame               varchar2(100)   check(pSame in('똑같아요', '비슷해요', '달라요')),
-//	price               varchar2(100)   check(price in('만족해요', '보통이에요', '별로에요')),
-//	content             varchar2(1000)  not null,
-//	makeDate            date            default sysdate,
-//	Grade               number          not null check(Grade in(1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5)),
+//	member_idx          number              ,
+//	productMain_idx     number              ,
+//	idx                 number              default review_seq.nextval primary key,
+//	pState              varchar2(200)       check(pState in('아주 좋아요', '보통이에요', '별로에요')) not null,
+//	pSame               varchar2(100)       check(pSame in('똑같아요', '비슷해요', '달라요')) not null,
+//	price               varchar2(100)       check(price in('만족해요', '보통이에요', '별로에요')) not null,
+//	content             varchar2(1000)      not null,
+//	makeDate            date                default sysdate,
+//	reviewGrade         varchar2(100)       check(reviewGrade in('1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5')) not null,
 //	img                 varchar2(255)
 
 public class ReviewDTO {
@@ -25,9 +25,9 @@ public class ReviewDTO {
 	private String price;
 	private String content;
 	private Date makeDate;
-	private int Grade;
-	private String img;
-	private MultipartFile luloadFile;
+	private double reviewGrade;
+	private String img; 
+	private MultipartFile uploadFile;
 	
 	public int getMember_idx() {
 		return member_idx;
@@ -77,11 +77,11 @@ public class ReviewDTO {
 	public void setMakeDate(Date makeDate) {
 		this.makeDate = makeDate;
 	}
-	public int getGrade() {
-		return Grade;
+	public double getReviewGrade() {
+		return reviewGrade;
 	}
-	public void setGrade(int grade) {
-		Grade = grade;
+	public void setReviewGrade(double reviewGrade) {
+		this.reviewGrade = reviewGrade;
 	}
 	public String getImg() {
 		return img;
@@ -89,10 +89,11 @@ public class ReviewDTO {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	public MultipartFile getLuloadFile() {
-		return luloadFile;
+	public MultipartFile getUploadFile() {
+		return uploadFile;
 	}
-	public void setLuloadFile(MultipartFile luloadFile) {
-		this.luloadFile = luloadFile;
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
 	}
+	
 }

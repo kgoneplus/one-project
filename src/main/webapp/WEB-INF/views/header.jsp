@@ -47,7 +47,7 @@
                         <ul> 
                             <li><a href="${cpath}/mypage/orders">주문/배송조회</a></li>
                             <li><a href="#">고객센터</a></li>
-                            <li><a href="#">회원정보</a></li>
+                            <li><a href="${cpath}/mypage/myinfo/${login.idx}">회원정보</a></li>
                         </ul> 
                 </div>   
                 <div><a href="${cpath}/buying/cart/${login.idx}"><img src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a></div>
@@ -988,7 +988,37 @@
          
         </nav>
     </header>
-    
+    	<div id="remocon">
+		<div class="remocon_frame">
+			<div class="remocon_miniItem">
+				<figure>
+					<img src="${cpath }/resources/img/icon_147.png">
+					<figcaption>로그인</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<img src="${cpath }/resources/img/icon_139.png">
+					<figcaption>배송</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<img src="${cpath }/resources/img/icon_152.png">
+					<figcaption>장바구니</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<img src="">
+					<figcaption>최근 본 상품</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<button id="toTop">TOP</button>
+			</div>
+		</div>
+	</div>
 	<script>
 		const category = document.querySelector('#cate > a')
 
