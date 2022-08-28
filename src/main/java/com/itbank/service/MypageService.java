@@ -3,6 +3,7 @@ package com.itbank.service;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -111,7 +112,23 @@ public class MypageService {
 		return mypageDAO.writeReview(dto);
 	}
 
-	public List<OrdersDetailDTO> selectOrdersList(int idx) {
-		return ordersDao.selectOrdersList(idx);
+	public List<List<OrdersDetailDTO>> selectOrdersList(int idx) {
+		List<OrdersDetailDTO> list = ordersDao.selectOrdersList(idx);
+		List<List<OrdersDetailDTO>> finallist = new ArrayList<List<OrdersDetailDTO>>();
+		List<OrdersDetailDTO> tmp = new ArrayList<OrdersDetailDTO>();
+		tmp.add(list.get(0));
+		for(int i=0; i<list.size(); i++) {
+			if(i != 0) {
+				if(list.get(i).getOrders_idx() == list.get(i-1).getOrders_idx()) {
+					tmp.add(list.get(i));
+				}
+				else {
+					finallist.add(tmp);
+					tmp.clear();
+					tmp.add(list.get(i));
+				}
+			}
+		}
+		return finallist;
 	}
 }
