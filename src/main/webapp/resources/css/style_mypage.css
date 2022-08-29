@@ -323,6 +323,7 @@ section {
     align-items: center;
     -webkit-box-pack: justify;
     justify-content: space-between;
+    padding: 0;
 }
 .stepBox > ul > li {
     width: 212.5px;

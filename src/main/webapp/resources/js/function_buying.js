@@ -130,7 +130,7 @@ function mabtnClickHandler(event) {
 	const beforeDiscount = Array.from(document.querySelectorAll('.lastprice > span:first-child'))[idx]
 	beforeDiscount.innerText = (defaultPrice * quantity.value).toLocaleString() + '원'
 	
-	loadPaymentBox()
+	paymentBox()
 }
 
 // 장바구니 -> 수량 증가 핸들러
@@ -184,7 +184,7 @@ function plbtnClickHandler(event) {
 	const beforeDiscount = Array.from(document.querySelectorAll('.lastprice > span:first-child'))[idx]
 	beforeDiscount.innerText = (defaultPrice * quantity.value).toLocaleString() + '원'
 
-	loadPaymentBox()
+	paymentBox()
 }
 
 // 장바구니 -> 장바구니 목록 삭제 버튼
@@ -315,7 +315,7 @@ function loadPaymentBox(json) {
 }
 
 // 장바구니 -> 선택시 paymentBox 가격 변경
-function paymentBox() {
+async function paymentBox() {
 	let checkedItemList = Array.from(document.querySelectorAll("input[type='checkbox']:checked")).map(item => item.value)
 	checkedItemList = checkedItemList.filter(item => item != 'on')
 	
@@ -327,7 +327,7 @@ function paymentBox() {
 			'Content-Type' : 'application/json; charset=utf-8'
 		}
 	}
-	fetch(url, opt).then(resp => resp.json())
+	await fetch(url, opt).then(resp => resp.json())
 	.then(json => {loadPaymentBox(json)})
 }
 

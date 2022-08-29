@@ -76,57 +76,58 @@
                 </form>
             </div>
 
+<!--             <div class="wishListBox erasebottom"> -->
+<!--                 <div class="mypageTitleBox"> -->
+<!--                     <div class="ordertitleArea"> -->
+<!--                         <h2>2022.07.27</h2> -->
+<!--                         <span>주문번호 00000000</span> -->
+<%--                         <a href="${cpath}/mypage/orderdetail">상세보기 ></a> --%>
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="dateFilter"> -->
+<!--                 <div class="claimstatus"> -->
+<!--                     <div class="claimstatus_icon"></div> -->
+<!--                     <p>취소완료</p> -->
+<!--                 </div> -->
+<!--                 <div class="orderProductlist"> -->
+<!--                     <div class="orderProduct"> -->
+<!--                         <img src=""> -->
+<!--                         <a>항공직송 체리(미국) 450G</a> -->
+<!--                         <span>17900원</span> | <span>1개</span> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="orderProductlist_overlay"></div> -->
+<!--             </div> -->
+			<c:forEach var="item" items="${finalOrderlist}">
             <div class="wishListBox erasebottom">
                 <div class="mypageTitleBox">
                     <div class="ordertitleArea">
-                        <h2>2022.07.27</h2>
-                        <span>주문번호 00000000</span>
-                        <a href="${cpath}/mypage/orderdetail">상세보기 ></a>
-                    </div>
-                </div>
-            </div>
-            <div class="dateFilter">
-                <div class="claimstatus">
-                    <div class="claimstatus_icon"></div>
-                    <p>취소완료</p>
-                </div>
-                <div class="orderProductlist">
-                    <div class="orderProduct">
-                        <img src="">
-                        <a>항공직송 체리(미국) 450G</a>
-                        <span>17900원</span> | <span>1개</span>
-                    </div>
-                </div>
-                <div class="orderProductlist_overlay"></div>
-            </div>
-
-            <div class="wishListBox erasebottom">
-                <div class="mypageTitleBox">
-                    <div class="ordertitleArea">
-                        <h2>2022.07.27</h2>
-                        <span>주문번호 00000000</span>
-                        <a href="${cpath}/mypage/orderdetail">상세보기 ></a>
+                        <h2>${item.orderDate}</h2>
+                        <span>주문번호 ${item.orders_idx}</span>
+<%--                         <a href="${cpath}/mypage/orderdetail">상세보기 ></a> --%>
                     </div>
                 </div>
             </div>
             <div class="dateFilter">
                 <div class="stepBox">
                     <ul>
-                        <li>결제완료</li>
+                        <li class="stepBoxselected">결제완료</li>
                         <li>상품 준비중</li>
                         <li>배송중</li>
-                        <li class="stepBoxselected">배송완료</li>
+                        <li>배송완료</li>
                     </ul>
                 </div>
                 <div class="orderProductlist">
-                    <div class="orderProduct">
-                        <img src="">
-                        <a>항공직송 체리(미국) 450G</a>
-                        <span>17900원</span> | <span>1개</span>
-                    </div>
+	                    <div class="orderProduct">
+	                        <img src="${cpath}/resources/getImage1/${item.productImg}">
+	                        <a>${item.productName}</a>
+	                        <span>${item.productPrice}원</span> | <span>${item.productCnt}개</span>
+	                    </div>
+                	
                 </div>
             </div>
-            
+            </c:forEach>
             <div class="orders_tablist">
 	            <ul>
 	                <li class="tablistSelected">배송 처리 상태 안내</li>

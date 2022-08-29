@@ -49,8 +49,14 @@ public class RestMypageController {
 	// 리뷰
 	@PostMapping("/mypageing/reviewWrite")
 	public int writeReview(@RequestBody ReviewDTO dto) {
+		System.out.println("컨트롤러 productMain_idx : " + dto.getProductMain_idx());
+		System.out.println("컨트롤러Member_idx : " + dto.getMember_idx());
+		System.out.println("컨트롤러ReviewGrade : " + dto.getReviewGrade());
+		System.out.println("컨트롤러Content : " + dto.getContent());
+		System.out.println("컨트롤러pState :" + dto.getpState());
+		System.out.println("컨트롤러pSame : " + dto.getpSame());
+		System.out.println("컨트롤러price : " + dto.getPrice());
 		int row = mypageService.writeReview(dto);
-		System.out.println(row != 0 ? "성공" : "실패");
 		return row;
 	}
 }

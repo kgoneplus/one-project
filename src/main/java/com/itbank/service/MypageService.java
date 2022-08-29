@@ -8,18 +8,23 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itbank.component.HashComponent;
 import com.itbank.oneplus.AskDTO;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.oneplus.MypageDAO;
+import com.itbank.oneplus.OrdersDAO;
+import com.itbank.oneplus.OrdersDetailDTO;
 import com.itbank.oneplus.ProductDTO;
 import com.itbank.oneplus.ReviewDTO;
 
 @Service
 public class MypageService {
 
+	@Autowired private OrdersDAO ordersDao;
 	@Autowired private MypageDAO mypageDAO;
 	@Autowired private HashComponent hash;
 	private String uploadPath = "D:\\ProjectForder";
@@ -100,8 +105,13 @@ public class MypageService {
 		return mypageDAO.selectReviewList();
 	}
 
-	// 리뷰(...공사중...)
-	public int writeReview(ReviewDTO dto) {
+	// 리뷰작성
+	public int writeReview( ReviewDTO dto) {
+		System.out.println("서비스Grade : " + dto.getReviewGrade());
 		return mypageDAO.writeReview(dto);
+	}
+
+	public List<OrdersDetailDTO> selectOrdersList(int idx) {
+		return ordersDao.selectOrdersList(idx);
 	}
 }

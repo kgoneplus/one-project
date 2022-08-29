@@ -238,8 +238,8 @@
 						</div>
 						
 						<div class="review_prod_img_name">
-							<div>상품이미지</div>
-							<div>상품이름</div>							
+							<div></div>
+							<div></div>							
 						</div>
 						
 						<form id="reviewInsertForm">
@@ -248,7 +248,7 @@
 							<!-- 별 이미지로 바꿔야함 -->
 							<div>
 								<div>상품 별점을 남겨주세요!</div>
-								<select name="Grade" required>
+								<select name="reviewGrade" required>
 									<option value="">선택</option>
 									<option value="1">1</option>
 									<option value="1.5">1.5</option>
@@ -348,9 +348,10 @@
 <script>
 	const reviewModal_close = document.querySelector('.review_close')
 	const reviewModal_overlay = document.querySelector('.review_overlay')
-	const reviewInsertForm = document.getElementById('reviewInsertForm')
-	
-    window.addEventListener('load', selectReviewAll)							// 리뷰할 상품 더미 출력
+	const reviewInsertForm = document.forms[2]
+	console.log(reviewInsertForm)
+    
+	window.addEventListener('load', selectReviewAll)							// 리뷰할 상품 더미 출력
  	reviewModal_close.addEventListener('click', reviewCloesModal)
 	reviewModal_overlay.addEventListener('click', reviewCloesModal)
 	reviewInsertForm.addEventListener('submit', insertReview)
