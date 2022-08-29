@@ -96,7 +96,7 @@
                 </div>
                 <div class="resultPrice payTabTotalprice">
                     <span>결제예정금액</span>
-                    <span><p><fmt:formatNumber value="${pay}" pattern="#,###" /></p>원</span>
+                    <span><p><fmt:formatNumber value="${pay + deliveryFee}" pattern="#,###" /></p>원</span>
                 </div>
                 <div class="keepgoingBtn">
                     <button>카카오페이 결제하기</button>

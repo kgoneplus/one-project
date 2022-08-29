@@ -51,19 +51,19 @@
             <div class="payTab">
                 <div class="payTabTotalprice">
                     <span>총주문금액</span>
-                    <span><p></p>원</span>
+                    <span><p>0</p>원</span>
                 </div>
                 <div class="payTabTotalprice">
                     <span>배송비</span>
-                    <span><p></p>원</span>
+                    <span><p>3000</p>원</span>
                 </div>
                 <div class="payTabTotalprice">
                     <span>할인금액</span>
-                    <span><p></p>원</span>
+                    <span><p>-0</p>원</span>
                 </div>
                 <div class="resultPrice payTabTotalprice">
                     <span>결제예정금액</span>
-                    <span><p></p>원</span>
+                    <span><p>0</p>원</span>
                 </div>
                 <div class="keepgoingBtn">
                     <button class="orderAll" type="submit">전체상품 주문하기</button>

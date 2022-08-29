@@ -19,7 +19,7 @@ public interface DeliveryDAO {
 			+ "values (delivery_seq.nextval, #{receiverName}, #{receiverPhonenum}, #{member_idx}, #{address}, 'n')")
 	int insertAddress(DeliveryDTO dto);
 
-	@Select("select * from delivery where member_idx = #{member_idx}")
+	@Select("select * from delivery where member_idx = #{member_idx} and isDefault='n'")
 	List<DeliveryDTO> addressList(int member_idx);
 
 	@Select("select * from delivery where member_idx=#{member_idx} and dCode=#{dCode}")
