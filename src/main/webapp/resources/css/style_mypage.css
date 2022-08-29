@@ -323,6 +323,7 @@ section {
     align-items: center;
     -webkit-box-pack: justify;
     justify-content: space-between;
+    padding: 0;
 }
 .stepBox > ul > li {
     width: 212.5px;
@@ -778,6 +779,187 @@ section {
 /* ======================================== counsel ======================================== */
 
 /* ======================================== review (리뷰) ======================================== */
+.review_modal {
+	display: none;
+}
+.review_overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 70%;
+	z-index: 5;
+}
+.review_content {
+	position: absolute;
+	z-index: 6;
+	width: 548px;
+	height: 600px;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	overflow: auto;
+	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	border: 1px solid black;
+}
+.review_hidden {
+	display: none;
+}
+.review_content > div:nth-child(1) {
+	font-weight: bold;
+	padding: 25px;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 2px solid gray;	
+}
+.review_close {
+	cursor: pointer;
+}
+.review_content > div:nth-child(2) {
+	margin: 20px 15px;
+	display: flex;
+}
+.review_content > div:nth-child(2) > div:nth-child(2) {
+	margin: auto;
+	font-weight: bolder;
+}
+.review_content > div:nth-child(3) {
+	margin: 35px 25px;
+	text-align: center;
+	background-color: #f3f3f3;
+	height: 100px;
+	padding-top: 30px;
+}
+.review_content > div:nth-child(3) > div:first-child {
+	margin: 10px 0;
+}
+.review_content > div:nth-child(3) {
+	margin: 35px 25px;
+	text-align: center;
+	background-color: #f3f3f3;
+	height: 100px;
+}
+.review_item_check {
+	margin: 35px 25px;
+}
+.review_item_click {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 0;
+}
+.review_item_click > p {
+	width: 170px;
+}
+.review_item_check > div:nth-child(1) {
+	font-weight: bold;
+	font-size: 15px;
+}
+.review_item_click > div {
+	border: 1px solid;
+	width: 125px;
+	height: 30px;
+	text-align: center;
+	padding-top: 8px;
+	border-radius: 5px;
+	cursor: pointer;
+	color : black;
+}
+.review_item {
+	margin: 35px 25px;
+	text-align: center;
+}
+.review_item > div:nth-child(1) {
+	font-weight: bold;
+	font-size: 15px;
+	margin: 10px 0;
+}
+.review_submit {
+	text-align: center;
+	padding-bottom: 20px;
+}
+.review_submit > input {
+	width: 92px;
+    height: 36px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+.review_write > button {
+    margin: 23px;
+    width: 70px;
+    height: 36px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+.review_itemList {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px;
+	border: 1px solid #cdcdcd;
+	border-radius: 5px;
+	padding-top: 4px;
+}
+.productImg > img {
+	width: 80px;
+	height: 80px;
+	margin: 0 20px;
+	border: 1px solid #cdcdcd
+}
+.productIdx {
+	text-align: center;
+    margin-top: 30px;
+}
+.productIdx > a {
+	color: #b7b7b7;
+	border-bottom: 1px solid;
+	font-size: 20px;
+}
+.productName {
+	margin-top: 10px;
+	font-weight: bold;
+	margin: auto;
+}
+.review_starTitle {
+	text-align: center;
+    width: 481px;
+    height: 100px;
+    margin: auto;
+    background-color: #f3f3f3;
+}
+.review_starTitle > div:nth-child(1) {
+	font-weight: bold;
+	padding-top: 20px;
+}
+
+/* 별점 */
+.star {
+	position: relative;
+	font-size: 2rem;
+	color: #ddd;
+}
+.star input {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+.star span {
+	width: 0;
+	position: absolute; 
+	left: 0;
+	color: red;
+	overflow: hidden;
+	pointer-events: none;
+}
 
 /* label 커스텀 */
 .review_ladel input[type="radio"] {

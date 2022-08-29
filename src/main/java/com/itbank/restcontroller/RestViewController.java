@@ -80,7 +80,6 @@ public class RestViewController {
 	// 상품상세리뷰 점수 계산
 	@PostMapping(value="/product/detailReview/{productMain_idx}")
 	public HashMap<String, Integer> proddetailReview(@PathVariable int productMain_idx) {
-
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
 		int allreviewCnt = dao.allreviewCnt(productMain_idx);
 		int verygood = dao.getpState("pState", "아주 좋아요", productMain_idx) * 100 / allreviewCnt;

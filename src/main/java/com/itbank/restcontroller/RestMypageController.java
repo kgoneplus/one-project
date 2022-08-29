@@ -40,23 +40,22 @@ public class RestMypageController {
 		return mypageService.askOneDelete(idx);
 	}
 	
-	// 리뷰할 상품 더미
-	@GetMapping("/mypageing/reviewing")
-	public List<ProductDTO> selectReviewList() {
-		return mypageService.selectReviewList();
+	// 리뷰할 상품
+	@GetMapping("/mypageing/reviewing/{idx}")
+	public List<ProductDTO> selectReviewList(@PathVariable int idx) {
+		return mypageService.selectReviewList(idx);
 	}
 	
 	// 리뷰작성
 	@PostMapping("/mypageing/reviewWrite")
 	public int writeReview(@RequestBody ReviewDTO dto) {
-		System.out.println("컨트롤러 productMain_idx : " + dto.getProductMain_idx());
-		System.out.println("컨트롤러Member_idx : " + dto.getMember_idx());
-		System.out.println("컨트롤러ReviewGrade : " + dto.getReviewGrade());
-		System.out.println("컨트롤러Content : " + dto.getContent());
-		System.out.println("컨트롤러pState :" + dto.getpState());
-		System.out.println("컨트롤러pSame : " + dto.getpSame());
-		System.out.println("컨트롤러price : " + dto.getPrice());
-		int row = mypageService.writeReview(dto);
-		return row;
+//		System.out.println("컨트롤러productMain_idx : " + dto.getProductMain_idx());
+//		System.out.println("컨트롤러Member_idx : " + dto.getMember_idx());
+//		System.out.println("컨트롤러ReviewGrade : " + dto.getReviewGrade());
+//		System.out.println("컨트롤러Content : " + dto.getContent());
+//		System.out.println("컨트롤러pState : " + dto.getpState());
+//		System.out.println("컨트롤러pSame : " + dto.getpSame());
+//		System.out.println("컨트롤러price : " + dto.getPrice());
+		return mypageService.writeReview(dto);
 	}
 }

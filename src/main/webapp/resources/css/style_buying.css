@@ -30,6 +30,7 @@ ul, li {
 	background-repeat: no-repeat;
 	width: 89px;
 	height: 20px;
+	cursor: pointer;
 }
 
 .inner_right > a {

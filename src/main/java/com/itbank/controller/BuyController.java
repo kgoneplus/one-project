@@ -35,5 +35,5 @@ public class BuyController {
 		mav.addObject("deliveryDefault", service.deliveryDefault(member_idx));
 		return mav;
 	}
-	
+		
 }

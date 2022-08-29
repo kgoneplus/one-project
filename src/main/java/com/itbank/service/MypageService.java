@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,15 @@ import com.itbank.component.HashComponent;
 import com.itbank.oneplus.AskDTO;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.oneplus.MypageDAO;
+import com.itbank.oneplus.OrdersDAO;
+import com.itbank.oneplus.OrdersDetailDTO;
 import com.itbank.oneplus.ProductDTO;
 import com.itbank.oneplus.ReviewDTO;
 
 @Service
 public class MypageService {
 
+	@Autowired private OrdersDAO ordersDao;
 	@Autowired private MypageDAO mypageDAO;
 	@Autowired private HashComponent hash;
 	private String uploadPath = "D:\\ProjectForder";
@@ -97,14 +101,28 @@ public class MypageService {
 		return mypageDAO.askOneDelete(idx);
 	}
 
-	// 리뷰할 상품 더미
-	public List<ProductDTO> selectReviewList() {
-		return mypageDAO.selectReviewList();
+	// 구매한 상품 리뷰
+	public List<ProductDTO> selectReviewList(int idx) {
+		return mypageDAO.selectReviewList(idx);
 	}
 
 	// 리뷰작성
-	public int writeReview( ReviewDTO dto) {
-		System.out.println("서비스Grade : " + dto.getReviewGrade());
-		return mypageDAO.writeReview(dto);
+	public int writeReview(ReviewDTO dto) {
+		int row = 0;
+		
+		HashMap<String, String> list = mypageDAO.wireConfirm(dto);	// 구매완료한 상품만 불러온다
+		
+		if(list == null) {
+			mypageDAO.writeReview(dto);
+			row = 1;
+		} 
+		else { 
+			row = -1; 
+		}		
+		return row;
+	}
+
+	public List<OrdersDetailDTO> selectOrdersList(int idx) {
+		return ordersDao.selectOrdersList(idx);
 	}
 }
