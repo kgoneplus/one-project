@@ -46,7 +46,7 @@ public class RestMypageController {
 		return mypageService.selectReviewList();
 	}
 	
-	// 리뷰(...공사중...)
+	// 리뷰
 	@PostMapping("/mypageing/reviewWrite")
 	public int writeReview(@RequestBody ReviewDTO dto) {
 		int row = mypageService.writeReview(dto);
