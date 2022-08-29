@@ -43,8 +43,10 @@ public class MypageController {
 	public ModelAndView orders(HttpSession session) {
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		ModelAndView mav = new ModelAndView("/mypage/orders");
-		System.out.println("결제후 mypage에서 member_idx : " + dto.getIdx());
-		List<OrdersDetailDTO> finalOrderlist = mypageService.selectOrdersList(dto.getIdx());
+//		System.out.println("결제후 mypage에서 member_idx : " + dto.getIdx());
+//		List<OrdersDetailDTO> finalOrderlist = mypageService.selectOrdersList(dto.getIdx());
+//		mav.addObject("finalOrderlist", finalOrderlist);
+		List<List<OrdersDetailDTO>> finalOrderlist = mypageService.selectOrdersList(dto.getIdx());
 		mav.addObject("finalOrderlist", finalOrderlist);
 		return mav;
 	}

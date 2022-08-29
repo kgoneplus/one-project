@@ -99,12 +99,12 @@
 <!--                 </div> -->
 <!--                 <div class="orderProductlist_overlay"></div> -->
 <!--             </div> -->
-			<c:forEach var="item" items="${finalOrderlist}">
+			<c:forEach var="list" items="${finalOrderlist}">
             <div class="wishListBox erasebottom">
                 <div class="mypageTitleBox">
                     <div class="ordertitleArea">
-                        <h2>${item.orderDate}</h2>
-                        <span>주문번호 ${item.orders_idx}</span>
+                        <h2>주문날짜 수정필요</h2>
+                        <span>주문번호 수정필요 </span>
 <%--                         <a href="${cpath}/mypage/orderdetail">상세보기 ></a> --%>
                     </div>
                 </div>
@@ -119,12 +119,13 @@
                     </ul>
                 </div>
                 <div class="orderProductlist">
+                	<c:forEach var="item" items="${list}">
 	                    <div class="orderProduct">
 	                        <img src="${cpath}/resources/getImage1/${item.productImg}">
 	                        <a>${item.productName}</a>
 	                        <span>${item.productPrice}원</span> | <span>${item.productCnt}개</span>
 	                    </div>
-                	
+                	</c:forEach>
                 </div>
             </div>
             </c:forEach>
