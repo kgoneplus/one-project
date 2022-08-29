@@ -1009,9 +1009,8 @@
 				</figure>
 			</div>
 			<div class="remocon_miniItem">
-				<figure>
+				<figure class="recentProduct">
 					<img src="">
-					<figcaption>최근 본 상품</figcaption>
 				</figure>
 			</div>
 			<div class="remocon_miniItem">
@@ -1024,6 +1023,5 @@
 
 		category.addEventListener('click', categoryModal)
 		//category.addEventListener('click', closeModal)
-		
-	
+		window.addEventListener('load', getCookie)
 	</script>

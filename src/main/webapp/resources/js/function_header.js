@@ -1,5 +1,42 @@
 'use strict'
 
+// 쿠키 가져오기
+async function getCookie(){
+	const ob = {}
+	const cookie = document.cookie
+	const arr = cookie.split('; ').map(c => {
+		const name = c.split('=')[0]
+		const value = c.split('=')[1]
+		const ob2 = {
+			name: name,
+			value: value
+		}
+		return ob2
+	})
+	const recentProductIdx = +arr.filter(e => e.name == 'recentProduct')[0].value
+	console.log(recentProductIdx)
+	const url = cpath + '/product/cookie'
+	const opt = {
+			method: 'POST',
+			body: JSON.stringify({
+				'productMain_idx': recentProductIdx
+			}),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+		}
+	await fetch(url,opt)
+	.then(resp =>resp.text())
+	.then(text=>{
+		console.log(text)
+		const figrecentProductImg = document.querySelector('.recentProduct')
+		figrecentProductImg.innerHTML = `<img src="${cpath}/resources/getImage1/${text}">
+										<figcaption>최근 본 상품</figcaption>`
+			
+	})
+}
+
+
 // 카테고리 클릭하면 모달창
 function categoryModal(event) {
 	
