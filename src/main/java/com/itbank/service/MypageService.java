@@ -114,22 +114,26 @@ public class MypageService {
 
 	public List<List<OrdersDetailDTO>> selectOrdersList(int idx) {
 		List<OrdersDetailDTO> list = ordersDao.selectOrdersList(idx);
-		List<List<OrdersDetailDTO>> finallist = new ArrayList<List<OrdersDetailDTO>>();
+		List<List<OrdersDetailDTO>> finalorderlist = new ArrayList<List<OrdersDetailDTO>>();
 		List<OrdersDetailDTO> tmp = new ArrayList<OrdersDetailDTO>();
-		tmp.add(list.get(0));
 		for(int i=0; i<list.size(); i++) {
 			boolean flag = false;
-			if(i == 0) flag = true;
+			if(i==0) flag = true;
 			else if(list.get(i).getOrders_idx() == list.get(i-1).getOrders_idx()) flag = true;
+			
 			if(flag) {
 				tmp.add(list.get(i));
 			}
 			else {
-				finallist.add(tmp);
-				tmp.clear();
+				finalorderlist.add(tmp);
+//				tmp.clear();
+				tmp = new ArrayList<OrdersDetailDTO>();
 				tmp.add(list.get(i));
 			}
+//			System.out.println(i + "번째 dto : " + list.get(i).getProductName());
+//			System.out.println(i + "번째 list: " + tmp);
 		}
-		return finallist;
+		finalorderlist.add(tmp);
+		return finalorderlist;
 	}
 }

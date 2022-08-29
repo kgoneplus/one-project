@@ -294,6 +294,7 @@ section {
     margin-top: 20px;
     margin-bottom: 10px;
     box-sizing: border-box;
+    margin-right: 15px;
 }
 .orderProduct > a {
     overflow: hidden;
