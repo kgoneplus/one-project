@@ -17,5 +17,6 @@
 		        on M.idx = C.orders_idx
 		    where
 		        M.member_idx = #{idx}
+		    order by M.idx
 	</select>
 </mapper>

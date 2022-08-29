@@ -1,5 +1,6 @@
 package com.itbank.oneplus;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -44,12 +45,23 @@ public interface MypageDAO {
 	@Delete("delete ask where idx = #{idx}")
 	public int askOneDelete(int idx);
 
-	// 리뷰할 상품 더미
-	@Select("select * from productMain where idx < 5")
-	public List<ProductDTO> selectReviewList();
+	// 리뷰할 상품
+	@Select("select c.* from ordersdetail a, orders b, productmain c "
+			+ "where a.orders_idx = b.idx "
+			+ "and c.idx = a.productmain_idx "
+			+ "and b.member_idx = #{idx} "
+			+ "and a.orderstatus = '결제완료'")
+	public List<ProductDTO> selectReviewList(int idx);
 
 	// 리뷰 작성
 	@Insert("insert into review (productMain_idx, member_idx, pState, pSame, price, content, reviewGrade) "
 			+ "values (#{productMain_idx}, #{member_idx}, #{pState}, #{pSame}, #{price}, #{content}, #{reviewGrade})")
 	public int writeReview(ReviewDTO dto);
+	
+	// 작성한 리뷰
+	@Select("select * from parent_member a, review b "
+			+ "where a.idx = b.member_idx "
+			+ "and b.member_idx = #{member_idx} "
+			+ "and b.productMain_idx = #{productMain_idx}")
+	public HashMap<String, String> wireConfirm(ReviewDTO dto);
 }

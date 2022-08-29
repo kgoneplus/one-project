@@ -22,29 +22,30 @@ import org.springframework.web.bind.annotation.RestController;
 import com.itbank.oneplus.DeliveryDTO;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.oneplus.OrdersDTO;
-import com.itbank.oneplus.ProductcartDAO;
 import com.itbank.oneplus.ProductcartDTO;
 import com.itbank.service.ProductcartService;
 
 @RestController
 public class RestBuyingController {
 	
-	@Autowired private ProductcartDAO dao;
 	@Autowired private ProductcartService service;
 
 	@GetMapping(value="/buying/cart/home/{member_idx}", produces="application/json; charset=utf-8")
 	public List<ProductcartDTO> select(@PathVariable int member_idx) {
-		return dao.selectList(member_idx);
+//		return dao.selectList(member_idx);
+		return service.selectList(member_idx);
 	}
 	
 	@DeleteMapping(value="/buying/cart/home")
 	public int delete(@RequestBody ProductcartDTO dto) {
-		return dao.cartDelete(dto);
+//		return dao.cartDelete(dto);
+		return service.cartDelete(dto);
 	}
 	
 	@PutMapping(value="/buying/cart/home", produces="application/json; charset=utf-8")
 	public int updateCnt(@RequestBody ProductcartDTO dto) {
-		return dao.cartUpdate(dto);
+//		return dao.cartUpdate(dto);
+		return service.cartUpdate(dto);
 	}
 	
 	@PutMapping(value="/buying/cart/home/{member_idx}", produces="text/plain; charset=utf-8")

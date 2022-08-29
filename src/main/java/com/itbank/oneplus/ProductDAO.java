@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Repository
 public interface ProductDAO {
-	
+
 	// 매인 전체 상품 불러오기
 	@Select("select * from productMain order by idx "
 			+ "offset #{offset} rows "
@@ -77,13 +77,8 @@ public interface ProductDAO {
 	@Insert("insert into productcart values (#{cnt}, #{member_idx}, #{productMain_idx})")
 	int insertproductcart(HashMap<String, String> ob);
 
-
 	@Select("select avg(reviewGrade) as prodAvggrade from review where productMain_idx=#{productMain_idx}")
 	String prodAvggrade(int productMain_idx);
-
-	// 리뷰리스트불러오기
-//	@Select("select * from review where productMain_idx=#{productMain_idx}")
-//	List<ReviewDTO> prodreviewList(int productMain_idx);
 
 	@Select("select * from productSummary where productMain_idx=#{idx}")
 	ProductSummaryDTO prodSummaryOne(int idx);
@@ -102,6 +97,9 @@ public interface ProductDAO {
 	int selectreviewCount(HashMap<String, Object> param);
 
 	List<ReviewDTO> selectreviewList(HashMap<String, Object> param);
+
+	@Select("select productImg from productMain where idx=#{productMain_idx}")
+	String prodCookie(HashMap<String, String> productMain_idx);
 	
 
 	
