@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itbank.oneplus.ProductcartDAO">
+<!-- 	<update id="update" parameterType="board"> -->
+<!-- 		update board2 -->
+<!-- 			<set> -->
+<!-- 				<if test="category != null">	category	=	#{category},	</if> -->
+<!-- 				<if test="title != null">		title		=	#{title},		</if> -->
+<!-- 				<if test="content != null">		content		=	#{content},		</if> -->
+<!-- 				<if test="uploadFile != null">	uploadFile	=	#{uploadFile}	</if> -->
+<!-- 			</set> -->
+<!-- 			where -->
+<!-- 				idx			=	#{idx} -->
+<!-- 	</update> -->
+	
+	<select id="selectList" parameterType="int" resultType="cart">
+		select M.idx AS member_idx, P.idx AS productMain_idx, P.productPrice, P.productName, P.productImg, P.maxbuyCnt, P.productDiscount, C.cnt from productCart C
+		    join parent_member M
+		        on C.member_idx = M.idx
+		    join productMain P
+		        on C.productMain_idx = P.idx
+		    where
+		        M.idx = #{member_idx}
+	</select>
+	
+	<select id="deliveryInfoSelectList" parameterType="hashmap" resultType="cart">
+		select * from productMain P
+			join productCart C
+				on ${productMain_idx} = P.idx
+			where
+				C.member_idx = ${member_idx} and C.productMain_idx = ${productMain_idx}
+	</select>
+</mapper>
+
