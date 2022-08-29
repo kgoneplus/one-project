@@ -178,4 +178,16 @@ public class ProductcartService {
 		return result;
 	}
 
+	public List<ProductcartDTO> selectList(int member_idx) {
+		return dao.selectList(member_idx);
+	}
+
+	public int cartDelete(ProductcartDTO dto) {
+		return dao.cartDelete(dto);
+	}
+
+	public int cartUpdate(ProductcartDTO dto) {
+		return dao.cartUpdate(dto);
+	}
+
 }
