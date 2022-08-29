@@ -104,7 +104,7 @@
                 <div class="mypageTitleBox">
                     <div class="ordertitleArea">
                         <h2>주문날짜 수정필요</h2>
-                        <span>주문번호 수정필요</span>
+                        <span>주문번호 수정필요 </span>
 <%--                         <a href="${cpath}/mypage/orderdetail">상세보기 ></a> --%>
                     </div>
                 </div>

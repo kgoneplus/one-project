@@ -118,15 +118,16 @@ public class MypageService {
 		List<OrdersDetailDTO> tmp = new ArrayList<OrdersDetailDTO>();
 		tmp.add(list.get(0));
 		for(int i=0; i<list.size(); i++) {
-			if(i != 0) {
-				if(list.get(i).getOrders_idx() == list.get(i-1).getOrders_idx()) {
-					tmp.add(list.get(i));
-				}
-				else {
-					finallist.add(tmp);
-					tmp.clear();
-					tmp.add(list.get(i));
-				}
+			boolean flag = false;
+			if(i == 0) flag = true;
+			else if(list.get(i).getOrders_idx() == list.get(i-1).getOrders_idx()) flag = true;
+			if(flag) {
+				tmp.add(list.get(i));
+			}
+			else {
+				finallist.add(tmp);
+				tmp.clear();
+				tmp.add(list.get(i));
 			}
 		}
 		return finallist;
