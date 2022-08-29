@@ -8,20 +8,6 @@
 <title>주문/결제 | 홈플러스 온라인, 맛있는 마트</title>
 </head>
 <body>
-
-<div class="buying_header">
-    <div class="inner">
-        <div class="inner_left">
-            <div class="black_logo"><a href="${cpath}/"></a></div>
-        </div>
-        <div class="inner_right">
-            <a href="${cpath}/">로그아웃</a>
-            <a href="${cpath}/mypage/mypageMain">마이페이지</a>
-            <a href="${cpath}/">고객센터</a>
-        </div>
-    </div>
-</div>
-
 <main>
     <div class="mainDiv">
         <div class="homeTitleWrap">
@@ -110,7 +96,7 @@
                 </div>
                 <div class="resultPrice payTabTotalprice">
                     <span>결제예정금액</span>
-                    <span><p><fmt:formatNumber value="${pay}" pattern="#,###" /></p>원</span>
+                    <span><p><fmt:formatNumber value="${pay + deliveryFee}" pattern="#,###" /></p>원</span>
                 </div>
                 <div class="keepgoingBtn">
                     <button>카카오페이 결제하기</button>

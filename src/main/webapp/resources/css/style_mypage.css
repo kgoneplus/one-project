@@ -294,6 +294,7 @@ section {
     margin-top: 20px;
     margin-bottom: 10px;
     box-sizing: border-box;
+    margin-right: 15px;
 }
 .orderProduct > a {
     overflow: hidden;
@@ -323,6 +324,7 @@ section {
     align-items: center;
     -webkit-box-pack: justify;
     justify-content: space-between;
+    padding: 0;
 }
 .stepBox > ul > li {
     width: 212.5px;

@@ -22,4 +22,16 @@
 <script src="${cpath}/resources/js/function_buying.js"></script>
 </head>
 <body>
+<div class="buying_header">
+    <div class="inner">
+        <div class="inner_left">
+            <div class="black_logo" onclick="location.href = '${cpath}'"></div>
+        </div>
+        <div class="inner_right">
+            <a href="${cpath}/">로그아웃</a>
+            <a href="${cpath}/mypage/mypageMain">마이페이지</a>
+            <a href="${cpath}/">고객센터</a>
+        </div>
+    </div>
+</div>
 

@@ -1,5 +1,7 @@
 package com.itbank.oneplus;
 
+import java.sql.Date;
+
 //IDX             NOT NULL NUMBER        
 //ORDERS_IDX               NUMBER        
 //PRODUCTMAIN_IDX          NUMBER        
@@ -16,6 +18,9 @@ public class OrdersDetailDTO {
 	private int productPrice;
 	private String orderStatus;
 	private String claimStatus;
+	private String productName;
+	private String productImg;
+	private Date OrderDate;
 	
 	public int getIdx() {
 		return idx;
@@ -58,6 +63,24 @@ public class OrdersDetailDTO {
 	}
 	public void setProductCnt(int productCnt) {
 		this.productCnt = productCnt;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public String getProductImg() {
+		return productImg;
+	}
+	public void setProductImg(String productImg) {
+		this.productImg = productImg;
+	}
+	public Date getOrderDate() {
+		return OrderDate;
+	}
+	public void setOrderDate(Date orderDate) {
+		OrderDate = orderDate;
 	}
 	
 }

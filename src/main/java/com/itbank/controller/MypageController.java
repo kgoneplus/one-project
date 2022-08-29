@@ -1,10 +1,12 @@
 package com.itbank.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.oneplus.AskDTO;
 import com.itbank.oneplus.MemberDTO;
+import com.itbank.oneplus.OrdersDetailDTO;
 import com.itbank.oneplus.ProductDTO;
 import com.itbank.oneplus.ProductcartDTO;
 import com.itbank.oneplus.ReviewDTO;
@@ -37,7 +40,12 @@ public class MypageController {
 
 	// 주문/배송 조회
 	@GetMapping("/orders")
-	public void orders() {
+	public ModelAndView orders(HttpSession session) {
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		ModelAndView mav = new ModelAndView("/mypage/orders");
+		List<List<OrdersDetailDTO>> finalOrderlist = mypageService.selectOrdersList(dto.getIdx());
+		mav.addObject("finalOrderlist", finalOrderlist);
+		return mav;
 	}
 
 	// 주문상세보기

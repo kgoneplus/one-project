@@ -8,19 +8,6 @@
 <title>주문/결제 | 홈플러스 온라인, 맛있는 마트</title>
 </head>
 <body>
-<div class="buying_header">
-    <div class="inner">
-        <div class="inner_left">
-            <div class="black_logo"><a href="${cpath}"></a></div>
-        </div>
-        <div class="inner_right">
-            <a href="${cpath}/">로그아웃</a>
-            <a href="${cpath}/mypage/mypageMain">마이페이지</a>
-            <a href="${cpath}/">고객센터</a>
-        </div>
-    </div>
-</div>
-
 <main>
     <div class="mainDiv">
         <div class="homeTitleWrap">
@@ -64,19 +51,19 @@
             <div class="payTab">
                 <div class="payTabTotalprice">
                     <span>총주문금액</span>
-                    <span><p></p>원</span>
+                    <span><p>0</p>원</span>
                 </div>
                 <div class="payTabTotalprice">
                     <span>배송비</span>
-                    <span><p></p>원</span>
+                    <span><p>3000</p>원</span>
                 </div>
                 <div class="payTabTotalprice">
                     <span>할인금액</span>
-                    <span><p></p>원</span>
+                    <span><p>-0</p>원</span>
                 </div>
                 <div class="resultPrice payTabTotalprice">
                     <span>결제예정금액</span>
-                    <span><p></p>원</span>
+                    <span><p>0</p>원</span>
                 </div>
                 <div class="keepgoingBtn">
                     <button class="orderAll" type="submit">전체상품 주문하기</button>
