@@ -1,21 +1,17 @@
 package com.itbank.oneplus;
 
-//	DCODE      NOT NULL NUMBER         
-//	MEMBER_IDX          NUMBER         
-//	ADDR1               VARCHAR2(20)   
-//	ADDR2               VARCHAR2(100)  
-//	ADDR3               VARCHAR2(100)  
-//	DINFO1              VARCHAR2(1000) 
-
 public class DeliveryDTO {
 	private int dCode;
 	private int member_idx;
 	private String receiverName;
 	private String receiverPhonenum;
+	private String address;
 	private String addr1;
 	private String addr2;
 	private String addr3;
+	private String addr4;
 	private String dInfo1;
+	private String isDefault;
 	
 	public int getdCode() {
 		return dCode;
@@ -64,6 +60,24 @@ public class DeliveryDTO {
 	}
 	public void setReceiverPhonenum(String receiverPhonenum) {
 		this.receiverPhonenum = receiverPhonenum;
+	}
+	public String getAddr4() {
+		return addr4;
+	}
+	public void setAddr4(String addr4) {
+		this.addr4 = addr4;
+	}
+	public String getIsDefault() {
+		return isDefault;
+	}
+	public void setIsDefault(String isDefault) {
+		this.isDefault = isDefault;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 	

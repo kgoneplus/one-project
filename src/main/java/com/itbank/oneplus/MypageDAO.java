@@ -1,5 +1,6 @@
 package com.itbank.oneplus;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -29,8 +30,38 @@ public interface MypageDAO {
 			+ " values (#{member_idx}, #{askType}, #{title}, #{content})")
 	public int askWrite(AskDTO dto);
 
-	// 1:1 문의 내역 (로그인 정보의 idx와 같은 것만 출력하도록 작성해야함)
-	@Select("select * from ask order by idx desc")
-	List<AskDTO> selectAskAll();
+	// 1:1 문의 내역(작성자와 일치하는 문의만)
+	@Select("select A.* from ask A "
+			+ "join parent_member M "
+			+ "on A.member_idx = M.idx "
+			+ "where M.idx = #{idx}")
+	List<AskDTO> selectAskAll(int idx);
+
+	// 1:1 문의 상세 보기(관리자 코멘트 작성 해야함)
+	@Select("select * from ask where idx = #{idx}")
+	public AskDTO selectAskOne(int idx);
+
+	// 1:1 문의 삭제
+	@Delete("delete ask where idx = #{idx}")
+	public int askOneDelete(int idx);
+
+	// 리뷰할 상품
+	@Select("select c.* from ordersdetail a, orders b, productmain c "
+			+ "where a.orders_idx = b.idx "
+			+ "and c.idx = a.productmain_idx "
+			+ "and b.member_idx = #{idx} "
+			+ "and a.orderstatus = '결제완료'")
+	public List<ProductDTO> selectReviewList(int idx);
+
+	// 리뷰 작성
+	@Insert("insert into review (productMain_idx, member_idx, pState, pSame, price, content, reviewGrade) "
+			+ "values (#{productMain_idx}, #{member_idx}, #{pState}, #{pSame}, #{price}, #{content}, #{reviewGrade})")
+	public int writeReview(ReviewDTO dto);
 	
+	// 작성한 리뷰
+	@Select("select * from parent_member a, review b "
+			+ "where a.idx = b.member_idx "
+			+ "and b.member_idx = #{member_idx} "
+			+ "and b.productMain_idx = #{productMain_idx}")
+	public HashMap<String, String> wireConfirm(ReviewDTO dto);
 }

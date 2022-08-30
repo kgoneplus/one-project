@@ -30,6 +30,7 @@ ul, li {
 	background-repeat: no-repeat;
 	width: 89px;
 	height: 20px;
+	cursor: pointer;
 }
 
 .inner_right > a {
@@ -159,7 +160,7 @@ ul, li {
 	position: relative;
 }
 
-.orderCheck > .orderProducts > ul > li > img {
+.orderCheck > .orderProducts > ul > li > a > img {
 	width: 90px;
 	height: 90px;
 	border-radius: 3px;
@@ -529,10 +530,12 @@ ul, li {
     background: #f9fafb;
     border-radius: 3px;
     font-size: 13px;
+    width: 480px;
 }
 .DeliveryContent p {
 	color: #666;
 	font-size: 12px;
+	margin-left: 30px;
 }
 .DeliveryContent table {
 	border-collapse: collapse;
@@ -561,7 +564,7 @@ ul, li {
     border-radius: 2px;
     background: #fff;
     text-align: center;
-    float: right;
+    margin-left: 465px;
 }
 .DeliveryContent table tbody tr td:nth-child(4) {
 	display: inline-block;
@@ -572,4 +575,29 @@ ul, li {
 .DeliveryContent table tbody tr td:nth-child(4) > div {
 	padding: 5px;
 	cursor: pointer;
+}
+.modDeliveryAddressContent {
+	display: none;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 600px;
+    margin-left: -300px;
+    background: #fff;
+    border-radius: 3px;
+    z-index: 102;
+    min-height: 500px;
+    padding: 20px;
+}
+#changeDefaultAddress {
+	width: 140px;
+    height: 40px;
+    line-height: 38px;
+    color: #fff;
+    background-color: #333;
+    border: 0;
+}
+.DeliveryContent > div:last-child {
+	margin: 50px 20px 0;
+	text-align: center;
 }

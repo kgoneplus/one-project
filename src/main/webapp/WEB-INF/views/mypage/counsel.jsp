@@ -4,224 +4,9 @@
 <title>1:1 문의 내역 | MY 홈플러스 | 홈플러스</</title>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
-<style>
-.counsel_modal {
-	display: none;
-}
-.counsel_overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: black;
-	opacity: 70%;
-	z-index: 5;
-}
-.counsel_content {
-	position: absolute;
-	z-index: 6;
-	width: 700px;
-	height: 660px;
-	justify-content: center;
-	align-items: center;
-	background-color: white;
-	overflow: auto;
-	top: 50%;
-  	left: 50%;
-  	transform: translate(-50%, -50%);
-}
-.counsel_hidden {
-	display: none;
-}
-.counsel_content > div:nth-child(1) {
-	font-weight: bold;
-	padding: 25px;
-	display: flex;
-	justify-content: space-between;
-	border-bottom: 2px solid gray;	
-}
-.counsel_close {
-	cursor: pointer;
-}
-.counsel_submit {
-	text-align: center;
-}
-.counsel_form {
-	padding: 20px 50px;
-	width: 600px;
-}
-.counsel_table {
-	border-collapse: collapse;
-}
-tr {
-	height: 50px;
-	border: 1px solid black;
-	font-size: 12px;
-}
-th {
-	text-align: left;
-	width: 150px;
-	background-color: #f5f5f5;
-	padding-left: 10px;
-}
-td {
-	padding-left: 20px;
-}
-.ask_wrap > .item {
-	margin: 20px auto;
-	width: 900px;
-	height: 50px;
-	display: flex;
-	justify-content: space-between;
-	border: 1px solid #dadada;
-	cursor: pointer;
-}
-.ask_wrap > .item > .askType {
-	width: 150px;
-	height: 50px;
-	text-align: center;
-	padding-top: 13px;
-	font-weight: bold;
-}
-.ask_wrap > .item > .title {
-	width: 450px;
-	height: 50px;
-	padding-top: 15px;
-	font-size: 15px;
-}
-.ask_wrap > .item > .writeDate {
-	height: 50px;
-	padding-top: 13px;
-	color: #dadada;
-	font-weight: bold;
-}
-.ask_wrap > .item > .waiting {
-	height: 50px;
-	padding-top: 13px;
-	color: red;
-	font-weight: bold;
-}
-.ask_wrap > .item > .direction {
-	height: 50px;
-	padding-top: 13px;
-	padding-right: 10px;
-}
-.ask_wrap > .item > .menu {
-	display: none;
-}
-</style>
+<script src="${cpath}/resources/js/function_mypage.js"></script>
 </head>
 <body>
-<script>
-	// 1:1 문의 모달창
-	function counselOpenModal() {
-		const counsel_modal = document.querySelector('.counsel_modal')
-		counsel_modal.style.display = 'flex'
-	}
-	function counselCloesModal() {
-		const counsel_modal = document.querySelector('.counsel_modal')
-		counsel_modal.style.display = 'none'
-	}
-	
-	// 1:1 문의 작성
-	function askHandler(event) {
-		event.preventDefault()
-		
-		const ob = {}
-		const formData = new FormData(event.target)
-		for(let key of formData.keys()) {
-			ob[key] = formData.get(key)
-		}
-		
-		const url = '${cpath}/mypage/counsel'
-		const opt = {
-			method: 'POST',
-			body: JSON.stringify(ob),
-			headers: {
-				'Content-Type': 'application/json; charset=utf-8'
-			}
-		}
-		fetch(url, opt)
-		.then(resp => resp.text())
-		.then(text => {
-			if(text == 1) {
-				alert('작성성공')
-				location.href = 'http://localhost:8080/project/mypage/counsel'
-			}
-		})
-	}
-	
-	// 1:1 문의 컨벌트함수 (수정중...)
-	function convertAsk(dto) {
-		const item = document.createElement('div')
-		item.classList.add('item')
-		item.setAttribute('idx', dto.idx)
-		
-		for(let key in dto) {
-			const div = document.createElement('div')
-			switch(key) {
-			case 'member_idx':
-			case 'idx':
-			case 'img':
-			case 'orderProduct':
-// 			case 'uploadFile':
-			case 'content':
-				continue;
-			case 'writeDate':
-				div.classList.add(key)
-				div.innerText = new Date(dto[key]).toISOString().split('T')[0]
-				item.appendChild(div)
-				break;
-			
-// 				div.classList.add(key)
-// 				const pre = document.createElement('pre')
-// 				pre.innerText = dto[key]
-// 				div.appendChild(pre)
-// 				item.appendChild(div)
-// 				break;
-			default:
-				div.classList.add(key)
-				div.innerText = dto[key]
-				item.appendChild(div)
-			}
-		}
-		const menu = document.createElement('div')
-		menu.classList.add('menu')
-		const waiting = document.createElement('div')
-		waiting.classList.add('waiting')
-		const direction = document.createElement('div')
-		direction.classList.add('direction')
-		const btn1 = document.createElement('button')
-		btn1.innerText = '수정'
-		const askAnswer = document.createElement('div')
-		askAnswer.innerText = '답변대기중'
-		const open = document.createElement('div')
-		open.innerText = '▼'
-		
-		menu.appendChild(btn1)
-		waiting.appendChild(askAnswer)
-		direction.appendChild(open)
-		item.appendChild(menu)
-		item.appendChild(waiting)
-		item.appendChild(direction)
-		
-		return item
-	}
-		
-	// 1:1 문의 내용
-	function selectAskAll() {
-		const wrap = document.querySelector('.ask_wrap')
-		const url = '${cpath}/mypageing/counseling'
-		
-		fetch(url)
-		.then(resp => resp.json())
-		.then(json => {
-			json.forEach(dto => wrap.appendChild(convertAsk(dto)))
-		})
-	}
-	
-</script>
 <main>
     <div class="mypagewrapper">
         <aside>
@@ -268,7 +53,7 @@ td {
                 <div class="titleArea">
                     <h2>상품문의</h2>
                 </div>
-                <div class="rightArea"><button>1:1 문의하기</button></div>
+                <div class="rightArea"><button class="ask_button">1:1 문의하기</button></div>
             </div>
             
  			<div class="dateFilter">
@@ -292,6 +77,15 @@ td {
                 </form>
             </div>
             <div class="ask_wrap"></div>
+            
+            <div id="askList_modal" class="askList_hidden">
+            	<div class="askList_content">
+            		<div class="askList_top"></div>
+            		<div class="askList_mid"></div>
+            		<div class="askList_bottom"></div>
+            	</div>
+            	<div class="askList_overlay"></div>
+            </div>
         </section>
     </div>
 		
@@ -303,10 +97,10 @@ td {
 				<div class="counsel_close">X</div>
 			</div>
 							
-			<form class="counsel_form">
+			<form class="counsel_form" enctype="multipart/form-data">
 				<input type="hidden" name="member_idx" value="${login.idx }">
 				<table class="counsel_table">
-				<tr>
+				<tr class="counsel_tr">
 					<th>문의 유형</th>
 	 				<td>
 	 					<select name="askType">
@@ -321,11 +115,11 @@ td {
 						</select>
 					</td>
 				</tr>					
-				<tr>
+				<tr class="counsel_tr">
 					<th>제목</th>
 					<td><input type="text" name="title" placeholder="최소 2자 이상 입력해주세요 (최대 25자)" required></td>
 				</tr>										
-				<tr>
+				<tr class="counsel_tr">
 					<th>내용</th>
 					<td>
 						<textarea name="content"
@@ -334,13 +128,10 @@ td {
 							  placeholder="문의 내용을 입력해 주세요 (최대 700자 이내)&#13;&#10;고객님의 개인정보가 기입되지 않도록 주의해주세요" required></textarea>
 					</td>
 				</tr>
-<!-- 				<p>이미지 등록(선택) -->
-<!-- 					<input type="file" name="img"> -->
-<!-- 				</p>					 -->
-<!-- 				<p>답변알림(선택) -->
-<!-- 					<span><input type="checkbox">이메일 알림</span> -->
-<!-- 					<span><input type="text" name="content" placeholder="babo@naver.com"></span> -->
-<!-- 				</p> -->
+<!-- 				<tr class="counsel_tr"> -->
+<!-- 					<th>이미지 등록(선택)</th> -->
+<!-- 					<td><input type="file" name="askFile" accept="image/*"></td> -->
+<!-- 				</tr>					 -->
 				</table>
 				<p class="counsel_submit"><input type="submit" value="등록"></p>
 			</form>
@@ -350,15 +141,18 @@ td {
 </main>
 
 <script>
-	const counselModal_overlay = document.querySelector('.counsel_overlay')
+	let login_idx = '${login.idx}'
+	const counselModal_overlay = document.querySelector('.counsel_overlay')		
 	const counselModal_close = document.querySelector('.counsel_close')
 	const counselModal_open = document.querySelector('.rightArea')
-	const writeForm = document.forms[1]											// 1:1 문의 등록 폼
+	const writeForm = document.querySelector('.counsel_form')					// 1:1 문의 등록 폼
+	const askList_close = document.querySelector('.askList_overlay')
 	
 	counselModal_open.addEventListener('click', counselOpenModal)
 	counselModal_overlay.addEventListener('click', counselCloesModal)
 	counselModal_close.addEventListener('click', counselCloesModal)
 	writeForm.addEventListener('submit', askHandler)							// 1:1 문의 등록
-	window.addEventListener('load', selectAskAll)								// 1:1 문의 내역
+	window.addEventListener('load', selectAskAll(login_idx))					// 1:1 문의 내역 상세보기
+	askList_close.addEventListener('click', askCloesModal)						// 1:1 문의 내역 삭제
 </script>
 <%@ include file="../footer.jsp" %>

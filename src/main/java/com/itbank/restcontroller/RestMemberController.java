@@ -19,11 +19,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itbank.oneplus.DeliveryDTO;
 import com.itbank.oneplus.MemberDAO;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.service.MailService;
@@ -76,12 +78,13 @@ public class RestMemberController {
 	}
 	
 	// 네이버 로그인
-	@PostMapping("/member/login/naverSave")
-	public @ResponseBody int naverSave(@RequestParam("email") String email, @RequestParam("name") String name,@RequestParam("phonenum") String phonenum, HttpSession session) {
+	@PostMapping("/naverSave")
+	public int naverSave(@RequestBody HashMap<String, String> param, HttpSession session) {
 		int row = 0;
 		
-		phonenum = phonenum.replace("-", "");
-		
+		String phonenum = param.get("phonenum").replace("-", "");
+		String email = param.get("email");
+		String name = param.get("name");
 		MemberDTO naver = new MemberDTO();
 		
 		naver.setPhonenum(phonenum);
@@ -103,7 +106,7 @@ public class RestMemberController {
 	// 토큰삭제
 	@GetMapping("/remove") 
 	@CrossOrigin
-	public @ResponseBody int remove(@RequestParam("token") String token, HttpSession session, HttpServletResponse resp)  {
+	public  int remove(@RequestParam("token") String token, HttpSession session, HttpServletResponse resp)  {
 		
 		
         
@@ -165,12 +168,20 @@ public class RestMemberController {
 	  }
 	// 매일 주소 받아서 인증번호 
 	@PostMapping(value="mailconfirm", produces="application/json; charset=utf-8")
-	public int mailconfirm(@RequestParam("mailadress") String ma, HttpSession session) throws IOException {
-		return mails.sendMailconfirm(ma, session);
+	public String mailconfirm(@RequestBody HashMap<String, String> param) throws IOException {
+		return mails.sendMailconfirm(param.get("mailadress"));
 	}
 	
-	
-	
+	@PostMapping("/passSearch")
+	public MemberDTO passSearch(@RequestBody MemberDTO dto) {
+		return dao.selectPassSearch(dto);
+	}
+	@PostMapping("/passUpdate")
+	public int passUpdate(@RequestBody MemberDTO dto) { // dto 안에 userId 새로 업데이트할 비밀번호를 각각 담고있음
+		System.out.println(dto.getUserid());
+		System.out.println(dto.getUserpw());
+		return ms.passUpdate(dto);
+	}
 	
 
 }

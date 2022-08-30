@@ -47,7 +47,7 @@
                         <ul> 
                             <li><a href="${cpath}/mypage/orders">주문/배송조회</a></li>
                             <li><a href="#">고객센터</a></li>
-                            <li><a href="#">회원정보</a></li>
+                            <li><a href="${cpath}/mypage/myinfo/${login.idx}">회원정보</a></li>
                         </ul> 
                 </div>   
                 <div><a href="${cpath}/buying/cart/${login.idx}"><img src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a></div>
@@ -413,9 +413,153 @@
                                              </ul>
                                           </div>                                               
                                          </li>
-                                      </ul>
-                                   </div>
 
+
+										</ul>
+									</div></li>
+								<li><a>우유/유제품
+										<div class="arrow"></div>
+								</a>
+									<div class="allmenu2">
+										<ul>
+											<li><a href="${cpath }/product/list?category2=200059">우유
+													<div class="arrow"></div>
+											</a>
+												<div class="allmenu3">
+													<ul>
+														<li><a
+															href="${cpath }/product/list?category2=200059&productMain_categoryCode=300209">기능강화우유&어린이우유</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200059&productMain_categoryCode=300210">딸기/초코/바나나/기타
+																우유</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200059&productMain_categoryCode=300211">멸균우유</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200059&productMain_categoryCode=300212">흰우유/저지방우유</a></li>
+													</ul>
+												</div></li>
+											<li><a href="${cpath }/product/list?category2=200058">요거트/요구르트
+													<div class="arrow"></div>
+											</a>
+												<div class="allmenu3">
+													<ul>
+														<li><a
+															href="${cpath }/product/list?category2=200058&productMain_categoryCode=300207">떠먹는
+																요구르트</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200058&productMain_categoryCode=300208">마시는
+																요구르트</a></li>
+													</ul>
+												</div></li>
+											<li><a href="${cpath }/product/list?category2=200057">두유
+													<div class="arrow"></div>
+											</a>
+												<div class="allmenu3">
+													<ul>
+														<li><a
+															href="${cpath }/product/list?category2=200057&productMain_categoryCode=300205">영유아두유</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200057&productMain_categoryCode=300206">일반두유</a></li>
+													</ul>
+												</div></li>
+											<li><a href="${cpath }/product/list?category2=200060">치즈/버터
+													<div class="arrow"></div>
+											</a>
+												<div class="allmenu3">
+													<ul>
+														<li><a
+															href="${cpath }/product/list?category2=200060&productMain_categoryCode=300213">스트링/과일/스낵치즈</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200060&productMain_categoryCode=300214">버터</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200060&productMain_categoryCode=300215">생크림/휘핑크림</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200060&productMain_categoryCode=300216">슬라이스
+																치즈</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200060&productMain_categoryCode=300217">크림/자연치즈</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200060&productMain_categoryCode=300218">슈레드/피자치즈/파마산</a></li>
+													</ul>
+												</div></li>
+											<li><a href="${cpath }/product/list?category2=200056">냉장디저트/음료
+													<div class="arrow"></div>
+											</a>
+												<div class="allmenu3">
+													<ul>
+														<li><a
+															href="${cpath }/product/list?category2=200056&productMain_categoryCode=300202">냉장주스</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200056&productMain_categoryCode=300203">신선음료</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200056&productMain_categoryCode=300204">푸딩디저트류</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200056&productMain_categoryCode=303547">냉장커피</a></li>
+													</ul>
+												</div></li>
+										</ul>
+									</div></li>
+								<li><a>냉장/냉동식품
+										<div class="arrow"></div>
+								</a>
+									<div class="allmenu2">
+										<ul>
+											<li><a href="${cpath }/product/list?category2=200070">돈까스/떡갈비/너겟
+													<div class="arrow"></div>
+											</a>
+												<div class="allmenu3">
+													<ul>
+														<li><a
+															href="${cpath }/product/list?category2=200070&productMain_categoryCode=300242">너겟/치킨</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200070&productMain_categoryCode=300243">돈까스/생선까스/탕수육/김말이/기타</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200070&productMain_categoryCode=300244">떡갈비/동그랑땡&완자/함박스테이크</a></li>
+													</ul>
+												</div></li>
+											<li><a href="${cpath }/product/list?category2=200669">피자/핫도그/치킨
+													<div class="arrow"></div>
+											</a>
+												<div class="allmenu3">
+													<ul>
+														<li><a
+															href="${cpath }/product/list?category2=200669&productMain_categoryCode=303604">냉동감자/치즈스틱</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200669&productMain_categoryCode=300257">피자/브리또</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200669&productMain_categoryCode=300258">핫도그</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200669&productMain_categoryCode=303602">치킨</a></li>
+													</ul>
+												</div></li>
+											<li><a href="${cpath }/product/list?category2=200069">냉동밥/죽/스프
+													<div class="arrow"></div>
+											</a>
+												<div class="allmenu3">
+													<ul>
+														<li><a
+															href="${cpath }/product/list?category2=200069&productMain_categoryCode=303617">냉동밥/덮밥류</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200069&productMain_categoryCode=300241">죽/스프</a></li>
+													</ul>
+												</div></li>
+											<li><a href="${cpath }/product/list?category2=200670">떡볶이/면류
+													<div class="arrow"></div>
+											</a>
+												<div class="allmenu3">
+													<ul>
+														<li><a
+															href="${cpath }/product/list?category2=200670&productMain_categoryCode=300251">떡국떡/떡볶이떡</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200670&productMain_categoryCode=300250">냉면/소바</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200670&productMain_categoryCode=300245">국수/칼국수/우동</a></li>
+														<li><a
+															href="${cpath }/product/list?category2=200670&productMain_categoryCode=303603">짜장/짬뽕/스파게티</a></li>
+													</ul>
+												</div></li>
+										</ul>
+									</div></li>
                                 </li>
                                 <li>
                                    <a>우유/유제품<div class="arrow"></div></a>
@@ -525,8 +669,7 @@
                                       </ul>
                                    </div>                                    
                                   </li>
-
-                                
+                                  
                                 <li>
                                    <a>생수/음료<div class="arrow"></div></a>
                                        <div class="allmenu2">
@@ -833,8 +976,6 @@
                                 </li>
                             </ul>
                         </div>
- 
-
                     </div>
                 </li>
                 <li><a href="#">신상품</a></li>
@@ -846,9 +987,39 @@
          
         </nav>
     </header>
-    
+    	<div id="remocon">
+		<div class="remocon_frame">
+			<div class="remocon_miniItem">
+				<figure>
+					<a href="${cpath }/member/login"><img src="${cpath }/resources/img/icon_147.png"></a>
+					<figcaption>로그인</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<a href="${cpath }/mypage/orders"><img src="${cpath }/resources/img/icon_139.png"></a>
+					<figcaption>주문내역</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<a href="${cpath }/buying/cart/${login.idx}"><img src="${cpath }/resources/img/icon_152.png"></a>
+					<figcaption>장바구니</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure class="recentProduct">
+					<img src="">
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<button id="toTop">TOP</button>
+			</div>
+		</div>
+	</div>
 	<script>
 		const category = document.querySelector('#cate > a')
 
 		category.addEventListener('click', categoryModal)
+		window.addEventListener('load', getCookie)
 	</script>

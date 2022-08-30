@@ -30,15 +30,23 @@
 	
 	<context:component-scan base-package="com.itbank.controller" />
 	<context:component-scan base-package="com.itbank.restcontroller" />
+	<context:component-scan base-package="com.itbank.interceptor" />
 	
-	<view-controller path="/" view-name="home" />
+	
 	
 	<interceptors>
-		<interceptor>
-			<mapping path="/mypage" />			
-			<beans:bean class="com.itbank.interceptor.MypageInterceptor" />
-		</interceptor>
-	</interceptors>
+	 	<interceptor>
+	 		<mapping path="/mypage/**"/>
+	 		<mapping path="/buying/**"/>
+	 		
+<!-- 	 		<mapping path="/board/**" />			주소 계층화에 따른 여러 주소 적용 -->
+<!-- 	 		<exclude-mapping path="/board/list" />	제외시킬 주소 -->
+<!-- 	 		<exclude-mapping path="/board/view" /> -->
+	 		
+	 		<beans:bean id="LoginInterceptor"
+	 					class="com.itbank.interceptor.LoginIntercepter" />
+	 	</interceptor>
+	 </interceptors>
 	
 </beans:beans>
 

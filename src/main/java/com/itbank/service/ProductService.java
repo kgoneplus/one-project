@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itbank.oneplus.ProductDAO;
 import com.itbank.oneplus.ProductDTO;
+import com.itbank.oneplus.ProductSummaryDTO;
 
 @Service
 public class ProductService {
@@ -75,7 +76,11 @@ public class ProductService {
 		
 		return two;
 	}
-
+	
+	public ProductSummaryDTO prodSummaryOne(int idx) {
+		return dao.prodSummaryOne(idx);
+	}
+	
 	//  상품 이미지에서 바로 장바구니 담기
 	public int imgcart(HashMap<String, String> idx) {
 		
@@ -108,7 +113,7 @@ public class ProductService {
 			 word = getword.get(i);
 			 System.out.println(word);
 		}
-	//	System.out.println(getword);
+		System.out.println(getword);
 		
 		
 		return getword;

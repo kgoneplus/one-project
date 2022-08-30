@@ -27,7 +27,9 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:config/cart.xml</value>
+				<value>classpath:config/order.xml</value>
 				<value>classpath:config/product.xml</value>
+<!-- 				<value>classpath:config/ask.xml</value> -->
 			</list>
 			
 		</property>
@@ -37,7 +39,8 @@
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 	
-	<context:component-scan base-package="com.itbank.service" />	
+	<context:component-scan base-package="com.itbank.service" />
 	<context:component-scan base-package="com.itbank.component" />
+
 	<mybatis-spring:scan base-package="com.itbank.oneplus"/>
 </beans>
