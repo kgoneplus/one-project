@@ -30,7 +30,7 @@ async function getCookie(){
 	.then(text=>{
 		console.log(text)
 		const figrecentProductImg = document.querySelector('.recentProduct')
-		figrecentProductImg.innerHTML = `<img src="${cpath}/resources/getImage1/${text}">
+		figrecentProductImg.innerHTML = `<a href="${cpath}/product/view/${recentProductIdx}"><img src="${cpath}/resources/getImage1/${text}"><a/>
 										<figcaption>최근 본 상품</figcaption>`
 			
 	})

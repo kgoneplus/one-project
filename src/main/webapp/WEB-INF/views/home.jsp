@@ -55,9 +55,9 @@
 
 		//document.querySelector('.next').onclick = slide
 		//document.querySelector('.prev').onclick = slide
-		// setInterval(slide, 1500); //2.5초
 		document.querySelector('.next').addEventListener('click', slide)
 		document.querySelector('.prev').addEventListener('click', slide)
+		setInterval(slide, 2200);
 		
 		const toTop = document.getElementById('toTop')
 		const listLiArray = Array.from(document.querySelectorAll('.main_list_nav > ul > li'))		
