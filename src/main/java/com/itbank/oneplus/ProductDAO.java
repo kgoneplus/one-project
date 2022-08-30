@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -69,14 +70,43 @@ public interface ProductDAO {
 	@Delete("delete product_wishlist where parent_member_idx=#{parent_member_idx} and productmain_idx=#{productMain_idx}")
 	int deletewishList(HashMap<String, String> ob);
 
-	
-	//@Select("select categoryName, category2Name from category where productMain_categoryCode=#{productMain_categoryCode}")
-	List<String> categoryName(HashMap<String, String> idx);
+	// 리스트 상단 검색결과
+	String categoryName(HashMap<String, String> idx);
 
+	// 검색 + 추천순 정렬 
 	@Select("select distinct P.*, (select count(*) from review where productMain_idx = P.idx) as rcnt from productMain P" + 
 			"    where P.productName like '%${param}%'" + 
 			"    order by ${order}")
 	List<ProductDTO> selectSearchList(HashMap<String, String> map);
+
+	// 상품 이미지에서 바로 장바구니 담기
+	@Insert("insert into productCart values (1, #{member_idx}, #{productMain_idx})")
+	int imgcart(HashMap<String, String> idx);
+
+	@Update("update productCart set cnt = cnt+1")
+	int updatecart(HashMap<String, String> idx);
+
+	@Select("select cnt from productCart where member_idx=${member_idx} and productMain_idx=${productMain_idx}")
+	String getcnt(HashMap<String, String> param);
+
+	// 중분류 개수
+	@Select("select count(*) from productmain a, category b" + 
+			" where b.productMain_categoryCode = a.categorycode" + 
+			" and b.category2 like '%${category2}%'")
+	String count(HashMap<String, String> idx);
+
+	// 소분류 개수
+	@Select("select count(*) from productmain a, category b" + 
+			" where b.productMain_categoryCode = a.categoryCode" + 
+			" and b.productMain_categoryCode like '%${productMain_categoryCode}%'")
+	String nullcount(HashMap<String, String> idx);
+
+	// 연관검색어
+	@Select("SELECT categoryName from category" 
+			 + "    where categoryName not like '%/%'"  
+			 + "	ORDER BY DBMS_RANDOM.VALUE"  
+			 + "    offset 0 rows fetch next 7 rows only")
+	List<String> relatedSearch();
 	
 
 	

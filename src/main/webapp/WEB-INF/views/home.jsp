@@ -99,16 +99,11 @@
 		window.addEventListener('load', mainLoadHandler(''))
 		toTop.addEventListener('click', scrollToTop)
 		listLiArray.forEach(li => li.addEventListener('click', mainSelectLiClick))
-
 		
 		mainoverlay.addEventListener('click', closeModal)
 
-		
 		window.addEventListener('scroll', scrollHandler)
 		
-		
-		
-
 	</script>
 
 

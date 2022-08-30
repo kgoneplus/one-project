@@ -24,7 +24,7 @@
             
             <div class="input">
             	<form method="GET" action="${cpath }/product/search">
-	                <input type="search" name="param" value="${param.search }" placeholder="검색어를 입력하세요" >
+	                <input type="search" name="param" value="${param.param }" placeholder="검색어를 입력하세요" >
             		<button type="submit"></button>
             	</form>
             </div>
@@ -50,7 +50,7 @@
                             <li><a href="#">회원정보</a></li>
                         </ul> 
                 </div>   
-                <div><a href="${cpath}/buying/cart"><img src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a></div>
+                <div><a href="${cpath}/buying/cart/${login.idx}"><img src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a></div>
             </div>
         </div>
         <nav>
@@ -830,7 +830,6 @@
                                             </li>
                                         </ul>
                                         </div>
-
                                 </li>
                             </ul>
                         </div>
@@ -852,7 +851,4 @@
 		const category = document.querySelector('#cate > a')
 
 		category.addEventListener('click', categoryModal)
-		//category.addEventListener('click', closeModal)
-		
-	
 	</script>

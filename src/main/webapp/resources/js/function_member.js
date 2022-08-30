@@ -108,34 +108,36 @@ function kakaoinsertHandler (event) {
 
 // 아이디 중복 체크
 function memberId(event) {
-	const url = `${cpath}/joining/memberload`
-	const id = document.getElementById('idtext').value
-	const idfocus = document.querySelector('input[name="userid"]')
-	
-	let message = '사용가능 아이디'
-	const ConfirmMessage = document.getElementById('ConfirmID-Message')
-	const confirm = ConfirmMessage.getAttribute('confirm')
-	
-	fetch(url)
-	.then(resp => resp.json())
-	.then(json =>{
-		json.forEach(dto =>{
-			if(dto.userid === id){
-				message = '중복된 아이디'
-				idfocus.focus()
-				ConfirmMessage.setAttribute('confirm', 'false')
-				
-				ConfirmMessage.style.color = 'red'
-			}
-		})
-		if(message === '사용가능 아이디') {
-			ConfirmMessage.setAttribute('confirm', 'true')
-			ConfirmMessage.style.color = 'black'
-		}
-		ConfirmMessage.innerText = message
-	})
-	
-}
+	   const url = `${cpath}/joining/memberload`
+	   const id = document.getElementById('idtext').value
+	   const idfocus = document.querySelector('input[name="userid"]')
+	   
+	   let message = '사용가능 아이디'
+	   const ConfirmMessage = document.getElementById('ConfirmID-Message')
+	   const confirm = ConfirmMessage.getAttribute('confirm')
+	   
+	   fetch(url)
+	   .then(resp => resp.json())
+	   .then(json =>{
+		   console.log(json)
+	      json.forEach(dto =>{
+	    	
+	    	  if(dto.userid === id){
+	            message = '중복된 아이디'
+	            idfocus.focus()
+	            ConfirmMessage.setAttribute('confirm', 'false')
+	            
+	            ConfirmMessage.style.color = 'red'
+	         }
+	      })
+	      if(message === '사용가능 아이디') {
+	         ConfirmMessage.setAttribute('confirm', 'true')
+	         ConfirmMessage.style.color = 'black'
+	      }
+	      ConfirmMessage.innerText = message
+	   })
+	   
+	}
 
 
 //카카오 로그아웃
