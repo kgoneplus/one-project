@@ -8,13 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.oneplus.ProductDAO;
 import com.itbank.oneplus.ProductDTO;
-import com.itbank.oneplus.ProductSummaryDAO;
 import com.itbank.oneplus.PruductPaging;
 import com.itbank.oneplus.ReviewDTO;
 import com.itbank.service.RestViewService;
@@ -23,7 +20,6 @@ import com.itbank.service.RestViewService;
 public class RestViewController {
 
 	@Autowired private ProductDAO dao;
-	@Autowired private ProductSummaryDAO summarydao;
 	@Autowired private RestViewService restviewService;
 	
 	// 카테고리 내 인기상품 불러오기
@@ -80,7 +76,6 @@ public class RestViewController {
 	// 상품상세리뷰 점수 계산
 	@PostMapping(value="/product/detailReview/{productMain_idx}")
 	public HashMap<String, Integer> proddetailReview(@PathVariable int productMain_idx) {
-
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
 		int allreviewCnt = dao.allreviewCnt(productMain_idx);
 		int verygood = dao.getpState("pState", "아주 좋아요", productMain_idx) * 100 / allreviewCnt;
@@ -104,6 +99,7 @@ public class RestViewController {
 		return result;
 	}
 
+	// 페이징, 필터링
 	@PostMapping(value="/product/prodreviewList")
 	public HashMap<String, Object> prodreviewList(@RequestBody HashMap<String, Object> param){
 		int reviewCount = restviewService.selectreviewCount(param);
@@ -118,5 +114,9 @@ public class RestViewController {
 		return hashMap;
 	}
 	
-	
+	// 쿠키
+	@PostMapping(value="/product/cookie")
+	public String prodCookie(@RequestBody HashMap<String, String> productMain_idx) {
+		return dao.prodCookie(productMain_idx);
+	}
 }
