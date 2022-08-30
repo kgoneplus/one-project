@@ -188,7 +188,7 @@
 	const reviewInsertForm = document.forms[2]
 	console.log(reviewInsertForm)
     
-	window.addEventListener('load', selectReviewAll(login_idx))				// 리뷰할 상품
+	window.addEventListener('load', selectReviewAll(login_idx))
  	reviewModal_close.addEventListener('click', reviewCloesModal)
 	reviewModal_overlay.addEventListener('click', reviewCloesModal)
 	reviewInsertForm.addEventListener('submit', insertReview)			

@@ -153,6 +153,6 @@
 	counselModal_close.addEventListener('click', counselCloesModal)
 	writeForm.addEventListener('submit', askHandler)							// 1:1 문의 등록
 	window.addEventListener('load', selectAskAll(login_idx))					// 1:1 문의 내역 상세보기
-	askList_close.addEventListener('click', askCloesModal)						// 1:1 문의 내역 삭제
+	askList_close.addEventListener('click', askCloesModal)						
 </script>
 <%@ include file="../footer.jsp" %>

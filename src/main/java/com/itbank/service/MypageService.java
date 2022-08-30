@@ -111,7 +111,7 @@ public class MypageService {
 	public int writeReview(ReviewDTO dto) {
 		int row = 0;
 		
-		HashMap<String, String> list = mypageDAO.wireConfirm(dto);	// 구매완료한 상품만 불러온다
+		HashMap<String, String> list = mypageDAO.wireConfirm(dto);
 		
 		if(list == null) {
 			mypageDAO.writeReview(dto);
