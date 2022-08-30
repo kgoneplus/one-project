@@ -54,7 +54,7 @@
 
 		<section>
 			<div class="userBaseInfo">
-				<div class="userBaseInfo_name">
+				<div class="userBaseInfo_name" member_idx="${login.idx }">
 					<p>${login.name }</p>
 					님
 					<p>안녕하세요</p>

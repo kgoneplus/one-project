@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -100,6 +101,10 @@ public interface ProductDAO {
 
 	@Select("select productImg from productMain where idx=#{productMain_idx}")
 	String prodCookie(HashMap<String, String> productMain_idx);
+
+	@Update("update productcart set cnt=#{cnt} where productMain_idx=#{productMain_idx} and memeber_idx=#{member_idx}")
+	int updateproductcart(HashMap<String, String> ob);
+
 	
 
 	

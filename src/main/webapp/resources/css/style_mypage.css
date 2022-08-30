@@ -158,6 +158,16 @@ section {
    width: 880px;
    margin: auto;
 }
+.wishListProd > ul {
+	padding: 0;
+	margin: 0;
+}
+.wishListProd > ul > li {
+	width: 100px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+}
 .mypageSubtitle > .titleArea > h2 {
     font-size: 30px;
     font-weight: 600;

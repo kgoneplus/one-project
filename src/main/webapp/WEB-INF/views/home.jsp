@@ -59,25 +59,18 @@
 		document.querySelector('.prev').addEventListener('click', slide)
 		setInterval(slide, 2200);
 		
-		const toTop = document.getElementById('toTop')
+		
 		const listLiArray = Array.from(document.querySelectorAll('.main_list_nav > ul > li'))		
 		const mainoverlay = document.getElementById('main')
 
   		//mainLoadHandler load로 불러오는 것 수정필요!!!!
 		window.addEventListener('load', mainLoadHandler(''))
-		toTop.addEventListener('click', scrollToTop)
 		listLiArray.forEach(li => li.addEventListener('click', mainSelectLiClick))
 
 		
 		mainoverlay.addEventListener('click', closeModal)
-
-		
 		window.addEventListener('scroll', scrollHandler)
-		
-		
-		
-
-	</script>
+	</script>s
 
 
 

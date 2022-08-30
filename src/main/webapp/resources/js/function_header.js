@@ -59,3 +59,9 @@ function closeModal() {
 	mainoverlay.style.display = 'none'
 	
 }
+
+// 리모컨 스크롤 탑이벤트
+function scrollToTop() {
+   let target = document.documentElement
+     target.scrollTop = 0
+}

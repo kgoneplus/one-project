@@ -211,34 +211,79 @@ function productnowHandler(){
 				.then(text => console.log(text))
 				location.href = cpath + '/buying/deliveryInfo/' + member_idx;
 			}
-		})
+		})	
 	}
 }
 
 // 장바구니추가
-function insertproductcart(event){
-	const ob = {
-			'productMain_idx': productMain_idx,
-			'member_idx': member_idx,
-			'cnt' : document.querySelector('.count').value
+async function insertproductcart(event){
+	let cnt = 0
+	if(member_idx == "") {
+		if(confirm("로그인 회원만 이용가능합니다.")) location.href=`${cpath}/member/login`
+	}
+	else {
+		const url1 = cpath + '/product/getcnt'
+		const ob1 = {
+				'productMain_idx': productMain_idx,
+				'member_idx': member_idx
 		}
-		const url = cpath + '/product/view/insertcart'
-		const opt = {
-				method: 'POST',
-				body: JSON.stringify(ob),
+		const opt1 = {
+				method : 'POST',
+				body: JSON.stringify(ob1),
 				headers: {
 					'Content-Type' : 'application/json; charset=utf-8'
-				}
+				} 
+		}
+		await fetch(url1, opt1)
+		.then(resp => resp.text())
+		.then(text => {
+			cnt = text
+		})
+		
+		// 장바구니에 없는 상품이면, 장바구니 테이블에 insert
+		if(cnt == 0) {
+			const ob = {
+					'productMain_idx': productMain_idx,
+					'member_idx': member_idx,
+					'cnt' : document.querySelector('.count').value
 			}
-			fetch(url,opt)
+			const url = cpath + '/product/view/insertcart'
+			const opt = {
+					method: 'POST',
+					body: JSON.stringify(ob),
+					headers: {
+						'Content-Type' : 'application/json; charset=utf-8'
+					}
+			}
+			await fetch(url,opt)
 			.then(resp =>resp.text())
 			.then(text=>{
-				if(text != 0){
-					alert('장바구니추가성공')
-				}
-				if(event.target.classList.contains('shopping') == false)
-					location.href = cpath + '/buying/cart/' + member_idx
+				if(text != 0) alert('장바구니추가성공')
+				location.href = cpath + '/buying/cart/' + member_idx
 			})
+		}// 장바구니에 있는 상품이면 cnt update
+		else {
+			const ob = {
+					'productMain_idx': productMain_idx,
+					'member_idx': member_idx,
+					'cnt' : +document.querySelector('.count').value
+			}
+			const url = cpath + '/product/view/updatecart'
+			const opt = {
+					method: 'PUT',
+					body: JSON.stringify(ob),
+					headers: {
+						'Content-Type' : 'application/json; charset=utf-8'
+					}
+			}
+			await fetch(url,opt)
+			.then(resp =>resp.text())
+			.then(text=>{
+				if(text != 0) alert('장바구니수정성공')
+				location.href = cpath + '/buying/cart/' + member_idx
+			})
+		}	
+	}	
 }
 
 // 장바구니 모달 닫기

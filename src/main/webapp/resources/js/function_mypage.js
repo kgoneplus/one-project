@@ -273,7 +273,6 @@ function askDeleteHandler(event) {
 			location.reload(true)
 		}
 	})
-<<<<<<< HEAD
 }
 
 // 리뷰 작성하기(...공사중...)
@@ -304,6 +303,20 @@ function insertReview(event) {
 	})
 }
 
-=======
+// 찜목록 불러오기
+function selectProductWishlist() {
+	const wishListProd = document.querySelector('.wishListProd')
+	const ul = document.createElement('ul')
+	
+	const member_idx = document.querySelector('.userBaseInfo_name').getAttribute('member_idx')
+	const url = cpath + '/mypage/wishlist/' + member_idx
+	fetch(url).then(resp => resp.json())
+	.then(json => {
+		json.forEach(product => {
+			const li = document.createElement('li')
+			li.style.backgroundImage = `url(${cpath}/resources/getImage1/${json.productImg})`
+			ul.appendChild(li)
+		})
+	})	
+	wishListProd.appendChild(ul)
 }
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git

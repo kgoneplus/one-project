@@ -58,4 +58,10 @@ public class RestMypageController {
 //		System.out.println("컨트롤러price : " + dto.getPrice());
 		return mypageService.writeReview(dto);
 	}
+	
+	// 찜목록
+	@GetMapping("/mypage/wishlist/{member_idx}")
+	public List<ProductDTO> selectWishlist(@PathVariable int member_idx) {
+		return mypageService.selectWishlist(member_idx);
+	}
 }
