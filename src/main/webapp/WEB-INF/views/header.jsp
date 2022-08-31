@@ -24,7 +24,7 @@
             
             <div class="input">
             	<form method="GET" action="${cpath }/product/search">
-	                <input type="search" name="param" value="${param.search }" placeholder="검색어를 입력하세요" >
+	                <input type="search" name="param" value="${param.param }" placeholder="검색어를 입력하세요" >
             		<button type="submit"></button>
             	</form>
             </div>
@@ -973,7 +973,6 @@
                                             </li>
                                         </ul>
                                         </div>
-
                                 </li>
                             </ul>
                         </div>
@@ -1023,7 +1022,6 @@
 		const toTop = document.getElementById('toTop')
 
 		category.addEventListener('click', categoryModal)
-		//category.addEventListener('click', closeModal)
 		window.addEventListener('load', getCookie)
 		toTop.addEventListener('click', scrollToTop)
 	</script>

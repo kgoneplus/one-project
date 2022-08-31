@@ -38,11 +38,14 @@
  
  // 스크롤 이벤트
  function scrollHandler(event){
-    let target = document.documentElement
-    const flag = target.scrollTop + target.clientHeight >= target.scrollHeight
-    if(flag) {
-       mainLoadHandler()
-    }
+	 
+	 const li = document.querySelector('.main_list_liselected')
+	 let target = document.documentElement
+	 const mainList_cate = li.getAttribute('mainlist_productMain_categoryCode')
+	    const flag = target.scrollTop + target.clientHeight >= target.scrollHeight
+	    if(flag) {
+	       mainLoadHandler(mainList_cate)
+	    }
  }
  
  

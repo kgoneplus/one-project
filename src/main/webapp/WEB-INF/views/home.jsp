@@ -66,11 +66,10 @@
   		//mainLoadHandler load로 불러오는 것 수정필요!!!!
 		window.addEventListener('load', mainLoadHandler(''))
 		listLiArray.forEach(li => li.addEventListener('click', mainSelectLiClick))
-
 		
 		mainoverlay.addEventListener('click', closeModal)
 		window.addEventListener('scroll', scrollHandler)
-	</script>s
+	</script>
 
 
 

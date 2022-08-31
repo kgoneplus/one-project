@@ -38,17 +38,19 @@ async function getCookie(){
 
 
 // 카테고리 클릭하면 모달창
-function categoryModal(event) {
+function categoryModal(event) {	
+	
+	console.log("모달")
+	//console.log(display != 'block')
 	
 	const headermodal = document.querySelector('.allmenu')
-	headermodal.style.display = 'block'
-		
 	const mainoverlay = document.getElementById('overlay')
-	mainoverlay.style.display = 'block'
-		
-	const category = document.querySelector('#cate > a')
-	category.addEventListener('click', closeModal)
 	
+	const display = headermodal.style.display
+	console.log(display)
+	
+	headermodal.style.display = display != 'block' ? 'block' : 'none'
+	mainoverlay.style.display = display != 'block' ? 'block' : 'none'
 }
 
 function closeModal() {
@@ -56,8 +58,7 @@ function closeModal() {
 	headermodal.style.display = 'none'
 		
 	const mainoverlay = document.getElementById('overlay')
-	mainoverlay.style.display = 'none'
-	
+	mainoverlay.style.display = 'none'	
 }
 
 // 리모컨 스크롤 탑이벤트
