@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,6 +54,12 @@ public class RestViewController {
 	@PostMapping(value="/product/view/insertcart")
 	public int insertproductcart(@RequestBody HashMap<String, String> ob){
 		return dao.insertproductcart(ob);
+	}
+	
+	// 장바구니 업데이트
+	@PutMapping(value="/product/view/updatecart")
+	public int updateProductcart(@RequestBody HashMap<String, String> ob) {
+		return dao.updateproductcart(ob);
 	}
 	
 	// 상품별 별점 점수 계산

@@ -59,7 +59,9 @@
 	 const korPrice = price.toLocaleString()
 	 let discountPrice = price - ob.productDiscount
 	 discountPrice = discountPrice.toLocaleString()
-	 // productSize & review & countDC 값 수정 필요
+	 let percent = Math.floor(ob.productDiscount / ob.productPrice * 100)
+	 if(percent == 0) percent = ''
+	 else percent += '%'
 	 product.innerHTML += `<div class="productImg">
 								<a href = "${cpath}/product/view/${ob.idx}"><img src="${cpath}/resources/getImage1/${ob.productImg}"></a>
 							</div>
@@ -72,10 +74,9 @@
 										<strong>${korPrice}</strong>원
 									</div>
 									<div class="productPrice">
-										<span class="countDC">30%</span> <strong>${discountPrice}</strong>원
+										<span class="countDC">${percent}</span> <strong>${discountPrice}</strong>원
  									</div>
 									</div>
-									<span class="priceQty">${ob.productSize}</span>
 								</div>
 								<div class="productScore">
 									<span><img src="${cpath }/resources/img/star3.png"></span> <span>4.3(9건)</span>
