@@ -122,4 +122,8 @@ public class MypageService {
 		finalorderlist.add(tmp);
 		return finalorderlist;
 	}
+
+	public List<ProductDTO> selectWishlist(int member_idx) {
+		return mypageDAO.selectWishlist(member_idx);
+	}
 }

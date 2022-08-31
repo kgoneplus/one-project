@@ -104,7 +104,6 @@ async function prodreviewList(event){
 //	console.log(current)
 	pageArray.forEach(btn => btn.style.fontWeight = 'normal')
 	current.style.fontWeight = 'bolder'
-
 }
 
 
@@ -211,34 +210,76 @@ function productnowHandler(){
 				.then(text => console.log(text))
 				location.href = cpath + '/buying/deliveryInfo/' + member_idx;
 			}
-		})
+		})	
 	}
 }
 
 // 장바구니추가
-function insertproductcart(event){
-	const ob = {
-			'productMain_idx': productMain_idx,
-			'member_idx': member_idx,
-			'cnt' : document.querySelector('.count').value
+async function insertproductcart(event){
+	let cnt = 0
+	if(member_idx != "") {
+		const url1 = cpath + '/product/getcnt'
+		const ob1 = {
+				'productMain_idx': productMain_idx,
+				'member_idx': member_idx
 		}
-		const url = cpath + '/product/view/insertcart'
-		const opt = {
-				method: 'POST',
-				body: JSON.stringify(ob),
+		const opt1 = {
+				method : 'POST',
+				body: JSON.stringify(ob1),
 				headers: {
 					'Content-Type' : 'application/json; charset=utf-8'
-				}
+				} 
+		}
+		let result = await fetch(url1, opt1)
+		.then(resp => resp.text())
+		cnt = result
+		console.log('cnt : ' + cnt)
+		console.log('result : ' + result)
+		// 장바구니에 없는 상품이면, 장바구니 테이블에 insert
+		if(cnt == 0) {
+			const ob = {
+					'productMain_idx': productMain_idx,
+					'member_idx': member_idx,
+					'cnt' : document.querySelector('.count').value
 			}
-			fetch(url,opt)
+			const url = cpath + '/product/view/insertcart'
+			const opt = {
+					method: 'POST',
+					body: JSON.stringify(ob),
+					headers: {
+						'Content-Type' : 'application/json; charset=utf-8'
+					}
+			}
+			await fetch(url,opt)
 			.then(resp =>resp.text())
 			.then(text=>{
-				if(text != 0){
-					alert('장바구니추가성공')
-				}
-				if(event.target.classList.contains('shopping') == false)
-					location.href = cpath + '/buying/cart/' + member_idx
+				if(text != 0) alert('장바구니추가성공')
+				if(event.target.classList.contains('shopping') == false) location.href = cpath + '/buying/cart/' + member_idx
 			})
+		}// 장바구니에 있는 상품이면 cnt update
+		else {
+			const ob = {
+					'productMain_idx': productMain_idx,
+					'member_idx': member_idx,
+					'cnt' : +document.querySelector('.count').value + 1
+			}
+			const url = cpath + '/product/view/updatecart'
+			const opt = {
+					method: 'PUT',
+					body: JSON.stringify(ob),
+					headers: {
+						'Content-Type' : 'application/json; charset=utf-8'
+					}
+			}
+			await fetch(url,opt)
+			.then(resp =>resp.text())
+			.then(text=>{
+				console.log(text)
+				if(text == 1) alert('장바구니수정성공')
+				if(event.target.classList.contains('shopping') == false) location.href = cpath + '/buying/cart/' + member_idx
+			})
+		}	
+	}
 }
 
 // 장바구니 모달 닫기
@@ -399,14 +440,12 @@ function heartClick(event){
 function convert(dto) {
 	const hotslide_Swrap = document.createElement('div')
 	hotslide_Swrap.classNmae = 'hotslide_Swrap'
-	
-	const hotslideImg = document.createElement('div')
-	hotslideImg.className = 'hotslideImg'
-	hotslideImg.style.backgroundImage = `url('${cpath}/resources/getImage1/${dto.productImg}')`
-	hotslide_Swrap.appendChild(hotslideImg)
+	hotslide_Swrap.innerHTML = `<div class="hotslideImg" 
+						style="background-image: url(${cpath}/resources/getImage1/${dto.productImg});" 
+						onclick="location.href='${cpath}/product/view/${dto.idx}';"></div>`		
 	
 	const productPrice = document.createElement('span')
-	productPrice.innerText = dto.productPrice + '원'
+	productPrice.innerText = dto.productPrice.toLocaleString() + '원'
 	hotslide_Swrap.appendChild(productPrice)
 	
 	const prodName = document.createElement('p')
@@ -482,7 +521,6 @@ function catehotSlide(event){
 
     const src = document.querySelectorAll('.hotslideImg')[cnt++]
     const wrap = document.querySelector('.hotslide_wrap')
-    
     
     if(cnt > 3) {
         cnt = 0

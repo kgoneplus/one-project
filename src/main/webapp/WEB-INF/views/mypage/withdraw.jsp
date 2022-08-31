@@ -76,11 +76,11 @@
 						<table class="withdraw_table">
 							<tr>
 								<th>아이디</th>
-								<td><input type="text" name="userid" value="${login.userid }" readonly></td>
+								<td><input class="withdraw_input" type="text" name="userid" value="${login.userid }" readonly></td>
 							</tr>
 							<tr>
 								<th>비밀번호</th>
-								<td><input type="password" name="userpw" placeholder="비밀번호 입력" required></td>
+								<td><input class="withdraw_input" type="password" name="userpw" placeholder="비밀번호 입력" required></td>
 							</tr>
 						</table>
 						<button type="submit">회원탈퇴</button>
