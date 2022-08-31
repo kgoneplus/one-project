@@ -24,7 +24,7 @@
             
             <div class="input">
             	<form method="GET" action="${cpath }/product/search">
-	                <input type="search" name="param" value="${param.search }" placeholder="검색어를 입력하세요" >
+	                <input type="search" name="param" value="${param.param }" placeholder="검색어를 입력하세요" >
             		<button type="submit"></button>
             	</form>
             </div>
@@ -973,7 +973,6 @@
                                             </li>
                                         </ul>
                                         </div>
-
                                 </li>
                             </ul>
                         </div>
@@ -992,19 +991,19 @@
 		<div class="remocon_frame">
 			<div class="remocon_miniItem">
 				<figure>
-					<img src="${cpath }/resources/img/icon_147.png">
+					<a href="${cpath }/member/login"><img src="${cpath }/resources/img/icon_147.png"></a>
 					<figcaption>로그인</figcaption>
 				</figure>
 			</div>
 			<div class="remocon_miniItem">
 				<figure>
-					<img src="${cpath }/resources/img/icon_139.png">
-					<figcaption>배송</figcaption>
+					<a href="${cpath }/mypage/orders"><img src="${cpath }/resources/img/icon_139.png"></a>
+					<figcaption>주문내역</figcaption>
 				</figure>
 			</div>
 			<div class="remocon_miniItem">
 				<figure>
-					<img src="${cpath }/resources/img/icon_152.png">
+					<a href="${cpath }/buying/cart/${login.idx}"><img src="${cpath }/resources/img/icon_152.png"></a>
 					<figcaption>장바구니</figcaption>
 				</figure>
 			</div>
@@ -1022,6 +1021,5 @@
 		const category = document.querySelector('#cate > a')
 
 		category.addEventListener('click', categoryModal)
-		//category.addEventListener('click', closeModal)
 		window.addEventListener('load', getCookie)
 	</script>

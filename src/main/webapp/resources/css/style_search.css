@@ -29,7 +29,7 @@
         #left_category_bar {
             margin-top: 10px;
         }
-        #left_category_bar > div > ul {
+        #left_category_bar ul {
             list-style: none;
             text-align: left;
             padding: 0 0 15px 10px;
@@ -41,7 +41,8 @@
             font-size: 18px;
             margin-top: 15px;
         }
-        #left_category_bar > div > ul > li {
+       
+        #left_category_bar  li {
            padding: 5px;
            line-height: 18px;
         }
@@ -142,7 +143,7 @@
             text-align: center;
             font-size: 11px;
             margin: -206px 0px 190px 3px;
-            z-index: 1;
+            z-index: 0;
         }
 
         
@@ -269,7 +270,7 @@
         .category_ltem > p {
             font-size: 14px;
             color: #333333;
-            height: 23px;
+            height: 35px;
         }
         .category_ltem > .buyAvg {
             font-size: 12px;
