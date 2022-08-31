@@ -31,9 +31,7 @@ public class MemberController {
 	
 	//창 페이지
 	@GetMapping("/login")
-	public void login(String url) {
-		
-	}
+	public void login(String url) {}
 	
 	//로그인
 	@PostMapping("/login")
@@ -46,9 +44,11 @@ public class MemberController {
 		session.setAttribute("login", login);
 		
 		if(url != null && url.contains("cart")) {
-			if(url.contains("cart/") == false) {
-				url = url + "/" + login.getIdx();
-			}
+			url = url + login.getIdx();
+		}
+		
+		if(url != null && url.contains("myinfo")) {
+			url = url + login.getIdx();
 		}
 		
 		if(dto.getUserid_remember() != null) {
@@ -64,9 +64,9 @@ public class MemberController {
 			session.removeAttribute("userid");
 		}
 		
-		
 		return "redirect:" + (url == null ? "/" : url);
 	}
+	
 	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse resp) {

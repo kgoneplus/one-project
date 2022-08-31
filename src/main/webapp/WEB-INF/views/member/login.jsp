@@ -7,15 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link type="text/css" rel="stylesheet"
-	href="${cpath }/resources/css/style_login.css">
+<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_login.css">
 </head>
-<script
-	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
-	charset="utf-8"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="${cpath }/resources/js/function_member.js"></script>
-	
 <body>
 	
 	 <div class="login_menu">
@@ -63,7 +59,8 @@
             </form>
         </div>
     </div>
-   <script>
+    
+<script>
    const cpath = '${cpath}'
    
    // 아아디 저장 기능
@@ -91,14 +88,6 @@
 		const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
 		btnNaverLogin.click();
 	});
-	
-
-
-
-  </script>
-
-  
-  
-		 
+</script>
 </body>
 </html>
