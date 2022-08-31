@@ -18,7 +18,6 @@ public class RemoconController {
 		Cookie setcookie = new Cookie("recentProduct", id);
 		setcookie.setMaxAge(60*60*24);
 		resp.addCookie(setcookie);
-
 		return "/home";
 	}
 }

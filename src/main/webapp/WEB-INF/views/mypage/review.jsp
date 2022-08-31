@@ -41,7 +41,7 @@
                 <h3>MY 회원정보</h3>
                 <ul>
                     <li><a href="${cpath }/mypage/myinfo/${login.idx}">회원 정보 관리</a></li>
-                    <li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
+                    <li><a href="${cpath }/buying/cart/${login.idx}">배송 정보 관리</a></li>
                     <li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
                     <li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
                 </ul>
@@ -97,7 +97,10 @@
 								<span class="star">
 								 	★★★★★
 									<span>★★★★★</span>
-									<input type="range" name="reviewGrade" oninput="drawStar(this)" value="0.5" step="0.5" min="1" max="5" required>
+									<input type="range"
+										   name="reviewGrade"
+										   oninput="drawStar(this)"
+										   value="0.5" step="0.5" min="1" max="5" required>
 								</span>
 							</div>
 
@@ -165,12 +168,6 @@
 											  required></textarea>
 								</div>
 							</div>
-<!-- 							<div class="review_item"> -->
-<!-- 								<div>사진을 등록해주세요(선택)</div> -->
-<!-- 								<div id="review_upload"> -->
-<!-- 									<p><input type="file" name="uploadFile"></p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
 						<p class="review_submit"><input type="submit" value="등록하기"></p>	
 						</form>
 					</div>
@@ -188,7 +185,7 @@
 	const reviewInsertForm = document.forms[2]
 	console.log(reviewInsertForm)
     
-	window.addEventListener('load', selectReviewAll(login_idx))				// 리뷰할 상품
+	window.addEventListener('load', selectReviewAll(login_idx))
  	reviewModal_close.addEventListener('click', reviewCloesModal)
 	reviewModal_overlay.addEventListener('click', reviewCloesModal)
 	reviewInsertForm.addEventListener('submit', insertReview)			

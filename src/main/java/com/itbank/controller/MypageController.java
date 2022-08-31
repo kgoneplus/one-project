@@ -1,10 +1,8 @@
 package com.itbank.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,9 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itbank.oneplus.AskDTO;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.oneplus.OrdersDetailDTO;
-import com.itbank.oneplus.ProductDTO;
-import com.itbank.oneplus.ProductcartDTO;
-import com.itbank.oneplus.ReviewDTO;
 import com.itbank.service.MypageService;
 
 @Controller
@@ -47,7 +42,11 @@ public class MypageController {
 		mav.addObject("finalOrderlist", finalOrderlist);
 		return mav;
 	}
-
+	
+	// 인터셉터를 위한 더미
+	@GetMapping("/myinfo")
+	public void info() {}
+	
 	// 주문상세보기
 	@GetMapping("/orderdetail")
 	public void orderdetail() {

@@ -40,7 +40,7 @@
                 <h3>MY 회원정보</h3>
                 <ul>
                     <li><a href="${cpath }/mypage/myinfo/${login.idx}">회원 정보 관리</a></li>
-                    <li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
+                    <li><a href="${cpath }/buying/cart/${login.idx}">배송 정보 관리</a></li>
                     <li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
                     <li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
                 </ul>
@@ -73,12 +73,16 @@
 									<div>또한 모든 홈플러스 패밀리사이트를 탈퇴하는 경우, 탈퇴 아이디(ID호출)의 재사용이 불가함에 동의합니다</div>
 								</div>
 						</fieldset>
-						<p>아이디
-							<input type="text" name="userid" value="${login.userid }" readonly>
-						</p>
-						<p>비밀번호
-							<input type="password" name="userpw" placeholder="비밀번호 입력" required>
-						</p>
+						<table class="withdraw_table">
+							<tr>
+								<th>아이디</th>
+								<td><input class="withdraw_input" type="text" name="userid" value="${login.userid }" readonly></td>
+							</tr>
+							<tr>
+								<th>비밀번호</th>
+								<td><input class="withdraw_input" type="password" name="userpw" placeholder="비밀번호 입력" required></td>
+							</tr>
+						</table>
 						<button type="submit">회원탈퇴</button>
 					</form>
 				</div>

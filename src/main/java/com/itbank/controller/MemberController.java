@@ -31,9 +31,7 @@ public class MemberController {
 	
 	//창 페이지
 	@GetMapping("/login")
-	public void login(String url) {
-		
-	}
+	public void login(String url) {}
 	
 	//로그인
 	@PostMapping("/login")
@@ -49,6 +47,10 @@ public class MemberController {
 				url = url + login.getIdx();
 		}
 		
+		if(url != null && url.contains("myinfo")) {
+			url = url + login.getIdx();
+		}
+		
 		if(dto.getUserid_remember() != null) {
 			Cookie userid = new Cookie("userid", dto.getUserid());
 			userid.setMaxAge(60*60*24*30);
@@ -62,9 +64,9 @@ public class MemberController {
 			session.removeAttribute("userid");
 		}
 		
-		
 		return "redirect:" + (url == null ? "/" : url);
 	}
+	
 	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse resp) {

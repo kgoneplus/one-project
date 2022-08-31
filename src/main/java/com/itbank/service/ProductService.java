@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itbank.oneplus.ProductDAO;
 import com.itbank.oneplus.ProductDTO;
 import com.itbank.oneplus.ProductSummaryDTO;
+import com.itbank.oneplus.ReviewDTO;
 
 @Service
 public class ProductService {
@@ -95,6 +96,14 @@ public class ProductService {
 		}
 	}
 
+	public int selectreviewCount(HashMap<String, Object> param) {
+		int reviewCount = dao.selectreviewCount(param);
+		return reviewCount;
+	}
+
+	public List<ReviewDTO> prodreviewList(HashMap<String, Object> param) {
+		return dao.selectreviewList(param);
+	}
 	// 장바구니 cnt값 가져오기
 	public String getcnt(HashMap<String, String> param) {
 		//System.out.println("파람은"+param);
@@ -120,6 +129,4 @@ public class ProductService {
 	}
 
 
-
-	
 }
