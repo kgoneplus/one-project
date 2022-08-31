@@ -60,7 +60,7 @@ public class RestMypageController {
 	}
 	
 	// 찜목록
-	@GetMapping("/mypage/wishlist/{member_idx}")
+	@GetMapping("/mypage/wishlists/{member_idx}")
 	public List<ProductDTO> selectWishlist(@PathVariable int member_idx) {
 		return mypageService.selectWishlist(member_idx);
 	}

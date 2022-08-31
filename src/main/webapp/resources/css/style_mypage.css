@@ -161,12 +161,21 @@ section {
 .wishListProd > ul {
 	padding: 0;
 	margin: 0;
+	position: relative;
 }
 .wishListProd > ul > li {
 	width: 100px;
+	height: 100px;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 100% auto;
+}
+.wishListProd > ul > li > span {
+	display: inline-block;
+	width: 100px;
+	position: absolute;
+	margin-top: 104px;
+    font-size: 11px;
 }
 .mypageSubtitle > .titleArea > h2 {
     font-size: 30px;

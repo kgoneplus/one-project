@@ -102,49 +102,6 @@
 	idconfirm.addEventListener('click', memberId)
 	insertForm.addEventListener('submit', insertHandler)
 	
-	
-<<<<<<< HEAD
-// 	const mail = document.getElementById('emailconfirm')
-// 	console.log(mail)
-// 	mail.addEventListener('click', test())
-	
-	
-// 	function test(event){
-// 		const mailadress = document.getElementById('mailadress').value
-// 		console.log(mailadress)
-		
-// 	}
-	
-// 	if(mailadress == 1234567){
-// 		mail.addEventListener('click', mailconfirm(mailadress))
-// 	}
-	
-	
-	
-// 	function mailconfirm (ma){
-// 		const url = '${cpath}/mailconfirm'
-// 		const opt = {
-// 				method: 'POST',
-// 				body: JSON.stringify({
-// 				'mailadress' : ma	
-// 				}),
-// 				headers: {
-// 					'Content-Type' : 'application/json; charset=utf-8'
-// 				}
-// 		}
-// 		fetch(url, opt)
-// 		.then(resp => resp.text())
-// 		.then(test => {
-// 			if(test == 1){
-// 				console.log('성공')
-// 			}
-// 			else{
-// 				console.log('실패')
-// 			}
-// 		})
-// 	}
-=======
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
 </script>
 </body>
 </html>

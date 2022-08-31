@@ -218,10 +218,7 @@ function productnowHandler(){
 // 장바구니추가
 async function insertproductcart(event){
 	let cnt = 0
-	if(member_idx == "") {
-		if(confirm("로그인 회원만 이용가능합니다.")) location.href=`${cpath}/member/login`
-	}
-	else {
+	if(member_idx != "") {
 		const url1 = cpath + '/product/getcnt'
 		const ob1 = {
 				'productMain_idx': productMain_idx,
@@ -259,7 +256,7 @@ async function insertproductcart(event){
 			.then(resp =>resp.text())
 			.then(text=>{
 				if(text != 0) alert('장바구니추가성공')
-				location.href = cpath + '/buying/cart/' + member_idx
+				if(event.target.classList.contains('shopping') == false) location.href = cpath + '/buying/cart/' + member_idx
 			})
 		}// 장바구니에 있는 상품이면 cnt update
 		else {
@@ -280,9 +277,12 @@ async function insertproductcart(event){
 			.then(resp =>resp.text())
 			.then(text=>{
 				if(text != 0) alert('장바구니수정성공')
-				location.href = cpath + '/buying/cart/' + member_idx
+				if(event.target.classList.contains('shopping') == false) location.href = cpath + '/buying/cart/' + member_idx
 			})
 		}	
+	}
+	else {
+		
 	}	
 }
 

@@ -7,6 +7,6 @@
 		    join productMain P
 		        on C.productMain_idx = P.idx
 		    where
-		        C.parent_member_idx = #{member_idx};
+		        C.parent_member_idx = #{member_idx}
 	</select>
 </mapper>

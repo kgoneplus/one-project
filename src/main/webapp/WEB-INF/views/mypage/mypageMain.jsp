@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <title>MY 홈플러스 | 홈플러스</title>
+<script src="${cpath}/resources/js/function_mypage.js"></script>
 <link type="text/css" rel="stylesheet"
 	href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet"
@@ -124,4 +125,8 @@
 		</section>
 	</div>
 	</main>
+	
+	<script>
+		window.addEventListener('load', selectProductWishlist)
+	</script>
 	<%@ include file="../footer.jsp"%>
