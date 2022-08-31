@@ -46,7 +46,7 @@ public class RestMypageController {
 		return mypageService.selectReviewList(idx);
 	}
 	
-	// 리뷰작성
+	// 리뷰
 	@PostMapping("/mypageing/reviewWrite")
 	public int writeReview(@RequestBody ReviewDTO dto) {
 //		System.out.println("컨트롤러productMain_idx : " + dto.getProductMain_idx());

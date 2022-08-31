@@ -30,7 +30,7 @@ async function getCookie(){
 	.then(text=>{
 		console.log(text)
 		const figrecentProductImg = document.querySelector('.recentProduct')
-		figrecentProductImg.innerHTML = `<img src="${cpath}/resources/getImage1/${text}">
+		figrecentProductImg.innerHTML = `<a href="${cpath}/product/view/${recentProductIdx}"><img src="${cpath}/resources/getImage1/${text}"><a/>
 										<figcaption>최근 본 상품</figcaption>`
 			
 	})
@@ -38,17 +38,19 @@ async function getCookie(){
 
 
 // 카테고리 클릭하면 모달창
-function categoryModal(event) {
+function categoryModal(event) {	
+	
+	console.log("모달")
+	//console.log(display != 'block')
 	
 	const headermodal = document.querySelector('.allmenu')
-	headermodal.style.display = 'block'
-		
 	const mainoverlay = document.getElementById('overlay')
-	mainoverlay.style.display = 'block'
-		
-	const category = document.querySelector('#cate > a')
-	category.addEventListener('click', closeModal)
 	
+	const display = headermodal.style.display
+	console.log(display)
+	
+	headermodal.style.display = display != 'block' ? 'block' : 'none'
+	mainoverlay.style.display = display != 'block' ? 'block' : 'none'
 }
 
 function closeModal() {
@@ -57,5 +59,4 @@ function closeModal() {
 		
 	const mainoverlay = document.getElementById('overlay')
 	mainoverlay.style.display = 'none'
-	
 }

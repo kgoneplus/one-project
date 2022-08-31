@@ -43,9 +43,8 @@
 			<div class="mypageLeftWrapper">
 				<h3>MY 회원정보</h3>
 				<ul>
-					<li><a href="${cpath }/mypage/myinfo/${login.idx}">회원 정보
-							관리</a></li>
-					<li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
+					<li><a href="${cpath }/mypage/myinfo/${login.idx}">회원 정보관리</a></li>
+					<li><a href="${cpath }/buying/cart/${login.idx}">배송 정보 관리</a></li>
 					<li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
 					<li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
 				</ul>
