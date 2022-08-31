@@ -73,12 +73,16 @@
 									<div>또한 모든 홈플러스 패밀리사이트를 탈퇴하는 경우, 탈퇴 아이디(ID호출)의 재사용이 불가함에 동의합니다</div>
 								</div>
 						</fieldset>
-						<p>아이디
-							<input type="text" name="userid" value="${login.userid }" readonly>
-						</p>
-						<p>비밀번호
-							<input type="password" name="userpw" placeholder="비밀번호 입력" required>
-						</p>
+						<table class="withdraw_table">
+							<tr>
+								<th>아이디</th>
+								<td><input type="text" name="userid" value="${login.userid }" readonly></td>
+							</tr>
+							<tr>
+								<th>비밀번호</th>
+								<td><input type="password" name="userpw" placeholder="비밀번호 입력" required></td>
+							</tr>
+						</table>
 						<button type="submit">회원탈퇴</button>
 					</form>
 				</div>

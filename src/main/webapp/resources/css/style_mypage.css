@@ -506,10 +506,13 @@ section {
 .withdraw_fs > input {
 	margin-bottom: 23px;
 }
-#memberDeleteForm > p {
-	font-size: 15px;
-	font-weight: bold;
-	color: #111111;
+.withdraw_table {
+	margin: auto;
+	width: 309px;
+	text-align: left;
+	border: 1px solid #666666;
+    margin-top: 20px;
+    padding: 28px;
 }
 #memberDeleteForm > button {
 	width: 70px;
@@ -518,6 +521,8 @@ section {
     background-color: rgb(51, 51, 51);
     color: rgb(255, 255, 255);
     cursor: pointer;
+    margin-left: 300px;
+    margin-top: 10px;
 }
 /* ======================================== withdraw ======================================== */
 

@@ -97,7 +97,10 @@
 								<span class="star">
 								 	★★★★★
 									<span>★★★★★</span>
-									<input type="range" name="reviewGrade" oninput="drawStar(this)" value="0.5" step="0.5" min="1" max="5" required>
+									<input type="range"
+										   name="reviewGrade"
+										   oninput="drawStar(this)"
+										   value="0.5" step="0.5" min="1" max="5" required>
 								</span>
 							</div>
 
@@ -165,12 +168,6 @@
 											  required></textarea>
 								</div>
 							</div>
-<!-- 							<div class="review_item"> -->
-<!-- 								<div>사진을 등록해주세요(선택)</div> -->
-<!-- 								<div id="review_upload"> -->
-<!-- 									<p><input type="file" name="uploadFile"></p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
 						<p class="review_submit"><input type="submit" value="등록하기"></p>	
 						</form>
 					</div>

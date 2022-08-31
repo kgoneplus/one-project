@@ -172,8 +172,6 @@ function kakaoconfirm(data){
 		 }
 	 })
 }
-</script>
-
-		
+</script>		
 </body>
 </html>

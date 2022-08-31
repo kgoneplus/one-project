@@ -38,6 +38,7 @@
 	 	<interceptor>
 	 		<mapping path="/mypage/**"/>
 	 		<mapping path="/buying/**"/>
+	 		<mapping path="/mypage/myinfo/**"/>
 	 		
 <!-- 	 		<mapping path="/board/**" />			주소 계층화에 따른 여러 주소 적용 -->
 <!-- 	 		<exclude-mapping path="/board/list" />	제외시킬 주소 -->
