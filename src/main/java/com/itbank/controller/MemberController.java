@@ -44,7 +44,7 @@ public class MemberController {
 		session.setAttribute("login", login);
 		
 		if(url != null && url.contains("cart")) {
-			url = url + login.getIdx();
+				url = url + login.getIdx();
 		}
 		
 		if(url != null && url.contains("myinfo")) {
