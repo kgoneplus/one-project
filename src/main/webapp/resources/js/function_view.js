@@ -230,12 +230,11 @@ async function insertproductcart(event){
 					'Content-Type' : 'application/json; charset=utf-8'
 				} 
 		}
-		await fetch(url1, opt1)
+		let result = await fetch(url1, opt1)
 		.then(resp => resp.text())
-		.then(text => {
-			cnt = text
-		})
-		
+		cnt = result
+		console.log('cnt : ' + cnt)
+		console.log('result : ' + result)
 		// 장바구니에 없는 상품이면, 장바구니 테이블에 insert
 		if(cnt == 0) {
 			const ob = {
@@ -262,7 +261,7 @@ async function insertproductcart(event){
 			const ob = {
 					'productMain_idx': productMain_idx,
 					'member_idx': member_idx,
-					'cnt' : +document.querySelector('.count').value
+					'cnt' : +document.querySelector('.count').value + 1
 			}
 			const url = cpath + '/product/view/updatecart'
 			const opt = {
@@ -275,14 +274,12 @@ async function insertproductcart(event){
 			await fetch(url,opt)
 			.then(resp =>resp.text())
 			.then(text=>{
-				if(text != 0) alert('장바구니수정성공')
+				console.log(text)
+				if(text == 1) alert('장바구니수정성공')
 				if(event.target.classList.contains('shopping') == false) location.href = cpath + '/buying/cart/' + member_idx
 			})
 		}	
 	}
-	else {
-		
-	}	
 }
 
 // 장바구니 모달 닫기
