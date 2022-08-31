@@ -67,10 +67,24 @@
    const cpath = '${cpath}'
    
    // 아아디 저장 기능
-   const cookie = document.cookie.split('=');
-   if(cookie[1] != null){
-  	 document.getElementById('id').value = cookie[1];
-   }
+//    const cookie = document.cookie.split('=');
+	const cookie1 = document.cookie
+	console.log(cookie1)
+	let cookie2 = document.cookie.split(';')
+	console.log(cookie2)
+	cookie2.forEach(cookie => {
+		let dto = cookie.split('=')
+		if(dto[0] == 'userid'){
+			console.log(dto[1])
+			document.getElementById('id').value = dto[1]
+		}
+	})
+	
+	
+// 	if(cookie[1] != null){
+//   	 document.getElementById('id').value = cookie[1];
+//    }
+  	
   
    // 카카오 인잇..
    Kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
