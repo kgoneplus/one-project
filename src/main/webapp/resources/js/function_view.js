@@ -104,7 +104,6 @@ async function prodreviewList(event){
 //	console.log(current)
 	pageArray.forEach(btn => btn.style.fontWeight = 'normal')
 	current.style.fontWeight = 'bolder'
-
 }
 
 
@@ -399,14 +398,12 @@ function heartClick(event){
 function convert(dto) {
 	const hotslide_Swrap = document.createElement('div')
 	hotslide_Swrap.classNmae = 'hotslide_Swrap'
-	
-	const hotslideImg = document.createElement('div')
-	hotslideImg.className = 'hotslideImg'
-	hotslideImg.style.backgroundImage = `url('${cpath}/resources/getImage1/${dto.productImg}')`
-	hotslide_Swrap.appendChild(hotslideImg)
+	hotslide_Swrap.innerHTML = `<div class="hotslideImg" 
+						style="background-image: url(${cpath}/resources/getImage1/${dto.productImg});" 
+						onclick="location.href='${cpath}/product/view/${dto.idx}';"></div>`		
 	
 	const productPrice = document.createElement('span')
-	productPrice.innerText = dto.productPrice + '원'
+	productPrice.innerText = dto.productPrice.toLocaleString() + '원'
 	hotslide_Swrap.appendChild(productPrice)
 	
 	const prodName = document.createElement('p')
@@ -482,7 +479,6 @@ function catehotSlide(event){
 
     const src = document.querySelectorAll('.hotslideImg')[cnt++]
     const wrap = document.querySelector('.hotslide_wrap')
-    
     
     if(cnt > 3) {
         cnt = 0

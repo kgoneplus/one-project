@@ -14,13 +14,13 @@ import com.itbank.oneplus.ProductDAO;
 import com.itbank.oneplus.ProductDTO;
 import com.itbank.oneplus.PruductPaging;
 import com.itbank.oneplus.ReviewDTO;
-import com.itbank.service.RestViewService;
+import com.itbank.service.ProductService;
 
 @RestController
 public class RestViewController {
 
 	@Autowired private ProductDAO dao;
-	@Autowired private RestViewService restviewService;
+	@Autowired private ProductService prodService;
 	
 	// 카테고리 내 인기상품 불러오기
 	@GetMapping(value = "/product/view/cateload/{categorycode}")
@@ -103,13 +103,13 @@ public class RestViewController {
 	// 페이징, 필터링
 	@PostMapping(value="/product/prodreviewList")
 	public HashMap<String, Object> prodreviewList(@RequestBody HashMap<String, Object> param){
-		int reviewCount = restviewService.selectreviewCount(param);
+		int reviewCount = prodService.selectreviewCount(param);
 		int page = Integer.parseInt(String.valueOf(param.get("page")));
 		PruductPaging paging = new PruductPaging(page, reviewCount);			
 		param.put("paging", paging);
 		param.put("filter", param.get("filter"));
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		List<ReviewDTO> list = restviewService.prodreviewList(param);	
+		List<ReviewDTO> list = prodService.prodreviewList(param);	
 		hashMap.put("paging", paging);
 		hashMap.put("list", list);
 		return hashMap;
