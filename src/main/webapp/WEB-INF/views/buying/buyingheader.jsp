@@ -28,7 +28,7 @@
             <div class="black_logo" onclick="location.href = '${cpath}'"></div>
         </div>
         <div class="inner_right">
-            <a href="${cpath}/">로그아웃</a>
+            <a href="${cpath}/member/logout">로그아웃</a>
             <a href="${cpath}/mypage/mypageMain">마이페이지</a>
             <a href="${cpath}/">고객센터</a>
         </div>
