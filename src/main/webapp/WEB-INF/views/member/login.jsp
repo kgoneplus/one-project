@@ -77,10 +77,6 @@
 		}
 	})
 	
-	
-// 	if(cookie[1] != null){
-//   	 document.getElementById('id').value = cookie[1];
-//    }
   	
   
    // 카카오 인잇..
