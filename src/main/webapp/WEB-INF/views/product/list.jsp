@@ -46,7 +46,7 @@
 						<li>세탁/청소/욕실</li>
 						<li>주방용품</li>
 						<li>가전/디지털</li>
-						<li> - 접기</li>
+						<li><div id="seefold"> - 접기</div></li>
 					</ul>
 				</div></li>
             </ul>
@@ -92,11 +92,11 @@
 	    <div class="category_topbar">
 	        <div class="category_suggest">
 	            <ul>
-	                <li><a href="${cpath}/product/list?param=${param.param}&recome=best"><button type="button">추천순</button></a></li>
-	                <li><a href="${cpath}/product/list?param=${param.param}&recome=sumbuying"><button type="button">많이 팔린순</button></a></li>
-	                <li><a href="${cpath}/product/list?param=${param.param}&recome=minprice"><button type="button">낮은 가격순</button></a></li>
-	                <li><a href="${cpath}/product/list?param=${param.param}&recome=maxprice"><button type="button">높은 가격순</button></a></li>
-	                <li><a href="${cpath}/product/list?param=${param.param}&recome=lotofreview"><button type="button">리뷰 많은순</button></a></li>
+	                <li><button type="button">추천순</button></li>
+	                <li><button type="button">많이 팔린순</button></li>
+	                <li><button type="button">낮은 가격순</button></li>
+	                <li><button type="button">높은 가격순</button></li>
+	                <li><button type="button">리뷰 많은순</button></li>
 	            </ul>
 	        </div>
 
@@ -111,7 +111,9 @@
 	                    <a href="${cpath }/product/view/${dto.idx}" target="_blank"><button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button></a>
 	                     <a href="#"><button class="button2"><img src="${cpath }/resources/img/hover_icon2.png" idx="${dto.idx }"></button></a>
 	                </div>
-	                <div class="dicount_icon">행사<br>상품</div>
+	                <c:if test="${dto.productDiscount != 0 }">
+	               		<div class="dicount_icon">행사<br>상품</div>
+	                </c:if>
 	            </div>
 	            <p>${dto.productName }</p>
 	            <div class="lastprice">
@@ -137,7 +139,7 @@
 	            <div class="buyAvg">
 	                <span>⭐</span>
 	                <span>4.4(3884건)  |</span>
-	                <span>월 54,101개 구매</span>
+	                <span>월 ${dto.buyCnt }개 구매</span>
 	            </div>
 	        </div>
 
@@ -150,10 +152,12 @@
 	const mainoverlay = document.getElementById('overlay')
 	const cartbtn = document.querySelectorAll('.button2') 
 	const seemore = document.getElementById('seemore')
-	
+	const seefold = document.getElementById('seefold')
+
 	mainoverlay.addEventListener('click', closeModal)
 	cartbtn.forEach(btn => btn.addEventListener('click', searchCart))
 	seemore.addEventListener('click', pluscategory)
+	seefold.addEventListener('click', foldcategory)
 	</script>
 
 

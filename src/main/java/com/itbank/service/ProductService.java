@@ -2,7 +2,6 @@ package com.itbank.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -112,20 +111,13 @@ public class ProductService {
 	public List<String> relatedSearch() {
 		
 		List<String> getword = dao.relatedSearch();
-		String word ="";
-		
-		for(int i = 0; i < 6; i++) {
-			 word = getword.get(i);
-		}
+//		String word ="";
+//		
+//		for(int i = 0; i < 6; i++) {
+//			 word = getword.get(i);
+//		}
 		return getword;
 	}
 
 
-<<<<<<< HEAD
-
-
-
-	
-=======
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
 }

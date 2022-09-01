@@ -115,7 +115,9 @@
 	                    <a href="${cpath }/product/view/${dto.idx}" target="_blank"><button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button></a>
 	                    <a href="#"><button class="button2"><img src="${cpath }/resources/img/hover_icon2.png" idx="${dto.idx }"></button></a>
 	                </div>
-	                <div class="dicount_icon">행사<br>상품</div>
+	                <c:if test="${dto.productDiscount != 0 }">
+	               		<div class="dicount_icon">행사<br>상품</div>
+	                </c:if>
 	            </div>
 	            <p>${dto.productName}</p>
 	            <div class="lastprice">
@@ -141,7 +143,7 @@
 	            <div class="buyAvg">
 	                <span>⭐</span>
 	                <span>4.4(3884건)  |</span>
-	                <span>월 54,101개 구매</span>
+	                <span>월 ${dto.buyCnt }개 구매</span>
 	            </div>
 	        </div>
 </c:forEach>	
