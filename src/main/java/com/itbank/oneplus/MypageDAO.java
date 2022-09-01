@@ -64,4 +64,7 @@ public interface MypageDAO {
 			+ "and b.member_idx = #{member_idx} "
 			+ "and b.productMain_idx = #{productMain_idx}")
 	public HashMap<String, String> wireConfirm(ReviewDTO dto);
+
+	
+	public List<ProductDTO> selectWishlist(int member_idx);
 }

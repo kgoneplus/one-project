@@ -1019,7 +1019,9 @@
 	</div>
 	<script>
 		const category = document.querySelector('#cate > a')
+		const toTop = document.getElementById('toTop')
 
 		category.addEventListener('click', categoryModal)
 		window.addEventListener('load', getCookie)
+		toTop.addEventListener('click', scrollToTop)
 	</script>

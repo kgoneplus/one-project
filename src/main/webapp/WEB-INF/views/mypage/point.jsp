@@ -40,7 +40,7 @@
                 <h3>MY 회원정보</h3>
                 <ul>
                     <li><a href="${cpath }/mypage/myinfo/${login.idx}">회원 정보 관리</a></li>
-                    <li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
+                    <li><a href="${cpath }/buying/cart/${login.idx}">배송 정보 관리</a></li>
                     <li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
                     <li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
                 </ul>
@@ -61,6 +61,18 @@
                 <div class="mileage_reg">
                 	<button>마일리지 등록</button>
                 </div>
+            </div>
+            
+            <div class="mileage_history">
+	            <div class="mileage_use">
+		            <div>사용가능 마일리지</div>
+		            <div class="mileage_point">0p</div>
+		            |
+	            </div>
+	            <div class="mileage_use">
+		            <div>소멸예정 마일리지(2주 이내)</div>
+		            <div>0p</div>
+	            </div>
             </div>
         </section>
     </div>

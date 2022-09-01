@@ -288,13 +288,10 @@ function loadPaymentBox(json) {
 	
 	// 총 금액 div
 	const totalPrice = document.querySelector('.payTab > .payTabTotalprice:first-child p')
-	
 	// 할인 금액 div
 	const discountPrice = document.querySelector('.payTab > .payTabTotalprice:nth-child(3) p')
-	
 	// 배송비 div
 	const deliveryP = document.querySelector('.payTab > .payTabTotalprice:nth-child(2) p')
-	
 	// 결제예정 금액 div
 	const resultPrice = document.querySelector('.resultPrice p')
 	
@@ -597,13 +594,11 @@ async function orderInsertHandler() {
 	}
 	return await fetch(url, opt).then(resp => resp.text())
 	.then(text => {
-//		console.log('주문테이블 추가 후 결과 : ', text)
 		if(text == 0) {
 			alert('주문테이블에 추가 실패')
 			return 0
 		}
 		alert('주문테이블에 추가 성공')
-//		console.log('text : ', text)
 		return text
 	})
 }
@@ -650,30 +645,25 @@ async function iamport(ordersidx) {
 	    buyer_name : orderer.name,
 	    buyer_tel : orderer.phonenum,
 	    buyer_addr : orderer.address
-//	    buyer_postcode : '123-456'
 	  }, async function(rsp) {
           if ( rsp.success ) {
         	  // 장바구니 테이블 삭제 & 결제완료로 상태 바꾸기
               const cart = await deleteproductCartHandler(ordersidx);
-//              console.log('cart : ', cart)
               if(cart == 1) alert('장바구니 삭제완료')
               else alert('장바구니는 안지워졌네...')
-              // 성공시에 ordersDetail에 orderStatus결제완료로 바꾸기
               
               // 결제 중간에 취소했을 때는 주문 테이블에서 삭제하기
               location.href = cpath + '/mypage/orders'
           } else {
               msg = '결제에 실패하였습니다.';
               msg += '에러내용 : ' + rsp.error_msg;
-              //실패시 이동할 페이지
-//              location.href="<%=request.getContextPath()%>/order/payFail";
               history.back()
               alert(msg);
           }
       });
 }
 
-// 카카오페이 api
+// 결제 버튼 핸들러
 async function kakaopay() {
 	let ordersidx = await orderInsertHandler()
 	iamport(ordersidx)	
