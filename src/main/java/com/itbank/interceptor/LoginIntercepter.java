@@ -28,6 +28,7 @@ public class LoginIntercepter extends HandlerInterceptorAdapter {
 		
 		// cart 세션 아웃시 오류해결 코드
 		String urls[] = url.split("%2F");
+		System.out.println("url쪼갠길이" + urls.length);
 		String realurl = "";
 		if(urls.length == 7) {
 			if(login == null && url.contains("cart")) {
@@ -36,9 +37,15 @@ public class LoginIntercepter extends HandlerInterceptorAdapter {
 					realurl += "%2F"+urls[i];
 				}
 				realurl += "%2F";
+			} else if(login == null && url.contains("mypage")) {
+				realurl = urls[0];
+				for(int i = 1; i < urls.length -1; i++) {
+					realurl += "%2F"+urls[i];
+				}
+				realurl += "%2F";
 			}
 		}else {
-			realurl = url;
+			realurl += url;
 		}
 		System.out.println(realurl);
 		if(login == null) {
