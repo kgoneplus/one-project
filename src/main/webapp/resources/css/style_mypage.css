@@ -162,6 +162,12 @@ section {
 	padding: 0;
 	margin: 0;
 	position: relative;
+	display: flex;
+	flex-flow: wrap;
+}
+.wishlistpage > ul > li {
+	width: 200px!important;
+	height: 200px!important;
 }
 .wishListProd > ul > li {
 	width: 100px;
@@ -169,6 +175,12 @@ section {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 100% auto;
+	margin: 10px;
+}
+.wishlistpage > ul > li > span {
+	width: 200px!important;
+	margin-top: 215px!important;
+    font-size: 13px!important;
 }
 .wishListProd > ul > li > span {
 	display: inline-block;
@@ -388,6 +400,8 @@ section {
     width: 100px;
     height: 30px;
     font-size: 12px;
+    padding: 0;
+    margin: 0;
 }
 .mileage_reg > button {
 	text-align: center;
@@ -398,6 +412,8 @@ section {
     width: 100px;
     height: 30px;
     font-size: 12px;
+    padding: 0;
+    margin: 0;
 }
 .orders_tablist > ul {
     display: flex;
@@ -499,7 +515,7 @@ section {
 	width: 880px;
 	align-items: center;
 }
-/* ======================================== withdraw (회원탈퇴) ======================================== */
+/* ===================================== withdraw (회원탈퇴) ===================================== */
 .withdraw_wrap > div:nth-child(1) {
 	font-size: 19px;
 	color: #111;
@@ -521,10 +537,13 @@ section {
 .withdraw_fs > input {
 	margin-bottom: 23px;
 }
-#memberDeleteForm > p {
-	font-size: 15px;
-	font-weight: bold;
-	color: #111111;
+.withdraw_table {
+	margin: auto;
+	width: 340px;
+	text-align: left;
+	border: 1px solid #cbcbcb;
+    margin-top: 20px;
+    padding: 28px;
 }
 #memberDeleteForm > button {
 	width: 70px;
@@ -533,10 +552,21 @@ section {
     background-color: rgb(51, 51, 51);
     color: rgb(255, 255, 255);
     cursor: pointer;
+    margin-left: 285px;
+    margin-top: 10px;
+}
+.withdraw_input {
+	height: 30px;
+	padding: 0 10px;
+	vertical-align: middle;
+	border: 1px solid #dddddd;
+	width: 85%;
+	color: #999999;
+	border-radius: 5px;
 }
 /* ======================================== withdraw ======================================== */
 
-/* ======================================== myinfo (개인정보수정) ======================================== */
+/* =================================== myinfo (개인정보수정) =================================== */
 .myinfo_main {
 	width: 800px;
 	height: 500px;
@@ -592,7 +622,7 @@ section {
 }
 /* ======================================== myinfo ======================================== */
 
-/* ======================================== counsel (1:1문의) ======================================== */
+/* =================================== counsel (1:1문의) =================================== */
 .counsel_modal {
 	display: none;
 }
@@ -798,7 +828,7 @@ section {
 }
 /* ======================================== counsel ======================================== */
 
-/* ======================================== review (리뷰) ======================================== */
+/* ====================================== review (리뷰) ====================================== */
 .review_modal {
 	display: none;
 }
@@ -1001,7 +1031,7 @@ section {
 }
 /* ======================================== review ======================================== */
 
-/* ======================================== agree (개인정보 이용내역) ======================================== */
+/* ================================= agree (개인정보 이용내역) ================================= */
 .agree_pTag {
 	font-size: 15px;
 	font-weight: bold;
@@ -1040,3 +1070,42 @@ section {
 	border: 1px solid #cdcdcd;
 }
 /* ======================================== agree ======================================== */
+
+/* ===================================== coupon(쿠폰) ===================================== */
+.coupon_font {
+	font-size: 30px;
+    font-weight: bold;
+    margin: auto;
+    width: 352px;
+    color: #dadada;
+    padding: 200px 0;
+}
+.couponlist_sort > button {
+	margin: 0 10px;
+	padding: 0;
+}
+.couponlist_sort > button:nth-child(1) {
+	margin-left: 0;
+}
+/* ======================================== coupon ======================================== */
+
+/* ===================================== point(마일리지) ===================================== */
+.mileage_history {
+	display: flex;
+	justify-content: space-between;
+}
+.mileage_use {
+	display: flex;
+	justify-content: space-between;
+	margin: 30px 0;
+	font-size: 15px;
+	font-weight: bold;
+	color: #666666;
+}
+.mileage_use > div:nth-child(1) {
+    padding-right: 220px;
+}
+.mileage_point {
+	padding-right: 56px;
+}
+/* ======================================== point ======================================== */
