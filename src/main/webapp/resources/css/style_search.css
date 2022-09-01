@@ -392,3 +392,11 @@
             border: 0px;
             background: none;
         }
+	.hidingcate {
+		display: none;
+		padding: 0 0 0 0;
+		text-align: left;
+	}
+	..hidingcate > ul {
+		padding: 0 0 0 0;
+	}

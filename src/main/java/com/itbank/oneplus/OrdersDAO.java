@@ -39,4 +39,7 @@ public interface OrdersDAO {
 
 	List<OrdersDetailDTO> selectOrdersList(int idx);
 
+	@Select("select distinct count(idx) from orders where member_idx = #{member_idx}")
+	int getTotalOrderCnt(int member_idx);
+
 }

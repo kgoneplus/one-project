@@ -289,12 +289,16 @@ function selectProductWishlist() {
 	const url = cpath + '/mypage/wishlists/' + member_idx
 	fetch(url).then(resp => resp.json())
 	.then(json => {
+//		console.log(json)
 		json.forEach(prod => {
 			const li = document.createElement('li')
 			li.style.backgroundImage = `url(${cpath}/resources/getImage1/${prod.productImg})`
+			const a = document.createElement('a')
+			a.href = `${cpath}/product/view/${prod.idx}`
 			const span = document.createElement('span')
 			span.innerText = prod.productName
-			li.appendChild(span)
+			a.appendChild(span)
+			li.appendChild(a)
 			ul.appendChild(li)
 		})
 	})	

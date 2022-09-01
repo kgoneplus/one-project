@@ -30,7 +30,12 @@ public class MypageController {
 	
 	// 마이페이지 메인
 	@GetMapping("/mypageMain")
-	public void mypage() {
+	public ModelAndView mypage(HttpSession session) {
+		ModelAndView mav = new ModelAndView("/mypage/mypageMain");
+		int member_idx = ((MemberDTO)session.getAttribute("login")).getIdx();
+		int orderCnt = mypageService.getTotalOrderCnt(member_idx);
+		mav.addObject("orderCnt", orderCnt);
+		return mav;
 	}
 
 	// 주문/배송 조회
