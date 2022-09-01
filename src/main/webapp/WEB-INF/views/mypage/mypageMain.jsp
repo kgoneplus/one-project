@@ -118,9 +118,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="wishListProd">
-				<!-- 자바스크립트로 ul만들고 li안에 찜목록 상품 불러오기  -->
-			</div>
+			<div class="wishListProd"></div>
 		</section>
 	</div>
 	</main>

@@ -2,7 +2,6 @@ package com.itbank.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +45,6 @@ public class ProductService {
 	
 	// 카테고리 클릭시 상단에 카테고리명
 	public HashMap<String, String> categoryName(HashMap<String, String> idx) {
-//		System.out.println(idx);
 		
 		if(idx.containsKey("productMain_categoryCode") == true) {
 //			System.out.println("트류");
@@ -106,7 +104,6 @@ public class ProductService {
 	}
 	// 장바구니 cnt값 가져오기
 	public String getcnt(HashMap<String, String> param) {
-		//System.out.println("파람은"+param);
 		return dao.getcnt(param);
 	}
 
@@ -114,17 +111,11 @@ public class ProductService {
 	public List<String> relatedSearch() {
 		
 		List<String> getword = dao.relatedSearch();
-		String word ="";
-		
-		System.out.println(getword);
-		
-		for(int i = 0; i < 6; i++) {
-			 word = getword.get(i);
-			 System.out.println(word);
-		}
-		System.out.println(getword);
-		
-		
+//		String word ="";
+//		
+//		for(int i = 0; i < 6; i++) {
+//			 word = getword.get(i);
+//		}
 		return getword;
 	}
 

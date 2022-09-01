@@ -3,10 +3,21 @@
 	
 // 왼쪽 카테고리바 더보기
 function pluscategory() {
-	console.log("23")
 	
+	const hidingcate = document.querySelector('.hidingcate')
+	const seemore = document.getElementById('seemore')
 	
+	seemore.style.display = 'none'
+	hidingcate.style.display = 'block'
 	
+}
+// 왼쪽 카테고리바 접기
+function foldcategory() { 
+	const hidingcate = document.querySelector('.hidingcate')
+	const seemore = document.getElementById('seemore')
+
+	hidingcate.style.display = 'none'
+	seemore.style.display = 'block'
 	
 }
 
@@ -43,9 +54,9 @@ async function searchCart(event) {
 				'member_idx': member_idx,
 				'cnt':cnt
 		}
-		console.log(ob)
+		//console.log(ob)
 		const url = cpath + '/product/view/insertcart'
-		console.log(url)
+		//console.log(url)
 		const opt = {
 				method: 'POST',
 				body: JSON.stringify(ob),

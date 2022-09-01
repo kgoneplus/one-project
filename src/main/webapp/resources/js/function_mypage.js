@@ -280,7 +280,12 @@ function selectProductWishlist() {
 	const wishListProd = document.querySelector('.wishListProd')
 	const ul = document.createElement('ul')
 	
-	const member_idx = document.querySelector('.userBaseInfo_name').getAttribute('member_idx')
+	let member_idx = 0
+	if((document.location.href).includes('wishlist')) {
+		member_idx = document.querySelector('.titleArea').getAttribute('member_idx')
+	}else {
+		member_idx = document.querySelector('.userBaseInfo_name').getAttribute('member_idx')
+	}
 	const url = cpath + '/mypage/wishlists/' + member_idx
 	fetch(url).then(resp => resp.json())
 	.then(json => {

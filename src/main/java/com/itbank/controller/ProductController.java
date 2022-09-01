@@ -43,6 +43,7 @@ public class ProductController {
 		List<String> searchword = productService.relatedSearch();
 		mav.addObject("searchword", searchword);
 
+
 		return mav;		
 	}
 	
@@ -73,12 +74,19 @@ public class ProductController {
 
 	// 카테고리에서 리스트 페이지 이동
 	@GetMapping("/list")
-	public ModelAndView categoryList(@RequestParam HashMap<String, String> idx) {
+	public ModelAndView categoryList(@RequestParam HashMap<String, String> map) {
+		
+		//// 카테고리에서 클릭한 상품 리스트 보여주기
 		ModelAndView mav = new ModelAndView();
-		List<ProductDTO> catelist = productService.categoryList(idx);
+		List<ProductDTO> catelist = productService.categoryList(map);
 		mav.addObject("catelist", catelist);
+		
+		// 추천순 정렬
+		List<ProductDTO> list = productService.selectSearchList(map);
+		mav.addObject("list", list);	
 
-		HashMap<String, String> keyword = productService.categoryName(idx);
+		// 클릭한 카테고리 이름 
+		HashMap<String, String> keyword = productService.categoryName(map);
 		mav.addObject("keyword", keyword);
 		
 		return mav;
