@@ -87,7 +87,7 @@
 					<ul>
 						<li><em>결제완료</em>
 							<div class="orderStatus">
-								<a href="${cpath}/mypage/orders">0</a>
+								<a href="${cpath}/mypage/orders">${orderCnt}</a>
 							</div></li>
 						<li><em>상품준비중</em>
 							<div class="orderStatus blue">
