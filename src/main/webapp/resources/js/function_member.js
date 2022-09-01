@@ -158,7 +158,7 @@ function naverloginhandler( ) {
 		phonenum = phonenum.replace("-","")
 		phonenum = phonenum.replace("-","")
 		
-		const emailvalue = document.getElementById('emailvalue')
+		const emailvalue = document.getElementById('mailadress')
 		const namevalue = document.getElementById('namevalue')
 		const phonenumvalue = document.getElementById('phonenumvalue')
 		
