@@ -273,37 +273,30 @@ function askDeleteHandler(event) {
 			location.reload(true)
 		}
 	})
-<<<<<<< HEAD
 }
 
-// 리뷰 작성하기(...공사중...)
-function insertReview(event) {
-	event.preventDefault()
+// 찜목록 불러오기
+function selectProductWishlist() {
+	const wishListProd = document.querySelector('.wishListProd')
+	const ul = document.createElement('ul')
 	
-	const ob = {}
-	const formData = new FormData(event.target)
-	for(let key of formData.keys()) {
-		ob[key] = formData.get(key)
+	let member_idx = 0
+	if((document.location.href).includes('wishlist')) {
+		member_idx = document.querySelector('.titleArea').getAttribute('member_idx')
+	}else {
+		member_idx = document.querySelector('.userBaseInfo_name').getAttribute('member_idx')
 	}
-	
-	const url = cpath + '/mypageing/reviewWrite'
-	const opt = {
-		method: 'POST',
-		body: JSON.stringify(ob),
-		headers: {
-			'Content-Type': 'application/json; charset=utf-8'
-		}
-	}
-	fetch(url, opt)
-	.then(resp => resp.text())
-	.then(text => {
-		if(text == 1) {
-			alert('작성성공')
-			location.href = 'http://localhost:8080/project/mypage/review'
-		}
-	})
+	const url = cpath + '/mypage/wishlists/' + member_idx
+	fetch(url).then(resp => resp.json())
+	.then(json => {
+		json.forEach(prod => {
+			const li = document.createElement('li')
+			li.style.backgroundImage = `url(${cpath}/resources/getImage1/${prod.productImg})`
+			const span = document.createElement('span')
+			span.innerText = prod.productName
+			li.appendChild(span)
+			ul.appendChild(li)
+		})
+	})	
+	wishListProd.appendChild(ul)
 }
-
-=======
-}
->>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git

@@ -1,18 +1,12 @@
 package com.itbank.service;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.itbank.component.HashComponent;
 import com.itbank.oneplus.AskDTO;
@@ -41,30 +35,11 @@ public class MypageService {
 		}
 	}
 
-	// 1:1 문의하기 (이미지 없이_미완성)
+	// 1:1 문의하기
 	public int askWrite(AskDTO dto) {
 		return mypageDAO.askWrite(dto);
 	}
 	
-//	public int askWrite(AskDTO dto) throws IllegalStateException, IOException {
-//		String fileName = makeNewFileName(dto);
-//		File dest = new File(uploadPath, fileName);
-//		dto.getAskFile().transferTo(dest);
-//		
-//		boolean flag = "".equals(dto.getAskFile().getOriginalFilename());
-//		dto.setImg(flag ? "" : fileName);
-//		
-//		return mypageDAO.askWrite(dto);
-//	}
-
-//	private String makeNewFileName(AskDTO dto) {
-//		MultipartFile f = dto.getAskFile();
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		String today = sdf.format(new Date());
-//		String fileName = today + "_" + dto.getIdx() + "_" + f.getOriginalFilename();
-//		return fileName;
-//	}
-
 	// 1:1 문의 내역
 	public List<AskDTO> selectAskAll(int idx) {
 		return mypageDAO.selectAskAll(idx);
@@ -111,7 +86,7 @@ public class MypageService {
 	public int writeReview(ReviewDTO dto) {
 		int row = 0;
 		
-		HashMap<String, String> list = mypageDAO.wireConfirm(dto);	// 구매완료한 상품만 불러온다
+		HashMap<String, String> list = mypageDAO.wireConfirm(dto);
 		
 		if(list == null) {
 			mypageDAO.writeReview(dto);
@@ -146,5 +121,9 @@ public class MypageService {
 		}
 		finalorderlist.add(tmp);
 		return finalorderlist;
+	}
+
+	public List<ProductDTO> selectWishlist(int member_idx) {
+		return mypageDAO.selectWishlist(member_idx);
 	}
 }

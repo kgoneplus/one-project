@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,13 +15,13 @@ import com.itbank.oneplus.ProductDAO;
 import com.itbank.oneplus.ProductDTO;
 import com.itbank.oneplus.PruductPaging;
 import com.itbank.oneplus.ReviewDTO;
-import com.itbank.service.RestViewService;
+import com.itbank.service.ProductService;
 
 @RestController
 public class RestViewController {
 
 	@Autowired private ProductDAO dao;
-	@Autowired private RestViewService restviewService;
+	@Autowired private ProductService prodService;
 	
 	// 카테고리 내 인기상품 불러오기
 	@GetMapping(value = "/product/view/cateload/{categorycode}")
@@ -53,6 +54,12 @@ public class RestViewController {
 	@PostMapping(value="/product/view/insertcart")
 	public int insertproductcart(@RequestBody HashMap<String, String> ob){
 		return dao.insertproductcart(ob);
+	}
+	
+	// 장바구니 업데이트
+	@PutMapping(value="/product/view/updatecart")
+	public int updateProductcart(@RequestBody HashMap<String, String> ob) {
+		return dao.updateproductcart(ob);
 	}
 	
 	// 상품별 별점 점수 계산
@@ -102,13 +109,13 @@ public class RestViewController {
 	// 페이징, 필터링
 	@PostMapping(value="/product/prodreviewList")
 	public HashMap<String, Object> prodreviewList(@RequestBody HashMap<String, Object> param){
-		int reviewCount = restviewService.selectreviewCount(param);
+		int reviewCount = prodService.selectreviewCount(param);
 		int page = Integer.parseInt(String.valueOf(param.get("page")));
 		PruductPaging paging = new PruductPaging(page, reviewCount);			
 		param.put("paging", paging);
 		param.put("filter", param.get("filter"));
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		List<ReviewDTO> list = restviewService.prodreviewList(param);	
+		List<ReviewDTO> list = prodService.prodreviewList(param);	
 		hashMap.put("paging", paging);
 		hashMap.put("list", list);
 		return hashMap;

@@ -58,5 +58,11 @@ function closeModal() {
 	headermodal.style.display = 'none'
 		
 	const mainoverlay = document.getElementById('overlay')
-	mainoverlay.style.display = 'none'
+	mainoverlay.style.display = 'none'	
+}
+
+// 리모컨 스크롤 탑이벤트
+function scrollToTop() {
+   let target = document.documentElement
+     target.scrollTop = 0
 }

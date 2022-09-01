@@ -9,9 +9,7 @@
 <title>Insert title here</title>
 <script src="${cpath }/resources/js/function_member.js"></script>
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<link type="text/css" rel="stylesheet"
-	  href="${cpath }/resources/css/style_joinform.css">
-
+<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_joinform.css">
 </head>
 <body>
 	<div class="join-form">
@@ -96,14 +94,15 @@
 		}
 	}
 	
-	
-	
 	mailconfirmBtn.addEventListener('click', mailconfirm)
 	idconfirm.addEventListener('click', memberId)
 	insertForm.addEventListener('submit', insertHandler)
+<<<<<<< HEAD
 	
 	
 
+=======
+>>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
 </script>
 </body>
 </html>

@@ -15,11 +15,11 @@ public interface ProductcartDAO {
 	@Delete("delete productCart where productMain_idx=#{productMain_idx} and member_idx=#{member_idx}")
 	int cartDelete(ProductcartDTO dto);
 
-	ProductcartDTO deliveryInfoSelectList(HashMap<String, Object> param);
-
 	@Update("update productCart set cnt=${cnt} where productMain_idx=${productMain_idx} and member_idx=${member_idx}")
 	int cartUpdate(ProductcartDTO dto);
 
+	ProductcartDTO deliveryInfoSelectList(HashMap<String, Object> param);
+	
 //	@Delete("delete productCart where productMain_idx=#{productMain_idx} and member_idx=#{member_idx}")
 //	int deleteProductCart(ProductcartDTO dto);
 	
