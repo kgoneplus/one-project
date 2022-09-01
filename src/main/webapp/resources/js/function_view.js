@@ -233,8 +233,6 @@ async function insertproductcart(event){
 		let result = await fetch(url1, opt1)
 		.then(resp => resp.text())
 		cnt = result
-		console.log('cnt : ' + cnt)
-		console.log('result : ' + result)
 		// 장바구니에 없는 상품이면, 장바구니 테이블에 insert
 		if(cnt == 0) {
 			const ob = {
@@ -261,7 +259,7 @@ async function insertproductcart(event){
 			const ob = {
 					'productMain_idx': productMain_idx,
 					'member_idx': member_idx,
-					'cnt' : +document.querySelector('.count').value + 1
+					'cnt' : +document.querySelector('.count').value + +cnt
 			}
 			const url = cpath + '/product/view/updatecart'
 			const opt = {
@@ -280,6 +278,9 @@ async function insertproductcart(event){
 			})
 		}	
 	}
+	else {
+		location.href = cpath + '/buying/cart/' + member_idx
+	}
 }
 
 // 장바구니 모달 닫기
@@ -294,11 +295,11 @@ function prodcartcloseModal(event) {
 
 // 리모컨장바구니 모달
 function prodcartremoModal(event){
-	if(member_idx == ""){
-		if(confirm("로그인 회원만 이용가능합니다.")){
-			location.href=`${cpath}/member/login`
-		}
-	}else{
+//	if(member_idx == ""){
+//		if(confirm("로그인 회원만 이용가능합니다.")){
+//			location.href=`${cpath}/member/login`
+//		}
+//	}else{
 		event.stopPropagation()
 		const prodcartbtnOverlay2 = document.querySelectorAll('.product_cartbtnOverlay')[1]
 		prodcartbtnOverlay2.innerHTML = ''
@@ -329,16 +330,16 @@ function prodcartremoModal(event){
 		button2.addEventListener('click', insertproductcart)	
 		
 		prodcartbtnOverlay2.appendChild(cartPopup)
-	}
+//	}
 }
 
 // 장바구니 모달
 function prodcartModal(){
-	if(member_idx == ""){
-		if(confirm("로그인 회원만 이용가능합니다.")){
-			location.href=`${cpath}/member/login`
-		}
-	}else{
+//	if(member_idx == ""){
+//		if(confirm("로그인 회원만 이용가능합니다.")){
+//			location.href=`${cpath}/member/login`
+//		}
+//	}else{
 		const prodcartbtnOverlay = document.querySelector('.product_cartbtnOverlay')
 		prodcartbtnOverlay.innerHTML = ''
 		prodcartbtnOverlay.style.display = 'block'
@@ -368,7 +369,7 @@ function prodcartModal(){
 		button2.addEventListener('click', insertproductcart)	
 		
 		prodcartbtnOverlay.appendChild(cartPopup)
-	}
+//	}
 }
 
 // 찜상태그대로~

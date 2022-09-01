@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <title>나의 찜 | MY 홈플러스 | 홈플러스</</title>
+<script src="${cpath}/resources/js/function_mypage.js"></script>
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 </head>
@@ -49,13 +50,19 @@
               
         <section>
             <div class="mypageTitleBox mypageSubtitle">
-                <div class="titleArea">
+                <div class="titleArea" member_idx="${login.idx }">
                     <h2>나의 찜</h2>
                 </div>
                 <div class="rightArea"></div>
             </div>
-
+           
+			<div class="wishListProd wishlistpage"></div>
+			
         </section>
     </div>
 </main>
+
+<script>
+	window.addEventListener('load', selectProductWishlist)
+</script>
 <%@ include file="../footer.jsp" %>
