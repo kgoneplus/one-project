@@ -165,13 +165,6 @@ function naverloginhandler( ) {
 		emailvalue.value = email
 		namevalue.value = name
 		phonenumvalue.value = phonenum
-	
-		
-		
-		
-		
-		
-		
 		
 	const url = `${cpath}/naverSave`
 	const opt = {
@@ -188,6 +181,7 @@ function naverloginhandler( ) {
 	.then( text => {
 		if(text == 1){
 			console.log('로그인 성공 ')
+			location.href = `${cpath}`
 			const url = `${cpath}/remove` + '?token='+token
 			fetch(url)
 			.then(resp => resp.text())
