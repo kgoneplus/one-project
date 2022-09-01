@@ -6,11 +6,6 @@ html {
 body{
     margin: auto;
     padding: 10px;
-/*  overflow: hidden; 
-    border-width: 2px;
-    border-color: red;
-    border-style: solid;  
-    overflow: auto; */
 }
 .top{
     width: 1200px;
@@ -113,13 +108,12 @@ nav > ul > li{
     width: 1200px;
     background-color: white;
     box-sizing: border-box;
-/*     display: none; */
     border-width: 1px;
     border-top: 1px solid rgb(223, 0, 17);
     border-radius: 5px;
     border-style: solid;
     z-index: 4;
-     height: 600px;
+    height: 685px;
 }
 .allmenu > .left{
     position: relative;
@@ -128,7 +122,6 @@ nav > ul > li{
     flex-flow: wrap;  
     color: black;
     padding-left: 20px;
-/*     overflow-y: scroll; */
 }
 
 .left::-webkit-scrollbar-thumb {
