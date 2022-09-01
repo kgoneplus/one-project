@@ -1,6 +1,5 @@
 package com.itbank.oneplus;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
@@ -36,7 +35,7 @@ public interface MemberDAO {
 	MemberDTO selectOne(MemberDTO dto);
 	
 	// 네이버 로그인 
-	@Select("select * from parent_member where email=#{email} and name=#{name} and phonenum=#{phonenum}")
+	@Select("select * from naver_member where email=#{email} and name=#{name} and phonenum=#{phonenum}")
 	MemberDTO naverconfirm(MemberDTO dto);
 	
 	// 카카오 로그인
@@ -46,12 +45,17 @@ public interface MemberDAO {
 	// 회원 테이블 전체 부르기
 	@Select("select * from parent_member")
 	List<MemberDTO> memberconfirm();
-
-	// 장바구니에서 기본 배송지 변경
-	@Update("update parent_member set address=#{address} where idx=#{idx}")
-	int updateAddress(HashMap<String, String> param);
-	
 	
 	@Select("select * from parent_member where email=#{email} and name=#{name}")
 	MemberDTO selectIdserachConfirm(MemberDTO dto);
+	
+	@Select("select * from parent_member where userid=#{userid}")
+	MemberDTO selectPassSearch(MemberDTO dto);
+	
+	@Update("update parent_member set userpw = #{userpw} where userid=#{userid}")
+	int passUpdate(MemberDTO dto);
+
+	// 결제 시 회원정보 부르기
+	@Select("select * from parent_member where idx=#{idx}")
+	MemberDTO getMember(int idx);
 }

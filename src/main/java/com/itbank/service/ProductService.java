@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itbank.oneplus.ProductDAO;
 import com.itbank.oneplus.ProductDTO;
+import com.itbank.oneplus.ProductSummaryDTO;
+import com.itbank.oneplus.ReviewDTO;
 
 @Service
 public class ProductService {
@@ -18,6 +20,7 @@ public class ProductService {
 	// 카테고리 이동
 	public List<ProductDTO> categoryList(@RequestParam HashMap<String, String> idx) {
 		List<ProductDTO> catelist = dao.categoryList(idx);
+		
 		return catelist;
 	}
 
@@ -25,7 +28,7 @@ public class ProductService {
 		return dao.selectProductOne(idx);
 	}
 
-	//헤더 검색결과
+	//헤더 검색결과 / 추천순,많이팔린순,낮은가격순 등
 	public List<ProductDTO> selectSearchList(@RequestParam HashMap<String, String> map) {
 		String recome = map.get("recome");
 		if(recome == null) recome = "best";
@@ -41,24 +44,80 @@ public class ProductService {
 	}
 	
 	// 카테고리 클릭시 상단에 카테고리명
-	public List<String> categoryName(HashMap<String, String> idx) {
-		List<String> keyword = dao.categoryName(idx);
-		System.out.println("keyword List : " + keyword);
-//		if(idx.containsKey("productMain_categoryCode") == true) {
-//			keyword.remove("category2Name");
-//		}
-//		else {
-//			keyword.remove("categoryName");
-//		}
-		return keyword;
-	}
-
-	// 추천순 많이팔린순 낮은가격순 ...
-	public List<ProductDTO> orderList(HashMap<String, String> param) {
-		System.out.println(param);
+	public HashMap<String, String> categoryName(HashMap<String, String> idx) {
 		
-		return null;
+		if(idx.containsKey("productMain_categoryCode") == true) {
+//			System.out.println("트류");
+			idx.put("columnName", "categoryName");
+			idx.put("whereColumn", "productMain_categoryCode");
+			idx.put("whereValue", idx.get("productMain_categoryCode"));
+		}
+		else {	// 중분류만
+//			System.out.println("폴쓰");
+			idx.put("columnName", "category2Name");
+			idx.put("whereColumn", "category2");
+			idx.put("whereValue", idx.get("category2"));
+		}
+		
+		String keyword = dao.categoryName(idx);
+		String count = "";
+		if(idx.get("productMain_categoryCode") == null) { // 중분류 클릭했을 때  
+			count = dao.count(idx); 
+		}
+		else { // 소분류 클릭했을 때 
+			count = dao.nullcount(idx);
+		}
+		
+		// 합치기
+		HashMap<String, String> two = new HashMap<String, String>();
+		two.put("keyword", keyword);
+		two.put("count", count);
+		
+		return two;
+	}
+	
+	public ProductSummaryDTO prodSummaryOne(int idx) {
+		return dao.prodSummaryOne(idx);
+	}
+	
+	//  상품 이미지에서 바로 장바구니 담기
+	public int imgcart(HashMap<String, String> idx) {
+		
+		String cnt = idx.get("cnt");
+		
+		// 장바구니에 해당 상품이 없을 때 
+		if( cnt.equals("0") ) {
+			return dao.imgcart(idx);
+		}
+		else { // 있을 때 
+			return dao.updatecart(idx);
+		}
 	}
 
-	
+	public int selectreviewCount(HashMap<String, Object> param) {
+		int reviewCount = dao.selectreviewCount(param);
+		return reviewCount;
+	}
+
+	public List<ReviewDTO> prodreviewList(HashMap<String, Object> param) {
+		return dao.selectreviewList(param);
+	}
+	// 장바구니 cnt값 가져오기
+	public String getcnt(HashMap<String, String> param) {
+		return dao.getcnt(param);
+	}
+
+	// 연관검색어
+	public List<String> relatedSearch() {
+		
+		List<String> getword = dao.relatedSearch();
+//		String word ="";
+//		
+//		for(int i = 0; i < 6; i++) {
+//			 word = getword.get(i);
+//		}
+		return getword;
+	}
+
+
 }

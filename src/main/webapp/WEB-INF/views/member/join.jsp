@@ -94,31 +94,31 @@
 		<div class="snsjoin">
 			 <div id="naverIdLogin" style="display:none;"></div><div id="naverlogin"><button id="naverbtn" type="button">네이버로 회원가입 </button></div>
 			<a href="javascript:void(0)" ><button onclick="kakaoLogin()" type="button" id="kakaobtn" >카카오로 회원가입</button></a>
-			
 		</div>
 	</div>
-	<script>
-	Kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
- 	var naverLogin = new naver.LoginWithNaverId(
-			{
-				clientId: "GNv8IH0Irsq3ZxTgn4bE",
-	  			// 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
-				callbackUrl: "http://localhost:8080/project/member/login/naver",
-	  			// 본인의 callBack url로 수정하세요.
-				isPopup: false,
-				loginButton: {color: "white", type: 3, height: 60}
-	  			// 네이버 로그인버튼 디자인 설정. 한번 바꿔보세요:D
-			}
-		);
-	naverLogin.init();
 	
+<script>
+Kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
+	var naverLogin = new naver.LoginWithNaverId(
+		{
+			clientId: "GNv8IH0Irsq3ZxTgn4bE",
+  			// 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
+			callbackUrl: "http://localhost:8080/project/member/login/naver",
+  			// 본인의 callBack url로 수정하세요.
+			isPopup: false,
+			loginButton: {color: "white", type: 3, height: 60}
+  			// 네이버 로그인버튼 디자인 설정. 한번 바꿔보세요:D
+		}
+	);
+naverLogin.init();
 
-	const naverbtn = document.getElementById('naverlogin')
-	naverbtn.addEventListener('click',function(){
-		const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
-		btnNaverLogin.click();
-	})	
-		// 카카오로부터 데이터 받기
+const naverbtn = document.getElementById('naverlogin')
+naverbtn.addEventListener('click',function(){
+	const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
+	btnNaverLogin.click();
+})	
+	
+// 카카오로부터 데이터 받기
 function kakaoLogin() {
 	  Kakao.Auth.login({
 	      success: function (response) {
@@ -140,7 +140,6 @@ function kakaoLogin() {
 
 // 받은데이터 매핑
 function kakaomap(res){
-	  	
 		const kakaouser = res.kakao_account
 	  	const kakaouser_map = {
 	  			'name':kakaouser.profile.nickname,
@@ -173,9 +172,6 @@ function kakaoconfirm(data){
 		 }
 	 })
 }
-
-	</script>
-
-		
+</script>		
 </body>
 </html>

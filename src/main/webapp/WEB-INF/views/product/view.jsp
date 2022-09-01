@@ -41,10 +41,10 @@
                 <div class="productTitle font20"><strong>${prodOne.productName }</strong></div>
                 <p class="madeln">원산지: ${prodOne.madeln }</p>
                 <div class="productOrgprice"><p>판매가</p><span class="OrgPrice"><em><fmt:formatNumber value="${prodOne.productPrice }" /></em>원</span>
-                    <span class="nanoPrice">(1개당 12,990원)</span>
+                    <span class="nanoPrice">(1개당 <fmt:formatNumber value="${prodOne.productPrice }" />)</span>
                 </div>
                 <div class="productCardDC"><p>카드할인가</p><span class="cardDC"><fmt:formatNumber value="${prodOne.productPrice - prodOne.productDiscount }" />원</span>
-                    <span class="nanoPrice">(1개당 9,990원)</span>
+                    <span class="nanoPrice">(1개당 <fmt:formatNumber value="${prodOne.productPrice - prodOne.productDiscount }" />)</span>
                 </div>
                 <table id="prodtable">
                     <tr>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="txtMaxbuy">최대12개 구매가능</p>
+                <p class="txtMaxbuy">최대<span>${prodOne.maxbuyCnt }</span>개 구매가능</p>
 
             </div>
         </viewmain>
@@ -90,9 +90,18 @@
 <!-- 				디비값으로구현해야됨 -->
                 <div class="product_reviewSummary">
                 	<div class="reviewScoreBox">
-                		<div class="scopeNum">별점몇?</div>
-                		<div class="scopeGrade">몇개니</div>
-                		<div class="scopeTotal">몇개구매함?</div>
+                		<div class="scope">
+		                	<div class="scopeNum"></div>
+		                	<div class="scopeGradeBox">
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+			                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg"></i></span></div>
+		                	</div>
+                		</div>
+
+                		<div class="scopeTotal">월간구매   <fmt:formatNumber value="${prodOne.buyCnt }" />개</div>
                 	</div>
                 </div>
             </div>
@@ -106,7 +115,9 @@
                     <button type="button" class="product_nowbtn">바로구매</button>
                     <button type="button" class="product_cartbtn">장바구니</button>
                 </div>
-                <div class="product_cartbtnOverlay"></div>
+                <div class="product_cartbtnOverlay">
+                	
+                </div>
             </div>
         </viewmain>
         <viewmain>
@@ -138,42 +149,6 @@
                     </div>
                     <div class="hotslide">
                     	<div class="hotslide_wrap">
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg allhot"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg1.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!-- 							<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg allhot"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg2.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg allhot"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg allhot"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg4.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg allhot"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg5.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
-<!--                     		<div class="hotslide_Swrap"> -->
-<!--                     			<div class="hotslideImg allhot"  -->
-<%-- 								style="background-image: url(${cpath}/resources/img/prodslideImg3.jpeg);"></div> --%>
-<!-- 								<span>상품가격</span> -->
-<!-- 								<p>상품명</p> -->
-<!--                     		</div> -->
 						</div>
                     </div>
                 </div>
@@ -205,11 +180,11 @@
                     </tr>
                     <tr>
                         <td>상품구성</td>
-                        <td>1.1kg 내외</td>
+                        <td>상품상세참고</td>
                     </tr>
                     <tr>
                         <td>포장단위별 내용물의 용량(중량), 수량, 크기</td>
-                        <td>1.1kg 내외</td>
+                        <td>상품상세참고</td>
                     </tr>
                     <tr>
                         <td>원산지</td>
@@ -221,7 +196,7 @@
                     </tr>
                     <tr>
                         <td>생산자 및 소재지</td>
-                        <td>순수유통</td>
+                        <td>${prodSummary.make }</td>
                     </tr>
                     <tr>
                         <td>제조연월일 및 유통기한</td>
@@ -229,7 +204,7 @@
                     </tr>
                     <tr>
                         <td>보관방법/취급방법</td>
-                        <td>직사광선을 피해 서늘한 장소에 보관하시기 바랍니다.</td>
+                        <td>${prodSummary.productStorage }</td>
                     </tr>
                     <tr>
                         <td>A/S책임자 및 소비자상담 관련 전화번호</td>
@@ -242,8 +217,95 @@
                 </table>
             </div>
 	                </div>
-	                <div class="prodreview">
-	                    <p>테스트페이지1</p>
+	                <div class="prodreview" page="1">
+	                	<div class="prodreviewDetailArea">
+		                    <div class="prodreviewTitle"><h3>상품리뷰</h3></div>
+	                			<div class="prodreviewBox">
+	                				<div class="totalScopeBox"><div class="scopeNum"></div>
+	                					<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg1"></i></span></div>
+					                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg1"></i></span></div>
+					                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg1"></i></span></div>
+					                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg1"></i></span></div>
+					                	<div class="scopeGrade"><span class="scopeGradeImg"><i class="scopeImg1"></i></span></div>
+	                				<span class="allreviewCnt"></span></div>
+	                				<div class="scopeGraphList">
+	                					<div class="graphItem pState">
+	                						<strong>상품상태</strong>
+	                						<ul>
+	                							<li>
+	                								<div class="graphlabel">아주 좋아요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="graphnum"><strong class="verygood"></strong>%</div>
+	                							</li>
+	                							<li>
+	                								<div class="graphlabel">보통이에요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="graphnum"><strong class="normal"></strong>%</div>
+	                							</li>
+	                							<li>
+	                								<div class="graphlabel">별로에요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="graphnum"><strong class="bad"></strong>%</div>
+	                							</li>
+	                						</ul>
+	                					</div>
+	                					<div class="graphItem pSame">
+	                						<strong>상품일치여부</strong>
+	                						<ul>
+	                							<li>
+	                								<div class="graphlabel">똑같아요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="graphnum"><strong class="same"></strong>%</div>
+	                							</li>
+	                							<li>
+	                								<div class="graphlabel">비슷해요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="graphnum"><strong class="alike"></strong>%</div>
+	                							</li>
+	                							<li>
+	                								<div class="graphlabel">달라요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="graphnum"><strong class="nsame"></strong>%</div>
+	                							</li>
+	                						</ul>
+	                					</div>
+	                					<div class="graphItem price">
+	                						<strong>가격</strong>
+	                						<ul>
+	                							<li>
+	                								<div class="graphlabel">만족해요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="graphnum"><strong class="pgood"></strong>%</div>
+	                							</li>
+	                							<li>
+	                								<div class="graphlabel">보통이에요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="graphnum"><strong class="pnormal"></strong>%</div>
+	                							</li>
+	                							<li>
+	                								<div class="graphlabel">별로에요</div>
+	                								<div class="graphBox"><div class="per"></div></div>
+	                								<div class="graphnum"><strong class="pbad"></strong>%</div>
+	                							</li>
+	                						</ul>
+	                					</div>
+	                				</div>
+	                			</div>
+	                			<div class="reviewFilterTitle">
+	                				<div class="reviewFilter">
+		                				<select name="filter" id="filter">
+		                					<option selected value="최근등록순">최근등록순</option>
+		                					<option value="평점높은순">평점높은순</option>
+		                					<option value="평점낮은순">평점낮은순</option>
+		                				</select>
+	                				</div>
+	                				<table class="prodreviewTable">
+	                				</table>
+	                			</div>
+	                	</div>
+	                	<div class="pagingNumber">
+
+						</div>
 	                </div>
 	                <div class="prodDelivery">
 	                	<div class="prodDetailArea">
@@ -256,7 +318,7 @@
 			                    				<strong class="prodDeliveryType">점포배송(자차배송)</strong>
 			                    				<em>내가 원하는 아무때나!</em>
 			                    				<p>지정한 날짜와 시간에 정확하게 도착해요.</p>
-			                    			</div>
+			       	             			</div>
 			                    		</li>
 			                    		<li>
 			                    			<i class="ico ico02"></i>
@@ -387,6 +449,9 @@
                         <button type="button" class="product_nowbtn">바로구매</button>
                     </div>
                     <button type="button" class="product_cartbtn">장바구니</button>
+                    <div class="product_cartbtnOverlay overlay2">
+                    
+                    </div>
                 </div>
             </div>
 
@@ -427,9 +492,29 @@
 		window.addEventListener('load', heartloadHandler)
 	}
 	
-	const prodcartBtn = Array.from(document.querySelectorAll('.product_cartbtn'))
-	prodcartBtn.forEach(btn => btn.addEventListener('click', prodcartModal))
+	const prodcartBtn = document.querySelector('.product_cartbtn')
+	prodcartBtn.addEventListener('click', prodcartModal)
 	
+	const prodcartBtn2 = document.querySelectorAll('.product_cartbtn')[1]
+	prodcartBtn2.addEventListener('click', prodcartremoModal)
+
+	document.querySelector('view').addEventListener('click', prodcartcloseModal)
+	document.querySelector('.product_cartbtnOverlay').addEventListener('click', prodcartcloseModal)
+	
+	const productnowBtn = document.querySelectorAll('.product_nowbtn')
+	productnowBtn.forEach(btn => btn.addEventListener('click', productnowHandler))
+	
+	window.addEventListener('load', prodgradHandler)
+	
+	let filter = document.getElementById('filter')
+	filter.addEventListener('change', proddetailReview)
+	
+	window.addEventListener('load', prodreviewList)
+	filter.addEventListener('change', function() {
+		prodreviewList(event)})
+	
+	window.addEventListener('load', proddetailReview)
+
 </script>
 
 <%@ include file="../footer.jsp"%>

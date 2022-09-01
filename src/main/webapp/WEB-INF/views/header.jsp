@@ -24,7 +24,7 @@
             
             <div class="input">
             	<form method="GET" action="${cpath }/product/search">
-	                <input type="search" name="param" value="${param.search }" placeholder="검색어를 입력하세요" >
+	                <input type="search" name="param" value="${param.param }" placeholder="검색어를 입력하세요" >
             		<button type="submit"></button>
             	</form>
             </div>
@@ -47,7 +47,7 @@
                         <ul> 
                             <li><a href="${cpath}/mypage/orders">주문/배송조회</a></li>
                             <li><a href="#">고객센터</a></li>
-                            <li><a href="#">회원정보</a></li>
+                            <li><a href="${cpath}/mypage/myinfo/${login.idx}">회원정보</a></li>
                         </ul> 
                 </div>   
                 <div><a href="${cpath}/buying/cart/${login.idx}"><img src="${cpath }/resources/img/cart.png" width="40px" height="40px"></a></div>
@@ -973,7 +973,6 @@
                                             </li>
                                         </ul>
                                         </div>
-
                                 </li>
                             </ul>
                         </div>
@@ -988,12 +987,41 @@
          
         </nav>
     </header>
-    
+    	<div id="remocon">
+		<div class="remocon_frame">
+			<div class="remocon_miniItem">
+				<figure>
+					<a href="${cpath }/member/login"><img src="${cpath }/resources/img/icon_147.png"></a>
+					<figcaption>로그인</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<a href="${cpath }/mypage/orders"><img src="${cpath }/resources/img/icon_139.png"></a>
+					<figcaption>주문내역</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure>
+					<a href="${cpath }/buying/cart/${login.idx}"><img src="${cpath }/resources/img/icon_152.png"></a>
+					<figcaption>장바구니</figcaption>
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<figure class="recentProduct">
+					<img src="">
+				</figure>
+			</div>
+			<div class="remocon_miniItem">
+				<button id="toTop">TOP</button>
+			</div>
+		</div>
+	</div>
 	<script>
 		const category = document.querySelector('#cate > a')
+		const toTop = document.getElementById('toTop')
 
 		category.addEventListener('click', categoryModal)
-		//category.addEventListener('click', closeModal)
-		
-	
+		window.addEventListener('load', getCookie)
+		toTop.addEventListener('click', scrollToTop)
 	</script>

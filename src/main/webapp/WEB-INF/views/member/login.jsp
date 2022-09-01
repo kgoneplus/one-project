@@ -7,22 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link type="text/css" rel="stylesheet"
-	href="${cpath }/resources/css/style_login.css">
+<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_login.css">
 </head>
-<script
-	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
-	charset="utf-8"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="${cpath }/resources/js/function_member.js"></script>
-	
 <body>
 	
 	 <div class="login_menu">
         <div class="login_center">
             <form method="POST">
                 <div class="login_logo">
-                    <a href="#"><img src="${cpath }/resources/img/oneplus.png" width="195px" height="50px"></a>
+                    <a href="${cpath }"><img src="${cpath }/resources/img/oneplus.png" width="195px" height="50px"></a>
                 </div>
                 <div class="login_box">
                     <div class="login_login">
@@ -35,11 +31,11 @@
                     </div>
                     <div class="login_find_right">
                         <a href="${cpath }/member/login/idsearch">아이디찾기</a>
-                        <a href="#"> | 비밀번호찾기</a>
+                        <a href="${cpath }/member/login/passSearch"> | 비밀번호찾기</a>
                     </div>
                 </div>    
                 <div class="login_button1">
-                 	<a><button type="submit">로그인</button></a> 
+                 	<a><button type="submit" onclick="login_confirm()">로그인</button></a> 
                 </div>
                 <div class="login_button2">
                     <div class="login_button2_naver">
@@ -63,14 +59,30 @@
             </form>
         </div>
     </div>
-   <script>
-   const cookie = document.cookie.split('=');
-   if(cookie[1] != null){
-  	 document.getElementById('id').value = cookie[1];
-   }
-  
+    
+<script>
+   const cpath = '${cpath}'
    
+   // 아아디 저장 기능
+//    const cookie = document.cookie.split('=');
+	const cookie1 = document.cookie
+	console.log(cookie1)
+	let cookie2 = document.cookie.split(';')
+	console.log(cookie2)
+	cookie2.forEach(cookie => {
+		let dto = cookie.split('=')
+		if(dto[0] == 'userid'){
+			console.log(dto[1])
+			document.getElementById('id').value = dto[1]
+		}
+	})
+	
+  	
+  
+   // 카카오 인잇..
    Kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
+   
+   // 네이버 로그인
    var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "GNv8IH0Irsq3ZxTgn4bE",
@@ -83,73 +95,9 @@
 	
 	const naverbtn = document.getElementById('naverlogin')
 	naverbtn.addEventListener('click',function(){
-	const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
-	btnNaverLogin.click();
+		const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
+		btnNaverLogin.click();
 	});
-	
-	
-	
-	
-function kakaoLogin() {
-	  Kakao.Auth.login({
-	      success: function (response) {
-	        Kakao.API.request({
-	          url: '/v2/user/me',
-	          success: function (response) {
-	        	  console.log(response)
-	        	  kakaomap(response)
-	          },
-	          fail: function (error) {
-	            console.log(error)
-	          },
-	        })
-	      },
-	      fail: function (error) {
-	        console.log(error)
-	      },
-	    })
-	  }
-
-// 받은데이터 매핑
-function kakaomap(res){
-	 	console.log(res)
-		const kakaouser = res.kakao_account
-	  	const kakaouser_map = {
-	  			'name':kakaouser.profile.nickname,
-	  			'email':kakaouser.email
-	  	}
-		kakaoconfirm(kakaouser_map)
-}
-
-// 매핑받은 데이터 로그인 하기
-function kakaoconfirm(data){
-	 const url = '${cpath}/kakaoconfirm'
-	 const opt = {
-		 method:'POST',
-		 body: JSON.stringify(data),
-		 headers:{
-			'Content-Type' : 'application/json; charset=utf-8'
-		 }
-	 }
-	 fetch(url, opt)
-	 .then(resp => resp.text())
-	 .then(text =>{
-		 if(text == 1){
-			 console.log('로그인 성공')
-			  kakaoLogout()
-			 location.replace("http://localhost:8080/project")
-			
-		 }else{
-			 console.log('실패')
-			 location.replace("http://localhost:8080/project/member/login/kakao")
-		 }
-	 })
-}
-
-  </script>
-
-  
-  
-		 
+</script>
 </body>
 </html>

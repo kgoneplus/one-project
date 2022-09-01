@@ -30,7 +30,7 @@ function insertHandler (event) {
 		.then(text => {
 			if(text == 1) {
 				alert('작성성공')
-				location.href = 'http://localhost:8080/project/'
+				location.href = 'http://localhost:8080/project/member/login'
 			}
 		})
 	}
@@ -108,36 +108,102 @@ function kakaoinsertHandler (event) {
 
 // 아이디 중복 체크
 function memberId(event) {
-	const url = `${cpath}/joining/memberload`
-	const id = document.getElementById('idtext').value
-	const idfocus = document.querySelector('input[name="userid"]')
+	   const url = `${cpath}/joining/memberload`
+	   const id = document.getElementById('idtext').value
+	   const idfocus = document.querySelector('input[name="userid"]')
+	   
+	   let message = '사용가능 아이디'
+	   const ConfirmMessage = document.getElementById('ConfirmID-Message')
+	   const confirm = ConfirmMessage.getAttribute('confirm')
+	   
+	   fetch(url)
+	   .then(resp => resp.json())
+	   .then(json =>{
+		   console.log(json)
+	      json.forEach(dto =>{
+	    	
+	    	  if(dto.userid === id){
+	            message = '중복된 아이디'
+	            idfocus.focus()
+	            ConfirmMessage.setAttribute('confirm', 'false')
+	            
+	            ConfirmMessage.style.color = 'red'
+	         }
+	      })
+	      if(message === '사용가능 아이디') {
+	         ConfirmMessage.setAttribute('confirm', 'true')
+	         ConfirmMessage.style.color = 'black'
+	      }
+	      ConfirmMessage.innerText = message
+	   })
+	   
+	}
+
 	
-	let message = '사용가능 아이디'
-	const ConfirmMessage = document.getElementById('ConfirmID-Message')
-	const confirm = ConfirmMessage.getAttribute('confirm')
+
+// 네이버 로그인 핸들러
+function naverloginhandler( ) {
 	
-	fetch(url)
-	.then(resp => resp.json())
-	.then(json =>{
-		json.forEach(dto =>{
-			if(dto.userid === id){
-				message = '중복된 아이디'
-				idfocus.focus()
-				ConfirmMessage.setAttribute('confirm', 'false')
+	naverLogin.getLoginStatus( function (status) {
+
+	if (status) {	// 성공한다면
+		let email = naverLogin.user.getEmail();
+		let name = naverLogin.user.getName();
+		let phonenum = naverLogin.user.getMobile();
+		let token = naverLogin.accessToken.toString();
+		const tokensplit = token.split('.');
+		token = tokensplit[1]
+		
+		
+		phonenum = phonenum.replace("-","")
+		phonenum = phonenum.replace("-","")
+		
+		const emailvalue = document.getElementById('mailadress')
+		const namevalue = document.getElementById('namevalue')
+		const phonenumvalue = document.getElementById('phonenumvalue')
+		
+		emailvalue.value = email
+		namevalue.value = name
+		phonenumvalue.value = phonenum
+		
+	const url = `${cpath}/naverSave`
+	const opt = {
+			method:'POST',
+			body: JSON.stringify({
+				'email':email, 'name':name, 'phonenum':phonenum	
+			}),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			},
+	}
+	fetch(url, opt)
+	.then(resp => resp.text())
+	.then( text => {
+		if(text == 1){
+			console.log('로그인 성공 ')
+			location.href = `${cpath}`
+			const url = `${cpath}/remove` + '?token='+token
+			fetch(url)
+			.then(resp => resp.text())
+			.then(text => {
+				if(text == 1){
+					console.log('토큰 삭제 성공')
+				}else{
+					console.log('토큰 삭제 실패')
+				}
 				
-				ConfirmMessage.style.color = 'red'
+			})
+			} else if(text == 0) {
+				console.log('실패')
 			}
+		
+			
 		})
-		if(message === '사용가능 아이디') {
-			ConfirmMessage.setAttribute('confirm', 'true')
-			ConfirmMessage.style.color = 'black'
-		}
-		ConfirmMessage.innerText = message
-	})
-	
-}
-
-
+	} else {
+			alret("네이버 로그인 실패");
+			}
+	});
+};
 //카카오 로그아웃
 function kakaoLogout() {
 if (Kakao.Auth.getAccessToken()) {
@@ -240,6 +306,157 @@ function mailconfirm (){
 		}
 	})
 }
+
+// 카카오 로긴
+function kakaoLogin() {
+	  Kakao.Auth.login({
+	      success: function (response) {
+	        Kakao.API.request({
+	          url: '/v2/user/me',
+	          success: function (response) {
+	        	  console.log(response)
+	        	  kakaomap(response)
+	          },
+	          fail: function (error) {
+	            console.log(error)
+	          },
+	        })
+	      },
+	      fail: function (error) {
+	        console.log(error)
+	      },
+	    })
+	  }
+
+//받은데이터 매핑
+function kakaomap(res){
+	 	console.log(res)
+		const kakaouser = res.kakao_account
+	  	const kakaouser_map = {
+	  			'name':kakaouser.profile.nickname,
+	  			'email':kakaouser.email
+	  	}
+		kakaoconfirm(kakaouser_map)
+}
+
+// 매핑받은 데이터 로그인 하기
+function kakaoconfirm(data){
+	 const url = `${cpath}/kakaoconfirm`
+	 const opt = {
+		 method:'POST',
+		 body: JSON.stringify(data),
+		 headers:{
+			'Content-Type' : 'application/json; charset=utf-8'
+		 }
+	 }
+	 fetch(url, opt)
+	 .then(resp => resp.text())
+	 .then(text =>{
+		 if(text == 1){
+			 console.log('로그인 성공')
+			  kakaoLogout()
+			 location.replace("http://localhost:8080/project")
+			
+		 }else{
+			 console.log('실패')
+			 location.replace("http://localhost:8080/project/member/login/kakao")
+		 }
+	 })
+}
+
+//비밀번호 확인 
+function passSearch(event){
+	event.preventDefault()
+	const url = `${cpath}/passSearch`
+	const ob = {}
+	const formData = new FormData(event.target)
+	for(let key of formData.keys()) {
+		ob[key] = formData.get(key)
+	}
+	
+	const opt = {
+			method:'POST',
+			body: JSON.stringify(ob),
+			headers:{
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt)
+	.then(resp => resp.json())
+	.then(json => {
+		passconfirm (json.email)
+		passSearch_email.innerText = json.email + '로 인증번호 발송'
+		passSearch_inputform.style.display = 'block'
+	})
+}
+
+function passconfirm (email){
+	
+	const url = `${cpath}/mailconfirm`
+	const opt = {
+			method: 'POST',
+			body: JSON.stringify({
+			'mailadress' : email	
+			}),
+			headers: {
+				'Content-Type' : 'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt)
+	.then(resp => resp.text())
+	.then(text => {
+		if(text != null){
+			console.log('성공')
+			sessionStorage.setItem("emailconfirmnumber", text)
+		}
+		else{
+			console.log('실패')
+		}
+	})
+}
+// 비밀번호 인증 함수 (인증후 -> 업데이트 시키러가자)
+function mailConfirmNumber2(){
+	console.log(mailconfrimnumber.value)
+	let number = sessionStorage.getItem("emailconfirmnumber")
+	console.log(number)
+	if(mailconfrimnumber.value == number){
+		password_input.style.display = 'block'
+//		PasswordInput(passId.value)
+	}
+	else {
+		emailconfirmMessage.innerText = '인증번호가 틀립니다'
+	}
+}
+function PasswordInput(event){
+	event.preventDefault()
+	const userid = document.getElementById('passId').value
+	let ob = {}
+	const formData = new FormData(event.target)
+	for(let key of formData.keys()) {
+		ob[key] = formData.get(key)
+	}
+	ob['userid'] = userid
+	console.log(ob)
+	const url = `${cpath}/passUpdate`
+	const opt = {
+			method: 'POST',
+			body: JSON.stringify(ob),
+			headers:{
+				'Content-Type':'application/json; charset=utf-8'
+			}
+	}
+	fetch(url, opt)
+	.then(resp => resp.text())
+	.then(text => {
+		if(text == 1){
+			console.log('성공')
+			location.href = `${cpath}/member/login`
+		}else {
+			console.log('실패')
+		}
+	})
+}
+
 
 
 

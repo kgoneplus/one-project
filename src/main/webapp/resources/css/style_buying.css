@@ -30,6 +30,7 @@ ul, li {
 	background-repeat: no-repeat;
 	width: 89px;
 	height: 20px;
+	cursor: pointer;
 }
 
 .inner_right > a {
@@ -159,7 +160,7 @@ ul, li {
 	position: relative;
 }
 
-.orderCheck > .orderProducts > ul > li > img {
+.orderCheck > .orderProducts > ul > li > a > img {
 	width: 90px;
 	height: 90px;
 	border-radius: 3px;

@@ -17,7 +17,8 @@
 <link type="text/css" rel="stylesheet"
 	  href="${cpath }/resources/css/style_joinform.css">
 </head>
-<c:set var="ndto" value="${naverlogin }" />
+
+
 <body>
 	<div class="join-form">
 	<div><img src="${cpath }/resources/img/oneplus.png" width="200px" height="50px"></div>
@@ -38,8 +39,7 @@
 			<div id="ConfirmPW-Message"></div>
 			
 			<div>이름</div>
-			<input  type="text" name="name" placeholder="이름" value="${ndto.name }"
-			<c:if test="${not empty naverlogin }">readonly</c:if> >
+			<input  id="namevalue" type="text" name="name" placeholder="이름" value="">
 				
 				
 			
@@ -53,13 +53,15 @@
 			<input type="date" name="birth" required>
 			
 			<div>핸드폰번호</div>
-			<input type="text" name="phonenum" value="${ndto.phonenum }" placeholder="ex)01012341234"
-				 <c:if test="${not empty naverlogin }">readonly</c:if>>
+			<input id="phonenumvalue" type="text" name="phonenum" value="" placeholder="ex)01012341234" >
+
 				
 			<div>이메일</div>
-			<input type="email" name="email" value="${ndto.email }" placeholder="kkj1234@naver.com"
-				 <c:if test="${not empty naverlogin }">readonly</c:if>>
-			<button id="emailconfirm" type="button">인증번호 요청</button>
+			<input id="mailadress" type="email" name="email" value="" placeholder="kkj1234@naver.com">
+
+			<button id="mailconfirmBtn">인증번호 요청</button>
+			<div><input id="confirmnumber" type="password" name="emailconfirm" placeholder="인증번호4자리입력">
+			<input type="button" onclick="mailConfirmNumber()" value="인증"></div>
 			<div id="ConfirmEmail-Message"></div>
 			
 			<div>주소</div>
@@ -82,63 +84,30 @@
 	});
 	naverLogin.init();
 	
-	console.log(naverLogin)
-	window.addEventListener('load', function () {
-	naverLogin.getLoginStatus(function (status) {
-
-	if (status) {	// 성공한다면
-		const email = naverLogin.user.getEmail();
-		const name = naverLogin.user.getName();
-		const phonenum = naverLogin.user.getMobile();
-		let token = naverLogin.accessToken.toString();
 		
-		const tokensplit = token.split('.');
-		token = tokensplit[1]
-		console.log(token)
-		
-		$.ajax({
-			type: 'POST',
-			url: 'naverSave',
-			data: { 'email':email, 'name':name, 'phonenum':phonenum},
-			dataType: 'text',
-			success: function(row) {
-				if(row == 1) {
-					console.log('로그인 성공 ')
-					const  url = '${cpath}/remove' + '?token='+token
-					fetch(url)
-					.then(resp => resp.text())
-					.then(text => {
-						if(text == 1){
-							console.log('토큰 삭제 성공')
-						}else{
-							console.log('토큰 삭제 실패')
-						}
-					})
-					location.replace("http://localhost:8080/project") 
-				} else if(row == 0) {
-					console.log('실패')
-					
-				}
-			},
-		})
-		
-
-	} else {
-			alret("네이버 로그인 실패");
-			}
-		});
-	});
-	const cpath = '${cpath}'
+	
+	
+	
+		const cpath = '${cpath}'
 		const idconfirm = document.getElementById('idconfirm')			// 아이디 중복확인 버튼
 		const insertForm = document.forms[0]
 		const pw = document.getElementById('pw')						// 비밀번호
 		const pwconfirm = document.getElementById('pwconfirm')			// 비밀번호 재확인
 		const ConfirmPW = document.getElementById('ConfirmPW-Message')	// 비밀번호 재확인 메세지
-
+		const emailconfirmMessage = document.getElementById('ConfirmEmail-Message')		// 컨펌 매세지 띄우기
+		const mailconfrimnumber = document.getElementById('confirmnumber')
+		const mailconfirmBtn = document.getElementById('mailconfirmBtn')
+		
+		window.addEventListener('load', naverloginhandler )
+		console.log(naverLogin)
+		let email = sessionStorage.getItem("email")
+		let name = sessionStorage.getItem("name")
+		let phonenum = sessionStorage.getItem("phonenum")
+		
+		
 		// 비밀번호 재확인 함수
 		pwconfirm.onblur = function() {
 			if (!pwconfirm.value.includes(pw.value)) {
-				// 				pwconfirm.focus()
 				pwconfirm.classList.add('invalid')
 				pw.focus()
 				ConfirmPW.innerText = '비밀번호가 다릅니다'
@@ -152,7 +121,8 @@
 				ConfirmPW.innerHTML = ''
 			}
 		};
-
+		
+		mailconfirmBtn.addEventListener('click', mailconfirm)
 		idconfirm.addEventListener('click', memberId)
 		insertForm.addEventListener('submit', naverinsertHandler)
 	</script>

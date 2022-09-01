@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itbank.oneplus.MemberDAO;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.service.MemberService;
 
@@ -30,21 +31,26 @@ public class MemberController {
 	
 	//창 페이지
 	@GetMapping("/login")
-	public void login() {}
+	public void login(String url) {}
 	
 	//로그인
 	@PostMapping("/login")
-	public String login(MemberDTO dto, HttpSession session, HttpServletResponse resp) {
+	public String login(String url, MemberDTO dto, HttpSession session, HttpServletResponse resp) {
+		
 		MemberDTO login = ms.login(dto);
+		if(login == null) {
+			return "redirect:/member/login";
+		}
 		session.setAttribute("login", login);
 		
-		System.out.println(dto.getUserid_remember());
-		System.out.println("==========================");
+		if(url != null && url.contains("cart")) {
+				url = url + login.getIdx();
+		}
 		
-//		Cookie userid = new Cookie("userid", dto.getUserid());
-//		userid.setMaxAge(60*60*24*30);
-//		resp.addCookie(userid);
-//		session.setAttribute("userid", userid.getValue());
+		if(url != null && url.contains("myinfo")) {
+			url = url + login.getIdx();
+		}
+		
 		if(dto.getUserid_remember() != null) {
 			Cookie userid = new Cookie("userid", dto.getUserid());
 			userid.setMaxAge(60*60*24*30);
@@ -58,9 +64,9 @@ public class MemberController {
 			session.removeAttribute("userid");
 		}
 		
-		
-		return "redirect:/";
+		return "redirect:" + (url == null ? "/" : url);
 	}
+	
 	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse resp) {
@@ -89,10 +95,15 @@ public class MemberController {
 	@GetMapping("/login/idsearch")
 	public void idserach() {}
 	
+	// 아이디 찾기
 	@PostMapping("/login/idsearch")
 	public String idsearch(MemberDTO dto) throws AddressException, IOException, MessagingException {
 		ms.idsearch(dto);
 		return "redirect:/member/login";
 	}
+	// 비밀번호 찾기
+	@GetMapping("/login/passSearch")
+	public void passSerach() {}
+	
 	
 }

@@ -45,37 +45,7 @@
                     <li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
                 </ul>
             </div>
-        </aside>
-              
-        <section>
-            <div class="mypageTitleBox mypageSubtitle">
-            <div class="titleArea">
-                <h2>배송 정보 관리</h2>
-            </div>
-            <div class="rightArea"></div>
-            </div>
-            <div>
-				<h3>배송지 목록</h3>
-				<button>배송지 추가</button>
-			</div>
-			<div>
-				<div>기본 배송지</div>
-				<div>
-					<div>배송지역 | 수령인(회원 전화번호 )</div>
-					<div>회원정보에 등록된 주소</div>
-				</div>			
-			</div>
-			<table>
-				<tr>
-					<th>선택</th>
-					<th>배송지명</th>
-					<th>받는 분</th>
-					<th>주소</th>
-					<th>수정/삭제</th>
-				</tr>
-			</table>
-			<button>기본 배송지 설정</button>
-        </section>
+        </aside>        
     </div>
 </main>
 <%@ include file="../footer.jsp" %>

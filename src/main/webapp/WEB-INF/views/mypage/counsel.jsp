@@ -5,203 +5,6 @@
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 <script src="${cpath}/resources/js/function_mypage.js"></script>
-<script>
-	const cpath = '${cpath}'
-</script>
-<style>
-.counsel_modal {
-	display: none;
-}
-.counsel_overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: black;
-	opacity: 70%;
-	z-index: 5;
-}
-.counsel_content {
-	position: absolute;
-	z-index: 6;
-	width: 700px;
-	height: 480px;
-	justify-content: center;
-	align-items: center;
-	background-color: white;
-	overflow: auto;
-	top: 50%;
-  	left: 50%;
-  	transform: translate(-50%, -50%);
-}
-.counsel_hidden {
-	display: none;
-}
-.counsel_content > div:nth-child(1) {
-	font-weight: bold;
-	padding: 25px;
-	display: flex;
-	justify-content: space-between;
-	border-bottom: 2px solid gray;	
-}
-.counsel_close {
-	cursor: pointer;
-}
-.counsel_submit {
-	text-align: center;
-}
-.counsel_form {
-	padding: 20px 50px;
-	width: 600px;
-}
-.counsel_table {
-	border-collapse: collapse;
-}
-tr {
-	height: 50px;
-	border: 1px solid black;
-	font-size: 12px;
-}
-th {
-	text-align: left;
-	width: 150px;
-	background-color: #f5f5f5;
-	padding-left: 10px;
-}
-td {
-	padding-left: 20px;
-}
-.ask_wrap > .item {
-	margin: 20px auto;
-	width: 900px;
-	height: 50px;
-	display: flex;
-	justify-content: space-between;
-	border: 1px solid #dadada;
-	cursor: pointer;
-}
-.ask_wrap > .item > .askType {
-	width: 150px;
-	height: 50px;
-	text-align: center;
-	padding-top: 13px;
-	font-weight: bold;
-}
-.ask_wrap > .item > .title {
-	width: 450px;
-	height: 50px;
-	padding-top: 15px;
-	font-size: 15px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-.ask_wrap > .item > .writeDate {
-	height: 50px;
-	padding-top: 13px;
-	color: #dadada;
-	font-weight: bold;
-}
-.ask_wrap > .item > .waiting {
-	height: 50px;
-	padding-top: 13px;
-	color: red;
-	font-weight: bold;
-}
-.ask_wrap > .item > .direction {
-	height: 50px;
-	padding-top: 13px;
-	padding-right: 10px;
-}
-.askList_overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: black;
-	opacity: 70%;
-	z-index: 5;
-}
-.askList_content {
-	position: absolute;
-	z-index: 6;
-	width: 750px;
-	height: auto;
-	justify-content: center;
-	align-items: center;
-	background-color: white;
-	overflow: auto;
-	top: 50%;
-  	left: 50%;
-  	transform: translate(-50%, -50%);
-  	border: 2px solid black;
-}
-.askList_hidden {
-	display: none;
-}
-.askList_top {
-	display: flex;
-	justify-content: space-between;
-	border-bottom: 1px solid black;
-	margin-bottom: 20px;
-}
-.askList_top > .askType {
-	width: 150px;
-	height: 35px;
-	text-align: center;
-	padding-top: 13px;
-	font-weight: bold;
-}
-.askList_top > .title {
-	width: 440px;
-	height: 35px;
-	padding-top: 15px;
-	font-size: 15px;
-	font-weight: bold;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-.askList_top > .writeDate {
-	height: 35px;
-	padding-top: 13px;
-	font-weight: bold;
-	padding-right: 10px;
-}
-.askList_mid > .content {
-	border: 1px solid #dadada;
-	width: 650px;
-	height: 220px;
-	margin: auto;
-	padding: 10px;
-	font-size: 13px;
-	color: #666666;
-	word-break: break-word;
-}
-.askList_bottom {
-	display: flex;
-	justify-content: space-between;
-}
-.askList_bottom > .btn {
-	margin: 20px;
-	width: 92px;
-    height: 36px;
-    border-radius: 2px;
-    background-color: rgb(51, 51, 51);
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-}
-.rightArea > .ask_button {
-    width: 92px;
-    height: 36px;
-    border-radius: 2px;
-    background-color: rgb(51, 51, 51);
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-}
-</style>
 </head>
 <body>
 <main>
@@ -238,7 +41,7 @@ td {
                 <h3>MY 회원정보</h3>
                 <ul>
                     <li><a href="${cpath }/mypage/myinfo/${login.idx}">회원 정보 관리</a></li>
-                    <li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
+                    <li><a href="${cpath }/buying/cart/${login.idx}">배송 정보 관리</a></li>
                     <li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
                     <li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
                 </ul>
@@ -297,7 +100,7 @@ td {
 			<form class="counsel_form" enctype="multipart/form-data">
 				<input type="hidden" name="member_idx" value="${login.idx }">
 				<table class="counsel_table">
-				<tr>
+				<tr class="counsel_tr">
 					<th>문의 유형</th>
 	 				<td>
 	 					<select name="askType">
@@ -312,11 +115,11 @@ td {
 						</select>
 					</td>
 				</tr>					
-				<tr>
+				<tr class="counsel_tr">
 					<th>제목</th>
 					<td><input type="text" name="title" placeholder="최소 2자 이상 입력해주세요 (최대 25자)" required></td>
 				</tr>										
-				<tr>
+				<tr class="counsel_tr">
 					<th>내용</th>
 					<td>
 						<textarea name="content"
@@ -325,7 +128,7 @@ td {
 							  placeholder="문의 내용을 입력해 주세요 (최대 700자 이내)&#13;&#10;고객님의 개인정보가 기입되지 않도록 주의해주세요" required></textarea>
 					</td>
 				</tr>
-<!-- 				<tr> -->
+<!-- 				<tr class="counsel_tr"> -->
 <!-- 					<th>이미지 등록(선택)</th> -->
 <!-- 					<td><input type="file" name="askFile" accept="image/*"></td> -->
 <!-- 				</tr>					 -->
@@ -349,7 +152,7 @@ td {
 	counselModal_overlay.addEventListener('click', counselCloesModal)
 	counselModal_close.addEventListener('click', counselCloesModal)
 	writeForm.addEventListener('submit', askHandler)							// 1:1 문의 등록
-	window.addEventListener('load', selectAskAll(login_idx))					// 1:1 문의 내역
-	askList_close.addEventListener('click', askCloesModal)						// 1:1 문의 내역 삭제
+	window.addEventListener('load', selectAskAll(login_idx))					// 1:1 문의 내역 상세보기
+	askList_close.addEventListener('click', askCloesModal)						
 </script>
 <%@ include file="../footer.jsp" %>
