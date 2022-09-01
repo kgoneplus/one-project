@@ -18,8 +18,7 @@
 	</div>
 <div id="search_top">
         <div class="inputResult">
-            <p>'<strong>복숭아</strong>'검색결과</p>
-            <p><strong>805</strong>개의 상품이 있습니다</p>
+            <p>'<strong>${param.param }</strong>' 검색결과</p><br>
         </div>
         <div class="search_word">
             <table>
@@ -44,13 +43,27 @@
 				<li>채소</li>
 				<li>수산물/건어물</li>
 				<li><div id="seemore"> + 더보기</div></li>
+				<li><div class="hidingcate">
+					<ul>
+						<li>정육/계란</li>
+						<li>우유/유제품</li>
+						<li>냉장/냉동식품</li>
+						<li>생수/음료</li>
+						<li>과자/시리얼</li>
+						<li>라면/즉석식품/통조림</li>
+						<li>세탁/청소/욕실</li>
+						<li>주방용품</li>
+						<li>가전/디지털</li>
+						<li> - 접기</li>
+					</ul>
+				</div></li>
             </ul>
         </div>
         <div>
             <h4>혜택</h4>
             <ul>
                 <li><label><input type="checkbox">행사상품</label></li>
-
+				<li><label><input type="checkbox">무료배송</label></li>
             </ul>
         </div>
 
@@ -78,7 +91,7 @@
     </div>
     <div id="right_category_list">
 		<div class="category_select">
-            <div class="category_select_list">하기싫은스크립트공간</div>	
+            <div class="category_select_list"></div>	
             <div><button>전체 해제<p></p></button></div>
         </div>
 	    <div class="category_topbar">
@@ -91,12 +104,6 @@
 	                <li><a href="${cpath}/product/search?param=${param.param}&recome=lotofreview"><button type="button">리뷰 많은순</button></a></li>
 	            </ul>
 	        </div>
-<!-- 	        	할까말까고민즁 -->
-<!-- 	        <div class="category_input"> -->
-<!-- 	            <input type="text" placeholder="결과 내 재검색"><button class="input_icon"></button> -->
-<!-- 	            <button class="input_button1"></button> -->
-<!-- 	            <button class="input_button2"></button> -->
-<!-- 	        </div> -->
 	    </div>
 	    <hr>
 	    <div class="category_bottombar">

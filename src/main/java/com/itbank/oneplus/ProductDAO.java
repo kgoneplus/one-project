@@ -133,4 +133,7 @@ public interface ProductDAO {
 	String prodCookie(HashMap<String, String> productMain_idx);
 
 	
+//	String keyword();
+
+	
 }

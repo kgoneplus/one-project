@@ -5,8 +5,13 @@
 function pluscategory() {
 	console.log("23")
 	
+	const hidingcate = document.querySelector('.hidingcate')
+	const seemore = document.getElementById('seemore')
+	console.log(hidingcate)
+	console.log(seemore)
 	
-	
+	seemore.style.display = 'none'
+	hidingcate.style.display = 'block'
 	
 }
 
