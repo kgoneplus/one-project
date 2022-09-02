@@ -80,27 +80,29 @@ public class RestMemberController {
 	// 네이버 로그인
 	@PostMapping("/naverSave")
 	public int naverSave(@RequestBody HashMap<String, String> param, HttpSession session) {
-		int row = 0;
 		
 		String phonenum = param.get("phonenum").replace("-", "");
 		String email = param.get("email");
 		String name = param.get("name");
 		MemberDTO naver = new MemberDTO();
+		System.out.println("phonenum : " + phonenum);
+		System.out.println("email : " + email);
+		System.out.println("name : " + name);
+		
 		
 		naver.setPhonenum(phonenum);
 		naver.setEmail(email);
 		naver.setName(name);
 		//서비스로 회원인지 아닌지 판별하러감
-		MemberDTO naverconfirm = ms.naverconfirm(naver,session);
 		// 회원이 맞다면 login 객체 새션에 저장
-		if(naverconfirm == null) {
-			row = 1;
+		
+		MemberDTO naverConfirm = ms.naverconfirm(naver);
+		if(naverConfirm == null) {
+			return 0;
 		}else {
-			session.setAttribute("naverlogin", naverconfirm);
+			session.setAttribute("login", naverConfirm);
+			return 1;
 		}
-		
-		
-		return row;
 	}
 	
 	// 토큰삭제
@@ -116,7 +118,8 @@ public class RestMemberController {
 		String apiUrl = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+CLIENT_ID+
 		"&client_secret="+CLIENT_SECRET+"&access_token="+token.replaceAll("'", "")+"&service_provider=NAVER";
 		String api2url = "http://nid.naver.com/nidlogin.logout"; // 팝업창 i프래임으로 띄워서 로그아웃 구현하는 방법
-        String refreshurl = "https://nid.naver.com/oauth2.0/token?grant_type=refresh_token&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&refresh_token="+token.replaceAll("'", "")+"";
+        String refreshurl = "https://nid.naver.com/oauth2.0/token?grant_type=refresh_token&client_id="
+        		+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&refresh_token="+token.replaceAll("'", "")+"";
         System.out.println(refreshurl);
         
 		

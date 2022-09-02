@@ -28,7 +28,6 @@ public class LoginIntercepter extends HandlerInterceptorAdapter {
 		
 		// cart 세션 아웃시 오류해결 코드
 		String urls[] = url.split("%2F");
-		System.out.println("url쪼갠길이" + urls.length);
 		String realurl = "";
 		if(urls.length == 7) {
 			if(login == null && url.contains("cart")) {
@@ -47,7 +46,6 @@ public class LoginIntercepter extends HandlerInterceptorAdapter {
 		}else {
 			realurl += url;
 		}
-		System.out.println(realurl);
 		if(login == null) {
 			response.sendRedirect(request.getContextPath() + "/member/login?url=" + realurl);
 			return false;	// 로그인이 없으면 일시 정지, 이후 원하는 코드 추가 가능

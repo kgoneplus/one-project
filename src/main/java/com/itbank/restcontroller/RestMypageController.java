@@ -20,21 +20,7 @@ public class RestMypageController {
 
 	@Autowired MypageService mypageService;
 	
-	// 1:1 문의 내역
-	@GetMapping("/mypageing/counsel/{idx}")
-	public List<AskDTO> selectAskAll(@PathVariable int idx) {
-//		System.out.println("==================");
-//		System.out.println("loginidx : " + idx);
-		return mypageService.selectAskAll(idx);
-	}
-	
-	// 1:1 문의 상세 보기
-	@GetMapping("/mypageing/counseling/{idx}")
-	public AskDTO selectAskOne(@PathVariable int idx) {
-		return mypageService.selectAskOne(idx);
-	}
-	
-	// 1:1 문의 삭제
+//	 1:1 문의 삭제
 	@DeleteMapping("/mypageing/counseling/{idx}")
 	public int askDelete(@PathVariable int idx) {
 		return mypageService.askOneDelete(idx);
@@ -46,7 +32,13 @@ public class RestMypageController {
 		return mypageService.selectReviewList(idx);
 	}
 	
-	// 리뷰
+	//1:1문의 내역보기
+	@GetMapping("/mypageing/counsel/{idx}")
+	public List<AskDTO> selectAskAll(@PathVariable int idx){
+		return mypageService.selectAskAll(idx);
+	}
+	
+	// 
 	@PostMapping("/mypageing/reviewWrite")
 	public int writeReview(@RequestBody ReviewDTO dto) {
 //		System.out.println("컨트롤러productMain_idx : " + dto.getProductMain_idx());
@@ -57,6 +49,12 @@ public class RestMypageController {
 //		System.out.println("컨트롤러pSame : " + dto.getpSame());
 //		System.out.println("컨트롤러price : " + dto.getPrice());
 		return mypageService.writeReview(dto);
+	}
+	
+	// 1:1문의 내역 상세보기
+	@GetMapping("/mypageing/counseling/{idx}")
+	public AskDTO selectAskOne(@PathVariable int idx) {
+		return mypageService.selectAskOne(idx);
 	}
 	
 	// 찜목록
