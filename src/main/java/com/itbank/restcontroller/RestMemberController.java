@@ -118,7 +118,8 @@ public class RestMemberController {
 		String apiUrl = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+CLIENT_ID+
 		"&client_secret="+CLIENT_SECRET+"&access_token="+token.replaceAll("'", "")+"&service_provider=NAVER";
 		String api2url = "http://nid.naver.com/nidlogin.logout"; // 팝업창 i프래임으로 띄워서 로그아웃 구현하는 방법
-        String refreshurl = "https://nid.naver.com/oauth2.0/token?grant_type=refresh_token&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&refresh_token="+token.replaceAll("'", "")+"";
+        String refreshurl = "https://nid.naver.com/oauth2.0/token?grant_type=refresh_token&client_id="
+        		+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&refresh_token="+token.replaceAll("'", "")+"";
         System.out.println(refreshurl);
         
 		
