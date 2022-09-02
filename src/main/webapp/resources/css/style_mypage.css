@@ -162,6 +162,12 @@ section {
 	padding: 0;
 	margin: 0;
 	position: relative;
+	display: flex;
+	flex-flow: wrap;
+}
+.wishlistpage > ul > li {
+	width: 200px!important;
+	height: 200px!important;
 }
 .wishListProd > ul > li {
 	width: 100px;
@@ -169,13 +175,20 @@ section {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 100% auto;
+	margin: 10px;
 }
-.wishListProd > ul > li > span {
+.wishlistpage > ul > li > a > span {
+	width: 200px!important;
+	margin-top: 215px!important;
+    font-size: 13px!important;
+}
+.wishListProd > ul > li > a > span {
 	display: inline-block;
 	width: 100px;
 	position: absolute;
 	margin-top: 104px;
     font-size: 11px;
+    cursor: pointer;
 }
 .mypageSubtitle > .titleArea > h2 {
     font-size: 30px;

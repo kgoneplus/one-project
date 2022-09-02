@@ -126,4 +126,8 @@ public class MypageService {
 	public List<ProductDTO> selectWishlist(int member_idx) {
 		return mypageDAO.selectWishlist(member_idx);
 	}
+
+	public int getTotalOrderCnt(int member_idx) {
+		return ordersDao.getTotalOrderCnt(member_idx);
+	}
 }

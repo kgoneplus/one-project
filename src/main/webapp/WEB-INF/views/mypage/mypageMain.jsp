@@ -87,7 +87,7 @@
 					<ul>
 						<li><em>결제완료</em>
 							<div class="orderStatus">
-								<a href="${cpath}/mypage/orders">0</a>
+								<a href="${cpath}/mypage/orders">${orderCnt}</a>
 							</div></li>
 						<li><em>상품준비중</em>
 							<div class="orderStatus blue">
@@ -118,9 +118,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="wishListProd">
-				<!-- 자바스크립트로 ul만들고 li안에 찜목록 상품 불러오기  -->
-			</div>
+			<div class="wishListProd"></div>
 		</section>
 	</div>
 	</main>

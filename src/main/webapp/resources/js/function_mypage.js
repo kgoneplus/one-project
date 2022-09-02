@@ -280,16 +280,25 @@ function selectProductWishlist() {
 	const wishListProd = document.querySelector('.wishListProd')
 	const ul = document.createElement('ul')
 	
-	const member_idx = document.querySelector('.userBaseInfo_name').getAttribute('member_idx')
+	let member_idx = 0
+	if((document.location.href).includes('wishlist')) {
+		member_idx = document.querySelector('.titleArea').getAttribute('member_idx')
+	}else {
+		member_idx = document.querySelector('.userBaseInfo_name').getAttribute('member_idx')
+	}
 	const url = cpath + '/mypage/wishlists/' + member_idx
 	fetch(url).then(resp => resp.json())
 	.then(json => {
+//		console.log(json)
 		json.forEach(prod => {
 			const li = document.createElement('li')
 			li.style.backgroundImage = `url(${cpath}/resources/getImage1/${prod.productImg})`
+			const a = document.createElement('a')
+			a.href = `${cpath}/product/view/${prod.idx}`
 			const span = document.createElement('span')
 			span.innerText = prod.productName
-			li.appendChild(span)
+			a.appendChild(span)
+			li.appendChild(a)
 			ul.appendChild(li)
 		})
 	})	

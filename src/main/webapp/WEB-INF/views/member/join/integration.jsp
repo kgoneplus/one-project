@@ -97,6 +97,12 @@
 	mailconfirmBtn.addEventListener('click', mailconfirm)
 	idconfirm.addEventListener('click', memberId)
 	insertForm.addEventListener('submit', insertHandler)
+<<<<<<< HEAD
+	
+	
+
+=======
+>>>>>>> branch 'master' of https://github.com/kgoneplus/one-project.git
 </script>
 </body>
 </html>
