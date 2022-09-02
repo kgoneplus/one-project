@@ -50,7 +50,7 @@
 			<input type="text" name="phonenum"  placeholder="ex)01012341234">
 				
 			<div>이메일</div>
-			<input type="email" name="email" value="${kdto.email }" placeholder="ex)kkj1234@naver.com"
+			<input id="mailadress" type="email" name="email" value="${kdto.email }" placeholder="ex)kkj1234@naver.com"
 				<c:if test="${not empty kakaologin }">readonly</c:if>>
 			<button id="mailconfirmBtn">인증번호 요청</button>
 			<div><input id="confirmnumber" type="password" name="emailconfirm" placeholder="인증번호4자리입력">

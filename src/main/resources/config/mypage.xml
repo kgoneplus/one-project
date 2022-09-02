@@ -3,7 +3,7 @@
 <mapper namespace="com.itbank.oneplus.MypageDAO">
 
 	<select id="selectWishlist" resultType="prod">
-		select P.productImg, P.productName from product_wishlist C
+		select P.productImg, P.productName, P.idx from product_wishlist C
 		    join productMain P
 		        on C.productMain_idx = P.idx
 		    where

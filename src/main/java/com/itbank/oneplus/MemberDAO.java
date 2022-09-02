@@ -35,7 +35,7 @@ public interface MemberDAO {
 	MemberDTO selectOne(MemberDTO dto);
 	
 	// 네이버 로그인 
-	@Select("select * from parent_member where email=#{email} and name=#{name} and phonenum=#{phonenum}")
+	@Select("select * from naver_member where email=#{email} and name=#{name} and phonenum=#{phonenum}")
 	MemberDTO naverconfirm(MemberDTO dto);
 	
 	// 카카오 로그인

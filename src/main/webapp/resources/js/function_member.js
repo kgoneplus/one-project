@@ -158,20 +158,13 @@ function naverloginhandler( ) {
 		phonenum = phonenum.replace("-","")
 		phonenum = phonenum.replace("-","")
 		
-		const emailvalue = document.getElementById('emailvalue')
+		const emailvalue = document.getElementById('mailadress')
 		const namevalue = document.getElementById('namevalue')
 		const phonenumvalue = document.getElementById('phonenumvalue')
 		
 		emailvalue.value = email
 		namevalue.value = name
 		phonenumvalue.value = phonenum
-	
-		
-		
-		
-		
-		
-		
 		
 	const url = `${cpath}/naverSave`
 	const opt = {
@@ -188,6 +181,7 @@ function naverloginhandler( ) {
 	.then( text => {
 		if(text == 1){
 			console.log('로그인 성공 ')
+			location.href = `${cpath}`
 			const url = `${cpath}/remove` + '?token='+token
 			fetch(url)
 			.then(resp => resp.text())
