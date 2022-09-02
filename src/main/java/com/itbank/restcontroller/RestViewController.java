@@ -84,31 +84,39 @@ public class RestViewController {
 	@PostMapping(value="/product/detailReview/{productMain_idx}")
 	public HashMap<String, Integer> proddetailReview(@PathVariable int productMain_idx) {
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
-		int allreviewCnt = dao.allreviewCnt(productMain_idx);
-		int verygood = dao.getpState("pState", "아주 좋아요", productMain_idx) * 100 / allreviewCnt;
-		int normal = dao.getpState("pState", "보통이에요", productMain_idx) * 100  / allreviewCnt;
-		result.put("verygood", verygood);
-		result.put("normal", normal);
-		result.put("bad", 100 - (verygood + normal));
 		
-		int same = dao.getpState("pSame", "똑같아요", productMain_idx) * 100 / allreviewCnt;
-		int alike = dao.getpState("pSame", "비슷해요", productMain_idx) * 100 / allreviewCnt;
-		result.put("same", same);
-		result.put("alike", alike);
-		result.put("nsame", 100 - (same + alike));
-		
-		int pgood = dao.getpState("price", "만족해요", productMain_idx) * 100 / allreviewCnt;
-		int pnormal = dao.getpState("price", "보통이에요", productMain_idx) * 100 / allreviewCnt;
-		result.put("pgood", pgood);
-		result.put("pnormal", pnormal);
-		result.put("pbad", 100 - (pgood + pnormal));
-		result.put("allreviewCnt", allreviewCnt);
-		return result;
+			int allreviewCnt = dao.allreviewCnt(productMain_idx);
+			int verygood = 0;
+			int normal = 0;
+			int same = 0;
+			int alike = 0;
+			int pgood = 0;
+			int pnormal = 0;
+			if(allreviewCnt != 0) {
+				verygood = dao.getpState("pState", "아주 좋아요", productMain_idx) * 100 / allreviewCnt;
+				normal = dao.getpState("pState", "보통이에요", productMain_idx) * 100  / allreviewCnt;
+				same = dao.getpState("pSame", "똑같아요", productMain_idx) * 100 / allreviewCnt;
+				alike = dao.getpState("pSame", "비슷해요", productMain_idx) * 100 / allreviewCnt;
+				pgood = dao.getpState("price", "만족해요", productMain_idx) * 100 / allreviewCnt;
+				pnormal = dao.getpState("price", "보통이에요", productMain_idx) * 100 / allreviewCnt;
+			}
+			result.put("verygood", verygood);
+			result.put("normal", normal);
+			result.put("bad", (verygood == 0 && normal == 0) ? 0 : 100 - (verygood + normal));
+			result.put("same", same);
+			result.put("alike", alike);
+			result.put("nsame", (same == 0 && alike == 0) ? 0 : 100 - (same + alike));
+			result.put("pgood", pgood);
+			result.put("pnormal", pnormal);
+			result.put("pbad", (pgood == 0 && pnormal == 0) ? 0 : 100 - (pgood + pnormal));
+			result.put("allreviewCnt", allreviewCnt);
+			return result;
+
 	}
 
 	// 페이징, 필터링
 	@PostMapping(value="/product/prodreviewList")
-	public HashMap<String, Object> prodreviewList(@RequestBody HashMap<String, Object> param){
+	public HashMap<String, Object> prodreviewList(@RequestBody HashMap<String, Object> param){ 
 		int reviewCount = prodService.selectreviewCount(param);
 		int page = Integer.parseInt(String.valueOf(param.get("page")));
 		PruductPaging paging = new PruductPaging(page, reviewCount);			
