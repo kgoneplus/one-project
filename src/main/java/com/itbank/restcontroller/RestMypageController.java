@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itbank.oneplus.AskDTO;
 import com.itbank.oneplus.ProductDTO;
 import com.itbank.oneplus.ReviewDTO;
 import com.itbank.service.MypageService;
@@ -18,8 +19,6 @@ import com.itbank.service.MypageService;
 public class RestMypageController {
 
 	@Autowired MypageService mypageService;
-	
-
 	
 //	 1:1 문의 삭제
 	@DeleteMapping("/mypageing/counseling/{idx}")
@@ -33,6 +32,12 @@ public class RestMypageController {
 		return mypageService.selectReviewList(idx);
 	}
 	
+	//1:1문의 내역보기
+	@GetMapping("/mypageing/counsel/{idx}")
+	public List<AskDTO> selectAskAll(@PathVariable int idx){
+		return mypageService.selectAskAll(idx);
+	}
+	
 	// 
 	@PostMapping("/mypageing/reviewWrite")
 	public int writeReview(@RequestBody ReviewDTO dto) {
@@ -44,6 +49,12 @@ public class RestMypageController {
 //		System.out.println("컨트롤러pSame : " + dto.getpSame());
 //		System.out.println("컨트롤러price : " + dto.getPrice());
 		return mypageService.writeReview(dto);
+	}
+	
+	// 1:1문의 내역 상세보기
+	@GetMapping("/mypageing/counseling/{idx}")
+	public AskDTO selectAskOne(@PathVariable int idx) {
+		return mypageService.selectAskOne(idx);
 	}
 	
 	// 찜목록
