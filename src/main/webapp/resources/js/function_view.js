@@ -101,7 +101,6 @@ async function prodreviewList(event){
 	})
 	const pageArray = Array.from(document.querySelectorAll('span.nowpage > button')) 
 	const current = pageArray.filter(btn => btn.innerText == '[' + page + ']')[0]
-//	console.log(current)
 	pageArray.forEach(btn => btn.style.fontWeight = 'normal')
 	current.style.fontWeight = 'bolder'
 }

@@ -167,7 +167,7 @@ function convertAsk(dto) {
 function selectAskAll(idx) {
 	const wrap = document.querySelector('.ask_wrap')
 	const url = cpath + '/mypageing/counsel/' + idx
-//	console.log('함수에서 받은값 : ' + idx)
+	console.log('함수에서 받은값 : ' + idx)
 	fetch(url)
 	.then(resp => resp.json())
 	.then(json => {

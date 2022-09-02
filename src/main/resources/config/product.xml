@@ -23,6 +23,7 @@
 			${whereColumn} = ${whereValue}	 
 	</select>
 	
+	<!-- 리뷰 정렬 -->
 	<select id="selectreviewList" 
 			parameterType="hashmap" 
 			resultType="review">
