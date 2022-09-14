@@ -158,6 +158,38 @@ section {
    width: 880px;
    margin: auto;
 }
+.wishListProd > ul {
+	padding: 0;
+	margin: 0;
+	position: relative;
+	display: flex;
+	flex-flow: wrap;
+}
+.wishlistpage > ul > li {
+	width: 200px!important;
+	height: 200px!important;
+}
+.wishListProd > ul > li {
+	width: 100px;
+	height: 100px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	margin: 10px;
+}
+.wishlistpage > ul > li > a > span {
+	width: 200px!important;
+	margin-top: 215px!important;
+    font-size: 13px!important;
+}
+.wishListProd > ul > li > a > span {
+	display: inline-block;
+	width: 100px;
+	position: absolute;
+	margin-top: 104px;
+    font-size: 11px;
+    cursor: pointer;
+}
 .mypageSubtitle > .titleArea > h2 {
     font-size: 30px;
     font-weight: 600;
@@ -294,6 +326,7 @@ section {
     margin-top: 20px;
     margin-bottom: 10px;
     box-sizing: border-box;
+    margin-right: 15px;
 }
 .orderProduct > a {
     overflow: hidden;
@@ -368,6 +401,8 @@ section {
     width: 100px;
     height: 30px;
     font-size: 12px;
+    padding: 0;
+    margin: 0;
 }
 .mileage_reg > button {
 	text-align: center;
@@ -378,6 +413,8 @@ section {
     width: 100px;
     height: 30px;
     font-size: 12px;
+    padding: 0;
+    margin: 0;
 }
 .orders_tablist > ul {
     display: flex;
@@ -479,7 +516,7 @@ section {
 	width: 880px;
 	align-items: center;
 }
-/* ======================================== withdraw (회원탈퇴) ======================================== */
+/* ===================================== withdraw (회원탈퇴) ===================================== */
 .withdraw_wrap > div:nth-child(1) {
 	font-size: 19px;
 	color: #111;
@@ -501,10 +538,13 @@ section {
 .withdraw_fs > input {
 	margin-bottom: 23px;
 }
-#memberDeleteForm > p {
-	font-size: 15px;
-	font-weight: bold;
-	color: #111111;
+.withdraw_table {
+	margin: auto;
+	width: 340px;
+	text-align: left;
+	border: 1px solid #cbcbcb;
+    margin-top: 20px;
+    padding: 28px;
 }
 #memberDeleteForm > button {
 	width: 70px;
@@ -513,10 +553,21 @@ section {
     background-color: rgb(51, 51, 51);
     color: rgb(255, 255, 255);
     cursor: pointer;
+    margin-left: 285px;
+    margin-top: 10px;
+}
+.withdraw_input {
+	height: 30px;
+	padding: 0 10px;
+	vertical-align: middle;
+	border: 1px solid #dddddd;
+	width: 85%;
+	color: #999999;
+	border-radius: 5px;
 }
 /* ======================================== withdraw ======================================== */
 
-/* ======================================== myinfo (개인정보수정) ======================================== */
+/* =================================== myinfo (개인정보수정) =================================== */
 .myinfo_main {
 	width: 800px;
 	height: 500px;
@@ -572,7 +623,7 @@ section {
 }
 /* ======================================== myinfo ======================================== */
 
-/* ======================================== counsel (1:1문의) ======================================== */
+/* =================================== counsel (1:1문의) =================================== */
 .counsel_modal {
 	display: none;
 }
@@ -778,7 +829,188 @@ section {
 }
 /* ======================================== counsel ======================================== */
 
-/* ======================================== review (리뷰) ======================================== */
+/* ====================================== review (리뷰) ====================================== */
+.review_modal {
+	display: none;
+}
+.review_overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 70%;
+	z-index: 5;
+}
+.review_content {
+	position: absolute;
+	z-index: 6;
+	width: 548px;
+	height: 600px;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	overflow: auto;
+	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	border: 1px solid black;
+}
+.review_hidden {
+	display: none;
+}
+.review_content > div:nth-child(1) {
+	font-weight: bold;
+	padding: 25px;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 2px solid gray;	
+}
+.review_close {
+	cursor: pointer;
+}
+.review_content > div:nth-child(2) {
+	margin: 20px 15px;
+	display: flex;
+}
+.review_content > div:nth-child(2) > div:nth-child(2) {
+	margin: auto;
+	font-weight: bolder;
+}
+.review_content > div:nth-child(3) {
+	margin: 35px 25px;
+	text-align: center;
+	background-color: #f3f3f3;
+	height: 100px;
+	padding-top: 30px;
+}
+.review_content > div:nth-child(3) > div:first-child {
+	margin: 10px 0;
+}
+.review_content > div:nth-child(3) {
+	margin: 35px 25px;
+	text-align: center;
+	background-color: #f3f3f3;
+	height: 100px;
+}
+.review_item_check {
+	margin: 35px 25px;
+}
+.review_item_click {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 0;
+}
+.review_item_click > p {
+	width: 170px;
+}
+.review_item_check > div:nth-child(1) {
+	font-weight: bold;
+	font-size: 15px;
+}
+.review_item_click > div {
+	border: 1px solid;
+	width: 125px;
+	height: 30px;
+	text-align: center;
+	padding-top: 8px;
+	border-radius: 5px;
+	cursor: pointer;
+	color : black;
+}
+.review_item {
+	margin: 35px 25px;
+	text-align: center;
+}
+.review_item > div:nth-child(1) {
+	font-weight: bold;
+	font-size: 15px;
+	margin: 10px 0;
+}
+.review_submit {
+	text-align: center;
+	padding-bottom: 20px;
+}
+.review_submit > input {
+	width: 92px;
+    height: 36px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+.review_write > button {
+    margin: 23px;
+    width: 70px;
+    height: 36px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+.review_itemList {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px;
+	border: 1px solid #cdcdcd;
+	border-radius: 5px;
+	padding-top: 4px;
+}
+.productImg > img {
+	width: 80px;
+	height: 80px;
+	margin: 0 20px;
+	border: 1px solid #cdcdcd
+}
+.productIdx {
+	text-align: center;
+    margin-top: 30px;
+}
+.productIdx > a {
+	color: #b7b7b7;
+	border-bottom: 1px solid;
+	font-size: 20px;
+}
+.productName {
+	margin-top: 10px;
+	font-weight: bold;
+	margin: auto;
+}
+.review_starTitle {
+	text-align: center;
+    width: 481px;
+    height: 100px;
+    margin: auto;
+    background-color: #f3f3f3;
+}
+.review_starTitle > div:nth-child(1) {
+	font-weight: bold;
+	padding-top: 20px;
+}
+
+/* 별점 */
+.star {
+	position: relative;
+	font-size: 2rem;
+	color: #ddd;
+}
+.star input {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+.star span {
+	width: 0;
+	position: absolute; 
+	left: 0;
+	color: red;
+	overflow: hidden;
+	pointer-events: none;
+}
 
 /* label 커스텀 */
 .review_ladel input[type="radio"] {
@@ -800,7 +1032,7 @@ section {
 }
 /* ======================================== review ======================================== */
 
-/* ======================================== agree (개인정보 이용내역) ======================================== */
+/* ================================= agree (개인정보 이용내역) ================================= */
 .agree_pTag {
 	font-size: 15px;
 	font-weight: bold;
@@ -839,3 +1071,42 @@ section {
 	border: 1px solid #cdcdcd;
 }
 /* ======================================== agree ======================================== */
+
+/* ===================================== coupon(쿠폰) ===================================== */
+.coupon_font {
+	font-size: 30px;
+    font-weight: bold;
+    margin: auto;
+    width: 352px;
+    color: #dadada;
+    padding: 200px 0;
+}
+.couponlist_sort > button {
+	margin: 0 10px;
+	padding: 0;
+}
+.couponlist_sort > button:nth-child(1) {
+	margin-left: 0;
+}
+/* ======================================== coupon ======================================== */
+
+/* ===================================== point(마일리지) ===================================== */
+.mileage_history {
+	display: flex;
+	justify-content: space-between;
+}
+.mileage_use {
+	display: flex;
+	justify-content: space-between;
+	margin: 30px 0;
+	font-size: 15px;
+	font-weight: bold;
+	color: #666666;
+}
+.mileage_use > div:nth-child(1) {
+    padding-right: 220px;
+}
+.mileage_point {
+	padding-right: 56px;
+}
+/* ======================================== point ======================================== */

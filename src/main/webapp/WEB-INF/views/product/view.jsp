@@ -41,10 +41,10 @@
                 <div class="productTitle font20"><strong>${prodOne.productName }</strong></div>
                 <p class="madeln">원산지: ${prodOne.madeln }</p>
                 <div class="productOrgprice"><p>판매가</p><span class="OrgPrice"><em><fmt:formatNumber value="${prodOne.productPrice }" /></em>원</span>
-                    <span class="nanoPrice">(1개당 12,990원)</span>
+                    <span class="nanoPrice">(1개당 <fmt:formatNumber value="${prodOne.productPrice }" />)</span>
                 </div>
                 <div class="productCardDC"><p>카드할인가</p><span class="cardDC"><fmt:formatNumber value="${prodOne.productPrice - prodOne.productDiscount }" />원</span>
-                    <span class="nanoPrice">(1개당 9,990원)</span>
+                    <span class="nanoPrice">(1개당 <fmt:formatNumber value="${prodOne.productPrice - prodOne.productDiscount }" />)</span>
                 </div>
                 <table id="prodtable">
                     <tr>

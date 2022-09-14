@@ -1,13 +1,19 @@
 'use strict'
 
+// 상품 리뷰 별점
+ const drawStar = (target) => {
+    document.querySelector(`.star span`).style.width = `${target.value * 20}%`;
+    console.log(target.value)
+  }
+
 // 리뷰 작성하기
 function insertReview(event) {
-	const review_submit = document.querySelector('.review_submit')
-	const idxss = review_submit.getAttribute('productidx')
 	event.preventDefault()
-	
+	const review_submit = document.querySelector('.review_submit')
+	const idx = review_submit.getAttribute('productidx')
+	console.log(idx)
 	const ob = {
-		'productMain_idx':idxss
+		'productMain_idx':idx
 	}
 	const formData = new FormData(event.target)
 	for(let key of formData.keys()) {
@@ -29,10 +35,10 @@ function insertReview(event) {
 			alert('작성성공')
 			location.href = 'http://localhost:8080/project/mypage/review'
 		}
-		else {
-			alert('실패')
+		else if(text == -1) {
+			alert('이미 작성한 리뷰입니다')
 			location.href = 'http://localhost:8080/project/mypage/review'
-		}
+		}		
 	})
 }
 
@@ -109,12 +115,12 @@ function askHandler(event) {
 	})
 }
 
-// 1:1 문의 컨벌트함수 (이미지 포함시켜야함)
+// 1:1 문의 컨벌트함수
 function convertAsk(dto) {
 	const item = document.createElement('div')
 	item.classList.add('item')
-	item.setAttribute('idx', dto.idx)					// 작성한 문의 상세보기
-	item.setAttribute('member_idx', dto.member_idx)		// 작성자와 일치하는 문의만
+	item.setAttribute('idx', dto.idx)
+	item.setAttribute('member_idx', dto.member_idx)
 	
 	for(let key in dto) {
 		const div = document.createElement('div')
@@ -161,7 +167,7 @@ function convertAsk(dto) {
 function selectAskAll(idx) {
 	const wrap = document.querySelector('.ask_wrap')
 	const url = cpath + '/mypageing/counsel/' + idx
-//	console.log('함수에서 받은값 : ' + idx)
+	console.log('함수에서 받은값 : ' + idx)
 	fetch(url)
 	.then(resp => resp.json())
 	.then(json => {
@@ -185,12 +191,11 @@ function convertReview(dto) {
 	return item
 }
 
-
-// 리뷰할 상품 불러오기(일단 상품 더미)
-function selectReviewAll() {
+// 리뷰할 상품 불러오기
+function selectReviewAll(idx) {
 	const wrap = document.getElementById('review_wrap')
-	const url = cpath + '/mypageing/reviewing'
-	
+	const url = cpath + '/mypageing/reviewing/' + idx
+	console.log('리뷰 함수에서 받은값 : ' + idx)
 	fetch(url)
 	.then(resp => resp.json())
 	.then(json => { 
@@ -198,7 +203,7 @@ function selectReviewAll() {
 	})
 }
 	
-// 문의 내용 상세보기(관리자 댓글, 작성자 댓글 기능)
+// 문의 내용 상세보기(관리자 코멘트)
 function askOpenModal(event) {
 	const idx = event.target.parentNode.getAttribute('idx')
 	const url = cpath + '/mypageing/counseling/' + idx
@@ -270,31 +275,32 @@ function askDeleteHandler(event) {
 	})
 }
 
-// 리뷰 작성하기(...공사중...)
-function insertReview(event) {
-	event.preventDefault()
+// 찜목록 불러오기
+function selectProductWishlist() {
+	const wishListProd = document.querySelector('.wishListProd')
+	const ul = document.createElement('ul')
 	
-	const ob = {}
-	const formData = new FormData(event.target)
-	for(let key of formData.keys()) {
-		ob[key] = formData.get(key)
+	let member_idx = 0
+	if((document.location.href).includes('wishlist')) {
+		member_idx = document.querySelector('.titleArea').getAttribute('member_idx')
+	}else {
+		member_idx = document.querySelector('.userBaseInfo_name').getAttribute('member_idx')
 	}
-	
-	const url = cpath + '/mypageing/reviewWrite'
-	const opt = {
-		method: 'POST',
-		body: JSON.stringify(ob),
-		headers: {
-			'Content-Type': 'application/json; charset=utf-8'
-		}
-	}
-	fetch(url, opt)
-	.then(resp => resp.text())
-	.then(text => {
-		if(text == 1) {
-			alert('작성성공')
-			location.href = 'http://localhost:8080/project/mypage/review'
-		}
-	})
+	const url = cpath + '/mypage/wishlists/' + member_idx
+	fetch(url).then(resp => resp.json())
+	.then(json => {
+//		console.log(json)
+		json.forEach(prod => {
+			const li = document.createElement('li')
+			li.style.backgroundImage = `url(${cpath}/resources/getImage1/${prod.productImg})`
+			const a = document.createElement('a')
+			a.href = `${cpath}/product/view/${prod.idx}`
+			const span = document.createElement('span')
+			span.innerText = prod.productName
+			a.appendChild(span)
+			li.appendChild(a)
+			ul.appendChild(li)
+		})
+	})	
+	wishListProd.appendChild(ul)
 }
-

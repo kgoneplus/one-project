@@ -57,7 +57,7 @@
 
 				
 			<div>이메일</div>
-			<input id="emailvalue" type="email" name="email" value="" placeholder="kkj1234@naver.com">
+			<input id="mailadress" type="email" name="email" value="" placeholder="kkj1234@naver.com">
 
 			<button id="mailconfirmBtn">인증번호 요청</button>
 			<div><input id="confirmnumber" type="password" name="emailconfirm" placeholder="인증번호4자리입력">

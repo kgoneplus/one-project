@@ -25,15 +25,32 @@ public class LoginIntercepter extends HandlerInterceptorAdapter {
 		url = request.getRequestURL().toString();					// 요청 URL을 가져와서 스트링으로 변환
 		url = URLEncoder.encode(url, "utf-8"); 						// 특수기호때문에 urlEncoding 처리함
 		System.out.println(url);
+		
+		// cart 세션 아웃시 오류해결 코드
+		String urls[] = url.split("%2F");
+		String realurl = "";
+		if(urls.length == 7) {
+			if(login == null && url.contains("cart")) {
+				realurl = urls[0];
+				for(int i = 1; i < urls.length -1; i++) {
+					realurl += "%2F"+urls[i];
+				}
+				realurl += "%2F";
+			} else if(login == null && url.contains("mypage")) {
+				realurl = urls[0];
+				for(int i = 1; i < urls.length -1; i++) {
+					realurl += "%2F"+urls[i];
+				}
+				realurl += "%2F";
+			}
+		}else {
+			realurl += url;
+		}
 		if(login == null) {
-			System.out.println("preHandle (false)");
-			System.out.println("인터셉터에 의해 로그인 페이지로 이동합니다");
-			System.out.println("로그인 이후 이동할 주소 : " + url);
-			response.sendRedirect(request.getContextPath() + "/member/login?url=" + url);
+			response.sendRedirect(request.getContextPath() + "/member/login?url=" + realurl);
 			return false;	// 로그인이 없으면 일시 정지, 이후 원하는 코드 추가 가능
 		}
 		
-		System.out.println("preHandle (true)");
 		return true;	// 로그인이 있으면 원래 예정대로 계속 진행
 	}
 
@@ -42,7 +59,6 @@ public class LoginIntercepter extends HandlerInterceptorAdapter {
 						   HttpServletResponse response, 
 						   Object handler,
 						   ModelAndView modelAndView) throws Exception {
-		System.out.println("postHandle");
 	}
 
 	@Override
@@ -51,6 +67,5 @@ public class LoginIntercepter extends HandlerInterceptorAdapter {
 								Object handler, 
 								Exception ex)
 			throws Exception {
-		System.out.println("afterCompletion");
 	}
 }

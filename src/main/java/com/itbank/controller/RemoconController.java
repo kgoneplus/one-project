@@ -2,24 +2,23 @@ package com.itbank.controller;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Controller
 public class RemoconController {
 
-//	@RequestMapping("/createCookie")
-//	public String createCookie(HttpServletResponse response) {
-//		logger.info("쿠키 생성");
-//		Cookie cookie = new Cookie("userid", null);
-//		cookie.setDomain("localhost");
-//		cookie.setPath("/");
-//		cookie.setMaxAge(30*60);
-//		cookie.setSecure(true);
-//		response.addCookie(cookie);
-//		
-//		return "redirect:/project";
-//		
-//	}
+	@GetMapping("/")
+	public String homeController(HttpSession session, HttpServletResponse resp) {
+		
+		String id = (String)session.getAttribute("JSESSIONID");
+		Cookie setcookie = new Cookie("recentProduct", id);
+		setcookie.setMaxAge(60*60*24);
+		resp.addCookie(setcookie);
+		return "/home";
+	}
 }
+

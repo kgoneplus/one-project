@@ -7,24 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.oneplus.ProductDAO;
 import com.itbank.oneplus.ProductDTO;
-import com.itbank.oneplus.ProductSummaryDAO;
 import com.itbank.oneplus.PruductPaging;
 import com.itbank.oneplus.ReviewDTO;
-import com.itbank.service.RestViewService;
+import com.itbank.service.ProductService;
 
 @RestController
 public class RestViewController {
 
 	@Autowired private ProductDAO dao;
-	@Autowired private ProductSummaryDAO summarydao;
-	@Autowired private RestViewService restviewService;
+	@Autowired private ProductService prodService;
 	
 	// 카테고리 내 인기상품 불러오기
 	@GetMapping(value = "/product/view/cateload/{categorycode}")
@@ -59,6 +56,12 @@ public class RestViewController {
 		return dao.insertproductcart(ob);
 	}
 	
+	// 장바구니 업데이트
+	@PutMapping(value="/product/view/updatecart")
+	public int updateProductcart(@RequestBody HashMap<String, String> ob) {
+		return dao.updateproductcart(ob);
+	}
+	
 	// 상품별 별점 점수 계산
 	@PostMapping(value="/product/reviewAvggrade")
 	public String prodAvggrade(@RequestBody int productMain_idx){
@@ -80,43 +83,55 @@ public class RestViewController {
 	// 상품상세리뷰 점수 계산
 	@PostMapping(value="/product/detailReview/{productMain_idx}")
 	public HashMap<String, Integer> proddetailReview(@PathVariable int productMain_idx) {
-
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
-		int allreviewCnt = dao.allreviewCnt(productMain_idx);
-		int verygood = dao.getpState("pState", "아주 좋아요", productMain_idx) * 100 / allreviewCnt;
-		int normal = dao.getpState("pState", "보통이에요", productMain_idx) * 100  / allreviewCnt;
-		result.put("verygood", verygood);
-		result.put("normal", normal);
-		result.put("bad", 100 - (verygood + normal));
 		
-		int same = dao.getpState("pSame", "똑같아요", productMain_idx) * 100 / allreviewCnt;
-		int alike = dao.getpState("pSame", "비슷해요", productMain_idx) * 100 / allreviewCnt;
-		result.put("same", same);
-		result.put("alike", alike);
-		result.put("nsame", 100 - (same + alike));
-		
-		int pgood = dao.getpState("price", "만족해요", productMain_idx) * 100 / allreviewCnt;
-		int pnormal = dao.getpState("price", "보통이에요", productMain_idx) * 100 / allreviewCnt;
-		result.put("pgood", pgood);
-		result.put("pnormal", pnormal);
-		result.put("pbad", 100 - (pgood + pnormal));
-		result.put("allreviewCnt", allreviewCnt);
-		return result;
+			int allreviewCnt = dao.allreviewCnt(productMain_idx);
+			int verygood = 0;
+			int normal = 0;
+			int same = 0;
+			int alike = 0;
+			int pgood = 0;
+			int pnormal = 0;
+			if(allreviewCnt != 0) {
+				verygood = dao.getpState("pState", "아주 좋아요", productMain_idx) * 100 / allreviewCnt;
+				normal = dao.getpState("pState", "보통이에요", productMain_idx) * 100  / allreviewCnt;
+				same = dao.getpState("pSame", "똑같아요", productMain_idx) * 100 / allreviewCnt;
+				alike = dao.getpState("pSame", "비슷해요", productMain_idx) * 100 / allreviewCnt;
+				pgood = dao.getpState("price", "만족해요", productMain_idx) * 100 / allreviewCnt;
+				pnormal = dao.getpState("price", "보통이에요", productMain_idx) * 100 / allreviewCnt;
+			}
+			result.put("verygood", verygood);
+			result.put("normal", normal);
+			result.put("bad", (verygood == 0 && normal == 0) ? 0 : 100 - (verygood + normal));
+			result.put("same", same);
+			result.put("alike", alike);
+			result.put("nsame", (same == 0 && alike == 0) ? 0 : 100 - (same + alike));
+			result.put("pgood", pgood);
+			result.put("pnormal", pnormal);
+			result.put("pbad", (pgood == 0 && pnormal == 0) ? 0 : 100 - (pgood + pnormal));
+			result.put("allreviewCnt", allreviewCnt);
+			return result;
+
 	}
 
+	// 페이징, 필터링
 	@PostMapping(value="/product/prodreviewList")
-	public HashMap<String, Object> prodreviewList(@RequestBody HashMap<String, Object> param){
-		int reviewCount = restviewService.selectreviewCount(param);
+	public HashMap<String, Object> prodreviewList(@RequestBody HashMap<String, Object> param){ 
+		int reviewCount = prodService.selectreviewCount(param);
 		int page = Integer.parseInt(String.valueOf(param.get("page")));
 		PruductPaging paging = new PruductPaging(page, reviewCount);			
 		param.put("paging", paging);
 		param.put("filter", param.get("filter"));
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		List<ReviewDTO> list = restviewService.prodreviewList(param);	
+		List<ReviewDTO> list = prodService.prodreviewList(param);	
 		hashMap.put("paging", paging);
 		hashMap.put("list", list);
 		return hashMap;
 	}
 	
-	
+	// 쿠키
+	@PostMapping(value="/product/cookie")
+	public String prodCookie(@RequestBody HashMap<String, String> productMain_idx) {
+		return dao.prodCookie(productMain_idx);
+	}
 }

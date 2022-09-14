@@ -7,15 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link type="text/css" rel="stylesheet"
-	href="${cpath }/resources/css/style_login.css">
+<link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_login.css">
 </head>
-<script
-	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
-	charset="utf-8"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="${cpath }/resources/js/function_member.js"></script>
-	
 <body>
 	
 	 <div class="login_menu">
@@ -63,14 +59,25 @@
             </form>
         </div>
     </div>
-   <script>
+    
+<script>
    const cpath = '${cpath}'
    
    // 아아디 저장 기능
-   const cookie = document.cookie.split('=');
-   if(cookie[1] != null){
-  	 document.getElementById('id').value = cookie[1];
-   }
+//    const cookie = document.cookie.split('=');
+	const cookie1 = document.cookie
+	console.log(cookie1)
+	let cookie2 = document.cookie.split(';')
+	console.log(cookie2)
+	cookie2.forEach(cookie => {
+		let dto = cookie.split('=')
+		if(dto[0] == 'userid'){
+			console.log(dto[1])
+			document.getElementById('id').value = dto[1]
+		}
+	})
+	
+  	
   
    // 카카오 인잇..
    Kakao.init('ae343ff22b21f4712440f6fdd8a76ab6');
@@ -91,14 +98,6 @@
 		const btnNaverLogin = document.getElementById('naverIdLogin').firstChild;
 		btnNaverLogin.click();
 	});
-	
-
-
-
-  </script>
-
-  
-  
-		 
+</script>
 </body>
 </html>

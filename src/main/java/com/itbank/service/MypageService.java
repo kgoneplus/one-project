@@ -1,17 +1,12 @@
 package com.itbank.service;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.itbank.component.HashComponent;
 import com.itbank.oneplus.AskDTO;
@@ -40,30 +35,11 @@ public class MypageService {
 		}
 	}
 
-	// 1:1 문의하기 (이미지 없이_미완성)
+	// 1:1 문의하기
 	public int askWrite(AskDTO dto) {
 		return mypageDAO.askWrite(dto);
 	}
 	
-//	public int askWrite(AskDTO dto) throws IllegalStateException, IOException {
-//		String fileName = makeNewFileName(dto);
-//		File dest = new File(uploadPath, fileName);
-//		dto.getAskFile().transferTo(dest);
-//		
-//		boolean flag = "".equals(dto.getAskFile().getOriginalFilename());
-//		dto.setImg(flag ? "" : fileName);
-//		
-//		return mypageDAO.askWrite(dto);
-//	}
-
-//	private String makeNewFileName(AskDTO dto) {
-//		MultipartFile f = dto.getAskFile();
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		String today = sdf.format(new Date());
-//		String fileName = today + "_" + dto.getIdx() + "_" + f.getOriginalFilename();
-//		return fileName;
-//	}
-
 	// 1:1 문의 내역
 	public List<AskDTO> selectAskAll(int idx) {
 		return mypageDAO.selectAskAll(idx);
@@ -101,35 +77,57 @@ public class MypageService {
 		return mypageDAO.askOneDelete(idx);
 	}
 
-	// 리뷰할 상품 더미
-	public List<ProductDTO> selectReviewList() {
-		return mypageDAO.selectReviewList();
+	// 구매한 상품 리뷰
+	public List<ProductDTO> selectReviewList(int idx) {
+		return mypageDAO.selectReviewList(idx);
 	}
 
 	// 리뷰작성
-	public int writeReview( ReviewDTO dto) {
-		System.out.println("서비스Grade : " + dto.getReviewGrade());
-		return mypageDAO.writeReview(dto);
+	public int writeReview(ReviewDTO dto) {
+		int row = 0;
+		
+		HashMap<String, String> list = mypageDAO.wireConfirm(dto);
+		
+		if(list == null) {
+			mypageDAO.writeReview(dto);
+			row = 1;
+		} 
+		else { 
+			row = -1; 
+		}		
+		return row;
 	}
 
 	public List<List<OrdersDetailDTO>> selectOrdersList(int idx) {
 		List<OrdersDetailDTO> list = ordersDao.selectOrdersList(idx);
-		List<List<OrdersDetailDTO>> finallist = new ArrayList<List<OrdersDetailDTO>>();
+		List<List<OrdersDetailDTO>> finalorderlist = new ArrayList<List<OrdersDetailDTO>>();
 		List<OrdersDetailDTO> tmp = new ArrayList<OrdersDetailDTO>();
-		tmp.add(list.get(0));
 		for(int i=0; i<list.size(); i++) {
 			boolean flag = false;
-			if(i == 0) flag = true;
+			if(i==0) flag = true;
 			else if(list.get(i).getOrders_idx() == list.get(i-1).getOrders_idx()) flag = true;
+			
 			if(flag) {
 				tmp.add(list.get(i));
 			}
 			else {
-				finallist.add(tmp);
-				tmp.clear();
+				finalorderlist.add(tmp);
+//				tmp.clear();
+				tmp = new ArrayList<OrdersDetailDTO>();
 				tmp.add(list.get(i));
 			}
+//			System.out.println(i + "번째 dto : " + list.get(i).getProductName());
+//			System.out.println(i + "번째 list: " + tmp);
 		}
-		return finallist;
+		finalorderlist.add(tmp);
+		return finalorderlist;
+	}
+
+	public List<ProductDTO> selectWishlist(int member_idx) {
+		return mypageDAO.selectWishlist(member_idx);
+	}
+
+	public int getTotalOrderCnt(int member_idx) {
+		return ordersDao.getTotalOrderCnt(member_idx);
 	}
 }

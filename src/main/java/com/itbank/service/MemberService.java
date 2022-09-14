@@ -58,26 +58,16 @@ public class MemberService {
 	}
 	
 	// 네이버 로그인또는 회원가입시 회원인지 아닌지 판별해서 로그인시키거나 naver dto 리턴하기
-	public MemberDTO naverconfirm(MemberDTO naver, HttpSession session) {
+	public MemberDTO naverconfirm(MemberDTO naver) {
 		
 		// 테이블에 있는 값들을 불러옴
-		List<MemberDTO> members = dao.memberconfirm();
-		for(int i = 0; i < members.size(); i++) {
-			String email = members.get(i).getEmail();
-			String name = members.get(i).getName();
-			String phonenum = members.get(i).getPhonenum();
-			
-			if(naver.getEmail().equals(email)  && 
-			   naver.getName().equals(name) &&
-			   naver.getPhonenum().equals(phonenum)	) {
-				
-				// 테이블의 값과 같으면 다시 테이블에서 객체 모두를 가져와줌
-				session.setAttribute("login", dao.naverconfirm(naver));
-				return null;
-			}
-			
+		MemberDTO naverLogin = dao.naverconfirm(naver);
+		if(naverLogin != null) {
+			return naverLogin;
+		}else {
+			return null;
 		}
-		return naver;
+		
 	}
 	// 카카오 로그인 또는 회원 가입시 회원인지 아닌지 판별해서 로그인 시키거나 kakao dto 리턴하기
 	public MemberDTO kakaoconfirm(MemberDTO kakao, HttpSession session) {

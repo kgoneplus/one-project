@@ -240,7 +240,7 @@ function cartLoadHandler() {
 			tr.innerHTML = `<td><input type="checkbox" name="productMain_idx" value="${dto.productMain_idx}"></td>
 							<td>
 								<div class="cartProdName">
-									<img src="${cpath}/resources/getImage1/${dto.productImg}">
+									<img src="${cpath}/resources/getImage1/${dto.productImg}" onclick="location.href='${cpath}/product/view/${dto.productMain_idx}'">
 									<div>
 										${dto.productName}
 										<div class="counter">
@@ -288,13 +288,10 @@ function loadPaymentBox(json) {
 	
 	// 총 금액 div
 	const totalPrice = document.querySelector('.payTab > .payTabTotalprice:first-child p')
-	
 	// 할인 금액 div
 	const discountPrice = document.querySelector('.payTab > .payTabTotalprice:nth-child(3) p')
-	
 	// 배송비 div
 	const deliveryP = document.querySelector('.payTab > .payTabTotalprice:nth-child(2) p')
-	
 	// 결제예정 금액 div
 	const resultPrice = document.querySelector('.resultPrice p')
 	
@@ -308,10 +305,15 @@ function loadPaymentBox(json) {
 		pay = tP - discount
 	})
 	totalPrice.innerText = tP.toLocaleString()
-	resultPrice.innerText = pay.toLocaleString()
 	discountPrice.innerText = '-' + discount
-	if(tP >= 40000) deliveryP.innerText = 0
-	else deliveryP.innerText = 3000
+	if(tP >= 40000) {
+		deliveryP.innerText = 0
+	}
+	else {
+		deliveryP.innerText = 3000
+		pay = pay + 3000
+	}
+	resultPrice.innerText = pay.toLocaleString()
 }
 
 // 장바구니 -> 선택시 paymentBox 가격 변경
@@ -385,7 +387,7 @@ function modDeliveryAddress(event) {
 		modDeliveryAddressContent.style.display = 'block'
 		document.querySelector('.DeliveryContent').style.display = 'none'
 		modDeliveryAddressContent.innerHTML = ''
-		modDeliveryAddressContent.innerHTML = ` <h3>배송지 추가</h3>
+		modDeliveryAddressContent.innerHTML = ` <h3>배송지 수정</h3>
 												<hr>
 												<form>
 													<div>받는분</div>
@@ -592,13 +594,11 @@ async function orderInsertHandler() {
 	}
 	return await fetch(url, opt).then(resp => resp.text())
 	.then(text => {
-//		console.log('주문테이블 추가 후 결과 : ', text)
 		if(text == 0) {
 			alert('주문테이블에 추가 실패')
 			return 0
 		}
 		alert('주문테이블에 추가 성공')
-//		console.log('text : ', text)
 		return text
 	})
 }
@@ -640,35 +640,30 @@ async function iamport(ordersidx) {
 	    pay_method: "card",
 	    merchant_uid : 'merchant_'+ new Date().getTime(),
 	    name : '주문번호 ' + ordersidx,
-	    amount : result.totalPrice,
+	    amount : result.purchase,
 	    buyer_email : 'iamport@siot.do',
 	    buyer_name : orderer.name,
 	    buyer_tel : orderer.phonenum,
 	    buyer_addr : orderer.address
-//	    buyer_postcode : '123-456'
 	  }, async function(rsp) {
           if ( rsp.success ) {
         	  // 장바구니 테이블 삭제 & 결제완료로 상태 바꾸기
               const cart = await deleteproductCartHandler(ordersidx);
-//              console.log('cart : ', cart)
               if(cart == 1) alert('장바구니 삭제완료')
               else alert('장바구니는 안지워졌네...')
-              // 성공시에 ordersDetail에 orderStatus결제완료로 바꾸기
               
               // 결제 중간에 취소했을 때는 주문 테이블에서 삭제하기
               location.href = cpath + '/mypage/orders'
           } else {
               msg = '결제에 실패하였습니다.';
               msg += '에러내용 : ' + rsp.error_msg;
-              //실패시 이동할 페이지
-//              location.href="<%=request.getContextPath()%>/order/payFail";
               history.back()
               alert(msg);
           }
       });
 }
 
-// 카카오페이 api
+// 결제 버튼 핸들러
 async function kakaopay() {
 	let ordersidx = await orderInsertHandler()
 	iamport(ordersidx)	

@@ -40,7 +40,7 @@
                 <h3>MY 회원정보</h3>
                 <ul>
                     <li><a href="${cpath }/mypage/myinfo/${login.idx}">회원 정보 관리</a></li>
-                    <li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
+                    <li><a href="${cpath }/buying/cart/${login.idx}">배송 정보 관리</a></li>
                     <li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
                     <li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
                 </ul>
@@ -57,13 +57,14 @@
 
             <div class="couponlist_header">
                 <div class="couponlist_sort">
-                	<button>최근발급순</button>
-                	|<button>마감임박순</button>
+                	<button>최근발급순</button> | <button>마감임박순</button>
                 </div>
                 <div class="coupon_reg">
                 	<button>쿠폰등록</button>
                 </div>
             </div>
+            
+            <div class="coupon_font">발급받은 쿠폰이 없습니다</div>
         </section>
     </div>
 </main>

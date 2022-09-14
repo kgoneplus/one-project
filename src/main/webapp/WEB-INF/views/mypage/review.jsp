@@ -5,156 +5,6 @@
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_mypage.css">
 <script src="${cpath }/resources/js/function_mypage.js"></script>
-<style>
-.review_modal {
-	display: none;
-}
-.review_overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: black;
-	opacity: 70%;
-	z-index: 5;
-}
-.review_content {
-	position: absolute;
-	z-index: 6;
-	width: 548px;
-	height: 600px;
-	justify-content: center;
-	align-items: center;
-	background-color: white;
-	overflow: auto;
-	top: 50%;
-  	left: 50%;
-  	transform: translate(-50%, -50%);
-  	border: 1px solid black;
-}
-.review_hidden {
-	display: none;
-}
-.review_content > div:nth-child(1) {
-	font-weight: bold;
-	padding: 25px;
-	display: flex;
-	justify-content: space-between;
-	border-bottom: 2px solid gray;	
-}
-.review_close {
-	cursor: pointer;
-}
-.review_content > div:nth-child(2) {
-	margin: 20px 15px;
-	display: flex;
-}
-.review_content > div:nth-child(2) > div:nth-child(2) {
-	margin: auto;
-	font-weight: bolder;
-}
-.review_content > div:nth-child(3) {
-	margin: 35px 25px;
-	text-align: center;
-	background-color: #f3f3f3;
-	height: 100px;
-	padding-top: 30px;
-}
-.review_content > div:nth-child(3) > div:first-child {
-	margin: 10px 0;
-}
-.review_content > div:nth-child(3) {
-	margin: 35px 25px;
-	text-align: center;
-	background-color: #f3f3f3;
-	height: 100px;
-}
-.review_item_check {
-	margin: 35px 25px;
-}
-.review_item_click {
-	display: flex;
-	justify-content: space-between;
-	padding: 10px 0;
-}
-.review_item_click > p {
-	width: 170px;
-}
-.review_item_check > div:nth-child(1) {
-	font-weight: bold;
-	font-size: 15px;
-}
-.review_item_click > div {
-	border: 1px solid;
-	width: 125px;
-	height: 30px;
-	text-align: center;
-	padding-top: 8px;
-	border-radius: 5px;
-	cursor: pointer;
-	color : black;
-}
-.review_item {
-	margin: 35px 25px;
-	text-align: center;
-}
-.review_item > div:nth-child(1) {
-	font-weight: bold;
-	font-size: 15px;
-	margin: 10px 0;
-}
-.review_submit {
-	text-align: center;
-	padding-bottom: 20px;
-}
-.review_submit > input {
-	width: 92px;
-    height: 36px;
-    border-radius: 2px;
-    background-color: rgb(51, 51, 51);
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-}
-.review_write > button {
-    margin: 23px;
-    width: 70px;
-    height: 36px;
-    border-radius: 2px;
-    background-color: rgb(51, 51, 51);
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-}
-
-.review_itemList {
-	display: flex;
-	justify-content: space-between;
-	margin: 20px;
-	border: 1px solid #cdcdcd;
-	border-radius: 5px;
-	padding-top: 4px;
-}
-.productImg > img {
-	width: 80px;
-	height: 80px;
-	margin: 0 20px;
-	border: 1px solid #cdcdcd
-}
-.productIdx {
-	text-align: center;
-    margin-top: 30px;
-}
-.productIdx > a {
-	color: #b7b7b7;
-	border-bottom: 1px solid;
-	font-size: 20px;
-}
-.productName {
-	margin-top: 10px;
-	font-weight: bold;
-	margin: auto;
-}
-</style>
 </head>
 <body>
 <main>
@@ -191,7 +41,7 @@
                 <h3>MY 회원정보</h3>
                 <ul>
                     <li><a href="${cpath }/mypage/myinfo/${login.idx}">회원 정보 관리</a></li>
-                    <li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
+                    <li><a href="${cpath }/buying/cart/${login.idx}">배송 정보 관리</a></li>
                     <li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
                     <li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
                 </ul>
@@ -229,7 +79,7 @@
 				<!-- 리뷰할 상품 목록 -->
 	            <div id="review_wrap"></div>
 	            
-	            <!-- 상품 리뷰 모달(...공사중...) -->
+	            <!-- 상품 리뷰 모달 -->
 	            <div id="review_modal" class="review_hidden">
 					<div class="review_content">
 						<div>
@@ -237,32 +87,23 @@
 							<div class="review_close">X</div>
 						</div>
 						
-						<div class="review_prod_img_name">
-							<div></div>
-							<div></div>							
-						</div>
+						<div></div>
 						
 						<form id="reviewInsertForm">
 							<input type="hidden" name="member_idx" value="${login.idx }">
 							
-							<!-- 별 이미지로 바꿔야함 -->
-							<div>
-								<div>상품 별점을 남겨주세요!</div>
-								<select name="reviewGrade" required>
-									<option value="">선택</option>
-									<option value="1">1</option>
-									<option value="1.5">1.5</option>
-									<option value="2">2</option>
-									<option value="2.5">2.5</option>
-									<option value="3">3</option>
-									<option value="3.5">3.5</option>
-									<option value="4">4</option>
-									<option value="4.5">4.5</option>
-									<option value="5">5</option>
-								</select>
+							<div class="review_starTitle">
+								<div>상품에 만족하셨나요?</div>
+								<span class="star">
+								 	★★★★★
+									<span>★★★★★</span>
+									<input type="range"
+										   name="reviewGrade"
+										   oninput="drawStar(this)"
+										   value="0.5" step="0.5" min="1" max="5" required>
+								</span>
 							</div>
-							
-							<!-- pState -->
+
 							<div class="review_item_check">
 								<div>[상품상태] 상품의 상태는 어떤가요?</div>
 								<div class="review_item_click">
@@ -281,7 +122,6 @@
 								</div>
 							</div>
 							
-							<!-- pSame -->
 							<div class="review_item_check">
 								<div>[상품일치여부] 구매한 상품과 받은 상품이 똑같은가요?</div>
 								<div class="review_item_click">
@@ -300,7 +140,6 @@
 								</div>
 							</div>
 						
-							<!-- price -->
 							<div class="review_item_check">
 								<div>[가격] 상품의 가격은 어떤가요?</div>
 								<div class="review_item_click">
@@ -329,12 +168,6 @@
 											  required></textarea>
 								</div>
 							</div>
-			<!-- 				<div class="review_item"> -->
-			<!-- 					<div>사진을 등록해주세요(선택)</div> -->
-			<!-- 					<div id="review_upload"> -->
-			<!-- 						<p><input type="file" name="uploadFile"></p> -->
-			<!-- 					</div> -->
-			<!-- 				</div> -->
 						<p class="review_submit"><input type="submit" value="등록하기"></p>	
 						</form>
 					</div>
@@ -346,14 +179,15 @@
 </main>
 
 <script>
+	let login_idx = '${login.idx}'
 	const reviewModal_close = document.querySelector('.review_close')
 	const reviewModal_overlay = document.querySelector('.review_overlay')
 	const reviewInsertForm = document.forms[2]
 	console.log(reviewInsertForm)
     
-	window.addEventListener('load', selectReviewAll)							// 리뷰할 상품 더미 출력
+	window.addEventListener('load', selectReviewAll(login_idx))
  	reviewModal_close.addEventListener('click', reviewCloesModal)
 	reviewModal_overlay.addEventListener('click', reviewCloesModal)
-	reviewInsertForm.addEventListener('submit', insertReview)
+	reviewInsertForm.addEventListener('submit', insertReview)			
 </script>
 <%@ include file="../footer.jsp" %>

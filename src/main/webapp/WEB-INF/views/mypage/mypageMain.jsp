@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <title>MY 홈플러스 | 홈플러스</title>
+<script src="${cpath}/resources/js/function_mypage.js"></script>
 <link type="text/css" rel="stylesheet"
 	href="${cpath }/resources/css/style_main.css">
 <link type="text/css" rel="stylesheet"
@@ -43,9 +44,8 @@
 			<div class="mypageLeftWrapper">
 				<h3>MY 회원정보</h3>
 				<ul>
-					<li><a href="${cpath }/mypage/myinfo/${login.idx}">회원 정보
-							관리</a></li>
-					<li><a href="${cpath }/mypage/shipacc">배송 정보 관리</a></li>
+					<li><a href="${cpath }/mypage/myinfo/${login.idx}">회원 정보관리</a></li>
+					<li><a href="${cpath }/buying/cart/${login.idx}">배송 정보 관리</a></li>
 					<li><a href="${cpath }/mypage/agree">개인정보이용내역</a></li>
 					<li><a href="${cpath }/mypage/withdraw">회원탈퇴</a></li>
 				</ul>
@@ -54,7 +54,7 @@
 
 		<section>
 			<div class="userBaseInfo">
-				<div class="userBaseInfo_name">
+				<div class="userBaseInfo_name" member_idx="${login.idx }">
 					<p>${login.name }</p>
 					님
 					<p>안녕하세요</p>
@@ -87,7 +87,7 @@
 					<ul>
 						<li><em>결제완료</em>
 							<div class="orderStatus">
-								<a href="${cpath}/mypage/orders">0</a>
+								<a href="${cpath}/mypage/orders">${orderCnt}</a>
 							</div></li>
 						<li><em>상품준비중</em>
 							<div class="orderStatus blue">
@@ -118,10 +118,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="wishListProd">
-				<!-- 자바스크립트로 ul만들고 li안에 찜목록 상품 불러오기  -->
-			</div>
+			<div class="wishListProd"></div>
 		</section>
 	</div>
 	</main>
+	
+	<script>
+		window.addEventListener('load', selectProductWishlist)
+	</script>
 	<%@ include file="../footer.jsp"%>

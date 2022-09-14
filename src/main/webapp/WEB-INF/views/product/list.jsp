@@ -4,8 +4,12 @@
 <title>Insert title here</title>
 
 <link type="text/css" rel="stylesheet" href="${cpath }/resources/css/style_search.css">
+<script>
+	const member_idx = '${login.idx}'
+	const productMain_idx = '${prodOne.idx}'
+</script>
 <script src="${cpath}/resources/js/function_header.js"></script>
-
+<script src="${cpath}/resources/js/function_search.js"></script>
 </head>
 
 <body>
@@ -14,29 +18,10 @@
 	</div>
  <div id="search_top">
         <div class="inputResult">
-            <p>'<strong>${keyword }</strong>'검색결과</p>
-            <p><strong>805</strong>개의 상품이 있습니다</p>
+            <p><strong>${keyword.keyword }</strong></p>
+            <p><strong>${keyword.count }</strong>개의 상품이 있습니다</p>
         </div>
-
-        <div class="search_word">
-            <table>
-                <tr>
-                    <th>연관검색어</th>
-                    <td>
-                        <a>자두</a>
-                        <a>망고</a>
-                        <a>황도</a>
-                        <a>체리</a>
-                        <a>포도</a>
-                        <a>살구</a>
-                        <a>수박</a>
-                        <a>파인애플</a>
-                        <a>메론</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
+ </div>
 
 <div id="search_main">
 
@@ -44,13 +29,33 @@
         <div>
             <h4>카테고리</h4>
             <ul>
-				<li>복잡한스크립트</li>
+				<li>전체</li>
+				<li>과일</li>
+				<li>쌀/잡곡</li>
+				<li>채소</li>
+				<li>수산물/건어물</li>
+				<li><div id="seemore"> + 더보기</div></li>
+				<li><div class="hidingcate">
+					<ul>
+						<li>정육/계란</li>
+						<li>우유/유제품</li>
+						<li>냉장/냉동식품</li>
+						<li>생수/음료</li>
+						<li>과자/시리얼</li>
+						<li>라면/즉석식품/통조림</li>
+						<li>세탁/청소/욕실</li>
+						<li>주방용품</li>
+						<li>가전/디지털</li>
+						<li><div id="seefold"> - 접기</div></li>
+					</ul>
+				</div></li>
             </ul>
         </div>
         <div>
             <h4>혜택</h4>
             <ul>
                 <li><label><input type="checkbox">행사상품</label></li>
+                <li><label><input type="checkbox">무료배송</label></li>
 
             </ul>
         </div>
@@ -66,49 +71,49 @@
             </ul>
         </div>
         <div class="price">
-            <h4>가격</h4>
-            <ul>
-                <li><label><input type="radio">전체</label></li>
-                <li><label><input type="radio">1만원원 미만</label></li>
-                <li><label><input type="radio">1만원 ~ 3만원 미만</label></li>
-                <li><label><input type="radio">3만원 ~ 5만원 미만</label></li>
-                <li><label><input type="radio">5만원 이상</label></li>
-                <li><input type="text" placeholder="원"> ~ <input type="text" placeholder="원"><button type="button"></button></li>
-            </ul>
+        	
+	            <h4>가격</h4>
+	            <ul>
+	                <li><label><input type="radio" name="money" value="all">전체</label></li>
+	                <li><label><input type="radio" name="money" value="price1">1만원 미만</label></li>
+	                <li><label><input type="radio" name="money" value="price2">1만원 이상 ~ 3만원 미만</label></li>
+	                <li><label><input type="radio" name="money" value="price3">3만원 이상 ~ 5만원 미만</label></li>
+	                <li><label><input type="radio" name="money" value="price4">5만원 이상</label></li>
+	                <li><input type="text" name="money" placeholder="원"> ~ <input type="text" name="money" placeholder="원"><button type="button"></button></li>
+	            </ul>
+          
         </div>
     </div>
     <div id="right_category_list">
 		<div class="category_select">
-            <div class="category_select_list">하기싫은스크립트공간</div>
+            <div class="category_select_list"></div>
             <div><button>전체 해제<p></p></button></div>
         </div>
 	    <div class="category_topbar">
 	        <div class="category_suggest">
 	            <ul>
-	                <li>추천순</li>
-	                <li>많이 팔린순</li>
-	                <li>낮은 가격순</li>
-	                <li>높은 가격순</li>
-	                <li>리뷰 많은순</li>
+	                <li><button type="button">추천순</button></li>
+	                <li><button type="button">많이 팔린순</button></li>
+	                <li><button type="button">낮은 가격순</button></li>
+	                <li><button type="button">높은 가격순</button></li>
+	                <li><button type="button">리뷰 많은순</button></li>
 	            </ul>
 	        </div>
-	        <div class="category_input">
-	            <input type="text" placeholder="결과 내 재검색"><button class="input_icon"></button>
-	            <button class="input_button1"></button>
-	            <button class="input_button2"></button>
-	        </div>
+
 	    </div>
 	    <hr>
 	    <div class="category_bottombar">
 <c:forEach var="dto" items="${catelist }"> 
 	        <div class="category_ltem">
 	            <div class="category_ltemimg">
-	                <a href="${cpath }/product/view/${dto.idx}"><img src="${cpath }/resources/getImage1/${dto.productImg }" width="218.4" height="218.4"></a>
+	                <a href="${cpath }/product/view/${dto.idx}"><img src="${cpath }/resources/getImage1/${dto.productImg }" width="218.4" height="218.4" ></a>
 	                <div class="category_ltemimg_hover">
-	                    <button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button>
-	                    <button class="button2"><img src="${cpath }/resources/img/hover_icon2.png"></button>
+	                    <a href="${cpath }/product/view/${dto.idx}" target="_blank"><button class="button1"><img src="${cpath }/resources/img/hover_icon1.png"></button></a>
+	                     <a href="#"><button class="button2"><img src="${cpath }/resources/img/hover_icon2.png" idx="${dto.idx }"></button></a>
 	                </div>
-	                <div class="dicount_icon">행사<br>상품</div>
+	                <c:if test="${dto.productDiscount != 0 }">
+	               		<div class="dicount_icon">행사<br>상품</div>
+	                </c:if>
 	            </div>
 	            <p>${dto.productName }</p>
 	            <div class="lastprice">
@@ -134,7 +139,7 @@
 	            <div class="buyAvg">
 	                <span>⭐</span>
 	                <span>4.4(3884건)  |</span>
-	                <span>월 54,101개 구매</span>
+	                <span>월 ${dto.buyCnt }개 구매</span>
 	            </div>
 	        </div>
 
@@ -144,11 +149,16 @@
 </div>
 </div>
 <script>
-	const Listcategory = document.querySelector('#cate > a')
-	
-	Listcategory.addEventListener('click', categoryModal)
-	
-</script>
+	const mainoverlay = document.getElementById('overlay')
+	const cartbtn = document.querySelectorAll('.button2') 
+	const seemore = document.getElementById('seemore')
+	const seefold = document.getElementById('seefold')
+
+	mainoverlay.addEventListener('click', closeModal)
+	cartbtn.forEach(btn => btn.addEventListener('click', searchCart))
+	seemore.addEventListener('click', pluscategory)
+	seefold.addEventListener('click', foldcategory)
+	</script>
 
 
 <%@ include file="../footer.jsp"%>

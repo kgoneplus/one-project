@@ -1,10 +1,8 @@
 package com.itbank.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,9 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itbank.oneplus.AskDTO;
 import com.itbank.oneplus.MemberDTO;
 import com.itbank.oneplus.OrdersDetailDTO;
-import com.itbank.oneplus.ProductDTO;
-import com.itbank.oneplus.ProductcartDTO;
-import com.itbank.oneplus.ReviewDTO;
 import com.itbank.service.MypageService;
 
 @Controller
@@ -35,7 +30,12 @@ public class MypageController {
 	
 	// 마이페이지 메인
 	@GetMapping("/mypageMain")
-	public void mypage() {
+	public ModelAndView mypage(HttpSession session) {
+		ModelAndView mav = new ModelAndView("/mypage/mypageMain");
+		int member_idx = ((MemberDTO)session.getAttribute("login")).getIdx();
+		int orderCnt = mypageService.getTotalOrderCnt(member_idx);
+		mav.addObject("orderCnt", orderCnt);
+		return mav;
 	}
 
 	// 주문/배송 조회
@@ -43,14 +43,15 @@ public class MypageController {
 	public ModelAndView orders(HttpSession session) {
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		ModelAndView mav = new ModelAndView("/mypage/orders");
-//		System.out.println("결제후 mypage에서 member_idx : " + dto.getIdx());
-//		List<OrdersDetailDTO> finalOrderlist = mypageService.selectOrdersList(dto.getIdx());
-//		mav.addObject("finalOrderlist", finalOrderlist);
 		List<List<OrdersDetailDTO>> finalOrderlist = mypageService.selectOrdersList(dto.getIdx());
 		mav.addObject("finalOrderlist", finalOrderlist);
 		return mav;
 	}
-
+	
+	// 인터셉터를 위한 더미
+	@GetMapping("/myinfo")
+	public void info() {}
+	
 	// 주문상세보기
 	@GetMapping("/orderdetail")
 	public void orderdetail() {
