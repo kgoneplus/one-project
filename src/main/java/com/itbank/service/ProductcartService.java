@@ -29,7 +29,7 @@ public class ProductcartService {
 	@Autowired DeliveryDAO deliveryDao;
 	@Autowired OrdersDAO ordersDao;
 	@Autowired MemberDAO memberDao;
-
+	
  	public List<ProductcartDTO> deliveryInfoSelectList(int idx, List<String> itemList) {
 		List<ProductcartDTO> list = new ArrayList<ProductcartDTO>();
 		HashMap<String, Object> param = new HashMap<String, Object>();

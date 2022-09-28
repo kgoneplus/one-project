@@ -40,8 +40,4 @@ public interface DeliveryDAO {
 	@Update("update delivery set isDefault='n' where dCode=${dCode_old}")
 	int eraseDefaultAddress(HashMap<String, String> param);
 
-	
-//	@Insert("insert into delivery (dCode, receiverName, receiverPhonenum, member_idx, addr1, addr2, addr3, addr4, isDefault) "
-//			+ "values (delivery_seq.nextval, #{receiverName}, #{receiverPhonenum}, #{member_idx}, #{addr1}, #{addr2}, #{addr3}, #{addr4}, 'y')")
-//	int insertDefaultAddress(DeliveryDTO insertdto);
 }
