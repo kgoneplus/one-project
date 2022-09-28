@@ -17,10 +17,12 @@ public class BuyController {
 	
 	@Autowired ProductcartService service;
 	
+	//인터셉터를 위한 장바구니
 	@GetMapping("/cart")
 	public void cartinterceptor() {
-	};	// 인터셉터를위한 더미
+	};
 	
+	//장바구니
 	@GetMapping("/cart/{member_idx}")
 	public ModelAndView cart(@PathVariable int member_idx) {
 		ModelAndView mav = new ModelAndView("/buying/cart");
@@ -28,6 +30,7 @@ public class BuyController {
 		return mav;
 	}
 	
+	//배송정보=주문창
 	@GetMapping("/deliveryInfo/{member_idx}")
 	public ModelAndView deliveryInfo(@PathVariable int member_idx) {
 		ModelAndView mav = new ModelAndView("/buying/deliveryInfo");

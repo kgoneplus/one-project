@@ -1,5 +1,13 @@
 package com.itbank.oneplus;
 
+//DCODE            NOT NULL NUMBER         
+//MEMBER_IDX                NUMBER         
+//RECEIVERNAME              VARCHAR2(10)   
+//RECEIVERPHONENUM          VARCHAR2(20)   
+//ADDRESS                   VARCHAR2(2000) 
+//DINFO1                    VARCHAR2(1000) 
+//ISDEFAULT                 VARCHAR2(5) 
+
 public class DeliveryDTO {
 	private int dCode;
 	private int member_idx;

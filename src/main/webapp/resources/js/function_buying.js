@@ -612,6 +612,7 @@ async function selectOneOrders(ordersidx) {
 	})
 }
 
+// 주문자=회원 정보 selectMember
 async function selectMember(idx) {
 	const url = cpath + '/buying/getMember/' + idx
 	return await fetch(url).then(resp => resp.json())
